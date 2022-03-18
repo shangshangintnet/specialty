@@ -1,0 +1,3 @@
+<!--miniprogram/pages/myself/aboutUs/aboutCompany/aboutCompany.wxml-->
+<navbar title='关于上商' show_bol='{{false}}' bg_type='bg_green' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='column' style='padding-top:{{bar_Height  + 45}}px;'></view>

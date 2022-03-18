@@ -1,0 +1,97 @@
+/* miniprogram/pages/myself/myrights/myrights.wxss */
+.image_section
+{
+  padding:20rpx;
+  height: 310rpx;
+  width: 750rpx;
+}
+
+.img_rights
+{
+  width: 710rpx;
+
+}
+
+.img_text
+{
+  margin-top: -300rpx;
+}
+
+.img_text view
+{
+  padding: 10rpx;
+  letter-spacing: 1rpx;
+}
+
+.level_icon
+{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+
+.invite_code
+{
+  border-radius: 50rpx;
+  width: 400rpx;
+  border:1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.share_title
+{
+  width: 750rpx;
+  padding: 0rpx;
+}
+
+.member_rights_sec
+{
+  background: white;
+}
+
+.member_title
+{
+  margin: 30rpx 20rpx 0 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid gainsboro;
+}
+
+.rights_title
+{
+  padding:20rpx;
+  margin-left:40rpx;
+  margin-right: 20rpx;
+  border-left: 1px solid orange;
+  border-bottom: 1px solid gainsboro;
+}
+
+.rights_desc
+{
+  background-color: whitesmoke
+
+}
+
+.rights_content_title
+{
+  width: 100rpx;
+  margin-left:40rpx;
+  padding-left: 20rpx;
+  border-left: 1px solid orange;
+  background-color: whitesmoke
+}
+
+.rights_content
+{
+  width: 550rpx;
+  background-color: whitesmoke
+}
+
+.circle1 {
+    border-radius: 50rpx;
+    list-style: none;
+    width: 14rpx;
+    height: 14rpx;
+    margin-left: -26rpx;
+    margin-top: 16rpx;
+    background: orange;
+}

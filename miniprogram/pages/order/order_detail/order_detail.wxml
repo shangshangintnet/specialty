@@ -1,0 +1,149 @@
+<navbar show_bol='{{false}}' bg_type='' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='linear_order_green column' style="width:750rpx;padding-top:{{bar_Height+10}}px;padding-bottom:100rpx;">
+	<view class='block_center'>
+		<image class='icon_big' style='margin-right:10rpx;' src='{{orderIcon[order.orderDetails.orderStatus]}}'></image>
+		<text style='margin-top:4rpx' class='white h2'>{{orderTitle[order.orderDetails.orderStatus]}}</text>
+	</view>
+	<view wx:if="{{order.orderDetails.orderStatus == 0}}" style='margin-top:20rpx' class='block_center white column'>
+		<view class='h4' style="text-align: end;">
+			<text>需付款：</text>
+			<text class='h3'>¥ {{order.orderDetails.totalDiscountPrice}}</text> </view>
+		<view class='h4'>
+			<text style="margin-right:5rpx;">剩余</text>
+			<text class='h3' style="text-align: end;">{{min}}分{{second}}秒 </text>
+			<text style="margin-left:5rpx;">自动关闭</text>
+		</view>
+	</view>
+	<view wx:if="{{order.orderDetails.orderStatus != 0}}" style='margin-top:40rpx' class='white width100'>
+		<text class='left h4' style='margin-left:20rpx;'>{{orderDesc[order.orderDetails.orderStatus]}}</text>
+		<text class='right h4' style='margin-right:20rpx;'>{{expressTitle[order.orderDetails.orderStatus]}}</text>
+		<text wx:if="{{order.orderDetails.orderStatus != 3 && order.orderDetails.identify == 1}}" class='left h4' style='margin-left:20rpx;margin-top:10rpx;border-top:1rpx dashed #ffffff;padding-top:10rpx'>{{mess}}</text>
+	</view>
+</view>
+<view class='order_desc column radius5 bg_white' style='margin-top:-80rpx;'>
+	<view wx:if="{{order.orderDetails.orderStatus != 0 && order.orderDetails.orderStatus != 3}}"
+		class='border_line_whitesmoke'>
+		<image class='icon_order left' style='margin:60rpx 20rpx;height:50rpx;' src='/images/ic_orderlog.png'>
+		</image>
+		<view bindtap='jumpTo' data-url="express_detail/express_detail" data-order-id="{{order.orderDetails.id}}"
+			wx:for="{{sfData.logisticsList}}" wx:if="{{index == 0}}" class='column left order_waiting_txt'
+			style='margin-top:20rpx;'>
+			<text class='h4'>{{item.context}}</text>
+			<text class='gray h4'>{{item.time}}</text>
+		</view>
+		<image style='width:20rpx;margin-top:70rpx;margin-right:30rpx;' src='/images/arrow_right.png' class='icon right'>
+		</image>
+	</view>
+
+	<view>
+		<image style='margin:60rpx 20rpx;' src='/images/ic_local.png' class='icon_order_address left'>
+		</image>
+		<view style='margin-top:20rpx;margin-right:40rpx;' class='column'>
+			<view>
+				<text class='left gray h4'>收货人：{{order.orderDetails.realName}}</text>
+				<text class='right gray h4'>{{order.orderDetails.phoneNum}}</text>
+			</view>
+			<text class='h4 gray'>{{order.orderDetails.addressDetails}}</text>
+		</view>
+	</view>
+</view>
+<view class='column order_detail shop_section bg_white'>
+	<view class='column' wx:for="{{order.storeList}}" wx:for-index="idx" wx:for-item="store">
+		<view style='margin-bottom:20rpx;{{idx != 0?"margin-top:10rpx":""}}'>
+			<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+			<text class='left'>{{store.name}}</text>
+		</view>
+		<view wx:for="{{store.goodsList}}" wx:if="{{goods.inventory >= 1}}" wx:for-index="idx" wx:for-item="goods"
+			class='column goods_section border_line_whitesmoke'>
+			<view class="row">
+				<image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+				<view class='column goods_txt'>
+					<text class='h4'>{{goods.name}}</text>
+					<text class='goods_id h4 gray'>{{goods.goodsNo}}</text>
+					<view class='row price_section'>
+						<view class='app_red'>￥{{goods.price}}</view>
+						<view style='margin-left:auto'>x{{goods.inventory}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="row" style="margin-top:10rpx;">
+				<text
+					wx:if="{{goods.afterSalesStatus == 0 && order.orderDetails.orderStatus != 0 && order.orderDetails.orderStatus != 3}}"
+					bindtap='jumpTo' data-url="/packageMyself/pages/myself/saleAfter/saleAfterApply/saleAfterApply"
+					data-order-id="{{order.orderDetails.id}}" data-goods-id="{{goods.id}}" class='label_default gray'
+					style='margin-right:15rpx;margin-left:auto;width:100rpx;'>申请售后</text>
+				<text
+					wx:if="{{goods.afterSalesStatus == 5 && order.orderDetails.orderStatus != 0 && order.orderDetails.orderStatus != 3}}"
+					bindtap='jumpTo' data-url="/packageMyself/pages/myself/saleAfter/saleAfterDetail/saleAfterDetail"
+					data-customer-id="{{goods.customerId}}" data-goods-id="{{goods.id}}" class='label_default gray'
+					style='margin-right:15rpx;margin-left:auto;width:150rpx;'>查看售后状态</text>
+			</view>
+		</view>
+	</view>
+	<view class='row'>
+		<view class='column order_bar'>
+			<text class='h4'>商品金额</text>
+			<text class='h4'>运费</text>
+			<text class='h4'>优惠券</text>
+			<text class='h4'>翡翠币</text>
+			<text class='h4'>会员折扣</text>
+			<text class='h4'>活动折扣</text>
+			<text class='h4'>余额支付</text>
+			<text class='h4'>实际支付</text>
+		</view>
+		<view class='column order_price'>
+			<text class='h4'>¥ {{order.orderDetails.totalPrice}}</text>
+			<text class='h4'>¥ 0</text>
+			<text class='h4'>- ¥ {{order.orderDetails.couponPrice}}</text>
+			<text class='h4'>- ¥ {{order.orderDetails.jadeiteCoinDiscount}}</text>
+			<text class='h4'>- ¥ {{order.orderDetails.equityPrice}}</text>
+			<text class='h4'>- ¥ {{order.orderDetails.activityDiscountPrice}}</text>
+			<text class='h4'>- ¥ {{order.orderDetails.useBalance}}</text>
+			<text class='h4 app_red'> ¥ {{order.orderDetails.totalDiscountPrice}}</text>
+		</view>
+	</view>
+</view>
+
+<view class='express_info column radius5 bg_white' style='padding-bottom:80rpx;'>
+	<view class='border_line_whitesmoke' style='padding:20rpx 0;'>订单信息</view>
+	<view class='span'>
+		<text>订单编号: {{order.orderDetails.orderNo}}</text>
+		<text class="right app_green" bindtap='copyText' data-share-code="{{order.orderDetails.orderNo}}">复制</text>
+	</view>
+
+	<text class='span'>下单时间:{{order.orderDetails.createTime}}</text>
+	<text wx:if="{{order.orderDetails.identify == 1}}" class="span">鉴真服务:已购买</text>
+	<text class='span'>配送方式:顺丰保价包邮 签收前请验货</text>
+	<text class='span'>买家留言:{{order.orderDetails.orderContent?order.orderDetails.orderContent:''}}</text>
+	<text class='span'>售后服务:十五天无忧退货</text>
+
+	<view class='row'>
+		<view bindtap="gokefu" class="row" style="width: 345rpx; align-items: center;justify-content: center;">
+			<image style="width: 50rpx;height: 50rpx;" src="/images/ic_kefu.png"></image>
+			<text class="h2 gray_4" style="margin-left: 20rpx;">咨询客服</text>
+		</view>
+		<view bindtap='makePhoneCall' data-phone="4006691899" class="row"
+			style="width: 345rpx; align-items: center;justify-content: center;">
+			<image src='/images/ic_callphone.png' style="width: 50rpx;height: 50rpx;"></image>
+			<text class="h2 gray_4" style="margin-left: 20rpx;">拨打电话</text>
+		</view>
+	</view>
+</view>
+
+<view class='row cart_result'>
+	<view style='width:750rpx;padding-top:14rpx;'>
+		<text wx:if="{{order.orderDetails.orderStatus == 0}}" data-id="{{order.orderDetails.id}}" bindtap='onConfirmOrder'
+			class='right label_green' style='margin-right:20rpx;'>立即支付</text>
+		<text data-id="{{order.orderDetails.id}}" bindtap='onDeleteOrder'
+			wx:if="{{order.orderDetails.orderStatus == 2||order.orderDetails.orderStatus == 3}}" class='right label_default'
+			style='margin-right:20rpx;'>删除订单</text>
+		<text data-id="{{order.orderDetails.id}}" bindtap='onCancelOrder' wx:if="{{order.orderDetails.orderStatus == 0}}"
+			class='right label_default' style='margin-right:20rpx;'>取消订单</text>
+		<text wx:if="{{order.orderDetails.orderStatus == 1 || order.orderDetails.orderStatus == 4}}"
+			class='right label_green' style='margin-right:20rpx;' bindtap='onFinishOrder'
+			data-id='{{order.orderDetails.id}}'>确认收货</text>
+		<text
+			wx:if="{{order.orderDetails.orderStatus != 0 && order.orderDetails.orderStatus != 3 && order.orderDetails.deliveryStatus != 0}}"
+			class='right label_default' style='margin-right:20rpx;' bindtap='jumpTo' data-url="express_detail/express_detail" data-order-id="{{order.orderDetails.id}}">查看物流</text>
+	</view>
+</view>

@@ -1,0 +1,98 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar title='确认订单' bg_type='bg_black'></navbar>
+<view class='order_desc column' style='width:730rpx;margin-top:{{bar_Height+55}}px;'>
+	<view bindtap="selectAddress" class='row bg_white radius5'
+		style="align-items:center;padding:20rpx;min-height:120rpx;">
+		<image src='/images/ic_local.png' class='icon_order_address'> </image>
+		<block wx:if="{{order.address}}">
+			<view style='margin-left:20rpx;margin-right:20rpx;width:600rpx;' class='column'>
+				<view class="row">
+					<text class='gray h4'>收货人：{{order.address.realName}}</text>
+					<text class='gray h4' style="margin-left:20rpx;">{{order.address.phoneNum}}</text>
+				</view>
+				<text class='h4 gray'>{{order.address.addressName}}</text>
+			</view>
+		</block>
+		<block wx:else>
+			<view style='margin-left:20rpx;margin-right:20rpx;width:600rpx;' class='column'>
+				<text class='h4 gray'>请添加您的地址</text>
+			</view>
+		</block>
+		<image style="width:13rpx;height:22rpx;margin-left:auto;" src="/images/arrow_right.png"></image>
+	</view>
+</view>
+<view class='express_info column radius5 bg_white'>
+	<view class='column'>
+		<view class='row goods_section border_line_whitesmoke'>
+			<image src="{{order.goods.imageUrls[0]}}" class='goods_pic'></image>
+			<view class='column goods_txt'>
+				<text class='h2'>{{order.goods.goodsName}}</text>
+				<text class='h4 gray'>{{order.goods.goodsNo}}</text>
+				<view class="row" style="margin-top:auto">
+					<view class='app_red h4'>￥{{order.goods.price}}</view>
+					<view class='h4' style='margin-left:auto'> x 1 </view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='column'>
+		<view class="row order_bar">
+			<text class='h4'>售后服务</text>
+			<text class='h4 order_price'>十五天无忧退货</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>配送方式</text>
+			<text class='h4 order_price'>顺丰保价包邮 签收前请验货</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>余额(可用{{maxUseBalance}}元)</text>
+			<input class='h4 order_price' value="{{useBalance}}" placeholder='请输入余额' bindblur="toUseBalance"
+				bindinput="bindCoinBalance" bindconfirm="toUseBalance" type='digit'></input>
+		</view>
+	</view>
+	<view class='row' style="align-items: center;margin-left:12rpx;margin-top:10rpx;">
+		<text class='h4' style='width:120rpx'>买家留言:</text>
+		<input class='h4' value='{{content}}' bindblur="bindcontent" style='width:400rpx;margin-left:10rpx;'
+			placeholder='选填：建议留言前先和卖家确认'></input>
+	</view>
+</view>
+<view class='column order_desc bg_white radius5 pad-20' style='margin-bottom:120rpx;'>
+	<view class='column'>
+		<view class="row order_bar">
+			<text class='h4'>商品金额</text>
+			<text class='h4 order_price'>¥ {{order.goods.price}}</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>运费</text>
+			<text class='h4 order_price'>¥ 0</text>
+		</view>
+		<view class="row order_bar border_line_whitesmoke">
+			<text class='h4'>余额</text>
+			<text class='h4 order_price'>¥ {{useBalance}}</text>
+		</view>
+	</view>
+	<view class='right pad-20' style='width:660rpx;text-align:right;margin-top:10rpx;'>
+		<view class='h4'>共1件商品 小计:
+			<text class='app_green'>¥ {{phone.toPrice(order.goods.price - useBalance)}}</text>
+		</view>
+	</view>
+</view>
+<view class='row cart_result'>
+	<view class="row" style='margin-left:40rpx;align-items:center;height:112rpx;'>
+		<text>合计:</text>
+		<text class='app_green' style="margin-left:10rpx;">¥ {{phone.toPrice(order.goods.price - useBalance)}}</text>
+	</view>
+	<view bindtap='toPay' class='white bg_orange submmit'>提交订单
+	</view>
+</view>
+<van-popup custom-style="width:100vw;height:60vh;z-index:1000" position="bottom" show="{{showAddress}}"
+	bind:close="closeAddress">
+	<van-picker show-toolbar bind:cancel="closeAddress" bind:confirm="onConfirm" title="选择现有地址" columns="{{addressdata}}"
+		value-key="addressName" bind:change="onChange" />
+	<view style="position:absolute;bottom:8px;padding-top:10px;width:100%" class="van-hairline--top">
+		<button bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/createAddress/createAddress"
+			style="width:300rpx;margin-left:50rpx;" class="left" type="primary">新增地址</button>
+		<button bindtap='jumpTo' class="right" data-url="/packageMyself/pages/myself/myaddress/myaddress"
+			style="width:300rpx;margin-right:50rpx;" type="default">修改地址</button>
+	</view>
+</van-popup>

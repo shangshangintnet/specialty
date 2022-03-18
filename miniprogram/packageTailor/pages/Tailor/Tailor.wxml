@@ -1,0 +1,71 @@
+<navbar title="{{beUser?'私人订制':'订制管理'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<block wx:if="{{user.carvingLevel != 1}}">
+  <!-- 店主、雕刻师、普通用户 -->
+  <view bindtap="jumpTo" data-url="../releaseRequire/releaseRequire" class="row fun_info_item gray h2 bg_white"
+    style="margin-top:{{bar_Height+55}}px;">
+    <image src="/images/ic_tailor_upload.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">订制发布</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+  <view wx:if="{{!beUser}}" bindtap="jumpTo" data-url="../receiveRequire/receiveRequire"
+    class="row fun_info_item gray h2 bg_white" style="margin-top:10rpx;">
+    <image src="/images/ic_tailor_receive.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">承接需求</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+  <view bindtap="jumpTo" data-url="../myCarve/myCarve" class="row fun_info_item gray h2 bg_white"
+    style="margin-top:10rpx;">
+    <image src="/images/ic_tailor_1.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">{{beUser?'我的雕刻':'雕刻管理'}}</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+  <view bindtap="jumpTo" data-url="../myPolish/myPolish" class="row fun_info_item gray h2 bg_white"
+    style="margin-top:10rpx;">
+    <image src="/images/ic_tailor_2.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">{{beUser?'我的抛光':'抛光管理'}}</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+  <view bindtap="jumpTo" data-url="../myInlay/myInlay" class="row fun_info_item gray h2 bg_white"
+    style="margin-top:10rpx;">
+    <image src="/images/ic_tailor_up2.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">{{beUser?'我的镶嵌':'镶嵌管理'}}</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+  <view wx:if="{{user.carveType == 1}}" bindtap="jumpTo" data-url="../uploadTailor/uploadTailor"
+    class="row fun_info_item gray h2 bg_white" style="margin-top:10rpx;">
+    <image src="/images/ic_tailor_upload.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">特殊订制(内部订制入口)</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+  <view wx:if="{{user.carveType == 1 || specialCarve}}" bindtap="jumpTo" data-url="../myTailor/myTailor"
+    class="row fun_info_item gray h2 bg_white" style="margin-top:10rpx;">
+    <image src="/images/ic_tailor_1.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">特殊订制管理(内部订制管理)</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+</block>
+<block wx:else>
+  <!-- 玉雕学员 -->
+  <view bindtap="jumpTo" data-url="../myTailor/myTailor" class="row fun_info_item gray h2 bg_white"
+    style="margin-top:{{bar_Height+55}}px;">
+    <image src="/images/ic_tailor_1.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+    <view style="margin-top:15rpx;margin-left:20rpx;">雕刻管理</view>
+    <image src="/images/arrow_right.png"
+      style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+  </view>
+</block>
+<!-- 玉雕师 学员 -->
+<view bindtap="jumpTo" wx:if="{{user.carveType == 1 && user.carvingId != null}}" data-url="../carverPrice/carverPrice"
+  class="row fun_info_item gray h2 bg_white" style="margin-top:10rpx;">
+  <image src="/images/ic_tailor_upload.png" style="margin-top:15rpx;margin-left:15rpx;width:50rpx;height:50rpx" />
+  <view style="margin-top:15rpx;margin-left:20rpx;">我的分成</view>
+  <image src="/images/arrow_right.png"
+    style="margin-top:15rpx;margin-left:auto;margin-right:15rpx; width:13rpx;height:22rpx" />
+</view>

@@ -1,0 +1,40 @@
+<navbar id="navbar" title="高货顾问" show_bol='{{false}}' bg_type='bg_black_op'></navbar>
+<image style="height:310rpx;width:750rpx;" src="https://img.ssw88.com/static/high/high_head.jpg"></image>
+<view class="column" style="width:750rpx;margin-bottom:120rpx;">
+  <view bindtap="openAdviser" data-index="{{index}}" class="row section" wx:for="{{advisers}}">
+    <image style="width:180rpx;height:240rpx;margin-left:10rpx;border-radius:10rpx;" src="{{item.photoUrl}}"></image>
+    <view class="column" style="height:240rpx;margin-left:30rpx;width:360rpx;">
+      <view class="bold h3">{{item.name}}</view>
+      <view class="h9" wx:if="{{item.storeName}}">{{item.storeName}} 掌柜</view>
+      <view class="h9">从业{{item.years}}年/{{item.educational}}毕业</view>
+      <view class="gray h5 ellipsis_txt">{{item.selfEvaluation}}</view>
+      <view class="gray h5 ellipsis_txt">{{item.declaration}}</view>
+      <view class="row" style="margin-top:auto">
+        <view class="zishen h9">高货资深顾问</view>
+        <view style="margin-left:10rpx;" class="zishen h9">{{tagLevel[item.tagLevel-1]}}</view>
+      </view>
+    </view>
+    <view class="column" style="margin-left:auto;height:240rpx;align-items:center;">
+      <block wx:if="{{user.highType == 2}}">
+        <view class="row" style="align-items:center">
+          <image catchtap="editAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+            src="../../images/ic_edit.png"></image>
+          <image catchtap="delAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;margin-left:10rpx;"
+            src="../../images/ic_delete.png"></image>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{exclusive && item.type == 2}}">
+          <image catchtap="removeExAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+            src="/images/ic_adviser_y.png"></image>
+        </block>
+        <block wx:elif="{{!exclusive}}">
+          <image catchtap="addExAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+            src="/images/ic_adviser.png"></image>
+        </block>
+      </block>
+      <view catchtap="chat" data-index="{{index}}" class="chat" style="margin-top:auto;">在线咨询</view>
+    </view>
+  </view>
+</view>
+<image wx:if="{{user.highType == 2}}" catchtap="addAdviser" class="addAdviser" src="../../images/ic_add.png"></image>

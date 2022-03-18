@@ -1,0 +1,191 @@
+<navbar url="/packageMyself/pages/myself/mywallet/mywallet" id="navbar" title='我的余额' show_bol='{{false}}'
+	bg_type='bg_black_op' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='linear_orange_wallet column' style=" width:750rpx;padding-top:{{bar_Height+50}}px;height:210rpx;">
+</view>
+<view style="margin-top:-180rpx;" class='order_desc column radius5 bg_white'>
+	<view class='block_center'>
+		<view class='column' style='width:750rpx;text-align:center;padding-top:40rpx;'>
+			<text class='text-center'>¥ <text class='h0'>{{balance}}</text></text>
+			<text class='gray' style='margin-top:-20rpx'>我的余额</text>
+			<view class='row' style='margin-top:20rpx;padding-bottom:20rpx;'>
+				<view class='row'>
+					<view bindtap="jumpTo" data-url="/pages/category_search/category_search" data-title="福利商品"
+						data-type-kind-id="8001" class='column wallet_bar block_center'>
+						<image class='icon_super' style='margin-bottom:15rpx' mode='aspectFit' src='./images/icon_label.png'>
+						</image>
+						<text class='h4 gray'>自购省钱</text>
+					</view>
+					<view bindtap="jumpTo" data-url="/packageMyself/pages/myself/myshare/myshare"
+						class='column wallet_bar block_center'>
+						<image class='icon_super' style='margin-bottom:15rpx' mode='aspectFit' src='./images/icon_share.png'>
+						</image>
+						<text class=' h4 gray'>分享赚钱</text>
+					</view>
+					<view bindtap='jumpTo' data-url="/pages/trade/trade" class='column wallet_bar block_center'>
+						<image class='icon_super' style='margin-bottom:15rpx;' mode='aspectFit' src='./images/icon_trade.png'>
+						</image>
+						<text class=' h4 gray'>立即兑换</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 兑换 -->
+<view class="column bg_white" style="margin-top:10rpx">
+	<view class="row h2" style="align-items: center;margin:10rpx 20rpx;">
+		<image class="icon_big" mode="widthFix" src="/images/ic_diamond.png" />
+		<text style="height:40rpx; line-height: 40rpx;color:#404040;margin-left:10px">兑换专区</text>
+		<text class="gray" data-url="/pages/trade/trade" bindtap='jumpTo'
+			style="margin-left:auto;height:40rpx; line-height: 40rpx;">更多</text>
+		<image mode="widthFix" style="margin:0 5rpx;width:13rpx;height:22rpx;" src="/images/arrow_right.png" />
+	</view>
+	<view class="column" style="width:100%;margin-bottom:10rpx;align-items: center;">
+		<view class="row goodsec" wx:for="{{goods}}" wx:key="index" bindtap="jumpToGoods" data-id="{{item.id}}">
+			<image style="width:230rpx;height: 230rpx; margin:0rpx 10rpx;" src="{{item.listImageUrl}}" />
+			<view class="column" style="height: 230rpx;">
+				<view class="row" style="align-items: center;">
+					<text class="ellipsis_txt h2" style="width: 400rpx;">{{item.name}}</text>
+					<view class="exchange autoleft">兑换</view>
+				</view>
+				<view class="gray_4 h4" style="margin-top:5rpx;">
+					出厂价: <text class="app_red">¥{{item.price}}</text>
+				</view>
+				<view class="row gray_4 h4" style="margin-top:5rpx;">
+					<text>翡翠币</text>
+					<view class="autoleft row gray h4">可抵<text class="app_red">{{emd}}</text>元</view>
+				</view>
+				<view class="row gray_4 h4" style="margin-top:5rpx;">
+					<text>余额</text>
+					<view class="autoleft row gray h4">可抵<text class="app_red">{{balance}}</text>元</view>
+				</view>
+				<view class="row" style="margin-top: auto;align-items: center;justify-content: flex-end;">
+					<view class="program">
+						<view class="program_rate" style="width:{{item.rate}}rpx"></view>
+					</view>
+					<view class="autoleft row gray h4">还需<text class="app_red">{{item.price_2}}</text>元</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="column bg_white" style="margin-top:10rpx;">
+	<view class="row" style="align-items:center;margin:10rpx 20rpx;">
+		<image src="{{storeDiamond}}" mode="widthFix" class="icon_big"></image>
+		<text class="h2" style="height:40rpx; line-height: 40rpx;color:#404040;margin-left:10px">活动专区</text>
+	</view>
+	<van-col span="24">
+		<van-col custom-class="center" span="8">
+			<image style="width:230rpx;height:300rpx;margin-left:10rpx;" bindtap="jumpTo" data-url="/pages/limitBuy/limitBuy"
+				mode="widthFix" src="{{storeSpike}}" />
+			<van-col custom-class="center app_title spike_title" span="24">
+				<div custom-class="app_red" wx:if="{{spike.state == 1}}">进行中</div>
+				<van-count-down wx:if="{{spike.state == 0}}" bindfinish="getData" time="{{spike.times*1000}}" />
+			</van-col>
+		</van-col>
+		<van-col custom-class="center" span="8">
+			<image mode="widthFix" style="width:230rpx;height:300rpx;margin-left:10rpx;" data-url="/pages/activity/activity"
+				data-guessing-id="{{guessingId}}" bindtap="jumpTo" src="{{storeGuess}}" />
+		</van-col>
+		<van-col custom-class="center" span="8">
+			<image mode="widthFix" style="width:230rpx;height:300rpx;margin-left:10rpx;"
+				data-url="/packageActivity/pages/redPacketRain/redPacketRain" bindtap="jumpTo" src="{{storeRed}}" />
+		</van-col>
+	</van-col>
+</view>
+<view class="column bg_white" style="margin-top:10rpx;margin-bottom:120rpx;">
+	<view class="row" style="align-items:center;margin:10rpx 20rpx;">
+		<image src="./images/start.png" mode="widthFix" class="icon_big"></image>
+		<text class="h2" style="height:40rpx; line-height: 40rpx;color:#404040;margin-left:10px">工具服务</text>
+	</view>
+	<view data-url="/packageMyself/pages/myself/cloudStore/cloudStore" bindtap="jumpTo" class="row"
+		style="margin-bottom:20rpx;">
+		<view class="column item4" style="align-items:center;justify-content:center">
+			<image src="./images/cloud.png" style="width:70rpx;height:70rpx;margin:10rpx 0rpx;"></image>
+			<view class="h4" style="margin-top:10rpx;">数字云店</view>
+		</view>
+		<view data-url="/packageMyself/pages/apply/applyPrize/applyPrize" bindtap="jumpTo" class="column item4"
+			style="align-items:center;justify-content:center">
+			<image src="./images/prize.png" style="width:70rpx;height:70rpx;margin:10rpx 0rpx;"></image>
+			<view class="h4" style="margin-top:10rpx;">抽奖软件</view>
+		</view>
+		<view data-url="/packageMyself/pages/apply/applyWater/applyWater" bindtap="jumpTo" class="column item4"
+			style="align-items:center;justify-content:center">
+			<image src="./images/water.png" style="width:70rpx;height:70rpx;margin:10rpx 0rpx;"></image>
+			<view class="h4" style="margin-top:10rpx;">订水软件</view>
+		</view>
+		<view data-url="/packageMyself/pages/apply/haoym/haoym" bindtap="jumpTo" class="column item4"
+			style="align-items:center;justify-content:center">
+			<image src="./images/hym.png" style="width:70rpx;height:70rpx;margin:10rpx 0rpx;"></image>
+			<view class="h4" style="margin-top:10rpx;">薅羊毛</view>
+		</view>
+	</view>
+</view>
+<van-popup custom-style="width:100vw;height:50vh;padding-top:40px;" position="bottom" show="{{ showResult }}"
+	bind:close="toggleResult">
+	<van-nav-bar safe-area-inset-top="{{false}}" style="position:fixed;width:750rpx;top:50vh;" title="中奖状态"
+		bind:click-right="toggleResult">
+		<van-icon name="cross" slot="right" />
+	</van-nav-bar>
+	<van-row>
+		<van-col wx:if="{{result == null}}">
+			<image mode="widthFix" style="width:350rpx;margin-left:200rpx;margin-top:100rpx;" src="./images/no_prize.png">
+			</image>
+		</van-col>
+		<van-col wx:if="{{result != null}}">
+			<view class="column pad-20">
+				<view class="h4 pad-ud-10 limit_red">
+					恭喜您! 中奖啦!
+				</view>
+				<view style="width:710rpx;border-radius:20rpx;border:1px solid #dddddd">
+					<view class="column pad-20">
+						<view class="h4"><text style="border-left:2px solid red;margin-right:4px;"></text>奖品信息</view>
+						<view class="width100 pad-ud-20 row">
+							<image src="{{result.photoImageUrl}}" style="width:180rpx;height:180rpx;"></image>
+							<view style="width:480rpx;" class="column">
+								<view class="width100">
+									<view class="right h4 gray pad-10">{{result.goodsName}}</view>
+								</view>
+								<view style="margin-top:60rpx;" class="width100">
+									<view class="right h4 gray pad-10">x1</view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="width100 column van-hairline--top pad-ud-20">
+						<view class="width100">
+							<view class="h4 pad-lr-20 left pad-ud-10"><text
+									style="border-left:2px solid red;margin-right:4px;"></text>物流信息</view>
+							<view class="h4 pad-lr-20 pad-ud-10 right">{{result.logisticsStatus == 0?'未发货':'已发货'}}</view>
+						</view>
+						<view wx:if="result.logisticsStatus != 0" class="h4 pad-lr-20 gray">
+							订单编号:{{result.logisticsNum}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</van-col>
+	</van-row>
+</van-popup>
+<van-popup custom-style="width:100vw;height:90vh;padding-top:50px;" position="bottom" show="{{ showInfo }}"
+	bind:close="toggleInfo">
+	<van-nav-bar safe-area-inset-top="{{false}}" style="position:fixed;width:750rpx;top:10vh;" title="红包说明"
+		bind:click-right="toggleInfo">
+		<van-icon name="cross" slot="right" />
+	</van-nav-bar>
+	<van-row>
+		<van-col>
+			<image style="margin-left:55rpx;width:640rpx;;margin-top:20rpx;" mode="widthFix"
+				src="https://img.ssw88.com/wechatImg/balanceDraw.png"></image>
+		</van-col>
+	</van-row>
+</van-popup>
+<view style="position:fixed;bottom:0;width:750rpx;">
+	<van-grid column-num="5">
+		<van-grid-item url="/pages/index/index" link-type="switchTab" icon="/images/home.png" text="首页" />
+		<van-grid-item url="/pages/category/category" link-type="switchTab" icon="/images/act.png" text="分类" />
+		<van-grid-item url="/pages/loadApp/loadApp" link-type="switchTab" icon="/images/logo@2x.png" text="上商App" />
+		<van-grid-item url="/pages/cart/cart" link-type="switchTab" icon="/images/car.png" text="购物车" />
+		<van-grid-item url="/pages/myself/myself" link-type="switchTab" icon="/images/my.png" text="我的" />
+	</van-grid>
+</view>

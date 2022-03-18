@@ -1,0 +1,60 @@
+<navbar title="{{goods.id==null?(type==0?'添加作品':'添加动态'):(type==0?'修改作品':'修改动态')}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+	<view class="'condition '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">{{type==0?'作品':'动态'}}基本信息</view>
+	<view class="right_line"></view>
+	<view class="'condition '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">{{type==0?'作品':'动态'}}图集信息</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="row info_item">
+			<text class="gray_4 h2">{{type==0?'作品':'动态'}}名称</text>
+			<input value="{{goods.name}}" bindblur="changename" class="input_txt" placeholder="请填写名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<!-- <view class="row info_item" wx:if="{{type==1}}">
+			<text class="gray_4 h2">作者名称</text>
+			<input value="{{goods.userName}}" bindblur="changeUserName" class="input_txt" placeholder="请填写名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view> -->
+		<view class="info_item" style="height: 200rpx;">
+			<text class="gray_4 h2">{{type==0?'作品':'动态'}}简介</text>
+			<textarea style="width: 630rpx;margin-left: 30rpx;height: 140rpx;" maxlength="50" value="{{goods.title}}" bindinput="changetitle" class="input_txt" placeholder="请填写简介" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></textarea>
+		</view>
+	</block>
+	<block wx:else>
+		<!-- <view wx:if="{{type==1}}">
+			<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+			<view class="row info_item">
+				<text class="gray_4 h4">作者头像</text>
+				<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 50 * 50,大小500kb</text>
+			</view>
+			<view class="row imgList">
+				<view wx:if="{{goods.photo}}" bindtap="selectImage" data-type="2" class="photo_view" style="background-image: url({{goods.photo}});">
+				</view>
+				<view wx:else style="margin:30rpx 40rpx;">
+					<image bindtap="selectImage" data-type="2" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+				</view>
+			</view>
+		</view> -->
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">{{type==0?'作品':'动态'}}缩略图</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 宽度{{type==0?'688 * 464':'250 * 168'}},大小500kb</text>
+		</view>
+		<view class="row imgList" style="height: 430rpx;">
+			<view wx:if="{{goods.image}}" bindtap="selectImage" data-type="{{type==0?'3':'2'}}" class="img_view" style="background-image: url({{goods.image}});">
+			</view>
+			<view wx:else style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" data-type="3" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+		
+		<view class="bottom_ToGoods row">
+			<view bindtap="jumpToGoods" class="btn_success width100" style="border-radius: 45rpx;">编辑作品内容</view>
+		</view>
+	</block>
+</view>
+<view class="bottom row" wx:if="{{active==0}}">
+	<view bindtap="confirm" class="btn_success width100">{{goods.id==null?'确认添加':'确认修改'}}</view>
+</view>
+<view wx:if="{{cropShow}}">
+	<image-cropper id="image-cropper" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" bindgetImg="getImg"></image-cropper>
+</view>

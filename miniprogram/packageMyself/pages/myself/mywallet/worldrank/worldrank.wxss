@@ -1,0 +1,24 @@
+.table_lable text {
+  width: 187.5rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  padding-bottom: 10rpx;
+}
+
+.btn_default {
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+  border-bottom-right-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  border-top: 1rpx solid gainsboro;
+  border-left: 1rpx solid gainsboro;
+  border-right: 1rpx solid gainsboro;
+  box-shadow: 0rpx -2rpx 3rpx #ddd;
+}
+
+.btn_success {
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+  border-bottom-right-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+}

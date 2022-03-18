@@ -1,0 +1,44 @@
+/* packageHighGood/pages/adviserList/adviserList.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.section {
+  margin: 10rpx;
+  padding: 20rpx 10rpx;
+  width: 710rpx;
+  height: 240rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+  align-items: center;
+}
+
+.zishen {
+  margin-top: auto;
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: linear-gradient(66deg, #079547, #43BD82);
+  color: #ffffff;
+  padding:0 5rpx;
+}
+
+.chat {
+  background: linear-gradient(66deg, #079547, #43BD82);
+  width: 116rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #ffffff;
+  border-radius: 20rpx;
+}
+
+.addAdviser {
+  width: 133rpx;
+  height: 133rpx;
+  position: fixed;
+  bottom: 60rpx;
+  right: 20rpx;
+}

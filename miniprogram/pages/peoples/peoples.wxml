@@ -1,0 +1,3 @@
+<navbar title='{{title}}' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style='padding-top:{{bar_Height  + 47}}px;'></view>
+<people id="people"></people>

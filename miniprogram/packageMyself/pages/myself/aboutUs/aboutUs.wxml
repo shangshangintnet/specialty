@@ -1,0 +1,2 @@
+<navbar title='关于我们' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<web-view style='width:750rpx;margin-top:{{bar_Height  + 45}}px;'  src="https://www.ssw88.com"></web-view>

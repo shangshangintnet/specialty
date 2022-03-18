@@ -1,0 +1,24 @@
+/* packagestoreFamous/pages/storeFamousGoods/storeFamousGoods.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.name {
+  color: #000000;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 28rpx;
+}
+
+.title {
+  background: linear-gradient(#BD9140, #B79F60);
+  color: #ffffff;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+  height: 46rpx;
+  width: max-content;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}

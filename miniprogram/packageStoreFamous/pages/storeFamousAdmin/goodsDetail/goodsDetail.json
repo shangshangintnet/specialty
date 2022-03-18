@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar",
+    "image-cropper": "/components/image-cropper/image-cropper"
+  },
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

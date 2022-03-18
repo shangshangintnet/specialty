@@ -1,0 +1,5 @@
+/* miniprogram/packageMyself/pages/myself/getEnvelope/getEnvelope.wxss */
+
+page{
+  background-color: white;
+}

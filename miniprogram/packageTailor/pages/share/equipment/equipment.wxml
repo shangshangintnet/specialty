@@ -1,0 +1,17 @@
+<navbar title="设备" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-top:{{bar_Height+50}}px;">
+  <view class="column" style="background-color: #FFFFFF;margin-top: 20rpx;text-align: left;">
+    <view class="column" wx:if="{{equipments.length==0}}" style="text-align: center;">
+      <image src="../images/not.png" style="height: 293rpx;width: 300rpx;margin-top: 82rpx;margin-left: 225rpx;"></image>
+      <text class="bold" style="font-size: 30rpx;margin-top: 28rpx;">暂无设备</text>
+      <view bindtap='onMoveToGoods' data-goods-Id="20977" class="row" style="color: #079547;border-radius: 21rpx;border: 1rpx solid #079547;height: 44rpx;width: 242rpx;margin-left: 254rpx;">
+        <text style="font-size: 30rpx;height: 28rpx;margin-left: 25rpx;">请前往购买</text>
+        <image src="../images/buy.png" style="height: 30rpx;width: 30rpx;margin-top: 8rpx;margin-left: 13rpx;"></image>
+      </view>
+    </view>
+    <view class="row" wx:for="{{equipments}}" style="height: 64rpx;width: 750rpx;border-bottom: 2rpx solid #EEEEEE;">
+      <text class="bold" style="height: 26rpx;font-size: 28rpx;margin-left: 30rpx;margin-top: 22rpx;">设备编号: {{item.name}}</text>
+    </view>
+  </view>
+</view>
+<ad unit-id="adunit-c341b5a52aac58f0" ad-intervals="30" style="margin-top:50rpx;margin-bottom: 50rpx;"></ad>

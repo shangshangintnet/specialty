@@ -1,0 +1,20 @@
+<view hidden="{{!show}}" bindtap="close" class="row popup_share">
+  <view catchtap="mask" class="bg_white column" style="height: 400rpx;width: 650rpx;align-items:center">
+    <view class="gray_2 h2" style="height:100rpx;line-height:100rpx;">绑定物流</view>
+    <view class="row" style="height:100rpx;align-items:center;">
+      <text class="gray_4 h2">公司名称</text>
+      <picker class="picker" mode="selector" range-key="name" range="{{logdata}}" bindchange="changeLogistics">
+        <block wx:if="{{curLogistics.name == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">请选择物流公司</text>
+        </block>
+        <block wx:else="{{curLogistics.name != null}}">{{curLogistics.name}}</block>
+      </picker>
+    </view>
+    <view class="row" style="height:100rpx;align-items:center;">
+      <text class="gray_4 h2">快递单号</text>
+      <input bindconfirm="changeNum" bindblur="changeNum" class="input_txt" placeholder="请输入快递单号"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view bindtap="bindLogdata" class="confirmLogdata">确定</view>
+  </view>
+</view>

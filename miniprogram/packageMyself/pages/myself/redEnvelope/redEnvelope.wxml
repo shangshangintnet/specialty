@@ -1,0 +1,42 @@
+<navbar title='发红包' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style="margin-top:{{bar_Height+55}}px;height:36px;" class="radius5 mar-10 pad-20 bg_white">
+	<view class="left pad-ud-10" style="vertical-align:middle">红包金额
+		<text class="h4 smoke pad-10"> (余额:¥{{balance}})</text>
+	</view>
+	<text class="right pad-10">元</text>
+	<view class="right h4 pad-10">
+		<input style="width:190rpx;text-align:right" bindblur="bindMoney" bindconfirm='bindMoney' class="calc calc_num" value='{{value}}'></input>
+	</view>
+</view>
+<view bindtap='jumpTo' data-url="../storage/storage" class="pad-10" style="font-size:26rpx;color:#D1A621;margin-left:20rpx">
+	<text class="gray">余额不足,</text> 立即充值
+</view>
+<view wx:if="{{type == 0}}" style="height:36px;" class="radius5 mar-10 pad-20 bg_white">
+	<view class="left pad-ud-10 gray">红包个数 <text class="smoke" style="font-size:26rpx;">(最多{{maxCount}}个)</text>
+	</view>
+	<view class="right pad-10">个</view>
+	<view class="right h4 pad-10">
+		<input style="width:240rpx;text-align:right" type="number" bindinput='bindCount' class="calc calc_num" value='{{count}}'></input>
+	</view>
+</view>
+<view wx:if="{{type == 1}}" style="height:36px;" class="radius5 mar-10 pad-20 bg_white">
+	<view class="left pad-ud-10 gray">红包个数
+	</view>
+	<view class="right pad-10">{{redBalanceNum}} 个</view>
+</view>
+<view wx:if="{{redBalanceStatus == 1 && appDraw == true}}" style="height:36px;margin-top:30rpx;" class="radius5 mar-10 pad-20 bg_white">
+	<view class="left pad-ud-10 gray">疫情红包
+	</view>
+	<view class="right h4 pad-10">
+		<switch type="switch" checked="{{type}}" bindchange="switch2Change" />
+	</view>
+</view>
+<view style="margin-top:200rpx;font-size:92rpx;" class="text-center">¥ {{realValue}}</view>
+<button bindtap="sendMoney" style="width:400rpx;margin-left:175rpx;margin-top:20rpx;" class="{{isCheck?'bg_red white':'bg_gray white'}} radius5">塞钱进红包</button>
+<van-popup position="bottom" custom-style="height:650rpx;width:75vw;top:30vh;margin-left:15vw;border-radius:20rpx;padding:20rpx;" show="{{ showShare }}" bind:close="cancelShare">
+	<view style="margin-top:20rpx" class="width100 column text-center">
+		<image class="width100 radius5" mode="widthFix" src="{{shareBcg}}"></image>
+		<view class="h4 pad-ud-10">红包已生成,点击下方按钮进行分享</view>
+		<button open-type="share" style="margin-top:10px;" class="bg_red white width100">分享</button>
+	</view>
+</van-popup>

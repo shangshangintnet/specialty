@@ -1,0 +1,101 @@
+/* 顶部导航 */
+.status-bar {
+  width: 100%;
+  z-index: 200;
+  position: fixed;
+  top: 0;
+}
+
+.goBack {
+  position: absolute;
+  top: 15rpx;
+  font-size: 12pt;
+}
+
+.goBack image {
+  width: 21rpx;
+  height: 40rpx;
+  padding: 12rpx 20px 0 30rpx;
+}
+
+.tabar {
+  display: flex;
+  justify-content: center;
+}
+
+.left {
+  float: left;
+}
+
+.white {
+  color: white;
+}
+
+.app_icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+}
+
+.search_fake_bar {
+  width: 40vw;
+  height: 56rpx;
+  background-color: #f0f0f0;
+  border-radius: 40rpx;
+  align-items: center;
+}
+
+.icon_search {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 20rpx;
+}
+
+.index_location {
+  line-height: 80rpx;
+  width: 80rpx;
+  overflow: hidden;
+  margin-left: 20rpx;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+}
+
+.bg_green {
+  width: 750rpx;
+  color: white;
+  background: linear-gradient(90deg, #006325, #023B16);
+}
+
+.bg_index {
+  background: none;
+  color: white;
+}
+
+.bg_white {
+  background: white;
+  color: black;
+}
+
+.tabar2 {
+  background: transparent !important;
+}
+
+.tabar2 text {
+  color: #fff !important;
+  font-weight: lighter !important;
+}
+
+.tabar text {
+  font-size: 32rpx;
+  letter-spacing: 2rpx;
+
+}
+
+.tabar .active {
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

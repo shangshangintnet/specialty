@@ -1,0 +1,69 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar title="添加平台商品" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class="bg_white condition" style="z-index:200;position: fixed;top:{{bar_Height + 100}}rpx;">
+	<movable-area class="row width100">
+		<movable-view class="row" style="height:80rpx;width:{{classifications.length * 140}}rpx" direction="horizontal" inertia="true">
+			<view wx:for="{{classifications}}" bindtap="jumpOne" data-index="{{index}}" class="{{active == index?'search_category selected':'search_category'}}">
+				{{item.name}}
+			</view>
+		</movable-view>
+	</movable-area>
+</view>
+<!-- condition -->
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+190}}rpx;">
+	<view bindtap="openMenu" class="condition_sort condition_txt">
+		<view>{{secondClass[secondIdx].name}}</view>
+	</view>
+	<view bindtap="tagTo" data-index="0" class="'condition_sort ' + {{goodsDate == 'goodsDate'?'app_green':'condition_txt'}}">
+		最新
+	</view>
+	<block wx:if="{{goodsDate == ''}}">
+		<view bindtap="tagTo" data-index="1" class="condition_sort app_green">
+			<view style="margin-left: 40rpx;">价格</view>
+			<image wx:if="{{asc}}" class="arrow_icon" src="/images/arrow_up.png"></image>
+			<image wx:else class="arrow_icon" src="/images/arrow_down.png"></image>
+		</view>
+	</block>
+	<block wx:else>
+		<view bindtap="tagTo" data-index="1" class="condition_sort condition_txt">
+			<view style="margin-left: 40rpx;">价格</view>
+			<image wx:if="{{asc}}" class="arrow_icon" src="/images/arrow_up.png"></image>
+			<image wx:else class="arrow_icon" src="/images/arrow_down.png"></image>
+		</view>
+	</block>
+</view>
+<view bindtap="close_secondMenu" wx:if="{{menuVisible}}" class="second_menu_bg" style="top:{{bar_Height+280}}rpx;">
+	<view class="second_menu">
+		<view catchtap="swapSecondTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{secondClass}}" wx:for-item="cat_one" style="{{index == secondIdx?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+			{{cat_one.name}}
+		</view>
+	</view>
+</view>
+<!-- goods -->
+<view class="column" style="width:750rpx;margin-top:{{bar_Height+285}}rpx;">
+	<view wx:for="{{goodsList}}" wx:for-item="goods" class="column goods_section">
+		<view bindtap="goGoods" data-index="{{index}}" class="row" style="align-items: center;height: 230rpx;">
+			<image src="{{goods.listImageUrl}}" class="goods_pic"></image>
+			<view class="column goods_txt">
+				<view class="row goods_name">
+					<image wx:if="{{goods.extravagant == 2}}" src="/images/ic_fu.png" class="icon_fuli"></image>
+					<view>{{phone.limit_ten(goods.name)}}</view>
+				</view>
+				<view class="goods_id">{{goods.goodsNo}}</view>
+				<view class="row goods_price">
+					<block wx:if="{{goods.extravagant == 1}}">
+						<view>咨询商家</view>
+					</block>
+					<block wx:else>
+						<view>￥{{goods.price}}</view>
+					</block>
+					<view class="gray" style="margin-left: auto;">x{{goods.stock}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="row" style="height: 70rpx;margin-left: auto;margin-right: 20rpx;">
+			<view catchtap="upGoods" data-index="{{index}}" wx:if="{{goods.display != 1}}" class="upGood">添加</view>
+			<view catchtap="downGoods" data-index="{{index}}" wx:else class="downGood">删除</view>
+		</view>
+	</view>
+</view>

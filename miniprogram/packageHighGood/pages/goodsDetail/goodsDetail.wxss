@@ -1,0 +1,63 @@
+page {
+  background: #f8f8f8
+}
+
+.swiper {
+  height: 750rpx;
+  width: 750rpx;
+}
+
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+
+.swiper video {
+  height: 100%;
+  width: 100%;
+}
+
+.right_line {
+  height: 45rpx;
+  width: 1px;
+  background-color: #F0F0F0;
+}
+
+.info {
+  font-family: "SYST";
+  font-size: 40rpx;
+  font-weight: bold;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  width: 750rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 100rpx;
+  align-items: center;
+}
+
+.adviser {
+  width: 300rpx;
+  align-items: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  justify-content: center;
+  background-color: #ffffff;
+  font-size: 32rpx;
+}
+
+.chat {
+  background-color: #079547;
+  color: #ffffff;
+  font-size: 32rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 450rpx;
+  align-items: center;
+  justify-content: center;
+}

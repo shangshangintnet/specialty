@@ -1,0 +1,11 @@
+/* miniprogram/pages/myself/mywallet/myFriends/myFriends.wxss */
+
+.user_icon_sm
+{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+  overflow: hidden;
+  margin:0 20rpx;
+  margin-top: 10rpx;
+}

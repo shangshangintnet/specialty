@@ -1,0 +1,50 @@
+<navbar title="{{status?'已到账':'订单收益'}}" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class='row bg_white width100 border_line_whitesmoke'
+	style="height:90rpx;position:fixed;top:{{bar_Height+100}}rpx;">
+	<block wx:if="{{status}}">
+		<view class='item2 gray h4' style="line-height:90rpx;text-align: center;">订单编号</view>
+		<view class='item2 gray h4' style="line-height:90rpx;text-align: center;">订单回款</view>
+	</block>
+	<block wx:else>
+		<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">订单金额</view>
+		<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">平台佣金</view>
+		<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">订单回款</view>
+		<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">交易时间</view>
+	</block>
+</view>
+<view class="column width100" style="margin-top:{{bar_Height+180}}rpx;padding:10rpx 0rpx 200rpx 0rpx;">
+	<block wx:if="{{status}}">
+		<view class="column bg_white order_section" wx:for="{{orders}}">
+			<view class="row">
+				<view class='item2 gray h4' style="height:90rpx;line-height:90rpx;text-align: center;">¥
+					{{item.orderNo}}
+				</view>
+				<view class='item2 app_green h4' style="height:90rpx;line-height:90rpx;text-align: center;">¥
+					{{item.storeProfit}}
+				</view>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="column bg_white order_section" wx:for="{{orders}}">
+			<view class="row">
+				<view class='gray h6 border_line_whitesmoke' style="height:60rpx;line-height:60rpx;margin-left:30rpx;">
+					订单编号：{{item.orderNo}}</view>
+				<view class="app_orange h4" style="height:60rpx;line-height:60rpx;margin-left:auto;margin-right:30rpx;">鉴真服务:¥
+					{{item.identifyPrice}}</view>
+			</view>
+			<view class="row">
+				<view class='item4 app_green h4' style="height:90rpx;line-height:90rpx;text-align: center;">¥
+					{{item.totalPrice}}
+				</view>
+				<view class='item4 app_orange h4' style="height:90rpx;line-height:90rpx;text-align: center;">¥
+					{{item.commission}}
+				</view>
+				<view class='item4 app_red h4' style="height:90rpx;line-height:90rpx;text-align: center;">¥ {{item.storeProfit}}
+				</view>
+				<view class='item4 gray h4' style="height:90rpx;line-height:45rpx;text-align: center;">{{item.paymentTime}}
+				</view>
+			</view>
+		</view>
+	</block>
+</view>

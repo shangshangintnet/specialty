@@ -1,0 +1,18 @@
+<!--miniprogram/pages/myself/aboutUs/feedback/feedback.wxml-->
+<navbar title='意见反馈' show_bol='{{false}}' bg_type='bg_green' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='column bg_white' style='padding-top:{{bar_Height  + 45}}px;'>
+  <view class='pad-20 border_line_whitesmoke'>
+    <text class='h3 left gray'>意见反馈</text>
+    <text class='right gray'>0/200</text>
+  </view>
+  <view class='pad-20'>
+      <textarea maxlength="200" class='width100' style='height:200rpx;' auto-focus="true"/>
+  </view>
+  <view class='pad-20'>
+    <image mode='scaleToFill' class='float pad-10' style='width:150rpx;height:150rpx;' wx:for="{{images}}" src='{{item}}'> </image>
+    <image wx-if="{{images.length < 3}}" bindtap='commitPics' src='/images/ic_add_img.png' class='pad-10 float' style='width:150rpx;' mode='widthFix'></image>
+  </view>
+
+  <view><button class='btn_success mar-20'>确认并提交</button></view>
+
+</view>

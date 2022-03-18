@@ -1,0 +1,24 @@
+.title_bg {
+  background: linear-gradient(90deg, #57b8fc, #016aec);
+  display: flex;
+  flex-direction: column;
+}
+
+.goBack {
+  width: 80rpx;
+  height: 100rpx;
+}
+
+.goBack image {
+  width: 22rpx;
+  height: 36rpx;
+  margin: 32rpx 20rpx;
+}
+
+.tabar_text {
+  width: 550rpx;
+  height: 100rpx;
+  margin-left: 20rpx;
+  text-align: center;
+  line-height: 100rpx;
+}

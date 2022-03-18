@@ -1,0 +1,33 @@
+<navbar title='我的分成' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='row bg_white width100 border_line_whitesmoke' style="height:45px;position:fixed;top:{{bar_Height+50}}px;">
+  <block wx:if="{{user.carvingLevel == 1}}">
+    <view class='item2 gray h4' style="line-height:45px;text-align: center;">雕刻分成</view>
+    <view class='item2 gray h4' style="line-height:45px;text-align: center;">时间</view>
+  </block>
+  <block wx:else>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">解石分成</view>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">雕刻分成</view>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">材料分润</view>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">时间</view>
+  </block>
+</view>
+<view class="column width100" style="margin-top:{{bar_Height+95}}px;padding:10rpx 0rpx 200rpx 0rpx;">
+  <view class="row bg_white order_section" wx:for="{{price}}">
+    <block wx:if="{{user.carvingLevel == 1}}">
+      <view class='item2 app_orange h4' style="height:90rpx;line-height:90rpx;text-align: center;">
+        ¥ {{item.carvePrice}} </view>
+      <view class='item2 gray h4' style="height:90rpx;line-height:45rpx;text-align: center;">
+        {{item.createTime}} </view>
+    </block>
+    <block wx:else>
+      <view class='item4 app_green h4' style="height:90rpx;line-height:90rpx;text-align: center;">
+        ¥ {{item.calcitePrice}} </view>
+      <view class='item4 app_green h4' style="height:90rpx;line-height:90rpx;text-align: center;">
+        ¥ {{item.carvePrice}} </view>
+      <view class='item4 app_green h4' style="height:90rpx;line-height:90rpx;text-align: center;">
+        ¥ {{item.wastePrice}} </view>
+      <view class='item4 gray h4' style="height:90rpx;line-height:45rpx;text-align: center;">
+        {{item.createTime}} </view>
+    </block>
+  </view>
+</view>

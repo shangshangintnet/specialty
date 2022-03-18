@@ -1,0 +1,28 @@
+<navbar title='我的地址' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='column' style='padding-top:{{bar_Height  + 45}}px;'>
+  <view class='bg_white column' style='margin:5rpx 0;' wx:key="{{item.id}}"  wx:for="{{addressList}}">
+    <view class="col-max row">
+      <text class='col-6 pad-20 h4'>收货人:{{item.realName}}</text>
+      <text class='col-6 text-right pad-20 h4'>{{item.phoneNum}}</text>
+    </view>
+    <view class='pad-20-no-top address h4 border_line_whitesmoke'>
+      {{item.addressName}}
+    </view>
+    <view class='tools_bar'>
+      <view class='left pad-20 col-6'>
+        <image bindtap='toggleDefault' data-id="{{item.id}}" style='margin-top:9rpx;margin-right:8rpx;'  src='{{item.ifDefault?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' class='icon left'></image>
+        <view class='left'>默认地址</view>
+      </view>
+      <view class='right pad-20'>
+        <image style='margin-top:9rpx;margin-right:8rpx;' src='/images/ic_addressdelete.png' class='icon left'></image>
+        <view bindtap='onDeleteAddress'  data-id="{{item.id}}" class='left'>删除</view>
+      </view>
+      <view class='right pad-20'>
+        <image  style='margin-top:9rpx;margin-right:8rpx;'  src='/images/ic_addressedit.png' class='icon left'></image>
+        <view bindtap='jumpTo' data-url="createAddress/createAddress" data-id="{{item.id}}" class='left'>编辑</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<button bindtap='jumpTo' data-url="createAddress/createAddress" class='block-center btn_success lighter h2' style='width:450rpx;height:80rpx;margin-top:50rpx;padding-bottom:4rpx;' >新建收货地址</button>

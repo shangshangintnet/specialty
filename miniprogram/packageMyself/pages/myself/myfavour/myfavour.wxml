@@ -1,0 +1,47 @@
+<wxs module="phone" src="../../../../utils/phone.wxs"></wxs>
+<view class='status-bar bg_white column' style="height:{{2*(bar_Height+70)}}rpx;padding-top:{{2*(bar_Height)}}rpx;">
+	<view>
+		<image bindtap='goBack' src='/images/back.png' class='icon_back left'></image>
+		<view class='left' style='font-size:36rpx;margin-top:18rpx;margin-left:234rpx;'>我的收藏</view>
+	</view>
+	<view class='row' style="width: 100vw;	height: 80rpx;">
+		<movable-area class='row width100'>
+			<movable-view animation scroll-x class="row" style='height:80rpx;width:{{footPrints.length * 140}}rpx;' direction='horizontal' inertia='true' out-of-bounds>
+				<view bindtap='jumpTwo' data-tag-Index="{{index}}" wx:for="{{footPrints}}" wx:for-item="foot" class='search_category_item {{select_idx == index?"selected white":""}}'>{{foot.name}}</view>
+			</movable-view>
+		</movable-area>
+	</view>
+</view>
+<view wx:if="{{footPrints[select_idx].goodsDetailsList == null || footPrints[select_idx].goodsDetailsList.length == 0 }}" style='margin-top:{{bar_Height  + 125}}px;' class='width100 column block_center'>
+	<image style='width:400rpx' mode='widthFix' src='/images/nofavour.png'></image>
+	<text style='margin:30rpx;'>您还没有浏览过任何商品～</text>
+	<button bindtap='goIndex' class='btn_success'>去首页逛逛</button>
+</view>
+<view wx:else style='margin-top:{{(bar_Height+80)}}px;'>
+	<view wx:for="{{footPrints[select_idx].goodsDetailsList}}" wx:for-index="idx" wx:for-item="goods" style="height:240rpx;width:730rpx;margin:10rpx 10rpx;">
+		<view catchtap='onMoveToGoods' data-goods-id='{{goods.id}}' class='row goods_section'>
+			<image wx:if="{{editMode}}" catchtap='toogleGoods' data-goods-Idx="{{idx}}" data-foot-Idx="{{select_idx}}" src='{{goods.picked?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' style="margin-right:20rpx;" class='icon'></image>
+			<image src="{{goods.listImageUrl}}" mode='widthFix' class='goods_pic'></image>
+			<view class='column goods_txt'>
+				<view class='gray_2 h2' style='align-items:center;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; word-break: break-all;'>
+					<image wx:if="{{goods.extravagant == 2}}" src='/images/ic_fu.png' class='icon_big'></image>
+					{{phone.limit_ten(goods.name)}}
+				</view>
+				<text class='gray h4'>{{goods.goodsNo}}</text>
+				<view class='row' style="margin-top:auto;align-items: flex-end;">
+					<view wx:if="{{goods.extravagant != 1}}" class='app_red'>￥{{goods.price}}</view>
+					<view wx:if="{{goods.extravagant == 1}}" class='app_red'>咨询商家</view>
+					<view wx:if="{{goods.extravagant != 1}}" catchtap='addCart' data-goods-Id="{{goods.id}}" class='cart_btn' style='margin-left:auto;'>加入购物车</view>
+				</view>
+			</view>
+		</view>
+		<image wx:if="{{goods.controlStatus == 0}}" mode="widthFix" style='{{editMode == true?"margin-left: 60rpx;":"width:720rpx;margin-left:7rpx;"}}' src='/images/offsale.png' class='offSale'></image>
+	</view>
+</view>
+
+<view wx:if='{{editMode}}' class='row cart_result'>
+	<image bindtap='toogleAll' style='margin-left:40rpx;' src='{{isPicked?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' class='icon'></image>
+	<view style='margin-left:20rpx;'>全选</view>
+	<view bindtap='cancelCollection' style='line-height:112rpx;width:240rpx;text-align:center;height:112rpx;margin-left:auto' class='white bg_orange'>删除</view>
+</view>
+<image wx:if='{{footPrints.length != 0 && footPrints[select_idx].goodsDetailsList.length != 0}}' bindtap='toggleMode' class='fix-left-bottom' src='{{editMode?"/images/finish.png":"/images/edit.png"}}'></image>

@@ -1,0 +1,98 @@
+/* packageMyself/pages/myself/cloudStore/cloudStore.wxss */
+.btn_bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 100rpx;
+}
+
+.btn_icon {
+  position: relative;
+  left: 40rpx;
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.btn_text {
+  position: relative;
+  top: -10rpx;
+  left: 50rpx;
+  font-size: 36rpx;
+  color: #404040;
+}
+
+.addStore {
+  position: relative;
+  top: 10rpx;
+  left: 120rpx;
+  width: 400rpx;
+  height: 80rpx;
+}
+
+.addStore2 {
+  position: relative;
+  top: 10rpx;
+  left: 120rpx;
+  width: 200rpx;
+  height: 80rpx;
+}
+
+.award {
+  position: relative;
+  top: 10rpx;
+  left: 115rpx;
+  width: 200rpx;
+  height: 80rpx;
+}
+
+.order_num {
+  padding: 16rpx 0;
+  text-align: right;
+  justify-content: right;
+}
+
+.uploadImg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 30rpx 60rpx;
+}
+
+.uploadImg2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 30rpx 0rpx;
+}
+
+.upload {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 30rpx;
+}
+
+.img2 {
+  width: 240rpx;
+  height: 135rpx;
+  background-size: 100% 100%;
+}
+
+.imgtitle {
+  text-align: center;
+}
+
+.uploadImg3 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 30rpx 0rpx;
+}
+
+.img3 {
+  width: 135rpx;
+  height: 240rpx;
+  background-size: 100% 100%;
+}

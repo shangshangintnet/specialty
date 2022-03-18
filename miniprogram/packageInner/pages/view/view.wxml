@@ -1,0 +1,75 @@
+<view class="title_bar column" style="height:{{bar_Height * 2 + 500}}rpx;">
+  <view class="row width100" style="position:fixed;top:{{bar_Height}}px;align-items: center;height:100rpx;">
+    <view class="row" style="width: 80rpx;height: 100rpx;align-items: center;justify-content: center;"
+      catchtap="goBack">
+      <image style="width: 22rpx;	height: 36rpx;" src="/images/back.png"> </image>
+    </view>
+    <image class="user_icon" src="{{user.photoUrl == null?'/images/user-unlogin.png':user.photoUrl}}"></image>
+    <block wx:if="{{books.length == 1}}">
+      <view class="h2" style="font-weight: bold;margin-left:10rpx">上商一账通</view>
+    </block>
+    <block wx:else>
+      <picker class="row h2" style="font-weight: bold;margin-left:10rpx;min-width:200rpx;align-items: center;"
+        range="{{books}}" range-key="name" bindchange="bindBookChange">
+        <text>{{books[bookIdx].name}}</text>
+        <image style="width:22rpx;height:18rpx;margin-left:10rpx;" src="../../images/ic_arrow.png"></image>
+      </picker>
+    </block>
+  </view>
+  <view class="row width100 title_bg" style="position:fixed;top:{{bar_Height * 2 + 100}}rpx;">
+    <view bindtap="viewData" class="account_bg column" style="{{bookbg}}">
+      <view class="row" style="align-items:center;margin-left:40rpx;margin-top:10rpx;height:60rpx;">
+        <image style="width:22rpx;height:30rpx;" src="../../images/ic_account.png"></image>
+        <view style="margin-left:10rpx;font-size:30rpx;">{{books[bookIdx].name}}</view>
+        <view class="autoLeft" style="font-size:24rpx;">数据分析</view>
+        <image style="width:14rpx;height:24rpx;margin-right:20rpx;margin-left:10rpx;" src="../../images/ic_right.png">
+        </image>
+      </view>
+      <view style="margin-left:40rpx;margin-top:20rpx;height:60rpx;">
+        <text class="h7" style="vertical-align:bottom">{{month}}月支出</text>
+        <text class="h1" style="margin-left:20rpx;">¥{{bookData.expend.price?bookData.expend.price:'0'}}</text>
+      </view>
+      <view class="h7" style="margin-left:40rpx;margin-top:20rpx;height:60rpx;">
+        <text style="vertical-align:bottom">{{month}}月收入</text>
+        <text style="margin-left:20rpx;">¥{{bookData.income.price?bookData.income.price:'0'}}</text>
+      </view>
+      <view class="h7" style="margin-left:40rpx;height:60rpx;">
+        <text style="vertical-align:bottom">{{month}}月投资</text>
+        <text style="margin-left:20rpx;">¥{{bookData.invest.price?bookData.invest.price:'0'}}</text>
+      </view>
+      <image catchtap="lock" class="autoLeft" style="width:50rpx;height:50rpx;margin-right:20rpx;"
+        src="../../images/ic_account_lock.png"></image>
+    </view>
+  </view>
+</view>
+<view class="width100 column" style="margin-top:{{bar_Height * 2 + 500}}rpx;">
+  <view class="row" style="align-items: center;">
+    <picker class="row date_picker" style="min-width:200rpx;" value="{{date}}" mode="date" fields="month"
+      bindchange="bindDateChange">
+      <text>{{date}}</text>
+      <image style="width:22rpx;height:18rpx;margin-left:10rpx;" src="../../images/ic_arrow.png"></image>
+    </picker>
+    <view bindtap="changeType" data-index="1" class="{{type == 1?'type_slt_1':'type_nor'}}">支出</view>
+    <view bindtap="changeType" data-index="0" class="{{type == 0?'type_slt_0':'type_nor'}}">收入</view>
+    <view bindtap="changeType" data-index="2" class="{{type == 2?'type_slt_2':'type_nor'}}">投资</view>
+  </view>
+  <view class="column bookItem" wx:for-item="book" wx:for="{{bookData.records}}">
+    <view class="book_time smoke h2 row bold">
+      <view>{{book[0].times}}</view>
+      <view class="autoLeft">{{'支 '+ book[0].expend + '  收 '+ book[0].income + '  投 ' + book[0].invest}}</view>
+    </view>
+    <view bindtap="openEdit" data-item="{{item}}" wx:for="{{book}}" wx:if="{{type == -1 || item.type == type}}"
+      class="row book_detail">
+      <image style="width:68rpx;height:68rpx;" src="{{item.icon}}"></image>
+      <view class="column" style="margin-left:20rpx;width:500rpx;">
+        <view class="h2 bold ellipsis_txt">{{item.entryName}}</view>
+        <view class="h4 smoke ellipsis_txt">{{item.content != null?item.content:""}}</view>
+      </view>
+      <view class="h2 autoLeft bold {{item.type==0?'app_green':(item.type==1?'app_red':'')}}">
+        {{item.type == 0?'+'+item.price:'-'+item.price}}
+      </view>
+    </view>
+  </view>
+</view>
+<image catchtap="openEdit" class="edit" src="../../images/ic_account_edit.png"></image>
+<ad unit-id="adunit-c49c7e2ba17c85fc" ad-intervals="30" style="margin-top:50rpx;margin-bottom: 50rpx;"></ad>

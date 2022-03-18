@@ -1,0 +1,28 @@
+<navbar title="名家列表" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+50}}px;">
+  <view style="background-color: #FFFFFF;margin-top: 20rpx;">
+    <view bindtap="openUser" data-id="{{item.id}}" class="column" wx:for="{{users}}" style="margin-top: 30rpx;margin-left: 35rpx;width: 680rpx;height: 522rpx;box-shadow: 2rpx 2rpx 9rpx #c2bfbf;border-radius: 10rpx;">
+      <view class="row">
+        <image style="width:134rpx;height:134rpx;margin-left:20rpx;margin-top:32rpx;border-radius:50%;" src="{{item.photoUrl}}"></image>
+        <view class="column" style="height:200rpx;margin-left:28rpx;margin-top: 32rpx;overflow:hidden">
+          <view class="bold" style="font-size: 36rpx;">{{item.name}}</view>
+          <view style="position: absolute;right: 65rpx;">
+            <image wx:if="{{item.followStatus == 1}}" catchtap="removeFamousAttention" data-index="{{index}}" src="../../images/storeFocus.png" style="height:46rpx;width:125rpx;" />
+            <image wx:else="{{item.followStatus != 1}}" catchtap="addFamousAttention" data-index="{{index}}" src="../../images/storeUnfocus.png" style="height:46rpx;width:125rpx;" />
+          </view>
+          <view class="row" style="flex-wrap: wrap;width: 480rpx;height: 184rpx;overflow: hidden;">
+            <text class="title" wx:for="{{item.titles}}" wx:for-item="title">{{title}}</text>
+          </view>
+        </view>
+      </view>
+      <text class="column" style="width: 101rpx;padding-left: 10rpx;font-size: 30rpx;margin-left: 20rpx;border-radius: 15rpx 0rpx 15rpx 0rpx;border: 1rpx solid #000000;">代表作</text>
+      <view style="height:210rpx;margin-top:17rpx;">
+        <image style="width:310rpx;height:209rpx;margin-left:20rpx;" src="{{item.imageUrl[0]}}">
+        </image>
+        <image style="width:310rpx;height:209rpx;margin-left:20rpx;" src="{{item.imageUrl[1]}}">
+        </image>
+      </view>
+      <view style="margin-top: 63rpx;height: 1.5rpx;width: 681rpx;margin-left: 35rpx;background-color: #CCCCCC;"></view>
+    </view>
+  </view>
+</view>

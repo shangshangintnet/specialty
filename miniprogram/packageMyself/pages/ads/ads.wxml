@@ -1,0 +1,11 @@
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_loadApp'></navbar>
+<image src="https://img.ssw88.com/static/landing/treasure.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+<image bindtap="tanbao" src="../apply/images/view.gif" class="button_1" style="top:705rpx"></image>
+<image bindtap="huixue" src="../apply/images/view.gif" class="button_1" style="top:905rpx"></image>
+<image bindtap="haodian" src="../apply/images/view.gif" class="button_1" style="top:1105rpx"></image>
+<image bindtap="faxian" src="../apply/images/view.gif" class="button_1" style="top:1305rpx"></image>
+<image bindtap="spike" src="../apply/images/spike.gif" class="button_1" style="top:1505rpx"></image>
+<image bindtap="applystore" src="../apply/images/go.gif" class="button_2" style="top:2200rpx"></image>
+<image bindtap="applycloud" src="../apply/images/go.gif" class="button_2" style="top:3370rpx"></image>
+<image bindtap="haoym" src="../apply/images/go.gif" class="button_2" style="top:4030rpx"></image>
+<image bindtap="applyprize" src="../apply/images/go.gif" class="button_2" style="top:4750rpx"></image>

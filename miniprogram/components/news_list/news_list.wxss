@@ -1,0 +1,47 @@
+.column
+{ 
+  display: flex;
+  flex-direction: column;
+}
+
+.row
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.news_item
+{
+  height: 260rpx;
+  margin-bottom: 10rpx;
+  background-color: white;
+  border-radius: 20rpx;
+}
+
+.news_section
+{
+  margin: 10rpx 10rpx 0px 10rpx;
+
+}
+
+.news_section image
+{
+  margin: 30rpx 10rpx 0rpx 25rpx;
+}
+
+.section_title
+{
+  margin-top: 30rpx;
+  margin-left: 10rpx;
+  font-size: 34rpx;
+  color:#202020;
+}
+
+.section_desc
+{
+  margin-top: 0;
+  margin-left: 10rpx;
+  line-height: 36rpx;
+  font-size: 28rpx;
+  color:#606060;
+}

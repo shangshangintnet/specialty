@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "guess_what": "/components/guess_what/guess_what",
+    "van-cell": "/miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/@vant/weapp/cell-group/index"
+  }
+}

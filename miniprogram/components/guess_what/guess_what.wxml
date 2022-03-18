@@ -1,0 +1,42 @@
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<view class="goods_section">
+	<view wx:for="{{goodsList}}" bindtap="onMoveToGoods" data-goods-type="{{item.type}}" data-goods-id="{{item.id}}" class="goods_item">
+		<image src="{{item.listImageUrl}}" class="goods_img"></image>
+		<view class="row goods_title">
+			<image wx:if="{{item.extravagant == 2}}" src="/images/ic_fu.png" class="icon"></image>
+			<text>{{phone.limit_ten(item.name)}}</text>
+		</view>
+		<view wx:if="{{item.extravagant == 1}}" class="goods_price">
+			<text class="app_red">联系商家咨询购买</text>
+		</view>
+		<view wx:elif="{{item.extravagant != 1}}" class="row goods_price">
+			<block wx:if="{{(item.type == 8 || item.type == 9) && item.price == 0}}">
+				<text class="app_red" style="font-size: 22rpx;">联系商家咨询购买</text>
+			</block>
+			<block wx:elif="{{(item.type != 8 && item.type != 9) || item.price != 0}}">
+				<text class="app_red" style="font-size: 22rpx;">{{(item.type == 8 || item.type == 9)?'结缘价:':'出厂价:'}}</text>
+				<block wx:if="{{item.price < 10000}}">
+					<text class="h2 app_red">¥{{item.price}} </text>
+				</block>
+				<block wx:if="{{item.price >= 10000 && item.price < 100000000}}">
+					<text class="h2 app_red">¥{{phone.toFixed(item.price/10000)}}万</text>
+				</block>
+				<block wx:if="{{item.price >= 100000000}}">
+					<text class="h2 app_red">¥{{phone.toFixed(item.price/100000000)}}亿</text>
+				</block>
+				<block wx:if="{{item.type != 8 && item.type != 9 &&item.marketPrice < 10000}}">
+					<text class="goods_title_origin"> 市场价:¥{{item.marketPrice}}</text>
+				</block>
+				<block wx:if="{{item.type != 8 && item.type != 9 &&item.marketPrice >= 10000 && item.marketPrice < 100000000}}">
+					<text  class="goods_title_origin">市场价:¥{{phone.toFixed(item.marketPrice/10000)}}万</text>
+				</block>
+				<block wx:if="{{item.type != 8 && item.type != 9 &&item.marketPrice >= 100000000}}">
+					<text class="goods_title_origin"> 市场价:¥{{phone.toFixed(item.marketPrice/100000000)}}亿</text>
+				</block>
+			</block>
+		</view>
+	</view>
+</view>
+<view class="row" style=" justify-content: center;align-items: center; text-align: center;margin-bottom:30rpx;">
+	<text style="font-size: 28rpx;color: #606060;">{{waitText}}</text>
+</view>

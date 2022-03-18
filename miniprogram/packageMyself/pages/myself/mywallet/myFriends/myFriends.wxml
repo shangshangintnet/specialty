@@ -1,0 +1,22 @@
+<wxs module="phone" src="../../../../../utils/phone.wxs"></wxs>
+<navbar title='选择转赠' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='column bg_white width100 ' style="margin-top:{{bar_Height+45}}px">
+  <view class='pad-20'>
+    <image style='padding-top:10rpx;padding-left:20rpx;' class='icon left' src='/images/icon_search.png'></image>
+    <input style='width:500rpx;padding-left:10rpx;' class='left' placeholder="查询好友" bindinput="bindGoodsName" />
+  </view>
+  <view class='pad-20'>
+    <text style='padding-left:20rpx;'>选择好友</text>
+  </view>
+</view>
+
+<view class='column bg_white width100' style='margin-top:10rpx;'>
+  <view bindtap='chooseFriend' data-user-name="{{item.nickName}}" data-user-id="{{item.userId}}"  wx:for="{{straightList}}" class='pad-20 border_line_whitesmoke' style='width:710rpx;'>
+    <image class='user_icon_sm' style='float:left;' src="{{item.photoUrl == null?'/images/user-unlogin.png':item.photoUrl}}"></image>
+    <view style='width:200rpx;margin-left:20rpx;margin-top:20rpx;' class='h2 left '>{{phone.limit_six(item.nickName)}}</view>
+    <view style='width:250rpx;margin-top:20rpx;text-align:right;padding-right:20rpx' class='h2 gray right'>{{phone.format(item.mobile)}}</view>
+  </view>
+  <view class='pad-20 border_line_whitesmoke' wx:if="{{straightList.length == 0}}">
+    <text style='margin-left:10rpx;'>搜索结果为空~</text>
+  </view>
+</view>

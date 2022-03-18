@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "detail": "/components/goods_detail/details",
+    "guess_what": "/components/guess_what/guess_what"
+  },
+  "navigationBarTitleText": "商品详情"
+}

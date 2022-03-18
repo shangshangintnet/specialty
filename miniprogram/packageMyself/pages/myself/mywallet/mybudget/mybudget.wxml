@@ -1,0 +1,12 @@
+<navbar title='收支明细' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='column bg_white pad-lr-20 top_border' style="margin-top:{{bar_Height+45}}px;width:710rpx;">
+  <view bindtap='jumpTo' data-url="../withdrawRecord/withdrawRecord" data-price="{{item.price}}" data-mold="{{item.mold}}" 
+  data-title="{{item.title}}" data-withdrawable="{{item.withdrawable}}" data-create-time="{{item.createTime}}" data-content="{{item.content}}" data wx:for="{{budgetList}}" class='width100 border_line_whitesmoke pad-ud-10'>
+    <view class='column left'>
+      <text class='h2'>{{item.title}}</text>
+      <text class='h4 gray'>{{item.createTime}}</text>
+    </view>
+    <text wx:if="{{item.mold == 2}}" class='h2 right budget_number app_green'>+{{item.price}}</text>
+    <text wx:if="{{item.mold == 1}}" class='h2 right budget_number'>-{{item.price}}</text>
+  </view>
+</view>

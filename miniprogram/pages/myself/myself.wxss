@@ -1,0 +1,172 @@
+.title_bg {
+  background: linear-gradient(90deg, #3ed796, #25b96e);
+  width: 100%;
+}
+
+.user_icon {
+  margin-left: 30rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 140rpx;
+  overflow: hidden;
+}
+
+.swapbtn {
+  width: 180rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  text-align: center;
+  line-height: 56rpx;
+  margin-left: auto;
+  margin-right: 30rpx;
+  margin-top: auto;
+}
+
+.swapicon {
+  width: 130rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #ffffff;
+  margin-top: auto;
+}
+
+.swapicon_1 {
+  width: 250rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #ffffff;
+  margin-top: auto;
+}
+
+.order_section {
+  margin-top: 10rpx;
+  width: 750rpx;
+  padding: 20rpx 0rpx;
+  flex-wrap: wrap;
+}
+
+.icon_50 {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.btn_item {
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx 0rpx;
+  height: 120rpx;
+}
+
+.storeInfo {
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
+}
+
+.store_order_count {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  margin-left: -10rpx;
+  margin-top: -10rpx;
+  background-color: red;
+  color: white;
+  font-size: 24rpx;
+  text-align: center;
+  border-radius: 15rpx;
+}
+
+.popup_share {
+  position: fixed;
+  top: 0;
+  z-index: 800;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+}
+
+.store_order_bg {
+  background-image: url(https://img.ssw88.com/wechatImg/static/store_order.png);
+  background-size: 100% 100%;
+  width: 606rpx;
+  height: 667rpx;
+  align-items: center;
+}
+
+.store_order_bg_2 {
+  background-image: url(https://img.ssw88.com/wechatImg/static/store_order1.png);
+  background-size: 100% 100%;
+  width: 606rpx;
+  height: 504rpx;
+  align-items: center;
+}
+
+.store_info_item {
+  background: white;
+  width: 515rpx;
+  height: 100rpx;
+  border-radius: 16rpx;
+  align-items: center;
+}
+
+.store_info_btn {
+  background: linear-gradient(90deg, #ffea71, #ffdc00);
+  width: 415rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 38rpx;
+  text-align: center;
+  font-size: 40rpx;
+  color: #00133E;
+}
+
+.store_price {
+  width: 160rpx;
+  height: 60rpx;
+  text-align: center;
+  align-items: center;
+  background: linear-gradient(90deg, #ffea71, #ffdc00);
+  border-radius: 30rpx 0 0 30rpx;
+  margin-left: auto;
+  color: #00133E;
+  line-height: 60rpx;
+  font-size: 36rpx;
+  justify-content: center;
+}
+
+.serviceMsg {
+  background-image: url(https://img.ssw88.com/wechatImg/static/ic_servicemsg.png);
+  background-size: 100%;
+}
+
+.unreadMsg {
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background-color: red;
+  color: #ffffff;
+  font-size: 28rpx;
+  text-align: center;
+  margin-left: 30rpx;
+  margin-top: -10rpx;
+  border-radius: 15rpx;
+}
+
+.live_balance {
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  color: #404040;
+  border: 1rpx solid #dddddd;
+  padding: 0 10rpx;
+  margin-left: auto;
+  margin-right: 20rpx;
+  text-align: right;
+}

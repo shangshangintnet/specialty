@@ -1,0 +1,7 @@
+<navbar title='物流详情' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='column bg_white' style='margin-top:{{bar_Height + 55}}px; '>
+	<view wx:for="{{sfData.logisticsList}}" class='column left order_waiting_txt pad-20 ' style='margin-top:20rpx '>
+		<text class='h4 '>{{item.context}}</text>
+		<text class='gray h4 '>{{item.time}}</text>
+	</view>
+</view>

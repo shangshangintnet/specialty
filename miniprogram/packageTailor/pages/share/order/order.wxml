@@ -1,0 +1,25 @@
+<navbar title="订单" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-top:{{bar_Height+50}}px;">
+  <view class="column" style="background-color: #FFFFFF;margin-top: 20rpx;text-align: left;">
+    <view class="column" wx:if="{{orders.length==0}}" style="text-align: center;">
+      <image src="../images/not.png" style="height: 293rpx;width: 300rpx;margin-top: 82rpx;margin-left: 225rpx;"></image>
+      <text class="bold" style="font-size: 30rpx;margin-top: 28rpx;">暂无订单</text>
+    </view>
+    <view class="row" wx:for="{{orders}}" style="height: 164rpx;width: 750rpx;border-bottom: 2rpx solid #EEEEEE;">
+      <view class="column">
+        <text class="bold" style="height: 26rpx;font-size: 28rpx;margin-left: 30rpx;margin-top: 29rpx;">订单编号: {{item.orderNo}}</text>
+        <text class="bold" style="height: 27rpx;font-size: 28rpx;margin-left: 30rpx;margin-top: 17rpx;">设备编号: {{item.shareId}}</text>
+        <text class="bold" style="color: #666666;height: 22rpx;font-size: 28rpx;margin-left: 30rpx;margin-top: 18rpx;"> {{item.payTime}}</text>
+      </view>
+      <view wx:if="{{!item.status}}">
+        <text class="bold" style="height: 42rpx;width: 144rpx;text-align: center;background-color: #079547;color: #FFFFFF;position: absolute;right: 0rpx;margin-top: 0rpx;font-size: 28rpx;border-bottom-left-radius: 21rpx;">正在充电</text>
+        <text class="bold" style="color: #079547;position: absolute;right: 16rpx;margin-top: 69rpx;font-size: 30rpx;">￥{{item.price}}/{{item.times}}分钟</text>
+      </view>
+      <view wx:else>
+        <text class="bold" style="height: 42rpx;width: 144rpx;text-align: center;background-color: #999899;color: #FFFFFF;position: absolute;right: 0rpx;margin-top: 0rpx;font-size: 28rpx;border-bottom-left-radius: 21rpx;">充电完成</text>
+        <text class="bold" style="color:#999899;position: absolute;right: 16rpx;margin-top: 69rpx;font-size: 30rpx;">￥{{item.price}}/{{item.times}}分钟</text>
+      </view>
+    </view>
+  </view>
+</view>
+<ad unit-id="adunit-3012092f1a0846b4" ad-intervals="30" style="margin-top:50rpx;margin-bottom: 50rpx;"></ad>

@@ -1,0 +1,16 @@
+<navbar title='手机登陆' show_bol='{{false}}' bg_type='bg_green' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='width100 bg_white column' style="padding:40rpx;padding-top:{{bar_Height+50}}px;height:86vh">
+  <view class='pad-20'>
+    <text class='h1'>登陆/注册上商</text>
+  </view>
+  <view class='pad-20'>
+    <input class='left radius5 pad-10' bindinput="bindPhone"  style='width:400rpx;height:66rpx;border:1px solid whitesmoke;padding-left:30rpx'  placeholder='请输入您的手机号'></input>
+    <button bindtap='smsCode' class='right btn_success h4' disabled='{{!(code_content == "发送验证码" || code_content == "重新发送")}}' style='width:200rpx;height:88rpx;margin-right:50rpx;padding-top:12rpx;'>{{code_content}}</button>
+  </view>
+  <view class='pad-20'>
+    <input class='left radius5 pad-10' bindinput="bindCode" style='width:616rpx;height:66rpx;border:1px solid whitesmoke;padding-left:30rpx'  placeholder='请输入您的验证码'></input>
+  </view>
+  <view class='pad-20'>
+   <button bindtap='toSmsCodeLogin' class='left btn_success' style='width:660rpx;height:88rpx;font-size:36rpx'>登陆</button>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar",
+    "carve": "/components/carveOrder/carveOrder",
+    "logistics": "/components/bindLogistics/bindLogistics"
+  },
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

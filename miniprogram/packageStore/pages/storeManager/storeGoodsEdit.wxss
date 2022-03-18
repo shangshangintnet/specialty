@@ -1,0 +1,106 @@
+
+	.title {
+		display: flex;
+		align-items: center;
+		height: 90rpx;
+		width: 750rpx;
+		z-index: 200;
+	}
+
+	.condition {
+		text-align: center;
+		height: 90rpx;
+		line-height: 90rpx;
+		width: 375rpx;
+		font-size: 32rpx;
+	}
+
+	.right_line {
+		height: 45rpx;
+		width: 1px;
+		background-color: #F0F0F0;
+	}
+
+	.info_item {
+		margin: 0 30rpx;
+		height: 80rpx;
+		align-items: center;
+		border-bottom: 1rpx solid #DDDDDD;
+	}
+
+	.info_item text {
+		width: 160rpx;
+	}
+
+	.input_txt {
+		color: #606060;
+		font-size: 28rpx;
+		text-align: left;
+		width: 530rpx;
+	}
+
+	.info_problem {
+		margin: 0 30rpx;
+		height: 80rpx;
+		line-height: 80rpx;
+		align-items: center;
+		border-bottom: 1rpx solid #DDDDDD;
+	}
+
+	.proble_txt {
+		margin: 0 40rpx;
+		color: #606060;
+		font-size: 28rpx;
+		width: 670rpx;
+		height: 360rpx;
+		text-align: left;
+		margin-top: 20rpx;
+	}
+
+	.picker {
+		color: #606060;
+		font-size: 28rpx;
+		width: 530rpx;
+		height: 80rpx;
+		text-align: left;
+		line-height: 80rpx;
+	}
+
+	.autoleft {
+		margin-left: auto;
+	}
+
+	.upload {
+		width: 100rpx;
+		height: 100rpx;
+		margin-top: 30rpx;
+		margin-left: 30rpx;
+	}
+
+	.bottom_btn {
+		z-index: 500;
+		position: fixed;
+		bottom: 0;
+		width: 750rpx;
+		height: 90rpx;
+		text-align: center;
+		line-height: 90rpx;
+		color: #FFFFFF;
+		background-color: #079547;
+	}
+
+	.imgList {
+		width: 700rpx;
+		height: 610rpx;
+		padding: 25rpx;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.imgList_view {
+		width: 150rpx;
+		height: 150rpx;
+		margin: 30rpx 40rpx;
+		background-size: 100% 100%;
+	}

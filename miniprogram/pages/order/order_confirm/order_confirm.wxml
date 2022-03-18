@@ -1,0 +1,145 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar title='确认订单' show_bol='{{couponOpen}}' bg_type='bg_black'></navbar>
+<view wx:if="{{!couponOpen}}" class='order_desc column ' style='width:730rpx;padding-top:{{bar_Height+45}}px;'>
+	<view bindtap="openAddress" wx-if="{{getAddress.length != 0}}" class='row bg_white radius5'>
+		<image style='margin:60rpx 20rpx;' src='/images/ic_local.png' class='icon_order_address left'>
+		</image>
+		<view style='margin-top:20rpx;margin-right:40rpx;' class='column'>
+			<view>
+				<text class='left gray h4'>收货人：{{getAddress[addressIdx].realName}}</text>
+				<text class='right gray h4'>{{getAddress[addressIdx].phoneNum}}</text>
+			</view>
+			<text class='h4 gray'>{{getAddress[addressIdx].addressName}}</text>
+		</view>
+	</view>
+	<view bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/createAddress/createAddress" wx-if="{{getAddress.length == 0}}" class='row bg_white radius5'>
+		<image style='margin:60rpx 20rpx;' src='/images/ic_local.png' class='icon_order_address left'></image>
+		<view style='margin-top:70rpx;margin-right:40rpx;' class='column'>
+			<text class='h4 gray'>请填写您的地址</text>
+		</view>
+	</view>
+
+</view>
+<view wx:if="{{!couponOpen}}" class='express_info column radius5 bg_white'>
+	<view wx:for="{{stores}}" class='column' wx:for-item="store">
+		<view style='margin-bottom:20rpx'>
+			<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+			<text class='left'>{{store.name}}</text>
+		</view>
+		<view wx:for="{{store.goodsList}}" wx:if="{{goods.inventory >= 1}}" wx:for-index="idx" wx:for-item="goods" class='row goods_section border_line_whitesmoke'>
+			<image src="{{goods.listImageUrl}}" mode='scaleToFill' class='goods_pic'></image>
+			<view class='column goods_txt '>
+				<text class='goods_name'>{{goods.name}}</text>
+				<text class='goods_id'>{{goods.goodsNo}}</text>
+				<view class='price_section '>
+					<view class='left app_red' style='margin-top:30rpx'>￥{{goods.price}}</view>
+					<view class='right' style='margin-top:30rpx'>
+						<text class='calc_num calc'>x{{goods.inventory}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='column'>
+		<view class="row order_bar">
+			<text class='h4'>售后服务</text>
+			<text class='h4 order_price'>十五天无忧退货</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>配送方式</text>
+			<text class='h4 order_price'>顺丰保价包邮 签收前请验货</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>优惠券</text>
+			<text wx:if="{{couponName != '福利券'}}" class='h4 order_price' bindtap='toggleCoupons' data-url="/pages/order/coupon_select/coupon_select">{{couponContent}}</text>
+			<text wx:if="{{couponName == '福利券'}}" class='h4 order_price'>使用福利券</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>翡翠币(可用{{emdEmeraldCount}}个)</text>
+			<input disabled='{{emdEmeraldCount == 0}}' placeholder='请输入翡翠币' class='h4 order_price' bindblur="getDiscountPrice" bindinput="bindCoinCheck" bindconfirm="getDiscountPrice" value='{{inputNumber}}' type='number'></input>
+		</view>
+		<view wx:if="{{identify}}" class="row order_bar">
+			<text class='h4'>鉴真服务</text>
+			<checkbox style="margin-left:auto;" checked="{{true}}" value="{{chooseIdentify}}" />
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>余额(可用{{maxUseBalance}}元)</text>
+			<input class='h4 order_price' value="{{userBalance}}" placeholder='请输入余额' bindblur="toUseBalance" bindinput="bindCoinBalance" bindconfirm="toUseBalance" type='digit'></input>
+		</view>
+		<view class="row border_line_whitesmoke order_bar">
+			<text class='h4'>店铺选择(可不填)</text>
+			<picker style='width:400rpx;' class='h4 gray order_price' bindchange="bindStoreChange" value='{{storeIdx}}' range="{{storesName}}" range-key="name">{{choosenStoreName}}></picker>
+		</view>
+	</view>
+	<view class='row' style="align-items: center;margin-left:12rpx;margin-top:10rpx;">
+		<text class='h4' style='width:120rpx'>买家留言:</text>
+		<input class='h4' value='{{orderContent}}' bindblur="bindComment" style='width:400rpx' placeholder='选填：建议留言前先和卖家确认'></input>
+	</view>
+</view>
+<view wx:if="{{!couponOpen}}" class='column order_desc bg_white radius5 pad-20' style='padding-bottom:120rpx;'>
+	<view class='column'>
+		<view class="row order_bar">
+			<text class='h4'>商品金额</text>
+			<text class='h4 order_price'>¥ {{total}}</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>运费</text>
+			<text class='h4 order_price'>¥ 0</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>优惠券</text>
+			<text class='h4 order_price'>¥ {{couponPrice}}</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>翡翠币</text>
+			<text class='h4 order_price'>¥ {{emdEmeraldDiscount}}</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>会员折扣</text>
+			<text class='h4 order_price'>¥ {{equityPrice}}</text>
+		</view>
+		<view class="row order_bar">
+			<text class='h4'>优惠活动</text>
+			<text class='h4 order_price'>¥ {{activityDiscountPrice}}</text>
+		</view>
+		<view class="row order_bar border_line_whitesmoke">
+			<text class='h4'>余额</text>
+			<text class='h4 order_price'>¥ {{userBalance}}</text>
+		</view>
+	</view>
+	<view class='right pad-20' style='width:660rpx;text-align:right'>
+		<view class='h4'>共{{totalCount}}件商品 小计:
+			<text class='app_green'>¥ {{phone.toPrice(discountPrice - userBalance)}}</text>
+		</view>
+	</view>
+</view>
+<view wx:if="{{!couponOpen}}" class='row cart_result'>
+	<view style='width:750rpx;'>
+		<view bindtap='toPay' data-url="/pages/common/successCall" style='line-height:112rpx;;width:240rpx;text-align:center;margin-top:-6rpx;margin-right:-6rpx;' class='right white bg_orange'>提交订单</view>
+		<text style='margin-top:24rpx;margin-left:40rpx;' class='left'>合计: <text class='app_green'>¥ {{phone.toPrice(discountPrice - userBalance)}}</text></text>
+	</view>
+</view>
+<view wx:if="{{couponOpen}}" class='column bg_white radius5' style='margin:10rpx;padding-left:10rpx;padding-top:{{bar_Height+45}}px;'>
+	<view class='pad-20 border_line_whitesmoke'>
+		<text class='h2 gray lighter'>我的优惠券</text>
+	</view>
+	<view>
+		<view class='width100' wx:for="{{couponList}}">
+			<image wx:if="{{item.couponClass == 1}}" class='width100' bindtap='chooseCoupons' data-id="{{item.id}}" mode="widthFix" src="{{item.couponImageNot}}"></image>
+			<image wx:if="{{item.couponClass == 0}}" class='width100' bindtap='chooseCoupons' data-id="{{item.id}}" mode="widthFix" src="{{item.couponImage}}"></image>
+			<text class='white' style='position:absolute;margin-top:140rpx;margin-right:136rpx;right:0;font-size:24rpx'>{{item.startTime}}至{{item.endTime}}</text>
+		</view>
+	</view>
+	<view wx:if="{{couponList.length == 0}}" class='column block_center' style='padding-top:80rpx'>
+		<image src='/images/my_coupon_empty.png' mode='widthFix' style='width:400rpx;'></image>
+		<text class='h4 gray lighter pad-20'>您还没有可使用的优惠券哦～</text>
+	</view>
+	<view bindtap='chooseCoupons' class="h2 gray_2" style="border-top: 1rpx solid #dddddd;width:750rpx;position:fixed;bottom:0;height:90rpx;text-align:center;line-height:90rpx;">不使用优惠券</view>
+</view>
+<van-popup custom-style="width:100vw;height:60vh;z-index:1000" position="bottom" show="{{showAddress }}" bind:close="closeAddress">
+	<van-picker show-toolbar bind:cancel="closeAddress" bind:confirm="onConfirm" title="选择现有地址" columns="{{ getAddress }}" value-key="addressName" bind:change="onChange" />
+	<view style="position:absolute;bottom:8px;padding-top:10px;width:100%" class="van-hairline--top">
+		<button bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/createAddress/createAddress" style="width:300rpx;margin-left:50rpx;" class="left" type="primary">新增地址</button>
+		<button bindtap='jumpTo' class="right" data-url="/packageMyself/pages/myself/myaddress/myaddress" style="width:300rpx;margin-right:50rpx;" type="default">修改地址</button>
+	</view>
+</van-popup>

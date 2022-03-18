@@ -1,0 +1,9 @@
+<view class="news_section column">
+  <view class='row news_item' wx:for="{{news}}">
+    <image style='width:360rpx;' mode='widthFix' src='{{item.src}}'/>
+    <view class='column'>
+      <text class='section_title'>{{item.title}}</text>
+      <text class='section_desc'>{{item.desc}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,122 @@
+<navbar title="{{edit?'编辑顾问':'添加顾问'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+	<view bindtap="tagTo" data-index="0" class="'condition '{{active==0?'app_green':'gray'}}">基本信息</view>
+	<view class="right_line"></view>
+	<view bindtap="tagTo" data-index="1" class="'condition '{{active==1?'app_green':'gray'}}">图集信息</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+	<block wx:if="{{active == 0}}">
+		<block wx:if="{{!edit}}">
+			<view class="width100" style="text-align:center;">--填写顾问手机号码，获取顾问注册信息--</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">手机号码</text>
+				<input value="{{user.mobile}}" bindblur="changeMobile" type="number" class="input_txt" placeholder="请输入顾问手机号码"
+					placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<view wx:if="{{user.nickName}}" class="row info_item">
+				<text class="gray_4 h2">用户昵称</text>
+				<text class="smoke h4">{{user.nickName}}</text>
+			</view>
+			<view wx:if="{{user.name}}" class="row info_item">
+				<text class="gray_4 h2">真实姓名</text>
+				<text class="smoke h4">{{user.name}}</text>
+			</view>
+			<view class="width100" style="text-align:center;margin-top:40rpx;">--填写顾问信息--</view>
+		</block>
+		<view class="row info_item">
+			<text class="gray_4 h2">顾问等级</text>
+			<picker class="picker" mode="selector" range-key="name" range="{{level}}" bindchange="changeLevel">
+				<block wx:if="{{adviser.level == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择顾问等级</text>
+				</block>
+				<block wx:else>{{level[adviser.level-1].name}}</block>
+			</picker>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">等级标签</text>
+			<picker class="picker" mode="selector" range-key="name" range="{{tagLevel}}" bindchange="changeTagLevel">
+				<block wx:if="{{adviser.tagLevel == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择顾问等级标签</text>
+				</block>
+				<block wx:else>{{tagLevel[adviser.tagLevel-1].name}}</block>
+			</picker>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">顾问姓名</text>
+			<input value="{{adviser.name}}" bindblur="changeName" class="input_txt" placeholder="请输入顾问姓名"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">从业时间</text>
+			<input value="{{adviser.years}}" bindblur="changeYear" class="input_txt" placeholder="请输入顾问从业时间" type="number"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">学历</text>
+			<input value="{{adviser.educational}}" bindblur="changeEducational" class="input_txt" placeholder="请输入顾问学历"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">宣言</text>
+			<input value="{{adviser.declaration}}" bindblur="changeDeclaration" class="input_txt" placeholder="请输入顾问宣言"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">服务地区</text>
+			<input value="{{adviser.serviceArea}}" bindblur="changeServiceArea" class="input_txt" placeholder="请输入顾问服务地区"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">自我评价</text>
+			<input value="{{adviser.selfEvaluation}}" bindblur="changeSelfEvaluation" class="input_txt"
+				placeholder="请输入顾问自我评价" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="column" style="width:160rpx;  margin: 0 30rpx;  height: 80rpx;  align-items: center;">
+			<text class="gray_4 h2">顾问标签</text>
+		</view>
+		<view class="column" style="margin-left:40rpx;margin-bottom:20rpx;">
+			<checkbox-group bindchange="checkboxChange">
+				<view class="row" wx:for="{{tags}}">
+					<checkbox value="{{item.name}}" checked="{{item.checked}}" />
+					<view class="weui-cell__bd">{{item.name}}</view>
+				</view>
+			</checkbox-group>
+		</view>
+	</block>
+	<block wx:else>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">头像</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 180 * 240,大小500kb</text>
+		</view>
+		<view class="row imgList">
+			<view bindtap="previewImage" data-item="{{item}}" wx:for="{{imageUrls}}" class="imgList_view"
+				style="background-image: url({{item}});">
+				<image catchtap="deleteImage" data-index="{{index}}" style="width:32rpx;height:32rpx;margin-left:110rpx;"
+					src="/images/delete.png"></image>
+			</view>
+			<view wx:if="{{imageUrls.length < 1}}" style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">详情背景</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 300,大小500kb</text>
+		</view>
+		<view class="row imgList">
+			<view bindtap="previewImage2" data-item="{{item}}" wx:for="{{imageUrls2}}" class="imgList_view"
+				style="background-image: url({{item}});">
+				<image catchtap="deleteImage2" style="width:32rpx;height:32rpx;margin-left:110rpx;" src="/images/delete.png">
+				</image>
+			</view>
+			<view wx:if="{{imageUrls2.length < 1}}" style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage2" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+	</block>
+</view>
+<view class="bottom row">
+	<view bindtap="confirm" class="btn_success width100" wx:if="{{active == 0}}">提交基本信息</view>
+	<view bindtap="confirm" class="btn_success width100" wx:else>提交图集信息</view>
+</view>

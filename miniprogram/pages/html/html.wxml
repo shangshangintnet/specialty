@@ -1,0 +1,4 @@
+<web-view wx:if="{{show}}" style='width:750rpx;' src="https://home.ssw88.com/webAppIndex/index.html#/{{html}}ssoToken={{ssoToken}}&wechat=1#wechat_redirect" />
+<login id="login"></login>
+<!--https://home.ssw88.com/webAppIndex/index.html#/-->
+<!--http://192.168.0.106:8889/webAppIndex/index.html#/-->

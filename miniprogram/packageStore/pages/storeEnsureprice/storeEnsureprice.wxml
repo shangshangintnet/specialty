@@ -1,0 +1,23 @@
+<navbar title="保证金明细" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class='row bg_white width100 border_line_whitesmoke'
+	style="height:90rpx;position:fixed;top:{{bar_Height+100}}rpx;">
+	<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">完成时间</view>
+	<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">操作类型</view>
+	<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">操作金额</view>
+	<view class='item4 gray h4' style="line-height:90rpx;text-align: center;">备注</view>
+</view>
+<view class="column width100" style="margin-top:{{bar_Height+180}}rpx;padding:10rpx 0rpx 200rpx 0rpx;">
+	<view class="column bg_white order_section" wx:for="{{info}}">
+		<view class="row">
+			<view class='item4 gray h4' style="height:90rpx;line-height:45rpx;text-align: center;">{{item.createTime}}</view>
+			<view class='item4 gray h4' style="height:90rpx;line-height:90rpx;text-align: center;">
+				{{item.type == 1?'缴纳':'罚款'}}</view>
+			<view class="item4 h4 {{item.type == 1?'app_green':'app_red'}}"
+				style="height:90rpx;line-height:90rpx;text-align: center;">¥ {{item.type == 1?'+':'-'}}{{item.price}}</view>
+			<view class='item4 gray h4' style="height:90rpx;line-height:90rpx;text-align: center;">{{item.content}}</view>
+		</view>
+	</view>
+</view>
+<view bindtap="returnPrice" class="bg_red width100 border_line_whitesmoke bottom white h2">
+	{{status==0?'退回保证金':'保证金退回申请中'}}
+</view>

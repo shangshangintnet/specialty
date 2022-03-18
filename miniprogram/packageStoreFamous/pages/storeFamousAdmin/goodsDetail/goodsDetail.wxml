@@ -1,0 +1,100 @@
+<navbar wx:if="{{goods.type==0}}" id="navbar" :show_bol="false" bg_type="bg_share"></navbar>
+<navbar wx:else title="动态详情" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view wx:if="{{goods.type==0}}" class="column" style="width:750rpx;">
+  <image src="{{goods.image}}" style="width: 750rpx;height: 400rpx;"></image>
+  <view class="column" style="background-color: #FFFFFF;text-align: center;">
+    <text class="name" style="border-bottom: 10px solid #F8F8F8;padding-bottom: 30rpx;">{{goods.name}}</text>
+    <view class="row" style="margin-top: 31rpx;align-items: center;">
+      <image src="{{goods.user.photoUrl}}" style="width: 70rpx;height: 70rpx;margin-left: 32rpx;border-radius: 50%;"></image>
+      <text class="bold" style="color: #000000;font-size: 32rpx;margin-left: 23rpx;">{{goods.user.name}}</text>
+    </view>
+    <view class="row" style="flex-wrap: wrap;width: 686rpx;margin-left: 32rpx;padding-bottom: 38rpx;border-bottom: 0.5px dashed #999999;">
+      <text class="title" wx:for="{{goods.user.titles}}" wx:for-item="title">{{title}}</text>
+    </view>
+    <text style="text-align: left;font-weight: bold;font-size: 30rpx;margin-left: 31rpx;margin-top: 28rpx;">【详情】</text>
+    <view style="margin:0 auto;" wx:for="{{goods.content}}">
+      <view class="row" style="margin-top: 10rpx;margin-left: 470rpx;">
+        <view catchtap="update" data-index="{{index}}" style="align-items: center;">
+          <image style="height: 30rpx;width: 30rpx;" src="../../../images/update.png"></image>
+          <text style="font-size: 30rpx;height: 24rpx;">编辑</text>
+        </view>
+        <view catchtap="del" data-index="{{index}}" style="align-items: center;margin-left: 10rpx;">
+          <image style="height: 30rpx;width: 30rpx;" src="../../../images/del.png"></image>
+          <text style="font-size: 30rpx;height: 24rpx;">删除</text>
+        </view>
+      </view>
+      <view wx:if="{{item.type==0}}">
+        <view style="text-indent:2em;text-align: left;width: 687rpx;font-size: 34rpx;word-wrap:break-word;word-break:break-all;white-space:pre-wrap;">\t{{item.detail}}</view>
+      </view>
+      <view wx:else>
+        <image src="{{item.detail}}" style="margin-top: 30rpx;width: 687rpx;" mode="widthFix"></image>
+      </view>
+      <view wx:if="{{index+1==goods.content.length}}" style="height: 95rpx;"></view>
+    </view>
+  </view>
+</view>
+<view wx:else class="column" style="width:750rpx;margin-top:{{bar_Height+50}}px;">
+  <view class="column" style="background-color: #FFFFFF;margin-top: 20rpx;text-align: center;">
+    <text class="name_1">{{goods.name}}</text>
+    <text class="title_1">{{goods.title}}</text>
+    <view class="row" style="margin:0 auto;align-items: center;margin-top: 27rpx;height: 28rpx;background-image: url(https://img.ssw88.com/static/wechatImg/user_bg.png);background-size: 100% 100%;padding: 32rpx 20rpx 20rpx 20rpx;">
+      <text style="color: #666666;font-size: 32rpx;margin-left: 6rpx;">作者 / {{goods.userName}}</text>
+    </view>
+    <view style="margin:0 auto;" wx:for="{{goods.content}}">
+      <view class="row" style="margin-top: 10rpx;margin-left: 470rpx;">
+        <view catchtap="update" data-index="{{index}}" style="align-items: center;">
+          <image style="height: 30rpx;width: 30rpx;" src="../../../images/update.png"></image>
+          <text style="font-size: 30rpx;height: 24rpx;">编辑</text>
+        </view>
+        <view catchtap="del" data-index="{{index}}" style="align-items: center;margin-left: 10rpx;">
+          <image style="height: 30rpx;width: 30rpx;" src="../../../images/del.png"></image>
+          <text style="font-size: 30rpx;height: 24rpx;">删除</text>
+        </view>
+      </view>
+      <view wx:if="{{item.type==0}}">
+        <view style="text-indent:2em;text-align: left;width: 687rpx;font-size: 34rpx;margin-top: 30rpx;word-wrap:break-word;word-break:break-all;white-space:pre-wrap;">\t{{item.detail}}</view>
+      </view>
+      <view wx:else>
+        <image src="{{item.detail}}" style="margin-top: 30rpx;width: 687rpx;" mode="widthFix"></image>
+      </view>
+      <view wx:if="{{index+1==goods.content.length}}" style="height: 95rpx;"></view>
+    </view>
+  </view>
+</view>
+<view class="bottom row">
+  <view wx:if="{{!showUploadContent}}" bindtap="showUploadContent" class="btn_success width100" style="background-color: #CDA567;">添加书画信息内容</view>
+  <view wx:if="{{showUploadContent&&upType == 0&&btnType==0}}" bindtap="addGoodsDetail" class="btn_success width100" style="background-color: #CDA567;">确认添加书画内容信息</view>
+  <view wx:if="{{showUploadContent&&upType == 0&&btnType==1}}" bindtap="updateGoodsDetail" class="btn_success width100" style="background-color: #CDA567;">确认修改书画内容信息</view>
+</view>
+<view style="position:fixed;bottom:110rpx;right:12px;width:80rpx;height:80rpx" catchtap="updateGoods">
+			<image style="width:80rpx;height:80rpx" src="../../../images/update2.png" bindtap='showUpload'></image>
+</view>
+<van-popup custom-style="width:100vw;height:740rpx;" position="bottom" show="{{showUploadContent}}" bind:close="cloaseUploadContent">
+  <view class="row" style=" align-items: center;margin-top:20rpx;">
+    <view class="h2" style="color:#606060;text-align:center;width:550rpx;margin-left:100rpx;text-align:center;">
+      文字描述or图片</view>
+    <image style="width:30rpx;height:30rpx;margin-left:auto;margin-right:30rpx;" src="../../../../images/close.png" bindtap="cloaseUploadContent"></image>
+  </view>
+  <view class="row" style="margin-top:20rpx;">
+    <view class='item2 imgtitle {{upType == 0?"app_green":""}}' bindtap="changeUpImg" data-index="0">文字描述</view>
+    <text>|</text>
+    <view class='item2 imgtitle {{upType == 1?"app_green":""}}' bindtap="changeUpImg" data-index="1">图片</view>
+  </view>
+  <block wx:if="{{upType == 0}}">
+    <text class="h2 gray_2" style="margin-left:30rpx;margin-top:30rpx;">上传文字描述</text>
+    <textarea value="{{content}}" bindinput="changecontent" style="border: 1rpx solid #DDDDDD;margin-left: 75rpx;" maxlength="200"></textarea>
+  </block>
+  <block wx:else>
+    <view class="row" style="margin-left:60rpx;">
+      <text class="h4" style="color:#606060">图片大小</text>
+      <text class="h4" style="color:#FC2257">500kb</text>
+      <text class="h4" style="color:#606060">以内。</text>
+    </view>
+    <view class="uploadImg">
+      <image wx:if="{{image}}" bindtap="selectImage" class="img_view" src="{{image}}">
+			</image>
+      <image wx:else style="width:160rpx;height:160rpx;" src="../../../images/upload2.png" bindtap="selectImage"></image>
+    </view>
+  </block>
+</van-popup>
+<login id="login"></login>

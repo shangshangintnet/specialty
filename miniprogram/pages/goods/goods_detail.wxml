@@ -1,0 +1,109 @@
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<view wx:if="{{show}}">
+	<navbar id="navbar" show_bol='{{false}}' bg_type='bg_black_op' title='{{phone.limit_ten(goods.name)}}'></navbar>
+	<swiper current="{{swipeCurrent}}" class="swiper" indicator-dots="true" autoplay="{{flag}}" interval="5000"
+		duration="1000">
+		<block wx:for="{{videoImagesUrls}}" wx:for-index="index">
+			<swiper-item>
+				<image bindtap="changeVideo" src="/images/video_play.png" wx:if="{{index == 0 && !isVideo}}"
+					style="background:url('{{videoImagesUrls[1]}}');background-size:100% 100%">
+				</image>
+				<video poster="{{videoImagesUrls[1]}}" wx:if="{{index == 0 && isVideo}}" src="{{item}}" autoplay="true"
+					controls='true'></video>
+				<image wx:if="{{index != 0}}" src="{{item}}" class="slide-image" mode="aspectFill" />
+			</swiper-item>
+		</block>
+	</swiper>
+	<image wx:if="{{activityImageUrl.length >= 2 }}" src='{{activityImageUrl[1]}}' class='width100'
+		style="margin-bottom:-12rpx;height:110rpx;"></image>
+	<image wx:if="{{activityImageUrl.length >= 1 }}" src="{{activityImageUrl[0]}}"
+		style="width:160rpx;position:absolute;right:0;top:200rpx;" mode="widthFix"></image>
+	<view wx:if="{{spike != null}}" class='row width100'>
+		<view class='left linear_red column pad-10 white' style='width:480rpx;padding-left:20rpx;'>
+			<view class='h3'>¥{{spike.state == 0?spike.price:spike.spikePrice}}</view>
+			<view style='margin-top:-5rpx'>
+				<image class='left' mode='widthFix' style='padding-top:10rpx;width:120rpx;height:40rpx;'
+					src='/images/limit_buy_icon.png'></image>
+				<view wx:if="{{spike.state == 1}}" style='margin-left:10rpx;' class='left line-through h4'>¥{{spike.price}}
+				</view>
+				<view wx:if="{{spike.state == 0}}" style='margin-left:10rpx;' class='h4 left'>{{spike.startTime}}
+					秒杀价:¥{{spike.spikePrice}}</view>
+			</view>
+		</view>
+		<view class='left column page_red block_center' style='width:250rpx;background:#FFEBED'>
+			<view class='h4 pad-5 {{spike.state == 0?"wait":"ready"}}'>{{spike.state == 0?"距离开始还有":"距离结束还剩"}}</view>
+			<view class='right h4 {{spike.state == 0?"wait":"ready"}}' style='margin-top:-10rpx;'>
+				<text>{{countDown[0].hour}}</text>:
+				<text>{{countDown[0].min}}</text>:
+				<text>{{countDown[0].second}}</text>
+			</view>
+		</view>
+	</view>
+	<view class='column bg_white'>
+		<view class='row goods_section'>
+			<view class='column bg_white goods_info'>
+				<view class="row" style="align-items:center">
+					<view class="store_name_tab">平台直营</view>
+					<text>{{goods.name}}</text>
+				</view>
+				<text>商品编号: {{goods.goodsNo}}</text>
+			</view>
+			<view class='column bg_white goods_info_right'>
+				<view class='row goods_icons'>
+					<image bindtap='toggleFavour' class='icon_heart'
+						src="{{collection == 1?'/images/icon_likesel.png':'/images/icon_likenor.png'}}"></image>
+					<image bindtap='navigateTo' data-url="/pages/cart/cart" class='icon_cart' src="/images/icon_goods_cart.png">
+					</image>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{(extravagant == 0||extravagant == 2||extravagant == null)&&spike == null}}" class='width100'
+			style='padding-bottom:{{activityInfo != null?"0":"20"}}rpx'>
+			<text style='padding-left:20rpx;' class='app_red left'>出厂价:￥{{goods.price}}</text>
+			<text class='app_underline right' style='margin-right:20rpx;'>市场价:￥{{goods.marketPrice}}</text>
+		</view>
+		<view wx:if="{{activityInfo != null}}" class='width100'>
+			<view class='pad-20 left h4'>促销</view>
+			<view class='pad-20 left h4'>{{activityInfo}}</view>
+		</view>
+		<view wx:if="{{extravagant == 1}}" class='width100' style="padding-bottom:20rpx;">
+			<text class='app_red' style='padding-left:20rpx;'>请添加掌柜微信咨询购买</text>
+		</view>
+	</view>
+	<view data-share-Code="{{wechatId}}" bindtap='copyText' class='wx-add'>
+		<image src='/images/wx_icon.png' class='wx-icon'></image>
+		<text class='wx_add_txt'>添加掌柜微信</text>
+		<image src='/images/arrow_right.png' class='arrow-right'></image>
+		<text class='wx_add_desc'>点击复制微信号</text>
+	</view>
+	<view class='block_center pad-20'> — 商品详情 —</view>
+	<view class="column bg_white">
+		<view class='goods_detail'>
+			<detail id="detail"></detail>
+		</view>
+	</view>
+	<image style="margin-top:30rpx;" class='width100' mode='widthFix' src='https://img.ssw88.com/wechatImg/goods_safety.png'></image>
+	<image style="margin-top:30rpx;" class='width100' mode='widthFix' src='/images/goods_road_has_price.png'></image>
+	<image src='/images/welfare_choice.png' style='width:100%;height:28rpx;margin-top:20px;margin-bottom:20px;'>
+	</image>
+	<guess_what id="guess_what">
+	</guess_what>
+	<view class="weui-footer weui-footer_fixed-bottom {{spike != null?'ready':'share_green'}}">
+		<view wx:if="{{goods.stock > 0 && extravagant != 1}}" class='left button_left' bindtap="addCart">加入购物车</view>
+		<view wx:if="{{goods.stock == 0 || extravagant == 1}}" class='left button_left' style='color:#606060'>加入购物车</view>
+		<view wx:if="{{goods.stock > 0 && extravagant != 1}}" class='right button_right' bindtap="jumpTo"
+			data-url="/pages/order/order_confirm/order_confirm" data-id="{{goods.id}}" data-product-Qty="1"
+			data-store-Name="{{goods.storeName}}" data-store-Id="{{goods.storeId}}">立即购买</view>
+		<view wx:if="{{goods.stock == 0}}" class='right button_right' style='color:#606060'>已售完</view>
+		<view wx:if="{{extravagant == 1}}" data-share-Code="{{wechatId}}" bindtap='copyText' class='right button_right'>
+			添加微信联系</view>
+		<button open-type="share">
+			<image class='goods_share' src='{{spike != null?"/images/share_red.png":"/images/share.png"}}'></image>
+		</button>
+	</view>
+	<canvas wx:if="{{needDisplay}}" canvas-id="hoCanvas" style='width:750px;height:600px;'></canvas>
+	<login id="login"></login>
+	<toLogin style="z-index:9999" id="toLogin"></toLogin>
+</view>
+<image style="width:100rpx;height:100rpx;position:fixed;right:20rpx;bottom:150rpx;border-radius:50rpx;overflow: hidden;"
+	bindtap='goKefu' src="{{storeIcon?storeIcon:'/images/ic_service.png'}}"></image>

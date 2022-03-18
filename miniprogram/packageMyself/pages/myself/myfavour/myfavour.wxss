@@ -1,0 +1,89 @@
+/* 顶部导航 */
+.status-bar {
+  width: 100%;
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+}
+
+.icon_back {
+  width: 20rpx;
+  height: 40rpx;
+  padding: 24rpx;
+  padding-top: 28rpx;
+  padding-right: 30rpx;
+}
+
+.selected {
+  color: #0ACC61;
+  border-bottom: 4px solid #0ACC61
+}
+
+.search_category_item {
+  width: 140rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 28rpx;
+}
+
+.goods_pic {
+  width: 176rpx;
+  height: 176rpx;
+  margin-right: 20rpx;
+}
+
+.goods_txt {
+  width: 480rpx;
+  height: 176rpx;
+}
+
+.goods_section {
+  width: 690rpx;
+  height: 180rpx;
+  padding: 30rpx 20rpx;
+  background: white;
+  border-radius: 15rpx;
+  align-items: center;
+}
+
+.calc_minus {
+  border-top-left-radius: 5rpx;
+  border-bottom-left-radius: 5rpx;
+  border: 1px solid gainsboro;
+}
+
+.confirm_section {
+  width: 168rpx;
+  height: 148rpx;
+  text-align: center;
+  margin-top: -20rpx;
+}
+
+.cart_result {
+  position: fixed;
+  bottom: 0rpx;
+  height: 112rpx;
+  width: 750rpx;
+  background: white;
+  align-items: center;
+}
+
+.fix-left-bottom {
+  width: 64rpx;
+  height: 64rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 150rpx;
+}
+
+.cart_btn {
+  width: 160rpx;
+  height: 40rpx;
+  color: #079547;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  border: 1px solid #079547;
+  text-align: center;
+  line-height: 40rpx;
+}

@@ -1,0 +1,131 @@
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<navbar show_bol='{{false}}' bg_type='bg_black_op' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='width100'>
+	<image class="width100" mode="widthFix" src="https://img.ssw88.com/wechatImg/prize_header.jpg"></image>
+	<view wx:if="{{data.redStatus >= 0 }}" style="margin:0 120rpx;width:510rpx;position:absolute;left:0;top:500rpx;">
+		<image wx:if="{{data.redStatus == 1 && data.rainStatus == 0 && data.redDownTime == undefined}}" style="width:400rpx;margin-left:50rpx;margin-top:-100rpx;transform:rotate(360deg);animation: spin 10s linear infinite;" mode="widthFix" src="./images/light.png"></image>
+		<image wx:if="{{data.redStatus == 1 && data.rainStatus == 0 && data.redDownTime == undefined}}" bindtap="getRedPacket" class="shake-slow shake-constant" style="width:250rpx;margin-left:125rpx;margin-top:-350rpx;" mode="widthFix" src="./images/getRed.png"></image>
+		<image wx:if="{{data.redStatus <= 0||data.rainStatus == 1}}" class="width100" mode="widthFix" src="./images/prize_time.png"></image>
+		<view wx:if="{{data.redStatus <= 0||data.rainStatus == 1}}" style="margin-top:-96rpx;color:#F34538;font-size:28rpx;" class="block_center width100">
+			<view style="margin-top:6rpx;" wx:if="{{data.redDownTime > 0}}" class="row block_center">
+				<span style="margin-right:20rpx;">红包雨倒计时</span>
+				<van-count-down bindfinish="getRefresh" class="white" time="{{ data.redDownTime*1000 }}" />
+			</view>
+			<view style="margin-top:6rpx;" wx:if="{{!(data.redDownTime > 0) && data.rainStatus == 1}}">
+				你已经领过该红包～
+			</view>
+		</view>
+	</view>
+</view>
+<view style="width:710rpx;margin-left:20rpx;position:relative;margin-top:-80rpx;margin-bottom:20rpx;" class="">
+	<view wx:if="{{data.luckDrawStatus == 1}}" style="margin-bottom:20rpx;" class="pad-lr-20 pad-ud-20 h4 column bg_white radius5">
+		<view class="pad-lr-20">
+			<image class="icon" style="margin-left:6px;margin-right:6px;" src="./images/hot.png"></image>邀请好友助力,可以提升中奖概率。
+		</view>
+		<view wx:if="{{data.status == 0}}" style="margin-left:26px;" class="app_red pad-lr-20">请先点击下方参与抽奖</view>
+		<view wx:if="{{data.status == 1}}" style="margin-left:26px;" class="pad-lr-20">当前中奖概率已提升<text style="font-style:italic;" class="app_red h3">{{data.winningRate}}%</text></view>
+		<view class="pad-lr-20 row">
+			<image bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/myaddress" class="pad-10" src="./images/address.png" mode="widthFix"></image>
+			<image bindtap="openOverLay" class="pad-10" src="./images/share.png" mode="widthFix"></image>
+		</view>
+	</view>
+	<view class="block_center">
+		<image style="width:40vw" mode="widthFix" src="./images/prize_setting.png"></image>
+	</view>
+</view>
+<view wx:for="{{goodsList}}" wx:for-item="goods" style="margin:20rpx 10rpx" class='pad-20 radius5 bg_white'>
+	<view class="column center" style="margin:20rpx 0">
+		<view style="height:60rpx;font-size:36rpx;color:#E74435;font-weight:bold;padding-left:20rpx;;border-left:10rpx solid #e74435;">
+			<span>{{goods.levelName}}</span>
+		</view>
+		<image src="{{goods.imageUrl}}" style="width:370rpx;height:370rpx;margin-left:150rpx;background:whitesmoke"></image>
+		<view style="margin-top:10rpx">提供方：{{goods.storeName}}</view>
+		<view class="width100">
+			<text class="left">奖品名称：{{goods.name}}</text>
+			<text style="color:#E74436" bindtap="showPopup" data-goods="{{goods}}" class="right">查看详情</text>
+		</view>
+	</view>
+</view>
+<view style="margin:20rpx 10rpx" class="block_center">
+	<image style="width:40vw" mode="widthFix" src="./images/prize_list.png"></image>
+</view>
+<view wx:for="{{goodsList}}" wx:for-item="goods" style="margin:20rpx 10rpx" class='pad-20 radius5 bg_white'>
+	<view style="height:60rpx;font-size:36rpx;color:#E74435;font-weight:bold;padding-left:20rpx;;border-left:10rpx solid #e74435;">
+		<span>{{goods.levelName}}中奖名单</span>
+	</view>
+	<view>
+		<view wx:for="{{goods.winners}}" wx:for-item="item" style="margin:10rpx 0;border:#e74435 2rpx solid;background-color:#FDF9F5" class="pad-10 radius5 row">
+			<view>
+				<image src="{{goods.imageUrl}}" style="background:whitesmoke;margin-top:10rpx;;width:180rpx;height:180rpx;border-radius:5px"></image>
+			</view>
+			<view style="margin-left:30rpx;margin-top:4rpx;font-size:28rpx;" class="column">
+				<view style="color:#E74435">中奖人:</view>
+				<view class="row">
+					<image src="{{item.photoImageUrl}}" style="border-radius:100rpx;background:whitesmoke;width:100rpx;height:100rpx"></image>
+					<view style="margin-left:20rpx;" class="column">
+						<view style="color:#333333;font-size:32rpx;">{{item.nickName}}</view>
+						<view style="color:#333333;font-size:32rpx;">{{phone.format(item.mobile)}}</view>
+					</view>
+				</view>
+				<view color="#333333"><text style="color:#E74435">奖品:</text> {{goods.name}}</view>
+			</view>
+		</view>
+		<view class="h4 pad-10 block_center" wx:if="{{goods.winners.length == 0}}">
+			<image style="width:300rpx;" mode="widthFix" src="./images/waiting.png"></image>
+		</view>
+	</view>
+</view>
+<button bindgetuserinfo="click" style='height:90rpx;position:fixed;left:0;bottom:0;color:#E74435;border-radius:0 !important' class='width100' open-type='getUserInfo'>{{data.status == 0?'点击参与':(data.status == 1?'等待开奖':'抽奖已结束')}}</button>
+<view style='padding:60rpx 0;'></view>
+<login id="login"></login>
+<van-popup custom-style="width:100vw;height:80vh;" position="bottom" show="{{ show }}" bind:close="onClose">
+	<van-nav-bar style="position:relative;top:-40rpx;" title="奖品信息" bind:click-right="onClose">
+		<van-icon name="cross" slot="right" />
+	</van-nav-bar>
+	<van-row>
+		<van-col class="column" style="margin-bottom:30rpx;margin-top:-30rpx;" span="24">
+			<view style="margin:20rpx;height:50rpx;font-size:30rpx;color:#E74435;font-weight:bold;padding-left:20rpx;;border-left:10rpx solid #e74435;">
+				{{goods.name}}
+			</view>
+			<view style="margin:10rpx 20rpx;border:#e74435 2rpx solid;font-size:28rpx;" class="pad-10 radius5 column">
+				<image src="{{goods.imageUrl}}" style="background:whitesmoke;width:320rpx;margin-left:180rpx;;height:320rpx;"></image>
+				<view>{{goods.specification}}</view>
+			</view>
+			<view style="margin:20rpx;height:50rpx;font-size:30rpx;color:#E74435;font-weight:bold;padding-left:20rpx;;border-left:10rpx solid #e74435;">
+				提供方：{{goods.storeName}}
+			</view>
+			<view style="margin:10rpx 20rpx;border:#e74435 2rpx solid;font-size:28rpx;" class="pad-10 radius5 column">
+				<image src="{{goods.storeImageUrl}}" style="background:whitesmoke;width:690rpx;height:320rpx;"></image>
+				<view> {{goods.storeContent}}</view>
+			</view>
+		</van-col>
+	</van-row>
+</van-popup>
+<van-popup custom-style="width:100vw;height:70vh;" position="bottom" show="{{ showHelp }}" bind:close="onCloseHelp">
+	<van-nav-bar style="position:relative;top:-40rpx;" title="抽奖帮助" bind:click-right="onCloseHelp">
+		<van-icon name="cross" slot="right" />
+	</van-nav-bar>
+	<van-row>
+		<van-col>
+			<image wx:if="{{data.luckDrawStatus == 0}}" style="margin-left:55rpx;width:640rpx;;margin-top:20rpx;" mode="widthFix" src="https://img.ssw88.com/wechatImg/helpText.png"></image>
+			<image wx:if="{{data.luckDrawStatus == 1}}" style="margin-left:55rpx;width:640rpx;;margin-top:20rpx;" mode="widthFix" src="https://img.ssw88.com/wechatImg/luckDrawShow.png"></image>
+		</van-col>
+	</van-row>
+</van-popup>
+<red-packet bindrequestResult="sendResult" id="redPacket"></red-packet>
+<image bindtap="showHelp" src="./images/prizeButton.png" mode="widthFix" style="position:fixed;bottom:60px;right:30px;width:60px;"></image>
+<!--100-->
+<van-overlay show="{{ showOverlay }}">
+	<view style="width:750rpx;height:88vh;position:fixed;z-index:10;bottom:0;" class="pad-ud-20 bg_white column">
+		<image wx:if="{{postUrl != ''}}" bindtap="closeOverLay" src="{{postUrl}}" style="margin:0 auto;width:600rpx;height:960rpx;padding-bottom:20rpx;"></image>
+		<view style="position:absolute;bottom:0;width:750rpx;">
+			<view bindtap="saveImage" class="pad-ud-20 text-center gray" style="border-top:1px solid whitesmoke">
+				保存到相册
+			</view>
+			<view bindtap="closeOverLay" class="pad-ud-20 text-center gray" style="border-top:1px solid whitesmoke">
+				取消
+			</view>
+		</view>
+	</view>
+</van-overlay>
+<canvas wx:if="{{showCanvas}}" canvas-id="hoCanvas" style="margin:0 auto;width:600px;height:960px;padding-bottom:20rpx;"></canvas>

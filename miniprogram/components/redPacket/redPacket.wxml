@@ -1,0 +1,23 @@
+<van-overlay show="{{ show }}" bind:click="clickAnim">
+</van-overlay>
+<image wx:for="{{startLeft}}" wx:key="index" id="demo" animation="{{item.anim}}" bindtap="clickEnd" data-array-name="startLeft" data-index="{{index}}" src="/images/prize_coin.png" style="padding:50rpx;width:80rpx;height:80rpx;position:fixed;top:{{startTop}};left:{{item.left}};z-index:99"></image>
+
+<image wx:for="{{coinLeft}}" wx:key="index" id="demo" animation="{{item.anim}}" bindtap="clickEnd" data-array-name="coinLeft" data-index="{{index}}" src="https://img.ssw88.com/static/red/prize_money.png" style="width:80rpx;height:80rpx;position:fixed;top:{{startTop}};left:{{item.left}};z-index:99"></image>
+
+<view wx:if="{{show}}" style="width:300rpx;position:fixed;bottom:2vh;left:5vw;z-index:99">
+  <image src="https://img.ssw88.com/static/red/prize_money.png" style="float:left;width:60rpx;height:60rpx;"></image>
+  <view style="float:left;color:white;padding-top:2px;padding-left:5px;"> x {{getCoinPacket}}</view>
+</view>
+
+<view wx:if="{{show}}" style="width:300rpx;position:fixed;bottom:8vh;left:5vw;z-index:99">
+  <image src="/images/prize_coin.png" style="width:60rpx;height:60rpx;float:left;"></image>
+  <view style="float:left;color:white;padding-top:2px;padding-left:5px;"> x {{getMonetPacket}}</view>
+</view>
+
+<view bindtap="jumpToWallet" wx:if="{{showResult && show}}" style="width:600rpx;position:fixed;top:20vh;z-index:90;left:60rpx;">
+  <image src="https://img.ssw88.com/wechatImg/packet_result.png" mode="widthFix"></image>
+  <view style="width:100%;position:relative;text-align:center;margin-top:-320rpx;padding-left:20rpx;">
+    <text class="app_red" style="font-size:48rpx">{{realPacketEme}}</text> 翡翠币</view>
+  <view style="width:100%;position:relative;text-align:center;padding-left:20rpx;">
+    <text class="app_red" style="font-size:48rpx">¥{{realPacket}}</text> 余额</view>
+</view>

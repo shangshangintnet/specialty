@@ -1,0 +1,55 @@
+<!--packageMyself/pages/myself/storage/storage.wxml-->
+<view>
+	<navbar title="储值活动" show_bol="{{false}}" bg_type="bg_black"></navbar>
+	<view class="row bg_white title" style="height:160rpx; margin-top:{{bar_Height+50}}px;">
+		<open-data wx:if="{{user != null}}" type="userAvatarUrl" class="ic_head"></open-data>
+		<image wx:else class="ic_head" src="/images/user-unlogin.png"></image>
+		<open-data class="nickName" type="userNickName"></open-data>
+		<view bindtap="click_tip" class="tip">
+			<image src="/images/ic_storage_tip.png" style="width: 30rpx;height:30rpx;"></image>
+			<view style="margin-left: 10rpx; font-size:26rpx;color:#9F5300;line-height: 160rpx;	text-align: center;">储值说明</view>
+		</view>
+	</view>
+	<view class="bg_white row tab_bg" style="background-image: url({{tab == 0?'https://img.ssw88.com/storageCard/storage/memberTab1.png':'https://img.ssw88.com/storageCard/storage/memberTab2.png'}});">
+		<view bindtap="clickTab" data-tag="0" style="width: 375rpx;height: 118rpx; opacity:0"></view>
+		<view bindtap="clickTab" data-tag="1" style="width: 375rpx;height: 118rpx; opacity:0"></view>
+	</view>
+	<view class="column center">
+		<block wx:if="{{tab == 0}}">
+			<image bindtap="clickDeposit" data-tag="0" class="storage_img" src="https://img.ssw88.com/storageCard/storage/19800.png"></image>
+			<image bindtap="clickDeposit" data-tag="1" class="storage_img" src="https://img.ssw88.com/storageCard/storage/39800.png"></image>
+		</block>
+		<block wx:else>
+			<image bindtap="clickDeposit" data-tag="2" class="storage_img" src="https://img.ssw88.com/storageCard/storage/119800.png"></image>
+			<image bindtap="clickDeposit" data-tag="3" class="storage_img" src="https://img.ssw88.com/storageCard/storage/239800.png"></image>
+		</block>
+	</view>
+	<view class="bg_white column" style="margin-top: 10rpx;padding-bottom: 100rpx;">
+		<view class="h2 bold" style="color: #3F3F3F;margin-left: 30rpx;margin-top: 45rpx;">请选择储值类型</view>
+		<view class="column center" style="margin-top: 30rpx;">
+			<view wx:if="{{tag == 0}}" class="storage_item">储值￥19800</view>
+			<view bindtap="clickTag" data-tag="0" wx:else class="storage_noritem">储值￥19800</view>
+			<view wx:if="{{tag == 1}}" class="storage_item">储值￥39800</view>
+			<view bindtap="clickTag" data-tag="1" wx:else class="storage_noritem">储值￥39800</view>
+			<view wx:if="{{tag == 2}}" class="storage_item">储值￥119800</view>
+			<view bindtap="clickTag" data-tag="2" wx:else class="storage_noritem">储值￥119800</view>
+			<view wx:if="{{tag == 3}}" class="storage_item">储值￥239800</view>
+			<view bindtap="clickTag" data-tag="3" wx:else class="storage_noritem">储值￥239800</view>
+		</view>
+		<view class="column center" style="margin-top: 80rpx;">
+			<image bindtap="confirmOrder" style="width: 522rpx;height: 92rpx;" src="https://img.ssw88.com/storageCard/storage/memberSave.png"></image>
+		</view>
+	</view>
+	<!-- 规则 -->
+	<van-popup show="{{ show }}" z-index="{{ zIndex }}">
+		<view class="bg_white" style="width: 750rpx;height: 100vh">
+			<view style="display: flex;text-align: center;align-items: center;line-height: 100rpx;margin-top:{{bar_Height}}px;">
+				<image bindtap="close_tip" src="/images/back.png" style="width: 23rpx;height: 36rpx;margin-left: 27rpx;">
+				</image>
+				<view style="font-size: 36rpx;color:#202020 ;width: 350rpx;margin-left:100rpx">储值说明</view>
+			</view>
+			<image src="https://img.ssw88.com/storageCard/storage/depositInfo.png" style="width: 750rpx;" mode="widthFix"></image>
+		</view>
+	</van-popup>
+</view>
+<image style="width:122rpx;height:133rpx;position:fixed;right:20rpx;bottom:120rpx;" bindtap='goKefu' src="/images/ic_service.png"></image>

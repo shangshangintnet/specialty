@@ -1,0 +1,5 @@
+<view class="row" style="width:300rpx;">
+  <text style="width:30rpx" bindtap='goods_trigger_minus' class='calc_minus calc'>-</text>
+  <input style="width:240rpx;" type="number" bindinput='changeCondition' class="calc calc_num" value='{{value}}'></input>
+  <text style="width:30rpx" bindtap='goods_trigger_add' class='calc_add calc'>+</text>
+</view>

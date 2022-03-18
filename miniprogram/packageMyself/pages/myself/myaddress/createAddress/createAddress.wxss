@@ -1,0 +1,6 @@
+/* miniprogram/pages/myself/myaddress/createAddress/createAddress.wxss */
+
+.label
+{
+  padding-right:15rpx;
+}

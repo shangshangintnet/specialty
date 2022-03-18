@@ -1,0 +1,22 @@
+<navbar title="需求大厅" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+50}}px;">
+  <view bindtap="viewPolish" data-index="{{index}}" wx:for="{{polishdata}}" class="column goods_section">
+    <view class="row" style="height:200rpx;align-items:center;margin-top:10rpx;">
+      <image src="{{item.imageUrl[0]}}" class="goods_pic"></image>
+      <view class="column goods_txt" style="margin-left:20rpx;">
+        <view class="row h2 gray_4">
+          <view>{{item.name}}</view>
+          <text style="margin-left:auto;margin-right:20rpx;text-align: right;">{{item.createTime}}</text>
+        </view>
+        <view class="row" style="margin-top:auto;">
+          <view class="goods_price">预算:￥{{item.budgetPrice}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="row" style="align-items:center; height: 80rpx;margin-left: auto;margin-right: 20rpx;">
+      <view wx:if="{{user.id != item.userId}}" catchtap="receive" data-index="{{index}}" class="upGood">
+        接受需求
+      </view>
+    </view>
+  </view>
+</view>

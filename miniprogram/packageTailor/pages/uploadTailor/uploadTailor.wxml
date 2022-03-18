@@ -1,0 +1,134 @@
+<navbar title="{{edit?'编辑原料':'增加原料'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+	<view class="'condition '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+	<view class="right_line"></view>
+	<view class="'condition '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">图集信息</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="row info_item">
+			<text class="gray_4 h2">原料名称</text>
+			<input disabled="{{edit && beUser}}" value="{{stone.name}}" bindblur="changename" class="input_txt"
+				placeholder="请填写名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<!-- 店主、雕刻师 -->
+		<block wx:if="{{!beUser}}">
+			<view class="row info_item">
+				<text class="gray_4 h2">用户手机</text>
+				<input disabled="{{edit}}" value="{{stone.mobile}}" bindblur="changemobile" class="input_txt"
+					placeholder="请填写用户手机号" type="number" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">用户姓名</text>
+				<input value="{{stone.userName}}" bindblur="changeUserName" class="input_txt" placeholder="请填写用户姓名"
+					placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">重量(g)</text>
+				<input disabled="{{edit && user.storeId == null}}" value="{{stone.weight}}" bindblur="changeweight"
+					class="input_txt" placeholder="请填写重量" type="digit"
+					placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">原料类型</text>
+				<input disabled="{{true}}" value="{{typeItems[stone.type].name}}" class="input_txt"
+					placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">解石费</text>
+				<input disabled="{{stone.payStatus == 1 || beUser}}" value="{{stone.price}}" bindblur="changeprice"
+					class="input_txt" placeholder="请输入解石费" type="digit"
+					placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<!-- <view class="row info_item">
+				<text class="gray_4 h2">选择店铺</text>
+				<picker disabled="{{edit && beUser}}" class="picker" mode="selector" range-key="name" range="{{storeList}}"
+					bindchange="changeStore">
+					<block wx:if="{{stone.storeId == null}}">
+						<text style="color:#BBBBBB;font-size: 28rpx;">请选择订制店铺</text>
+					</block>
+					<block wx:else>{{stone.storeName}}</block>
+				</picker>
+			</view> -->
+			<view class="row info_item">
+				<text class="gray_4 h2">解料数量</text>
+				<input disabled="{{edit && user.storeId == null}}" value="{{stone.count}}" bindblur="changecount"
+					class="input_txt" placeholder="请填写数量" type="number"
+					placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+			</view>
+			<view wx:if="{{!edit}}" class="row info_item">
+				<text class="gray_4 h2">上传类型</text>
+				<picker class="picker" mode="selector" range-key="name" range="{{uploadType}}" bindchange="changeUploadType">
+					<block>{{uploadType[stone.uploadType].name}}</block>
+				</picker>
+			</view>
+
+		</block>
+		<block wx:if="{{beUser && edit}}">
+			<view class="row info_item">
+				<text class="gray_4 h2">重量(g)</text>
+				<view class="smoke h4">{{stone.weight}}</view>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">解石费</text>
+				<view class="smoke h4">{{stone.price}}</view>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">受理店铺</text>
+				<view class="smoke h4">{{stone.storeName}}</view>
+			</view>
+			<view class="row info_item">
+				<text class="gray_4 h2">解料数量</text>
+				<view class="smoke h4">{{stone.count}}</view>
+			</view>
+		</block>
+		<view class="row info_item">
+			<text class="gray_4 h2">支付状态</text>
+			<picker disabled="{{beUser}}" class="picker" mode="selector" range-key="name" range="{{payType}}"
+				bindchange="changePayType">
+				<block wx:if="{{stone.payStatus == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">修改支付状态</text>
+				</block>
+				<block wx:else>{{payType[stone.payStatus].name}}</block>
+			</picker>
+		</view>
+		<block wx:if="{{!beUser && stone.payStatus == 1}}">
+			<view class="row info_item">
+				<text class="gray_4 h2">分成</text>
+				<view class="app_green h4">{{staffPrice.value}}</view>
+			</view>
+		</block>
+	</block>
+	<block wx:else>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">商品图集</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+		</view>
+		<view class="row imgList">
+			<view bindtap="previewImage" data-item="{{item}}" wx:for="{{imageUrls}}" class="imgList_view"
+				style="background-image: url({{item}});">
+				<image catchtap="deleteImage" data-index="{{index}}" style="width:32rpx;height:32rpx;margin-left:110rpx;"
+					src="/images/delete.png"></image>
+			</view>
+			<view wx:if="{{imageUrls.length < 4}}" style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+	</block>
+</view>
+<view class="bottom row">
+	<block wx:if="{{edit}}">
+		<view bindtap="confirm" class="btn_success width100" wx:if="{{beUser}}">{{stone.payStatus == 1?'已支付':'立即支付'}}
+		</view>
+		<block wx:else>
+			<view catchtap="addSolution" class="btn_default item2">生成解料</view>
+			<view bindtap="confirm" class="btn_success item2">确认修改</view>
+		</block>
+	</block>
+	<block wx:else>
+		<view bindtap="confirm" class="btn_success width100" wx:if="{{active == 0}}">提交基本信息</view>
+		<view bindtap="confirm" class="btn_success width100" wx:else>提交图集信息</view>
+	</block>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

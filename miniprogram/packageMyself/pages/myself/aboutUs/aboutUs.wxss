@@ -1,0 +1,99 @@
+/* 顶部导航 */
+
+page
+{
+  background-color: white;
+}
+
+.status-bar {
+  width: 100%;
+  background: linear-gradient(60deg, #006325, #023b16);
+}
+
+.user_icon
+{
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 140rpx;
+  overflow: hidden;
+  margin:0 40rpx;
+  margin-top: 10rpx;
+}
+
+.level_help
+{
+  background: rgba(255,255,255,0.2);
+  border-radius: 100rpx;
+  color:white;
+  padding: 8rpx 12rpx;
+  margin-left: 20rpx;
+}
+
+.level_icon
+{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+
+.user_info_section
+{
+  letter-spacing: 1rpx;
+}
+
+.user_list_ui
+{
+  border-radius: 20rpx;
+  background-color: white;
+  height: 1000rpx;
+  margin-top: -30rpx;
+  padding-bottom: 70rpx;
+}
+
+.invite_code
+{
+  border-radius: 40rpx;
+  width: 400rpx;
+  padding: 12rpx;
+  background-color: #079547;
+  margin: 0 auto;
+  margin-top: -30rpx;
+  text-align: center;
+  color:white;
+  line-height: 30rpx;
+  height: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.user_li
+{
+  height: 50rpx;
+  margin-left: 40rpx;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
+  padding:10rpx 0;
+  border-bottom: 1px solid gainsboro;
+  width: 660rpx;
+}
+
+.list_icon
+{
+  width: 32rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  padding: 0;
+}
+
+.list_name
+{
+  width: 400rpx;
+}
+
+.icon_right
+{
+  width: 18rpx;
+  height: 28rpx;
+  padding: 0;
+  margin-top: -36rpx;
+}
+

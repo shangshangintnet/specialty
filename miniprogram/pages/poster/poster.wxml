@@ -1,0 +1,19 @@
+<navbar title='{{title}}' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style='position:fixed;z-index:1;margin-top:{{bar_Height  + 44}}px;'>
+	<view class='row block_center bg_white'>
+		<view bindtap='tagTo' data-id="{{item.id}}" class='pad-ud-20 blank {{item.id==currentId?"selected":""}}' style='width:{{750/posterCategory.length}}rpx;' bindtap='tagTo' data-tag="{{item.id}}" wx:for="{{posterCategory}}">
+			{{item.name}}
+		</view>
+	</view>
+</view>
+
+<view class='row' style='padding-top:{{bar_Height  + 90}}px;flex-wrap: wrap;'>
+	<view data-index="{{index}}" bindtap="openOverLay" data-url="{{item.imageUrl}}" class='poster' wx:for="{{poster}}">
+		<view style="background-image: url({{item.imageUrl}});" class="poster_view">
+			<image catchtap="shareImg"  data-url="{{item.imageUrl}}" style="margin-left:310rpx;margin-top:600rpx;" class="icon_big" src="/images/downloads.png"></image>
+		</view>
+	</view>
+</view>
+
+<!--wx:if="{{showCanvas}}"-->
+<canvas canvas-id="shareCanvas" id="hoCanvas" wx:if="{{showCanvas}}"  style="width:375px;height:667px;margin-top:300px;"></canvas>

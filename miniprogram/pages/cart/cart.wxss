@@ -1,0 +1,83 @@
+.shop_section {
+  margin: 10rpx;
+  padding: 16rpx;
+  padding-top: 20rpx;
+  border-radius: 15rpx;
+  box-shadow: 0rpx 10rpx 5rpx #dddddd;
+}
+
+.goods_flag {
+  position: relative;
+  left: -180rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.checkbox {
+  padding-left: 10rpx;
+  padding-top: 8rpx;
+  padding-right: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.shop_icon {
+  margin-top: 8rpx;
+  margin-right: 20rpx;
+}
+
+.goods_pic {
+  width: 176rpx;
+  height: 176rpx;
+  margin-right: 20rpx;
+}
+
+.goods_txt {
+  width: 420rpx;
+}
+
+.goods_section {
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-top: 1px solid whitesmoke;
+}
+
+.calc_minus {
+  border-top-left-radius: 5rpx;
+  border-bottom-left-radius: 5rpx;
+  border: 1px solid gainsboro;
+}
+
+.calc_num {
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+}
+
+.calc_add {
+  border-top-right-radius: 5rpx;
+  border-bottom-right-radius: 5rpx;
+  border: 1px solid gainsboro;
+}
+
+.calc {
+  padding: 8rpx 20rpx;
+  text-align: center;
+}
+
+.cart_result {
+  position: fixed;
+  bottom: 0rpx;
+  height: 102rpx;
+  width: 750rpx;
+  background: white;
+  vertical-align: center;
+  overflow: hidden;
+}
+
+.confirm_section {
+  width: 168rpx;
+  height: 148rpx;
+  padding: 0;
+  margin-top: -8rpx;
+  margin-right: -8rpx;
+
+}

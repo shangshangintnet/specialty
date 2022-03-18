@@ -1,0 +1,11 @@
+/* miniprogram/pages/myself/mywallet/mybudget/mybudget.wxss */
+
+.budget_number
+{
+  margin-top: 16rpx;
+}
+
+.budget_type
+{
+  font-size: 36rpx;
+}

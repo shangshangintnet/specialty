@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar",
+    "guess_what": "/components/guess_what/guess_what"
+  }
+}

@@ -1,0 +1,41 @@
+<view class="container">
+	<swiper class="video-swiper" circular="{{circular}}" easing-function="{{easingFunction}}" vertical current="1" duration="{{duration}}" bindanimationfinish="animationfinish">
+		<!-- curQueue 循环会导致video重新插入，objectFit 不可变更 -->
+		<swiper-item wx:for="{{curQueue}}" wx:key="*this">
+			<video id="video_{{index}}" class="video_item" loop="{{loop}}" enable-play-gesture enable-progress-gesture show-center-play-btn="{{false}}" controls="{{false}}" src="{{item.videoUrl}}" data-id="{{item.id}}" object-fit="{{item.objectFit || 'cover'}}" data-index="{{item.index}}" bindplay="onPlay" bindpause="onPause" bindended="onEnded" binderror="onError" bindtimeupdate="onTimeUpdate" bindwaiting="onWaiting" bindprogress="onProgress" bindloadedmetadata="onLoadedMetaData">
+				<view class="column container" style="z-index:800;">
+					<view class="column video_info">
+						<image bindtap="storedetail" data-id="{{item.storeId}}" class="icon_1 img_1" src="{{item.icon}}"></image>
+						<image hidden="{{item.storeFollowStatus == 1}}" catchtap="onStoreAttention" data-index="{{item.index}}" class="icon_3" src="/images/video_store_like.png"></image>
+						<view hidden="{{item.followStatus == 1}}" data-index="{{item.index}}" bindtap="like" class="row icon_1 img_3">
+							<image class="icon_2" style="margin-left:10rpx;margin-top:10rpx;" src="/images/video_like.png"></image>
+						</view>
+						<view hidden="{{item.followStatus == 0 || likeAnim}}" data-index="{{item.index}}" bindtap="like" class="row icon_1 img_3">
+							<image class="icon_2" style="margin-left:10rpx;margin-top:10rpx;" src="/images/video_liked.png"></image>
+						</view>
+						<image hidden="{{!likeAnim}}" class="icon_1 img_3" src="https://img.ssw88.com/static/collection/video_liked.gif"></image>
+						<image class="icon_2 img_2" src="/images/video_share.png"></image>
+						<button class="share" data-index="{{item.index}}" open-type="share">
+						</button>
+						<image bindtap="addcart" data-index="{{item.index}}" class="icon_2 img_2" src="/images/video_cart.png"></image>
+						<image bindtap="buy" data-index="{{item.index}}" class="icon_1 img_3" src="/images/video_buy.png"></image>
+						<view bindtap="gooddetail" data-type="{{item.extravagant}}" data-id="{{item.id}}" class="column" style="margin-top:auto;margin-left:30rpx;margin-right:20rpx;">
+							<view class="row h2 white" style="height:40rpx;align-items:center;">
+								<image hidden="{{item.extravagant != 2}}" style="width: 40rpx;height: 40rpx;margin-right: 10rpx;" src="/images/ic_fu.png"></image>
+								{{item.name}}
+							</view>
+							<view hidden="{{item.specification == null}}" class="h4 white info" style="margin-top:20rpx;">
+								{{item.specification}}
+							</view>
+							<view class="h4" style="margin-top:20rpx;margin-bottom:40rpx;">
+								<view class="row white info">{{item.introduce}}</view>
+								<view style="margin-top:15rpx;height:40rpx;color:#079547;">详情>></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</video>
+		</swiper-item>
+	</swiper>
+	<view wx:if="{{mask}}" class="container mask"></view>
+</view>

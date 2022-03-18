@@ -1,0 +1,19 @@
+<view class='column' style='padding-top:10rpx;'>
+  <view class='width100' wx:for="{{specification}}">
+    <view class='h3 pad-10 left' decode='true' style='width:130rpx;'>
+    {{item.name}}
+    </view>
+    <view class='h3 pad-10 left' style=''>{{item.value}}</view>
+  </view>
+
+
+
+
+  <view class="shop-info-img-list width100 ar_block" style='margin-top:50rpx'>
+    <block wx:for="{{imagesUrls}}">
+      <view class="width100">
+        <image mode="widthFix" class="width100" src="{{item.imageUrl}}"></image>
+      </view>
+    </block>
+  </view>
+</view>

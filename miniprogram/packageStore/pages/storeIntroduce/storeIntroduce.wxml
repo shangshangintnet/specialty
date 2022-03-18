@@ -1,0 +1,4 @@
+	<navbar id="navbar" show_bol='{{false}}' bg_type='bg_loadApp'></navbar>
+	<image wx:if="{{tag == 0}}" src="https://img.ssw88.com/wechatImg/static/treasure.jpg " style="width: 750rpx; display: block" mode="widthFix" />
+	<image wx:if="{{tag == 1}}" src="https://img.ssw88.com/wechatImg/static/treasure1.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<view bindtap="goStore" class="width100 bottom_btn">我要开店</view>

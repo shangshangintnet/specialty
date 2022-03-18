@@ -1,0 +1,14 @@
+<!--miniprogram/pages/common/successCall.wxml-->
+<navbar url="{{label2_url}}" isTab="{{lable2IsTap == 1}}" title='{{title}}' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='width100 bg_white column block_center' style="padding-top:50px;height:700rpx">
+  <image style='width:100px;' src='/images/successCall.png' mode='widthFix'></image>
+  <text class='h3' style='margin-top:20rpx;'>{{title}}</text>
+  <text class='gray h4' >{{msg}}</text>
+
+  <view class='row' style='margin-top:40rpx'>
+    <view bindtap='toWhere' data-url="{{label1_url}}" data-is-Tab="{{lable1IsTap == 1}}" class=' mar-10 btn_gray radius5 '> {{label1}} </view>
+    <view bindtap="toLaunch" data-url="{{label2_url}}" data-is-Tab="{{lable2IsTap == 1}}" class=' mar-10 btn_gray radius5 '> {{label2}} </view>
+  </view>
+</view>
+  <image class='guess_banner' mode='widthFix' src='/images/suiyuan.png'></image>
+  <guess_what id="guess_what"></guess_what>

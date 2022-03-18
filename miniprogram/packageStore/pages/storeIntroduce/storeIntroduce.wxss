@@ -1,0 +1,10 @@
+.bottom_btn {
+  height: 90rpx;
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(0deg, #13a5f2, #4381f4);
+  color: white;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 90rpx;
+}

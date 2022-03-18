@@ -1,0 +1,63 @@
+<navbar title="商铺申请" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}rpx;margin-bottom:120rpx;">
+	<view class="row info_item">
+		<text class="gray_4 h2">店铺名称</text>
+		<input disabled="{{disable}}" value="{{store.name}}" bindblur="changename" class="input_txt" placeholder="请填写店铺名称"
+			placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+	</view>
+	<view class="row info_item">
+		<text class="gray_4 h2">店铺类型</text>
+		<picker disabled="{{disable}}" class="picker" mode="selector" range-key="name" range="{{typeList}}"
+			bindchange="changeStoreType">
+			<block wx:if="{{storeType == null}}">
+				<text style="color:#BBBBBB;font-size: 28rpx;">请选择店铺类型</text>
+			</block>
+			<block wx:else="{{storeType != null}}">{{storeType}}</block>
+		</picker>
+	</view>
+	<!-- 店铺类别 -->
+	<view class="row info_item">
+		<text class="gray_4 h2">店铺类别</text>
+	</view>
+	<view class="bg_white column width100 h2" style="margin:10rpx 30rpx;">
+		<view class="column" wx:for="{{typeItems}}">
+			<view class="row" style="align-items: center;">
+				<checkbox bindtap="checkboxChange" data-index="{{index}}" value="{{item.value}}" checked="{{item.checked}}" />
+				<view class="gray h4">{{item.name}}</view>
+			</view>
+			<view class="gray h6" style="margin:30rpx;">{{item.info}}</view>
+		</view>
+	</view>
+</view>
+<view bindtap="confirm" class="bottom btn_success">
+	<block wx:if="{{store.applyStatus == 3}}">
+		提交审核
+	</block>
+	<block wx:else>审核中</block>
+</view>
+<view bindtap="close_order" hidden="{{!orderVisible}}" class="row popup_share">
+	<view class="column store_order_bg">
+		<image style="width:228rpx;height:67rpx;margin-top:50rpx;" src="https://img.ssw88.com/wechatImg/static/button1.png">
+		</image>
+		<view class="row store_info_item" style="margin-top:80rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">服务费</view>
+				<view class="gray" style="font-size:20rpx;">技术服务费，活动期间98元原498元</view>
+			</view>
+			<view class="store_price row">
+				<text>¥ {{order.servicePrice}}</text>
+				<text class="gray h6 line-through" style="margin-left:5rpx;">498</text>
+			</view>
+		</view>
+		<view class="row store_info_item" style="margin-top:30rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">保证金</view>
+				<view class="gray" style="font-size:20rpx;">保证商家遵守规则，按时发货、鉴真</view>
+			</view>
+			<view class="store_price">¥ {{order.ensurePrice}}</view>
+		</view>
+		<view style="font-size:40rpx;color:#00133E;margin-top:20rpx;margin-left:auto;margin-right:50rpx;">合计：¥
+			{{order.price}}</view>
+		<view catchtap="order_pay" class="store_info_btn" style="margin-top:30rpx;">立即激活</view>
+	</view>
+</view>

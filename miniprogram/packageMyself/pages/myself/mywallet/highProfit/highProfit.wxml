@@ -1,0 +1,17 @@
+<navbar title='高货回款' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white" style="position:fixed;z-index:200; width:750rpx;top:{{bar_Height+45}}px;">
+  <view style="width: 750rpx;height: 10rpx;background-color: #F8F8F8;">
+  </view>
+  <view class="row table_lable border_line_whitesmoke">
+    <text class="gray h4">商品图片</text>
+    <text class="gray h4">商品名称</text>
+    <text class="gray h4">回款金额</text>
+  </view>
+</view>
+<view class="column" style="margin-top:{{bar_Height+90}}px; width:750rpx;">
+  <view wx:for="{{highData}}" class="table_txt_row border_line_whitesmoke">
+    <image style="width: 150rpx;height: 150rpx;margin:0 50rpx;" src="{{item.image}}"></image>
+    <view class="table_txt">{{item.goodsName}}</view>
+    <view class="table_txt app_green">{{item.ownerProfit}}</view>
+  </view>
+</view>

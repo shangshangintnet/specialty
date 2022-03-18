@@ -1,0 +1,130 @@
+<wxs module="computed" src="../../utils/computed.wxs"></wxs>
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<navbar id="navbar" title="竞猜活动" show_bol='{{false}}' bg_type='bg_black_op' style="padding-top:0px;"></navbar>
+<!--miniprogram/pages/activity/activity.wxml-->
+<swiper wx:if="{{videoImagesUrls.length > 0}}" current="{{swipeCurrent}}" class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="5000" duration="1000">
+	<block wx:for="{{videoImagesUrls}}" wx:for-index="index">
+		<swiper-item>
+			<video wx:if="{{index == 0}}" poster='{{videoImagesUrls[1]}}' src="{{item}}" controls='true'></video>
+			<image wx:else src="{{item}}" class="slide-image" mode="aspectFill" />
+		</swiper-item>
+	</block>
+</swiper>
+<image class='rules' bindtap='getRules' src='/images/ic_activedes.png'></image>
+<image class='rules_back' bindtap='onGetPastReview' src='/images/ic_past_review.png'></image>
+<view class="tianmao">
+	<image src='./images/activity_title.png' style='width:400rpx;height:100%'></image>
+	<view class='block_center right' style='width:350rpx;height:100%;'>
+		<text wx:if="{{activityState == 0}}" class='block_center' style='font-size:30rpx;margin-top:-16rpx;'>活动倒计时</text>
+		<text wx:if="{{activityState == 1}}" class='block_center' style='font-size:30rpx;margin-top:-16rpx;'>开奖中</text>
+		<text wx:if="{{activityState == 2}}" class='block_center gray' style='font-size:30rpx;margin-top:-16rpx;'>本期活动已结束</text>
+		<view wx:if="{{activityState != 2}}" class="time_section">
+			<view class="time_block">{{day}}</view>
+			<view class='h4' style='margin-left:-2rpx;margin-top:12rpx'>天 </view>
+			<view class="time_block">{{hour}}</view>
+			<view class='h4' style='margin-top:12rpx'>时 </view>
+			<view class="time_block">{{min}}</view>
+			<view class='h4' style='margin-top:12rpx'>分 </view>
+			<view class="time_block">{{second}}</view>
+		</view>
+		<view wx:if="{{activityState == 2}}" class="block_center h3" style='font-style:italic'>敬请期待 !
+		</view>
+	</view>
+</view>
+<view class="ar_cont column">
+	<view wx:if="{{activityState == 2}}" class="ar_block">
+		<text decode='true' class="ar_cont_h1"> &nbsp; 本期中奖信息</text>
+		<view class="ar_line"></view>
+		<view style='margin-left:10rpx;' class='row pad-20'>
+			<view class='h4 ' style='width:235rpx;'>中奖用户</view>
+			<view class='h4 ' style='width:150rpx;'>实际价格</view>
+			<view class='h4 ' style='width:150rpx;'>竞猜价格</view>
+			<view class='h4 ' style='width:220rpx;'>我的价格</view>
+		</view>
+		<view class='column pad-10' style='margin-left:20rpx;padding-top:0'>
+			<view class='row h4 gray'>
+				<text style='width:235rpx;'>{{phone.format(lastWin.winningName)}}</text>
+				<text style='width:150rpx;'>{{lastWin.actualPrice}} </text>
+				<text style='width:150rpx;'>{{lastWin.winningPrice}}</text>
+				<text style='width:160rpx;overflow:hidden'>{{lastWin.myPrice == null?0:lastWin.myPrice}}</text>
+			</view>
+		</view>
+	</view>
+	<view class="ar_block">
+		<text decode='true' class="ar_cont_h1"> &nbsp; 活动说明</text>
+		<view class="ar_line"></view>
+		<text class="ar_cont_price">竞猜费用：<text class="ar_green"> {{guessing.price}} 翡翠币 </text></text>
+	</view>
+	<view class="ar_block column">
+		<text decode='true' class="ar_cont_h1"> &nbsp; 活动时间</text>
+		<view class="ar_line"></view>
+		<p class="width100" decode='true'>
+			活动时间：{{guessing.startTime}} 至 {{guessing.endTime}}
+		</p>
+		<p class="width100" decode='true'>
+			开奖时间：{{guessing.lotteryTime}}
+		</p>
+	</view>
+	<view class='ar_block'>
+		<text decode='true' class="ar_cont_h1">&nbsp; 商品详情</text>
+		<view class="ar_line"></view>
+		<detail id="detail"></detail>
+	</view>
+</view>
+<view class="weui-footer weui-footer_fixed-bottom">
+	<button wx:if="{{activityState == 0 && guessingState == 0}}" class="ar_book" bindtap="onHelp">参与竞猜</button>
+	<button wx:if="{{activityState == 0 && guessingState == 1}}" class="ar_book">感谢参与!您当前的竞猜价格为:{{competitionPrice}}</button>
+	<button wx:if="{{activityState == 1 && guessingState == 0}}" class="ar_book">本期未竞猜</button>
+	<button wx:if="{{activityState == 1 && guessingState == 1}}" class="ar_book">感谢参与!您当前的竞猜价格为:{{competitionPrice}}</button>
+	<button wx:if="{{activityState == 2}}" class="ar_book" bindtap="onGetPastReview">往期回顾</button>
+</view>
+<model bindsuccessEvent="commitMoney" bindfailEvent="" goTxt="提交价格" cancelTxt="取消" id="model">
+	<view class='column block_center'>
+		<image class='width100' mode='widthFix' src='{{videoImagesUrls[1]}}'></image>
+		<text class='width100'></text>
+		<view style='padding-top:12rpx;'>您的竞猜价格:</view>
+		<input class='block_center' placeholder-class='block_center' maxlength="9" type="number" bindinput="bindNum" style='text-align:center;width:300rpx;height:66rpx;' placeholder='请输入价格'></input>
+	</view>
+</model>
+<model bindsuccessEvent="" bindfailEvent="" goTxt="确认" cancelTxt="取消" id="lastPreview">
+	<view class='column' style='height:900rpx;'>
+		<text class='block_center pad-20 h2'>往期回顾</text>
+		<view style='margin-left:20rpx;' class='row pad-20'>
+			<view class='h4 gray' style='width:160rpx;'>中奖用户</view>
+			<view class='h4 gray' style='width:180rpx;'>商品名称</view>
+			<view class='h4 gray' style='width:130rpx;'>实际价格</view>
+			<view class='h4 gray' style='width:120rpx;'>竞猜价格</view>
+		</view>
+		<view class='column pad-10' wx:key="{{index}}" style='margin-left:20rpx;padding-top:0' wx:for="{{winningList}}">
+			<view class='row h4 gray'>
+				<text style='width:160rpx;'>{{phone.format(item.winningName)}}</text>
+				<text style='width:220rpx;overflow: hidden;'>{{item.goodsName}}</text>
+				<text style='width:120rpx;'>{{item.actualPrice}} </text>
+				<text style='width:120rpx;'>{{item.winningPrice}}</text>
+			</view>
+		</view>
+	</view>
+</model>
+<van-popup custom-style="width:100vw;height:85vh;" position="bottom" show="{{ showHelp }}" bind:close="onCloseHelp">
+	<van-nav-bar safe-area-inset-top="{{false}}" style="position:fixed;top:12vh;width:100vw;" title="往期回顾" bind:click-right="onCloseHelp">
+		<van-icon name="cross" slot="right" />
+	</van-nav-bar>
+	<view style='margin-top:60rpx;' class='row pad-20'>
+		<view class='h4 gray' style='width:170rpx;'>中奖用户</view>
+		<view class='h4 gray' style='width:330rpx;'>商品名称</view>
+		<view class='h4 gray' style='width:130rpx;'>实际价格</view>
+		<view class='h4 gray' style='width:120rpx;'>竞猜价格</view>
+	</view>
+	<view class='column pad-10' wx:key="{{index}}" style='margin-left:20rpx;padding-top:0' wx:for="{{winningList}}">
+		<view class='row h4 gray'>
+			<text style='width:160rpx;'>{{phone.format(item.winningName)}}</text>
+			<text style='margin-left:10rpx;width:330rpx;overflow: hidden;'>{{item.goodsName}}</text>
+			<text style='width:120rpx;'>{{item.actualPrice}} </text>
+			<text style='width:120rpx;'>{{item.winningPrice}}</text>
+		</view>
+	</view>
+</van-popup>
+
+
+<login id="login"></login>
+<canvas wx:if="{{needDisplay}}" canvas-id="hoCanvas" style='width:750px;height:600px;'></canvas>

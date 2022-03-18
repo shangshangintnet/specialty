@@ -1,0 +1,2 @@
+<!--miniprogram/pages/myself/aboutUs/privateTerms/privateTerms.wxml-->
+<navbar title='隐私权政策' show_bol='{{false}}' bg_type='bg_green' style="padding-top:{{bar_Height  + 45}}px;"></navbar>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "navbar": "/components/navbar/navbar",
+    "carve": "/components/carveOrder/carveOrder"
+  },
+  "navigationBarTextStyle": "black"
+}

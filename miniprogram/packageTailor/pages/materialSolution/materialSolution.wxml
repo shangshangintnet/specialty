@@ -1,0 +1,39 @@
+<navbar title="{{user.storeId != null?curStone.name+' '+weight+'g':curStone.name}}" show_bol='{{false}}'
+  bg_type='bg_black'>
+</navbar>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+55}}px;">
+  <view bindtap="viewSolution" data-index="{{index}}" wx:for="{{solution}}" class="column goods_section">
+    <view class="row border_line_whitesmoke h2 gray_4" style="margin-left:20rpx;height:80rpx; align-items: center;">
+      <image src='/images/icon_storeads.png' class='shop_icon'></image>
+      <text style="margin-left:10rpx">{{item.storeName}}</text>
+      <text style="margin-left:auto;color:#079547;margin-right:20rpx;">{{status[item.status].name}}</text>
+    </view>
+    <view class="row" style="height:200rpx;align-items:center;">
+      <image src="{{item.imageUrl[0]}}" class="goods_pic"></image>
+      <view class="column goods_txt" style="margin-left:20rpx;">
+        <view class="h2 gray_4">{{item.name}}</view>
+        <view class="h2 gray_4">{{item.weight}}g</view>
+        <view class="row" style="margin-top:auto;">
+          <view class="goods_price">￥{{item.dispayPrice}}</view>
+          <text class="h4" style="margin-left:auto;color:#BD1818;">{{item.staffName}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="row" style="align-items:center; height: 80rpx;margin-left: auto;margin-right: 20rpx;">
+      <view catchtap="dispatchSolution" wx:if="{{user.carvingLevel == 2}}" data-index="{{index}}" class="editGood"
+        style="margin-left:20rpx;">分配任务</view>
+      <view catchtap="pay" wx:if="{{beUser && item.status == 2}}" data-index="{{index}}" class="downGood"
+        style="margin-left:20rpx;">立即支付</view>
+    </view>
+  </view>
+</view>
+<view class="bottom row">
+  <block wx:if="{{beUser}}">
+    <view bindtap="confirm" class="btn_success width100">{{payStatus?'立即支付':'已支付'}}</view>
+  </block>
+  <block wx:else>
+    <view catchtap="addSolution" class="btn_default item2">生成解料</view>
+    <view bindtap="confirm" class="btn_success item2">增加解料</view>
+  </block>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

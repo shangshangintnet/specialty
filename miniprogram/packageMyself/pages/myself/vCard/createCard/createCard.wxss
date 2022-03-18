@@ -1,0 +1,18 @@
+/* miniprogram/packageMyself/pages/myself/vCard/createCard/createCard.wxss */
+
+.van-field__input--textarea{
+  margin-top: 10rpx !important;
+}
+
+.btn_update{
+  position: fixed;
+  bottom: 5rpx;
+  height: 90rpx;
+  width: 600rpx;
+  margin-left: 75rpx;
+  vertical-align: center;
+  overflow: hidden;
+  color: white;
+  background-color: #079547;
+  z-index: 2;
+}

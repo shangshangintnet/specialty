@@ -1,0 +1,49 @@
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<navbar title='限时秒杀' show_bol='{{false}}' bg_type='bg_black_op' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='linear_red' style='width:750rpx;height:260rpx;position:fixed;z-index:2'>
+  <view class='row' style='padding-top:160rpx'>
+    <view wx:key="index" bindtap='scrollTo' data-idx="{{index}}" wx:for="{{spikes}}" class='column white block_center' style='width:150rpx;{{currentPage == index?"font-weight:bold":"opacity:0.7"}}'>
+      <view class='h3'>{{item.startDate}}</view>
+      <view style='margin-top:-10rpx;' class='h4'>{{item.state == 1?"抢购中":"即将开始"}}</view>
+    </view>
+  </view>
+</view>
+<view style='height:260rpx;'></view>
+<view id="sec_{{index}}" class='spikes' wx:key="index" wx:for="{{spikes}}">
+  <view wx:if="{{item.state == 1}}" class='pad-20 bg_white page_red border_line_whitesmoke' style='height:40rpx;'>
+    <text class='left h4 page_red'>抢购中,先下单先得哦</text>
+    <view class='right h4 ready'>距结束
+      <text>{{countDown[index].hour}}</text>:
+      <text>{{countDown[index].min}}</text>:
+      <text>{{countDown[index].second}}</text>
+    </view>
+  </view>
+
+
+  <view wx:if="{{item.state == 0}}" class='pad-20 bg_white page_green border_line_whitesmoke' style='height:40rpx;'>
+    <text class='left h4 gray'>{{item.startTime}}</text>
+    <view class='right h4 wait'>距开抢
+      <text>{{countDown[index].hour}}</text>:
+      <text>{{countDown[index].min}}</text>:
+      <text>{{countDown[index].second}}</text>
+    </view>
+  </view>
+
+  <view  wx:key="id" bindtap='onMoveToGoods' data-goods-Id="{{goods.id}}"  wx:for="{{item.goodsList}}" wx:for-item="goods" wx:for-index="idx" class='width100 pad-20 bg_white border_line_whitesmoke' style='height:200rpx;'>
+    <image  src='{{goods.listImageUrl}}' class='left' style='width:190rpx;height:190rpx'></image>
+    <view class='left column' style='margin-left:20rpx;width:500rpx'>
+      <view class='h2'>{{phone.limit_space(goods.name)}}</view>
+      <view style='margin-top:-10rpx;' class='h4 gray'>{{goods.goodsNo}}</view>
+      <view class='app_red'>
+        <view style='margin-top:40rpx'>
+          <text class='h1 page_red'>¥{{goods.spikePrice}}</text>
+          <text class='gray line-through h4' style='margin-left:10rpx;'>¥{{goods.price}}</text>
+        </view>
+        <button wx:if="{{goods.stock  == 0}}" class='right h2 btn_saled'>已售空</button>
+        <button wx:elif="{{item.state == 1}}" class='right h2 btn_buy'>立刻抢购</button>
+        <button wx:else class='right h2 btn_wait'>准备中</button>
+      </view>
+    </view>
+  </view>
+
+</view>

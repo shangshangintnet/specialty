@@ -1,0 +1,133 @@
+<!-- title -->
+<navbar id="navbar" title="{{famousUser.name}}" :show_bol="false" bg_type="bg_share"></navbar>
+<view class="column" style="background-color: #FFFFFF;">
+	<!-- storeInfo -->
+	<image src="{{famousUser.image}}" style="width: 750rpx;height: 400rpx;"></image>
+	<view class="storeinfo_bg row">
+		<view class="storeinfo_icon column">
+			<image src="{{famousUser.photoUrl}}" style="height:135rpx;width:135rpx;margin-top: -30rpx;margin-left: 38rpx; border-radius: 50%;" />
+			<image hidden="{{followStatus == 0}}" bindtap="removeAttention" src="../../images/storeFocus.png" style="margin-top: 29rpx;margin-left: 47rpx;height:46rpx;width:125rpx;" />
+			<image hidden="{{followStatus == 1}}" bindtap="addAttention" src="../../images/storeUnfocus.png" style="margin-top: 29rpx;margin-left: 47rpx;height:46rpx;width:125rpx;" />
+			<view class="row" style="margin-top:29rpx;">
+				<view style="font-size:24rpx;margin-left:46rpx;">粉丝</view>
+				<view class="bold" style="font-size:30rpx;margin-left:13rpx;margin-top:-7rpx;">{{famousUser.followNum}}</view>
+			</view>
+		</view>
+		<view class="storeinfo_content column">
+			<view class="bold gray_2" style="font-size:36rpx;">{{famousUser.name}}</view>
+			<view style="margin-top:10rpx;font-size:26rpx;color: #404040;">{{famousUser.describe}}</view>
+		</view>
+	</view>
+	<!-- 商品列表 -->
+	<view>
+		<view class="row" style="margin-top: 5rpx; height: 90rpx;width: 750rpx;border-top: 2px solid  #F8F8F8;">
+			<view class="{{active == 2? 'active_slt' : 'active_txt'}}" bindtap="switchActive" data-act="2">简介</view>
+			<view class="{{active == 0? 'active_slt' : 'active_txt'}}" bindtap="switchActive" data-act="0">作品</view>
+			<view class="{{active == 1? 'active_slt' : 'active_txt'}}" bindtap="switchActive" data-act="1">动态</view>
+		</view>
+		<view style="background-color: #F8F8F8;height: 20rpx;"></view>
+		<view hidden="{{!(active == 1)}}" style="width: 750rpx;margin-bottom: 80rpx;">
+			<view wx:if="{{appGoodsEmy}}" class="goods_emy">
+				<image src="/images/goods_emy.png" style="width: 295rpx;height: 244rpx;"></image>
+				<text style="margin-top: 30rpx;">商家暂时没有上传动态</text>
+			</view>
+			<view wx:else class="column">
+				<view style="height: 238rpx;width: 750rpx;background-color: #FFFFFF;" wx:for="{{appGoods}}" bindtap="onMoveToAppGoods" data-goods-id="{{item.id}}">
+					<view class="row">
+						<image src="{{item.image}}" style="width: 250rpx;height: 168rpx;margin-left: 32rpx;margin-top: 20rpx;"></image>
+						<view class="column">
+							<text style="font-size: 28rpx;font-size: 28rpx;margin-left: 16rpx;margin-top: 36rpx;width: 423rpx;height: 71rpx;">{{item.name}}</text>
+							<view class="row" style="margin-top: 35rpx;align-items: center;">
+								<image src="{{item.photo}}" style="width: 50rpx;height: 50rpx;margin-left: 16rpx;border-radius: 50%;"></image>
+								<text style="color: #666666;font-size: 24rpx;margin-left: 12rpx;">{{item.userName}}</text>
+								<text style="color: #666666;font-size: 24rpx;position: absolute; right: 35rpx;">{{item.createTime}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="column" style="height: 30rpx;background-color: #F8F8F8;width: 750rpx;margin-top: 20rpx;"></view>
+				</view>
+			</view>
+		</view>
+		<view hidden="{{!(active == 0)}}" style="width: 750rpx;margin-bottom: 80rpx;">
+			<view wx:if="{{storeGoodsEmy}}" class="goods_emy">
+				<image src="/images/goods_emy.png" style="width: 295rpx;height: 244rpx;"></image>
+				<text style="margin-top: 30rpx;">商家暂时没有上传作品</text>
+			</view>
+			<view wx:else style="margin-top: 20rpx;">
+				<view class="goods_section">
+					<view wx:for="{{goods}}" bindtap="onMoveToGoods" data-goods-id="{{item.id}}" class="goods_item">
+						<image src="{{item.image}}" class="goods_img"></image>
+						<view class="row goods_title">
+							<text>{{item.name}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view hidden="{{!(active == 2)}}" style="width: 750rpx;">
+			<view class="bold" style="font-size:38rpx;margin-left: 38rpx;margin-top: 29rpx;">基本简介：</view>
+			<view style="font-size:34rpx;margin-left: 38rpx;width: 682rpx;height: 100%;">{{famousUser.introduce}}</view>
+		</view>
+	</view>
+</view>
+<!-- bottom button -->
+<!-- <image bindtap="shareShow" class="share_btn" src="../../images/ic_storeShare.png" /> -->
+<!-- 商铺分享 -->
+<!-- <view hidden="{{!popup_share}}" class="popup_share">
+	<view class="column" style="width: 100vw;height:100vh;align-items: center;justify-content: center;">
+		<swiper vertical="{{false}}" indicator-color="rgba(255,255,255,0.3)" indicator-dots="{{true}}" autoplay="{{autoplay}}" interval="5000" duration="1000" bindchange="changeImg" class="swiper">
+			<swiper-item wx:for="{{imgStore}}">
+				<view class="column" style="width: 750rpx;height: 1067rpx;align-items: center;">
+					<view class="shareImg column" style="background-image: url({{item}});">
+						<view class="row" style="align-items: center;">
+							<image src="{{famousUser.photoUrl}}" style="width: 96rpx;height: 96rpx; margin-left: 32rpx; border-radius: 48rpx;" />
+							<view class="column" style="margin-left: 20rpx;width: 430rpx;height: 160rpx;align-items: flex-start;justify-content: center;">
+								<view style="font-size: 26rpx;color: #FFFFFF;height: 50rpx;line-height: 50rpx;">{{famousUser.name}}</view>
+								<view style="margin-top:10rpx;font-size:20rpx;color: #404040;color: #FFFFFF;line-height: 30rpx;text-align: left;">
+									{{famousUser.describe}}</view>
+							</view>
+						</view>
+						<image style="width: 140rpx;height: 140rpx;margin-top: auto;margin-bottom: 65rpx;margin-left: 445rpx;" src="{{codeImg}}"></image>
+					</view>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view class="column" style="width: 750rpx;align-items: center;">
+					<image src="{{famousUser.image}}" style="width: 600rpx;height: 320rpx;"></image>
+					<image src="https://img.ssw88.com/share/share_shop.png" class="shareCodeImg"></image>
+					<image src="{{famousUser.photoUrl}}" class="share_store_icon" />
+					<view class="gray_4 share_store_title">{{famousUser.name}}</view>
+					<view class="gray share_store_content">{{famousUser.describe}}</view>
+					<view class="row" style="margin-top: 40rpx; width: 560rpx;height: 180rpx;z-index: 820;align-items: center;">
+						<image src="{{userPhoto == null?'/images/user-unlogin.png':userPhoto}}" style="width: 88rpx;height: 88rpx;border-radius: 44rpx;"></image>
+						<view class="column" style="margin-left: 20rpx;justify-content: center;">
+							<view class="gray_4" style="font-size: 36rpx;line-height: 60rpx;text-align: left;">{{famousUser.contacts}}
+							</view>
+							<view class="gray_4" style="font-size: 28rpx;line-height: 50rpx;text-align: left;">{{famousUser.position}}
+							</view>
+						</view>
+						<image style="width: 112rpx;height: 112rpx;margin-left: auto;margin-right: 20rpx;" src="{{codeImg}}">
+						</image>
+					</view>
+					<view class="column gray h4" style="z-index: 820;text-align: left;line-height: 40rpx;margin-left: 65rpx;width: 480rpx;">
+						<view style="margin-top: 20rpx;">{{famousUser.storePhone}}</view>
+						<view style="margin-top: 17rpx;">{{famousUser.wechatId}}</view>
+						<view style="margin-top: 15rpx;">{{famousUser.email}}</view>
+						<view style="margin-top: 17rpx;">{{famousUser.areaName}}{{famousUser.address}}</view>
+					</view>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	<view class="bg_white sharebg column">
+		<view class="content row">
+			<view bindtap="shareImg" data-index="6" class="column shareitem">
+				<image class="shareicon" src="../../images/saveImg.png"></image>
+				<text class="h6 gray_4 share_txt">保存图片</text>
+			</view>
+		</view>
+		<view bindtap="cancel" class="bottom gray h3">取消</view>
+	</view>
+</view> -->
+<login id="login"></login>
+<canvas wx:if="{{canvasShow}}" id='sss' canvas-id="shareCanvas" class="canvasName"></canvas>

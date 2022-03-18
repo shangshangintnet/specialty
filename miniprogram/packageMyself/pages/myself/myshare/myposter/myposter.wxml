@@ -1,0 +1,18 @@
+<navbar title='分享海报' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<swiper 
+  indicator-dots="{{true}}"
+  autoplay="{{false}}"
+  interval="{{5000}}"
+  duration="{{1000}}"
+  style='height:1200rpx;padding-top:{{bar_Height  + 45}}px;'
+  bindchange="changeImg"
+>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" style='width:650rpx;padding:50rpx;margin-top:30rpx;' mode='widthFix' />
+    </swiper-item>
+  </block>
+</swiper>
+<button open-type="share">
+  <image style='position:fixed;right:0;bottom:3vh;width:200rpx' mode='widthFix' src='/images/poster_share.png'></image>
+</button>

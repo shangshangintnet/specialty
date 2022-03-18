@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "guess_what": "/components/guess_what/guess_what"
+  },
+  "onReachBottomDistance": 50,
+  "navigationBarBackgroundColor": "#000000",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

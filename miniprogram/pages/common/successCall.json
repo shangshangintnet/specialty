@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "guess_what": "/components/guess_what/guess_what"
+  },
+  "navigationBarTextStyle": "black"
+}

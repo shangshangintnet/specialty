@@ -1,0 +1,15 @@
+<navbar title="名家列表" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+60}}px;">
+  <view style="background-color: #FFFFFF;margin-top: 20rpx;">
+    <view style="height: 20rpx;width: 750rpx;background-color: #EEEEEE;"></view>
+    <view bindtap="openUser" data-id="{{item.id}}" class="column" wx:for="{{users}}" style="align-items: center;">
+      <view class="row" style="margin-top:30rpx;">
+        <image style="width:55rpx;height:55rpx;border-radius:50%;" src="{{item.photoUrl}}"></image>
+        <view class="column" style="height:55rpx;margin-left:14rpx;overflow:hidden">
+          <view class="bold" style="font-size: 34rpx;">{{item.name}}</view>
+        </view>
+      </view>
+      <view style="margin-top: 30rpx;height: 1.5rpx;width: 681rpx;background-color: #CCCCCC;"></view>
+    </view>
+  </view>
+</view>

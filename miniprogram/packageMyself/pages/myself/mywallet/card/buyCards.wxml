@@ -1,0 +1,89 @@
+<navbar show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view style="width:750rpx; margin-top:{{bar_Height+50}}px;">
+	<view class="bg_white" style="height: 430rpx;padding-top: 55rpx;padding-left: 69rpx;">
+		<swiper class="swiper" indicator-dots="true" autoplay="true">
+			<block wx:for="{{giftGoods}}">
+				<swiper-item>
+					<image src="{{item.imageUrl}}" mode="widthFix"></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<view class="bg_white column" style="margin-top: 10rpx;height: 670rpx;padding-bottom:140rpx;">
+		<view style="display: flex;margin-top: 70rpx; width: 750rpx; justify-content: center;align-items: center;">
+			<image src="../images/card_title.png" style="width: 379rpx;height: 30rpx;"></image>
+		</view>
+		<view class="row" style="margin:40rpx 40rpx 20rpx 40rpx;align-items: center;">
+			<image src="../images/card_i_card.png" style="width: 98rpx;height: 98rpx;"></image>
+			<view class="column" style="margin-left: 15rpx; width: 550rpx;">
+				<view style="color: #BE8937;font-size: 32rpx;">购物卡</view>
+				<view style="color: #404040;font-size: 26rpx;">新年礼、员工福利选上商购物卡。购物卡分为电子卡和实体卡，可以转增、充值。企业团购热线400-669-1899。</view>
+			</view>
+		</view>
+		<view class="row" style="margin:20rpx 40rpx;align-items: center;">
+			<image src="../images/card_e_card.png" style="width: 98rpx;height: 98rpx;"></image>
+			<view class="column" style="margin-left: 15rpx; width: 550rpx;">
+				<view style="color: #BE8937;font-size: 32rpx;">电子卡</view>
+				<view style="color: #404040;font-size: 26rpx;">电子卡购买后可在我的卡包中查看,电子卡可在线上进行转增、充值。</view>
+			</view>
+		</view>
+		<view class="row" style="margin:20rpx 40rpx;align-items: center;">
+			<image src="../images/card_s_card.png" style="width: 98rpx;height: 98rpx;"></image>
+			<view class="column" style="margin-left: 15rpx; width: 550rpx;">
+				<view style="color: #BE8937;font-size: 32rpx;">实体卡</view>
+				<view style="color: #404040;font-size: 26rpx;">实体卡购买后将通过快递寄付用户,在我的卡包-实体卡界面可以进行实体卡卡密兑换,兑换成功后实体卡金额将添加进用户余额。</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view bindtap="click_buy" class="card_button">立即购买</view>
+<!-- 购卡 -->
+<van-popup position="bottom" closeable show="{{show}}" z-index="{{zIndex}}" bind:close="close_buy">
+	<view class="bg_white column" style="width: 670rpx;height: 860rpx;padding: 0 40rpx;">
+		<view class="row">
+			<image src="{{selectGoods[selectValue].imageUrl}}" style="width:80px;height:80px;" mode="aspectFit" />
+			<view class="column" style="justify-content: center;align-items: center;margin-left: 20rpx;">
+				<view class="app_red" style="font-size:36rpx;">¥{{selectGoods[selectValue].price}}</view>
+				<view class>
+					<view wx:if="{{selectType == 0}}" class="card_item">实体卡</view>
+					<view wx:if="{{selectType == 1}}" class="ecard_item_buy">电子卡</view>
+				</view>
+			</view>
+		</view>
+		<view class="h4 gray_4 bold" style="margin-top: 20rpx;">类型</view>
+		<view class="row" style="margin-top: 30rpx;">
+			<block wx:if="{{selectType == 1}}">
+				<view class="ecard_btn_buy">电子卡</view>
+				<view bindtap="changeType" data-type="0" class="normal_btn" style="margin-left: 15rpx;">实体卡</view>
+			</block>
+			<block wx:else>
+				<view bindtap="changeType" data-type="1" class="normal_btn">电子卡</view>
+				<view class="card_btn" style="margin-left: 15rpx;">实体卡</view>
+			</block>
+		</view>
+		<view class="h4 gray_4 bold" style="margin-top: 20rpx;">面值</view>
+		<view class="row" style="margin-top: 30rpx;margin-right: 40rpx; justify-content: flex-start;flex-wrap: wrap;">
+			<block wx:if="{{selectType == 1}}">
+				<view bindtap="setSelectValue" data-index="{{index}}" wx:for="{{selectGoods}}">
+					<view wx:if="{{index == selectValue}}" class="ecard_slt_btn">{{item.price}}</view>
+					<view wx:else class="normal_slt_btn">{{item.price}}</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view bindtap="setSelectValue" data-index="{{index}}" wx:for="{{selectGoods}}">
+					<view wx:if="{{index == selectValue}}" class="card_slt_btn">{{item.price}}</view>
+					<view wx:else class="normal_slt_btn">{{item.price}}</view>
+				</view>
+			</block>
+		</view>
+		<view class="row" style="margin-top: 30rpx;justify-content: flex-start;height: 60rpx;">
+			<view class="h4 gray_4 bold" style="margin-top: 20rpx;line-height: 60rpx;">数量</view>
+			<view class="row" style="margin-left: auto;margin-top: 20rpx;height:90rpx;width: 200rpx;margin-right: 30rpx;align-items:center;">
+				<text bindtap='bindChange_sub' class='calc_minus gray'>-</text>
+				<text class='calc_num gray_2'>{{buyCount}}</text>
+				<text bindtap='bindChange_add' class='calc_add gray'>+</text>
+			</view>
+		</view>
+	</view>
+	<view bindtap="confirmOrder" class="confirm_btn">提交订单</view>
+</van-popup>

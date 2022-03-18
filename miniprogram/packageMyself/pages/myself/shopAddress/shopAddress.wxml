@@ -1,0 +1,61 @@
+<!--miniprogram/pages/myself/shopAddress/shopAddress.wxml-->
+<navbar title='线下门店' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style='padding-top:{{bar_Height  + 45}}px; margin-bottom:100rpx'>
+  <view class="search_fake_bar left" style='margin-left:10rpx;'>
+    <image src='/images/icon_search.png' class='icon_search left'></image>
+    <input bindinput='bindAreaName' placeholder='搜索相关内容' class='h4 left hot_hint' value='{{areaName}}'></input>
+  </view>
+  <view bindtap='searchCity' class='left row {{searchCity?"btn_success":"btn_default"}}'
+    style='margin-top:20rpx;margin-left:15rpx;border-radius:30rpx;'>
+    <image style='margin:10rpx;margin-left:20rpx;' class='icon_search' src='/images/ic_local.png'></image>
+    <view class='h5'
+      style='text-align:center;width:90rpx;margin-right:6rpx;line-height:54rpx;margin-left:-8rpx;overflow:hidden;white-space:nowrap;'>
+      {{finalName}}</view>
+  </view>
+</view>
+<view wx:if="{{areaLength > 0 && !searchCity}}" wx:for="{{shopdata}}" wx:for-index="idx"
+  class='column order_detail shop_section bg_white'>
+  <view bindtap='openLocation' data-locate-Index="{{idx}}" class='column pad-10'>
+    <view class="row">
+      <image src='/images/icon_storeads.png' mode="widthFix" style='margin-top:10rpx;margin-right:10rpx;'
+        class='icon_big'></image>
+      <text class='h2'>{{item.name}}</text>
+    </view>
+    <view class="row" style="align-items: center;">
+      <view class='column' style='width:500rpx;padding-top:20rpx;'>
+        <text class='h4 gray'>{{item.address}}</text>
+        <text class='h4 gray'>{{item.businessHours}}</text>
+        <text class='h4 gray'>{{item.contacts}} {{item.storePhone}}</text>
+        <text wx:if="{{item.content_1}}" class='h4 gray'>{{item.content_1}}</text>
+        <text wx:if="{{item.content_2}}" class='h4 gray'>{{item.content_2}}</text>
+      </view>
+      <image class='icon_sm' style='margin-left:auto;' mode="widthFix" src="/images/arrow_right.png"></image>
+    </view>
+  </view>
+</view>
+<view wx:if="{{areaLength == 0 && !searchCity}}" class='block_center gray column'>
+  <text class='h2'>抱歉您查找的地区暂无商铺～</text>
+</view>
+<view wx:if="{{searchCity}}" class='column pad-20'>
+  <text class='pad-20' style='padding-left:0'>搜索城市结果</text>
+  <view wx:for="{{areaNameList}}" wx:for-item="area" class='column'>
+    <view class='row'>
+      <text class='pad-10 bg_white radius5' data-area-name="{{area.areaName}}"
+        bindtap='changeAreaName'>{{area.areaName}}</text>
+    </view>
+  </view>
+</view>
+<view wx:if="{{searchCity}}" class='column pad-20'>
+  <text class='pad-20' style='padding-left:0'>热门城市</text>
+  <view class='row'>
+    <text class='pad-10 bg_white radius5' style='margin-right:10rpx' data-area-name="{{item}}" bindtap='changeAreaName'
+      wx:for="{{hotAreaNameList}}">{{item}}</text>
+  </view>
+  <view wx:for="{{areaNames}}" wx:for-item="area" class='column'>
+    <text class='pad-20' style='padding-left:0'>{{area.letter}}</text>
+    <view class='row'>
+      <text class='pad-10 bg_white radius5' data-area-name="{{item.areaName}}" bindtap='changeAreaName'
+        wx:for="{{area.citys}}">{{item.areaName}}</text>
+    </view>
+  </view>
+</view>

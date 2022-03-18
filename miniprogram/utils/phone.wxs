@@ -1,0 +1,81 @@
+var format = function (num) {
+  if (num == undefined || num == '') {
+    return '';
+  }
+  num = num.toString();
+  var mphone = num.substring(0, 3) + '****' + num.substring(7);
+  return mphone;
+}
+
+var toMoney = function (num) {
+  if (num > 100) {
+    return parseInt(num);
+  } else if (num > 10) {
+    return parseFloat(num).toFixed(1);
+  } else {
+    return parseFloat(num).toFixed(2);
+  }
+}
+
+var limitFormat = function (str) {
+  if (str == undefined || str == '') {
+    return '';
+  }
+  str = str.toString();
+  str = str.split(" ")[0];
+  if (str.length <= 10) return str;
+  var string = str.substring(0, 10) + "...";
+  return string;
+}
+
+var limitFormat6 = function (str) {
+  if (str == undefined || str == '') {
+    return '';
+  }
+  str = str.toString();
+  if (str.length <= 6) return str;
+  var string = str.substring(0, 6) + "...";
+  return string;
+}
+
+var limitFormatX = function (str, x) {
+  if (str == undefined || str == '') {
+    return '';
+  }
+  str = str.toString();
+  if (str.length <= x) return str;
+  var string = str.substring(0, x) + "...";
+  return string;
+}
+
+var toFixed = function (num) {
+  if (num > 100) {
+    return parseInt(num);
+  } else if (num > 10) {
+    return parseFloat(num).toFixed(1);
+  } else {
+    return parseFloat(num).toFixed(2);
+  }
+}
+
+var toPrice = function (num) {
+  return num.toFixed(2);
+}
+
+var toInt = function (str) {
+  return parseInt(str);
+}
+
+var limitSpace = function (str) {
+  return str.split(" ")[0];
+}
+
+module.exports.format = format;
+module.exports.limit_ten = limitFormat;
+module.exports.limit_six = limitFormat6;
+module.exports.limit_space = limitSpace;
+module.exports.limit = limitFormatX;
+module.exports.toFixed = toFixed;
+module.exports.toInt = toInt;
+module.exports.toPrice = toPrice;
+module.exports.toMoney = toMoney;

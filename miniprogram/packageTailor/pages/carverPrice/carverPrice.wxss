@@ -1,0 +1,6 @@
+.order_section {
+  margin: 5rpx 0rpx;
+  border-radius: 16rpx;
+  height: 90rpx;
+  width: 750rpx;
+}

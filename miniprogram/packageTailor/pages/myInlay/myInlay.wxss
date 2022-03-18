@@ -1,0 +1,104 @@
+.title {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  width: 750rpx;
+  z-index: 200;
+}
+
+.condition {
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  font-size: 32rpx;
+}
+
+.right_line {
+  height: 45rpx;
+  width: 1px;
+  background-color: #F0F0F0;
+}
+
+.goods_section {
+  margin: 10rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  width: 730rpx;
+  height: 360rpx;
+}
+
+.shop_icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.goods_pic {
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 20rpx;
+}
+
+.goods_txt {
+  width: 490rpx;
+  height: 180rpx;
+}
+
+.goods_price {
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #BD1818;
+}
+
+.upGood {
+  background-color: #7fbf4f;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.downGood {
+  background-color: #ea4e48;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.editGood {
+  background-color: #f3a628;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.pickerList {
+  align-items: center;
+  height: 40px;
+}
+
+.picker {
+  font-size: 28rpx;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.status_bg {
+  margin-left: auto;
+  margin-right: 0rpx;
+  text-align: right;
+  color: #BD1818;
+}

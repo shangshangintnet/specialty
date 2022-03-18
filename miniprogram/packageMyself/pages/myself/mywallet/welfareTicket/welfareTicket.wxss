@@ -1,0 +1,29 @@
+/* miniprogram/pages/myself/mywallet/welfareTicket/welfareTicket.wxss */
+
+.order_bar
+{
+  padding:16rpx 0;
+}
+
+.order_bar text
+{
+  width: 350rpx;
+  padding:16rpx 12rpx;
+  float:left;
+}
+
+.order_price
+{
+  padding-top:16rpx;
+  text-align: right;
+  justify-content: right;
+  
+}
+
+.order_price text
+{
+  width: 470rpx;
+  padding:16rpx 12rpx;
+  float:right;
+  text-align: right;
+}

@@ -1,0 +1,53 @@
+<view class='status-bar bg_white' style="padding-top:{{2*(bar_Height+35)}}rpx;height:{{bar_Height}}px">
+  <view style="position:absolute;top:{{bar_Height}}px;">
+    <image bindtap='goBack' src='/images/back.png' class='icon_back left'></image>
+    <view class="search_fake_bar left" >
+      <image src='/images/icon_search.png' class='icon_search left'></image>
+      <input bindconfirm="userSearchGoods" bindinput="bindGoodsName"  placeholder='请输入您想查找的商品' class='left hot_hint h4' ></input>
+    </view>
+  </view>
+    <view class='column bg_white' style='position:absolute;margin-top:10rpx;padding-left:20rpx;width:730rpx;'>
+      <view bindtap='changeGoods' class='bg_white pad-10' wx:for="{{goodsList}}" data-goods-name="{{item}}">{{item}}</view>
+  </view>
+  <view wx:if="{{goodsLength > 0}}" style="margin-top:26rpx;" class='condition_item row bg_white'>
+    <view bindtap='toggleTag' data-tag-index="0" class='condition_sort {{goodsDate == "goodsDate"?"selected":""}}'>
+      最新
+    </view>
+    <view bindtap='toggleTag' data-tag-index="1" class='condition_sort row {{goodsDate == ""?"selected":""}}'>
+      <text>价格</text>
+      <image src='{{goodsPrice == "asc"?arrow_up:arrow_down}}' style='width:20rpx;height:12rpx; margin-left:10rpx'></image>
+    </view>
+  </view>
+
+</view>
+<view wx:if="{{goodsLength == 0}}" class='search'>
+  <view style="padding-top:{{bar_Height+80}}px;">
+    <view class='tag_title'>
+      历史搜索
+      <image bindtap='clearHistory' src='/images/icon_rubbish.png' class='icon_rubbish right'></image>
+    </view>
+    <view class='row row_wrap padding_bottom_80 tag_justify'>
+      <view bindtap='changeGoods' data-goods-name="{{item}}" class='tag_square' wx:for="{{history}}">
+        {{item}}
+      </view>
+    </view>
+
+    <view class='tag_title'>
+      猜你要搜
+    </view>
+    <view class='row padding_bottom_80 row_wrap tag_justify'>
+      <view bindtap='changeGoods' data-goods-name="{{item}}" class='tag_square' wx:for="{{popular}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{finishName != '' && goodsLength == 0}}" class='block_center column search' style="padding-top:{{bar_Height+150}}px;">
+  <image style='width:250rpx;' class="padding_bottom_40" src='/images/find_404.png' mode='widthFix'></image>
+  <text>未找到相关内容，请重新输入关键字～</text>
+</view>
+
+<view class='column search {{(finishName == "" && goodsLength == 0)?"hide":""}}' style="padding-top:{{(2*(bar_Height+80))}}rpx;">
+  <guess_what id="guess_what"></guess_what>
+</view>

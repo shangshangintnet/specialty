@@ -1,0 +1,24 @@
+<navbar id="navbar" :show_bol="false" bg_type="bg_share"></navbar>
+<view class="column" style="width:750rpx;margin-bottom: 100rpx;">
+  <image src="{{goods.image}}" style="width: 750rpx;height: 400rpx;"></image>
+  <view class="column" style="background-color: #FFFFFF;text-align: center;">
+    <text class="name" style="border-bottom: 10px solid #F8F8F8;padding-bottom: 30rpx;">{{goods.name}}</text>
+    <view class="row" style="margin-top: 31rpx;align-items: center;">
+      <image src="{{goods.user.photoUrl}}" style="width: 70rpx;height: 70rpx;margin-left: 32rpx;border-radius: 50%;"></image>
+      <text class="bold" style="color: #000000;font-size: 36rpx;margin-left: 23rpx;">{{goods.user.name}}</text>
+    </view>
+    <view class="row" style="flex-wrap: wrap;width: 686rpx;margin-left: 32rpx;padding-bottom: 38rpx;border-bottom: 0.5px dashed #999999;">
+      <text class="title" wx:for="{{goods.user.titles}}" wx:for-item="title">{{title}}</text>
+    </view>
+    <text style="text-align: left;font-weight: bold;font-size: 34rpx;margin-left: 31rpx;margin-top: 28rpx;">【详情】</text>
+    <view style="margin:0 auto;" wx:for="{{goods.content}}">
+      <view wx:if="{{item.type==0}}">
+        <view style="text-align: left;width: 687rpx;font-size: 34rpx;margin-top: 15rpx;word-wrap:break-word;word-break:break-all;white-space:pre-wrap;">\t{{item.detail}}</view>
+      </view>
+      <view wx:else>
+        <image src="{{item.detail}}" style="margin-top: 15rpx;width: 687rpx;" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<login id="login"></login>

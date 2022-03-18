@@ -1,0 +1,31 @@
+<navbar title='{{toggleIndex == 0?"翡翠币收入":"翡翠豆收入"}}' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='bg_white column' style="width:710rpx;">
+  <view class='row block_center'>
+    <text bindtap='toggle' data-toggle-Index="0" style='width:375rpx;margin:20rpx 0'
+      class='h2 {{toggleIndex == 0?"app_green":"gray"}}'>翡翠币{{user.emdEmeraldCount}}</text>
+    <text bindtap='toggle' data-toggle-Index="1" style='width:375rpx;margin:20rpx 0'
+      class='h2 {{toggleIndex == 1?"app_green":"gray"}}'>翡翠豆</text>
+  </view>
+  <view wx:if="{{toggleIndex == 0}}" wx:for="{{emeralds}}" class='width100 border_line_whitesmoke pad-10'>
+    <view class='column left'>
+      <text class='h2'>{{item.name}}</text>
+      <text class='h4 gray'>{{item.details}}</text>
+    </view>
+    <view class='column right align_right'>
+      <text class='h2 {{item.type == 1?"app_green":"app_red"}}'>{{item.type == 1?"+":"-"}}{{item.emeraldCount}}
+        翡翠币</text>
+      <text class='h4 gray'>{{item.createTime}}</text>
+    </view>
+  </view>
+  <view wx:if="{{toggleIndex == 1}}" wx:for="{{jadeites}}" class='width100 border_line_whitesmoke pad-10'>
+    <view class='column left'>
+      <text class='h2'>{{item.name}}</text>
+      <text class='h4 gray'>{{item.details}}</text>
+    </view>
+    <view class='column right align_right'>
+      <text class='h2 {{item.type == 1?"app_green":"app_red"}}'>{{item.type == 1?"+":"-"}}{{item.emeraldCount}}
+        翡翠豆</text>
+      <text class='h4 gray'>{{item.createTime}}</text>
+    </view>
+  </view>
+</view>

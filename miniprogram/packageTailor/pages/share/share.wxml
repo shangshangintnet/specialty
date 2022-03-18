@@ -1,0 +1,89 @@
+<navbar title="上商共享充电" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<swiper style="margin-top:{{bar_Height+85}}px;height:290rpx;margin-left:12rpx;" indicator-dots="{{slider.indicatorDots}}" indicator-color="rgba(255,255,255,0.3)" indicator-active-color="rgba(255,255,255,0.8)" autoplay="{{slider.autoplay}}" interval="{{slider.interval}}" duration="{{slider.duration}}">
+	<block wx:key="index" wx:for="{{rotationChart}}">
+		<swiper-item>
+			<image wx:if="{{item.clickType == '3'}}" data-url="/pages/activity/activity" data-guessing-id="{{item.addParam}}" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+			<image wx:elif="{{item.clickType == '2'}}" data-url="/pages/category_search/category_search" data-title="{{item.name}}" data-type-kind-id="{{item.addParam}}" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+			<image wx:elif="{{item.clickType == '1'}}" data-url="/pages/goods/goods_detail" data-goods-id="{{item.addParam}}" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+			<image wx:elif="{{item.clickType == '7'}}" data-url="/packageMyself/pages/myself/cloudStore/cloudStore" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+		</swiper-item>
+	</block>
+</swiper>
+<view style="margin-top: 5rpx;">
+	<view style="text-align:center;font-size:36rpx;font-weight: bold;">请选择充电时长</view>
+	<view class="row" style="margin-left: 76rpx;">
+		<view style="font-size:44rpx;text-align: center;font-weight: bold;">
+			<view bindtap="pay" data-tag="{{sharePrice[0].id}}">
+				<image style="width:213rpx;height:110rpx;margin-top:29rpx;" src='https://img.ssw88.com/share/charge/2.png'>
+				</image>
+				<view style="font-size:30rpx;margin-top:-20rpx;">{{sharePrice[0].price}}元/{{sharePrice[0].times}}分钟</view>
+			</view>
+		</view>
+		<view style="font-size:44rpx;text-align: center;font-weight: bold;margin-left:172rpx;">
+			<view bindtap="pay" data-tag="{{sharePrice[1].id}}">
+				<image style="width:213rpx;height:110rpx;margin-top:29rpx;" src='https://img.ssw88.com/share/charge/2.png'>
+				</image>
+				<view style="font-size:30rpx;margin-top:-20rpx;">{{sharePrice[1].price}}元/{{sharePrice[1].times}}分钟</view>
+			</view>
+		</view>
+	</view>
+	<view class="row" style="margin-left: 76rpx;margin-top:24rpx;">
+		<view style="font-size:44rpx;text-align: center;font-weight: bold;">
+			<view bindtap="pay" data-tag="{{sharePrice[2].id}}">
+				<image style="width:213rpx;height:110rpx;" src='https://img.ssw88.com/share/charge/2.png'>
+				</image>
+				<view style="font-size:30rpx;margin-top:-20rpx;">{{sharePrice[2].price}}元/{{sharePrice[2].times}}分钟</view>
+			</view>
+		</view>
+		<view style="font-size:44rpx;text-align: center;font-weight: bold;margin-left:172rpx;">
+			<view bindtap="pay" data-tag="{{sharePrice[3].id}}">
+				<image style="width:213rpx;height:110rpx;" src='https://img.ssw88.com/share/charge/2.png'>
+				</image>
+				<view style="font-size:30rpx;margin-top:-20rpx;">{{sharePrice[3].price}}元/{{sharePrice[3].times}}分钟</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view style="margin-top: 30rpx;margin-left:37rpx;">
+	<image class='width100' src='https://img.ssw88.com/share/charge/%E6%B8%A9%E9%A6%A8%E6%8F%90%E7%A4%BA1.png' mode='widthFix'></image>
+</view>
+<ad unit-id="adunit-fa77835633db7165" ad-intervals="30" style="margin-top:50rpx;"></ad>
+<image style="width: 240rpx;height: 50rpx;margin-left: 258rpx;margin-top: 86rpx;margin-bottom: 51rpx;" src="https://img.ssw88.com/wechatImg/blindBagImg/%E7%B2%BE%E9%80%89%E7%A6%8F%E5%88%A9.png" />
+<guess_what id="guess_what" style="margin-bottom: 217rpx;">
+</guess_what>
+<view wx:if="{{timer}}" class="cart_result" style="font-size:44rpx;color:#ee3b3b;" catchtap="getCode">
+	<image style="margin-top:20rpx;margin-bottom:-3px;width:44rpx;height:44rpx;" src="https://img.ssw88.com/wechatImg/static/shareTimes.png"></image>
+	充电剩余时长 {{hour}}:{{min}}:{{seconds}}
+</view>
+<view class="menu row" style="font-size:44rpx;">
+	<view class="column" style="margin: 10rpx 100rpx;" bindtap='jumpTo' data-url="/packageTailor/pages/share/equipment/equipment">
+		<image style="height: 48rpx;width: 48rpx;" src="./images/equipment.png"></image>
+	<text style="font-size: 24rpx;margin-top: 6rpx;">设备</text>
+	</view>
+	<view class="column" style="margin: 10rpx 100rpx;" bindtap='jumpTo' data-url="/packageTailor/pages/share/order/order">
+		<image style="height: 48rpx;width: 48rpx;" src="./images/order.png"></image>
+	<text style="font-size: 24rpx;margin-top: 6rpx;">订单</text>
+	</view>
+	<view class="column" style="margin: 10rpx 100rpx;" bindtap='jumpTo' data-url="/packageTailor/pages/share/profit/profit">
+		<image style="height: 48rpx;width: 48rpx;" src="./images/profit.png"></image>
+	<text style="font-size: 24rpx;margin-top: 6rpx;">收益</text>
+	</view>
+</view>
+<login id="login"></login>
+<view hidden="{{newpacket == 0 || newpacket == null}}">
+	<image class="redpacket" catchtap="reaceiveRedpacket" style="top:{{bar_Height + 220}}px" src="https://img.ssw88.com/static/red/share_redpacket.gif"></image>
+	<view class="redpacket_txt" style="top:{{bar_Height + 243}}px">{{newpacket}}</view>
+	<view class="redpacket bg_white" style="top:{{bar_Height + 220}}px; opacity: 0;" catchtap="reaceiveRedpacket"></view>
+	<view catchtap="getAward" hidden="{{!packetVisible}}" class="column popup_share">
+		<view style="color:#FDDDA3;font-size:36rpx;margin-bottom:0rpx;font-weight: bold;">恭喜获得{{balances.length}}个红包</view>
+		<view style="color:#FDDDA3;font-size:28rpx;margin-bottom:50rpx;font-weight: bold;">可在钱包余额中查看</view>
+		<scroll-view scroll-y="{{true}}" style="width:750rpx;height:{{balances.length>3?600:300}}rpx;">
+			<view class="row" style="width:750rpx;flex-wrap: wrap;align-items: center;{{balances.length>3?'height:600rpx; ':'height:300rpx;justify-content: center; '}}">
+				<view wx:for="{{balances}}" class="redbag column" style="width: 250rpx;height:300rpx;">
+					<view style="color:#FEFFB3;margin-top:30rpx;font-size:80rpx;"><text style="font-size:40rpx;">¥</text> {{item}}</view>
+				</view>
+			</view>
+		</scroll-view>
+		<view class="get_award">我知道了</view>
+	</view>
+</view>

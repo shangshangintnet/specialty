@@ -1,0 +1,81 @@
+<view wx:if="{{bg_type == 'bg_index'}}" class="status-bar" style="height:{{bar_Height+50}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height+50}}px;">
+	</view>
+	<view class="row bg_white" style="position:fixed;top:{{bar_Height}}px;height: 100rpx; align-items: center;">
+		<image class="app_icon" src='/images/logo@2x.png'></image>
+		<view class="index_location">北京</view>
+		<view catchtap='jumpTo' data-url="/pages/search/search" class="row search_fake_bar">
+			<image src='/images/icon_search.png' class='icon_search'></image>
+		</view>
+	</view>
+</view>
+<view wx:elif="{{bg_type == 'bg_black_op'}}" class="status-bar {{bg_type}}" style="height:{{bar_Height+50}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height +50}}px;opacity:{{opacity}}">
+	</view>
+	<view class="row" style="position:fixed;top:{{bar_Height}}px;height: 100rpx; align-items: center;">
+		<view class="row" style="justify-content: center;align-items: center;width:50rpx;height:100rpx;" catchtap='goBack' hidden='{{show_bol}}'>
+			<image style="width:21rpx;height:40rpx;" src='{{opacity > 0.8?"/images/back.png":"/images/back_white.png"}}'></image>
+		</view>
+		<view class="tabar {{my_class ? 'tabar2':''}}" style="width:550rpx;height:100rpx;line-height: 100rpx;text-align: center;">
+			<text class="{{opacity < 0.7?'white':'black'}}" >{{title}}</text>
+		</view>
+	</view>
+</view>
+<!--白底黑字标题-->
+<view wx:elif="{{bg_type == 'bg_black'}}" class="status-bar" style="height:{{bar_Height + 50}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height +50}}px;">
+	</view>
+	<view class="row" style="width: 100vw;height: 100rpx;position:fixed;top:{{bar_Height}}px;">
+		<view style="width: 80rpx;height: 100rpx;" catchtap="goBack">
+			<image style="width: 22rpx;	height: 36rpx;	margin: 32rpx 20rpx;" src="/images/back.png"> </image>
+		</view>
+		<view class="black" style="width:590rpx;font-size:36rpx;height: 100rpx;text-align: center;line-height: 100rpx;">{{title}}</view>
+	</view>
+</view>
+<!--白字-->
+<view wx:elif="{{bg_type == 'bg_white'}}" class="status-bar" style="height:{{bar_Height + 50}}px;">
+	<view class="row" style="width: 100vw;height: 100rpx;position:fixed;top:{{bar_Height}}px;">
+		<view style="width: 80rpx;height: 100rpx;" catchtap="goBack">
+			<image style="width: 22rpx;	height: 36rpx;	margin: 32rpx 20rpx;" src="/images/back_white.png"> </image>
+		</view>
+		<view class="white" style="width:590rpx;font-size:36rpx;height: 100rpx;text-align: center;line-height: 100rpx;">{{title}}</view>
+	</view>
+</view>
+<view wx:elif="{{bg_type == 'bg_loadApp'}}" class='status-bar {{bg_type}}' style="height:{{bar_Height+45}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height*2 +100}}rpx;opacity:{{opacity}}">
+	</view>
+	<view class='goBack' catchtap='goBack' style="padding-top:{{bar_Height}}px;margin-left:8rpx;" hidden='{{show_bol}}'>
+		<image src='/images/back.png'></image>
+	</view>
+</view>
+<view wx:elif="{{bg_type == 'bg_cloud'}}" class='status-bar {{bg_type}}' style="height:{{bar_Height+45}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height*2 +100}}rpx;opacity:{{opacity}}">
+	</view>
+	<view class='goBack' catchtap='goBack' style="padding-top:{{bar_Height}}px;margin-left:8rpx;" hidden='{{show_bol}}'>
+		<image src='/images/back_orange.png'></image>
+	</view>
+</view>
+
+<view wx:elif="{{bg_type == 'bg_share'}}" class='status-bar {{bg_type}}' style="height:{{bar_Height+50}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height +50}}px;opacity:{{opacity}}">
+	</view>
+	<view class="row" style="position:fixed;top:{{bar_Height}}px;height: 100rpx; align-items: center;">
+		<view class="row" style="justify-content: center;align-items: center;width:50rpx;height:100rpx;" catchtap='goBack' hidden='{{show_bol}}'>
+			<image style="width:21rpx;height:40rpx;" src='/images/back.png'></image>
+		</view>
+		<view class="tabar {{my_class ? 'tabar2':''}}" style="width:550rpx;height:100rpx;line-height: 100rpx;text-align: center;">
+			<text class="{{opacity < 0.7?'white':'black'}}" >{{title}}</text>
+		</view>
+	</view>
+</view>
+
+<view wx:else class='status-bar {{bg_type}}' style="height:{{bar_Height+50}}px;">
+	<view class="row" style="position:fixed;top:{{bar_Height}}px;height: 100rpx; align-items: center;">
+		<view class="row" style="justify-content: center;align-items: center;width:50rpx;height:100rpx;" catchtap='goBack' hidden='{{show_bol}}'>
+			<image style="width:21rpx;height:40rpx;" src='{{bg_type == "bg_white"?"/images/back.png":"/images/back_white.png"}}'></image>
+		</view>
+		<view class="tabar {{my_class ? 'tabar2':''}}" style="width:550rpx;height:100rpx;line-height: 100rpx;text-align: center;">
+			<text class="red">{{title}}</text>
+		</view>
+	</view>
+</view>

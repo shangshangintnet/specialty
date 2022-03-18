@@ -1,0 +1,75 @@
+<navbar title="名家管理" show_bol='{{false}}' bg_type='bg_black'>
+	<text>新增</text>
+</navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+	<view class="'condition '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">作品</view>
+	<view class="right_line"></view>
+	<view class="'condition '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">动态</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="column" style="width:750rpx;margin-bottom:120rpx;">
+			<view style="background-color: #FFFFFF;margin-top: 20rpx;">
+				<view class="column">
+					<view style="height: 238rpx;width: 750rpx;background-color: #FFFFFF;" wx:for="{{goods}}" bindtap="jumpToGoods" data-id="{{item.id}}">
+						<view class="row">
+							<image src="{{item.image}}" style="width: 249rpx;height: 168rpx;margin-left: 32rpx;margin-top: 20rpx;"></image>
+							<view class="column">
+								<view class="row">
+									<text style="font-size: 28rpx;font-size: 28rpx;margin-left: 16rpx;margin-top: 36rpx;width: 340rpx;height: 71rpx;">{{item.name}}</text>
+									<view style="margin-top: 36rpx;" catchtap="del" data-id="{{item.id}}">
+										<image style="height: 30rpx;width: 30rpx;" src="../../images/del.png"></image>
+										<text style="font-size: 24rpx;height: 24rpx;">删除</text>
+									</view>
+								</view>
+								<view class="row" style="margin-top: 40rpx;align-items: center;">
+									<text style="color: #666666;font-size: 24rpx;position: absolute; right: 35rpx;">{{item.createTime}}</text>
+								</view>
+							</view>
+						</view>
+						<view class="column" style="height: 30rpx;background-color: #F8F8F8;width: 750rpx;margin-top: 20rpx;"></view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="column" style="width:750rpx;margin-bottom:120rpx;">
+			<view style="background-color: #FFFFFF;margin-top: 20rpx;">
+				<view class="column">
+					<view style="height: 238rpx;width: 750rpx;background-color: #FFFFFF;" wx:for="{{goods}}" bindtap="jumpToGoods" data-id="{{item.id}}">
+						<view class="row">
+							<image src="{{item.image}}" style="width: 249rpx;height: 168rpx;margin-left: 32rpx;margin-top: 20rpx;"></image>
+							<view class="column">
+								<view class="row">
+									<text style="font-size: 28rpx;font-size: 28rpx;margin-left: 16rpx;margin-top: 36rpx;width: 340rpx;height: 71rpx;">{{item.name}}</text>
+									<view style="margin-top: 36rpx;" catchtap="del" data-id="{{item.id}}">
+										<image style="height: 30rpx;width: 30rpx;" src="../../images/del.png"></image>
+										<text style="font-size: 24rpx;height: 24rpx;">删除</text>
+									</view>
+								</view>
+								<view class="row" style="margin-top: 31rpx;align-items: center;">
+									<image src="{{item.photo}}" style="width: 50rpx;height: 50rpx;margin-left: 16rpx;border-radius: 50%;"></image>
+									<text style="color: #666666;font-size: 24rpx;margin-left: 12rpx;">{{item.userName}}</text>
+									<text style="color: #666666;font-size: 24rpx;position: absolute; right: 35rpx;">{{item.createTime}}</text>
+								</view>
+							</view>
+						</view>
+						<view class="column" style="height: 30rpx;background-color: #F8F8F8;width: 750rpx;margin-top: 20rpx;"></view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>
+<view style="bottom: 92rpx;position: fixed;width: 750rpx;">
+	<block>
+		<image src="../../images/add.png" style="height: 82rpx;width: 82rpx;margin-left: 334rpx;" bindtap="toAdd"></image>
+	</block>
+</view>
+<view class="bottom row">
+	<block>
+		<view bindtap="updateFamous" class="btn_success width100">编辑名家信息</view>
+	</block>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

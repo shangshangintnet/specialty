@@ -1,0 +1,114 @@
+<view class="title_bar column" style="height:{{bar_Height + 50}}px;">
+  <view class="row width100" style="position:fixed;top:{{bar_Height}}px;align-items: center;height:100rpx;">
+    <view class="row" style="width: 80rpx;height: 100rpx;align-items: center;justify-content: center;"
+      catchtap="goBack">
+      <image style="width: 22rpx;	height: 36rpx;" src="/images/back.png"> </image>
+    </view>
+    <view class="h2" style="font-weight: bold;margin-left:10rpx">一账通</view>
+  </view>
+</view>
+<view class="column width100" style="position: fixed;z-index:200;top:{{bar_Height + 50}}px;height:180rpx;background:#f8f8f8">
+  <view class="row" style="height:80rpx; align-items: center;padding-left:40rpx;">
+    <view bindtap="changeType" data-index="1" class="{{info.type == 1?'type_slt_1':'type_nor'}}">支出</view>
+    <view bindtap="changeType" data-index="0" class="{{info.type == 0?'type_slt_0':'type_nor'}}">收入</view>
+    <view bindtap="changeType" data-index="2" class="{{info.type == 2?'type_slt_2':'type_nor'}}">投资</view>
+  </view>
+  <view class="row price">
+    <view style="font-size:60rpx;">¥</view>
+    <input value="{{info.price}}" bindblur="changePrice" focus type="digit" class="input_txt"></input>
+  </view>
+</view>
+<view class="column" style="margin-top:{{bar_Height + 145}}px;margin-bottom:240rpx;">
+  <view wx:if="{{info.type == 0}}" class="row icon_section">
+    <view bindtap="selectItem" data-item="{{item}}" data-index="{{index}}" wx:for="{{iconList.income}}"
+      class="icon_item column">
+      <image style="width:68rpx;height:68rpx;" src="{{iconIdx == index?item.icon:item.icon_not}}"></image>
+      <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">{{item.name}}</view>
+    </view>
+    <view bindtap="addItem" class="icon_item column">
+      <image style="width:68rpx;height:68rpx;" src="../../images/ic_book_add.png"></image>
+      <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">添加</view>
+    </view>
+  </view>
+  <view wx:elif="{{info.type == 1}}" class="row icon_section">
+    <view bindtap="selectItem" data-item="{{item}}" data-index="{{index}}" wx:for="{{iconList.pay}}"
+      class="icon_item column">
+      <image style="width:68rpx;height:68rpx;" src="{{iconIdx == index?item.icon:item.icon_not}}"></image>
+      <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">{{item.name}}</view>
+    </view>
+    <view bindtap="addItem" class="icon_item column">
+      <image style="width:68rpx;height:68rpx;" src="../../images/ic_book_add.png"></image>
+      <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">添加</view>
+    </view>
+  </view>
+  <view wx:else class="row icon_section">
+    <view bindtap="selectItem" data-item="{{item}}" data-index="{{index}}" wx:for="{{iconList.invest}}"
+      class="icon_item column">
+      <image style="width:68rpx;height:68rpx;" src="{{iconIdx == index?item.icon:item.icon_not}}"></image>
+      <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">{{item.name}}</view>
+    </view>
+    <view bindtap="addItem" class="icon_item column">
+      <image style="width:68rpx;height:68rpx;" src="../../images/ic_book_add.png"></image>
+      <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">添加</view>
+    </view>
+  </view>
+</view>
+<view class="column width100" style="position:fixed;bottom:0;z-index:200;height:220rpx;background:#f8f8f8">
+  <view class="row desc h2" style="height:100rpx;">
+    <input value="{{info.content}}" bindblur="changeContent" class="desc_txt" placeholder="添加备注"
+      placeholder-style="color:#BBBBBB;font-size: 28rpx;" maxlength="20"></input>
+    <picker class="time" value="{{info.createTime}}" mode="date" fields="day" bindchange="bindDateChange">
+      {{info.createTime?info.createTime:'今天'}}
+    </picker>
+  </view>
+  <view class="row bottom" style="height:120rpx;">
+    <view wx:if="{{edit}}" class="delete" bindtap="delete">删除</view>
+    <view bindtap="confirm" class="update" style="{{edit?'width: 275rpx;':'width: 550rpx;'}}">{{edit?'提交':'添加'}}</view>
+  </view>
+</view>
+<!-- 选择分类 -->
+<view bindtap="closeSelect" hidden="{{!sltVisible}}" class="row popup_share">
+  <scroll-view scroll-y="true" catchtap="mask" class="column icon_box">
+    <view class="row" style="margin:0 40rpx;">
+      <view class="h2 bold">选择常用分类</view>
+      <view bindtap="closeSelect" class="h2 autoleft bold" style="color:#6CD096;">完成</view>
+    </view>
+    <view class="row icon_section">
+      <view bindtap="selectItem2" bindlongtap="longPressItem" bindtouchstart="touchstart" data-item="{{item}}"
+        data-index="{{index}}" wx:for="{{sltData}}" class="icon_item column">
+        <image style="width:68rpx;height:68rpx;" src="{{sltIconIdx == index?item.icon:item.icon_not}}"></image>
+        <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">{{item.name}}</view>
+      </view>
+      <view bindtap="addItem2" class="icon_item column">
+        <image style="width:68rpx;height:68rpx;" src="../../images/ic_book_add.png"></image>
+        <view style="margin-top:10rpx;color:#333333;font-size:24rpx;">添加</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view bindtap="closeEdit" hidden="{{!editVisible}}" class="row popup_share">
+  <view catchtap="mask" class="column edit_box">
+    <view bindtap="editItem" class="editItem">编辑</view>
+    <view bindtap="deleteItem" class="deleteItem">删除</view>
+  </view>
+</view>
+<!-- 增加分类 -->
+<view bindtap="closeAdd" hidden="{{!addVisible}}" class="row popup_share">
+  <view catchtap="mask" class="column icon_box_add">
+    <view class="row" style="margin:0 40rpx;">
+      <view class="h2 bold">添加分类</view>
+      <view bindtap="addEntry" class="h2 autoleft bold" style="color:#6CD096;">完成</view>
+    </view>
+    <view class="row" style="margin:20rpx 40rpx;">
+      <input value="{{entryName}}" bindblur="changeEntryName" class="entry_txt" maxlength="4" placeholder="不能与已有类型名重复"
+        placeholder-style="color:#BBBBBB;font-size: 40rpx;"></input>
+    </view>
+    <view class="row icon_section">
+      <view bindtap="selectItem3" data-item="{{item}}" data-index="{{index}}" wx:for="{{curIcon}}"
+        class="icon_item_add column">
+        <image style="width:68rpx;height:68rpx;" src="{{addIconIdx == index?item.icon:item.icon_not}}"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<ad unit-id="adunit-6f52365f99e36bff" ad-intervals="30" style="margin-top:50rpx;margin-bottom: 50rpx;"></ad>

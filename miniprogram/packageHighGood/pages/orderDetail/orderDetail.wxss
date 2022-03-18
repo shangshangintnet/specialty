@@ -1,0 +1,101 @@
+page {
+  background-color: #f8f8f8;
+}
+
+.order_desc {
+  margin: 10rpx;
+}
+
+.icon_order {
+  width: 46rpx;
+  height: 40rpx;
+}
+
+.icon_order_address {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.order_waiting_txt {
+  width: 600rpx;
+}
+
+.shop_section {
+  margin: 10rpx;
+  padding: 16rpx;
+  padding-top: 20rpx;
+  border-radius: 15rpx;
+  box-shadow: 0rpx 10rpx 5rpx #dddddd;
+}
+
+.order_bar {
+  padding: 16rpx 0;
+}
+
+.order_bar text {
+  width: 350rpx;
+  padding: 16rpx 12rpx;
+  float: left;
+}
+
+.order_price {
+  padding: 16rpx 0;
+}
+
+.order_price text {
+  width: 300rpx;
+  padding: 16rpx 12rpx;
+  float: right;
+  text-align: right;
+}
+
+.express_info {
+  margin: 10rpx;
+  padding: 20rpx;
+  box-shadow: 0rpx 10rpx 5rpx #dddddd;
+}
+
+.span {
+  font-size: 28rpx;
+  padding: 14rpx 0;
+  color: gray;
+}
+
+.cart_result {
+  position: fixed;
+  bottom: 0rpx;
+  height: 80rpx;
+  width: 750rpx;
+  background: white;
+}
+
+.button {
+  margin-left: 15rpx;
+  background-color: #ffffff;
+  color: #079547;
+  font-size: 28rpx;
+  height: 40rpx;
+  width: 160rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  border: 1rpx solid #079547;
+}
+
+.picker {
+  color: #606060;
+  font-size: 28rpx;
+  width: 450rpx;
+  height: 80rpx;
+  text-align: left;
+  line-height: 80rpx;
+  margin-left: 20rpx;
+}
+
+.input_txt {
+  color: #606060;
+  font-size: 28rpx;
+  text-align: left;
+  width: 450rpx;
+  margin-left: 20rpx;
+}

@@ -1,0 +1,33 @@
+<!--miniprogram/pages/myself/shopAddress/shopAddress.wxml-->
+<navbar title='名片夹' url="/pages/myself/myself" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="pad-20" style='padding-top:{{bar_Height  + 55}}px;padding-left:30rpx;padding-right:30rpx;'>
+	<view class="pad-20 bg_white radius5" style="height:32px;">
+		<image class="left" mode="widthFix" style="width:36px;" src="./images/card.png"></image>
+		<view class="h4 left pad-10">{{status == 0?'新建':'修改'}}我的智能名片</view>
+		<view class="right">
+			<button open-type="getUserInfo" bindgetuserinfo="jumpTo" data-url="./createCard/createCard" class="h4 btn_success radius10" style="line-height:14px;margin-top:5px;background:#23CB5C;padding:6px 6px">{{status == 0?'新建':'修改'}}我的名片</button>
+		</view>
+	</view>
+	<view class="h4 pad-ud-20 pad-10">
+		名片展示
+	</view>
+
+	<view wx:for="{{list}}" bindtap="jumpTo" data-url="./shareCard/shareCard" data-user-id="{{item.userId}}" wx:key="index" class="lightShadow pad-20 bg_card bg_white radius5" style="height:170px;padding:30rpx 30rpx 0 30rpx;margin-bottom:10px;">
+		<view class="pad-20 width100">
+			<view class="left column" style="width:70%">
+				<view class="h3">{{item.name}}</view>
+				<view class="h4">{{item.position}}</view>
+			</view>
+			<view class="right">
+				<image class="radius10" style="width:126rpx;height:126rpx;border-radius:126rpx;background-color:gray;margin-right:20px;" src="{{item.photo}}"></image>
+			</view>
+		</view>
+		<view class="pad-20 column width100" style="padding-top:5rpx;">
+			<view class="h4 gray">{{item.phone}}</view>
+			<view class="h4 gray">{{item.company}}</view>
+			<view class="h4 gray">{{item.address}}</view>
+		</view>
+	</view>
+
+
+</view>

@@ -1,0 +1,55 @@
+<!--pages/live/live.wxml-->
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<navbar title='直播' show_bol='{{true}}' bg_type='bg_black'></navbar>
+<!--直播页面-->
+<view class='column live' style='margin-top:{{bar_Height  + 50}}px;'>
+	<image wx:if="{{room_info.length==0}}" class="noLive" src="https://img.ssw88.com/wechatImg/notLive.png"></image>
+	<view data-index="{{index}}" bindtap="enterLiveRoom" wx:for="{{room_info}}">
+		<view class="live_item" style="background-image: url({{item.share_img}});">
+			<view class="column">
+				<view class="row" style="align-items: center;">
+					<image class="user_icon" src="{{item.photoUrl}}"></image>
+					<text class="user_nickname ellipsis_txt">{{item.nickName}}</text>
+					<block wx:if="{{item.live_status == 102}}">
+						<!-- 即将开始 -->
+						<view class="live_state live_state_102">
+							<image style="width:24rpx;height:24rpx;" src="/images/ic_live_play.png"></image>
+							<view style="font-size: 24rpx;margin-left:5rpx">即将开始</view>
+						</view>
+					</block>
+					<block wx:elif="{{item.live_status == 103}}">
+						<!-- 看回放 -->
+						<view class="live_state live_state_103">
+							<image style="width:24rpx;height:24rpx;" src="/images/ic_live_play.png"></image>
+							<view style="font-size: 24rpx;margin-left:5rpx">看回放</view>
+						</view>
+					</block>
+					<block wx:else>
+						<!-- 直播中 -->
+						<view class="live_state live_state_101">
+							<image src="/images/ic_living.gif" style="width: 30rpx;height: 30rpx;"></image>
+							<view style="font-size: 24rpx;color: #FFFFFF;margin-left:5rpx;">直播中</view>
+						</view>
+					</block>
+				</view>
+				<view class="row live_bottom">
+					<view class="column">
+						<text class="h2 ellipsis_txt">{{item.name}}</text>
+						<text class="h4">开播时间：{{item.startTime}}</text>
+					</view>
+					<view class="row live_share">
+						<view style="font-size: 24rpx;color: #FFFFFF;">分享直播</view>
+						<image src="/images/ic_live_share.png" style="width: 20rpx;height: 20rpx;margin-left:5rpx;"></image>
+					</view>
+				</view>
+				<!-- <image wx:if="{{item.live_status == 101}}" class="live_state_101" src="../../images/living.png"></image>
+				<view wx:if="{{item.live_status == 102}}">
+					<image class="live_state_102" src="../../images/livewait.png">
+					</image>
+					<text class="live_state_text">开播时间：{{item.startTime}}</text>
+				</view> -->
+			</view>
+		</view>
+	</view>
+</view>
+<login id="login"></login>

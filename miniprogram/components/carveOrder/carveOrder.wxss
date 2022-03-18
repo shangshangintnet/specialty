@@ -1,0 +1,62 @@
+.order_bg {
+  width: 720rpx;
+  margin: 0 15rpx;
+  border-radius: 16rpx;
+}
+
+.order_section {
+  height: 90rpx;
+  width: 720rpx;
+  background-color: white;
+  align-items: center;
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+.info_item {
+  width: 240rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.popup_share {
+  position: fixed;
+  top: 0;
+  z-index: 800;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  align-items: center;
+}
+
+.green {
+  color: #079547;
+}
+
+.btn_item {
+  width: 360rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.green_2 {
+  color: white;
+  background-color: #079547;
+}
+
+.green_1 {
+  color: #079547;
+  background-color: white;
+}

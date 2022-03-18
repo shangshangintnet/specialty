@@ -1,0 +1,19 @@
+<view>
+<navbar id="navbar" title='{{set_title}}' show_bol='{{false}}'  bg_type='bg_loadApp'></navbar>
+  <image src="https://img.ssw88.com/wechatprogram/app_1.png" style="width: 750rpx; height: 100vh; display: block" />
+  <button class='btn_success' style='position:absolute;bottom:6vh;left:12vw;width:76vw;line-height:2' bindtap='copyText' data-share-code="https://www.ssw88.com/download.html">
+    <text class='h4'>点击复制</text> 上商珠宝App
+    <text class='h4'>下载链接</text>
+  </button>
+</view>
+
+<image src="https://img.ssw88.com/wechatprogram/app_2.png" style="width: 750rpx; height: 100vh; display: block" />
+<image src="https://img.ssw88.com/wechatprogram/app_3.png" style="width: 750rpx; height: 100vh; display: block" />
+<image src="https://img.ssw88.com/wechatprogram/app_4.png" style="width: 750rpx; height: 100vh; display: block" />
+
+  <image src="https://img.ssw88.com/wechatprogram/app_5.png" style="width: 750rpx; height: 632rpx; display: block" />
+    <button class='btn_success' style='margin-top:-550rpx;margin-left:12vw;width:76vw;line-height:2' bindtap='copyText' data-share-code="https://www.ssw88.com/download.html">
+    <text class='h4'>点击复制</text> 上商珠宝App
+    <text class='h4'>下载链接</text>
+  </button>
+

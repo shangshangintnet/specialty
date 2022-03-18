@@ -1,0 +1,59 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar title="高货订单" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <view bindtap="tagTo" data-index="2" class="'condition '{{active==2?'app_green':'gray'}}">全部</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="0" class="'condition '{{active==0?'app_green':'gray'}}">未支付</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="1" class="'condition '{{active==1?'app_green':'gray'}}">已支付</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="3" class="'condition '{{active==3?'app_green':'gray'}}">已完成</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="4" class="'condition '{{active==4?'app_green':'gray'}}">已取消</view>
+</view>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+100}}px;">
+  <view bindtap="viewOrder" data-index="{{index}}" class="column section" wx:for="{{orders}}">
+    <view class="row">
+      <image style="width:250rpx;height:250rpx;" src="{{item.imageUrl[0]}}"></image>
+      <view class="column" style="height:250rpx;margin-left:10rpx;margin-right:10rpx;width:450rpx;">
+        <view class="bold h3">{{item.goodsName}}</view>
+        <view class="h5">{{item.goodsNo}}</view>
+        <view class="row" style="margin-top:auto">
+          <view class='app_red h4'>¥ {{phone.toPrice(item.price + item.useBalance)}}</view>
+          <view class='h4' style='margin-left:auto'> x 1 </view>
+        </view>
+      </view>
+    </view>
+    <view class="row" style="margin-left:auto;height:70rpx;align-items:center;margin-top:10rpx;">
+      <block wx:if="{{user.highType == 2 && item.status == 1}}">
+        <view catchtap="bindLogistics" data-index="{{index}}" class="button">{{item.logisticsNum?'修改物流':'绑定物流'}}</view>
+      </block>
+      <block wx:else>
+        <view wx:if="{{item.logisticsNum}}" catchtap="viewLogistics" data-index="{{index}}" class="button">查看物流</view>
+        <view wx:if="{{item.status == 0}}" catchtap="cancelOrder" data-index="{{index}}" class="button">取消订单</view>
+        <view wx:if="{{item.status == 0}}" catchtap="pay" data-index="{{index}}" class="button">立即支付</view>
+        <view catchtap="viewOrder" data-index="{{index}}" class="button">查看详情</view>
+      </block>
+    </view>
+  </view>
+</view>
+<van-popup show="{{logvisible}}" z-index="800" bind:close="closeLog">
+  <view class="bg_white column" style="height: 400rpx;width: 650rpx;align-items:center;">
+    <view class="gray_2 h2" style="height:100rpx;line-height:100rpx;">绑定物流</view>
+    <view class="row" style="height:100rpx;align-items:center;">
+      <text class="gray_4 h2">公司名称</text>
+      <picker class="picker" mode="selector" range-key="name" range="{{logdata}}" bindchange="changeLogistics">
+        <block wx:if="{{curLogistics.name == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">请选择物流公司</text>
+        </block>
+        <block wx:else="{{curLogistics.name != null}}">{{curLogistics.name}}</block>
+      </picker>
+    </view>
+    <view class="row" style="height:100rpx;align-items:center;">
+      <text class="gray_4 h2">快递单号</text>
+      <input bindconfirm="changeNum" bindblur="changeNum" class="input_txt" placeholder="请输入快递单号"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view bindtap="bindLogdata" class="confirmLogdata">确定</view>
+  </view>
+</van-popup>

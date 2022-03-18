@@ -1,0 +1,105 @@
+.swiper {
+  height: 750rpx;
+  width: 750rpx;
+}
+
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+
+.swiper video {
+  height: 100%;
+  width: 100%;
+}
+
+.store_name_tab {
+  border-radius: 5rpx;
+  width: 120rpx;
+  height: 40rpx;
+  border: 1rpx solid #f03234;
+  color: #f03234;
+  font-size: 24rpx;
+  margin-right: 10rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+
+.goods_section {
+  padding: 20rpx 20rpx 0 20rpx;
+  background: white;
+}
+
+.goods_info text {
+  margin: 4rpx 0;
+}
+
+.goods_info {
+  width: 550rpx;
+}
+
+.goods_info_right {
+  width: 200rpx;
+}
+
+.goods_info_right text {
+  text-align: right;
+  margin-right: 20rpx;
+}
+
+.goods_icons {
+  justify-content: flex-end;
+}
+
+.goods_icons image {
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 50rpx;
+  margin: 0;
+  margin-top: 10rpx;
+  margin-right: 30rpx;
+  margin-bottom: 19rpx;
+}
+
+.icon_heart {
+  width: 48rpx;
+  height: 44rpx;
+}
+
+.icon_cart {
+  width: 46rpx;
+  height: 44rpx;
+}
+
+.bottom_btn {
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  width: 750rpx;
+  background-color: #FFFFFF;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom_home {
+  margin-left: 45rpx;
+  width: 230rpx;
+  height: 80rpx;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  background: linear-gradient(90deg, #ffc801, #ff9503);
+  border-radius: 40rpx 0 0 40rpx;
+}
+
+.bottom_buy {
+  width: 230rpx;
+  height: 80rpx;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  background: linear-gradient(90deg, #ff7707, #ff4a01);
+  border-radius: 0 40rpx 40rpx 0;
+}

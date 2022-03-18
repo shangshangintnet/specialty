@@ -1,0 +1,150 @@
+.condition {
+  width: 100vw;
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.search_category {
+  width: 140rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 28rpx;
+}
+
+.selected {
+  color: #079547;
+  border-bottom: 4rpx solid #079547;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 90rpx;
+  height: 90rpx;
+  width: 750rpx;
+  z-index: 200;
+}
+
+.condition_sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 50rpx;
+  height: 50rpx;
+  font-size: 32rpx;
+  width: 250rpx;
+  border-right: 1rpx solid #F0F0F0;
+}
+
+.arrow_icon {
+  width: 22rpx;
+  height: 13rpx;
+  padding: 0rpx 10rpx 12rpx 10rpx;
+}
+
+.condition_txt {
+  color: #606060;
+}
+
+.second_menu_bg {
+  position: fixed;
+  height: 100vh;
+  width: 750rpx;
+  z-index: 190;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.second_menu {
+  width: 750rpx;
+  z-index: 200;
+  background: #F8F8F8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.second_menu_item {
+  width: 150rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  margin: 20rpx 15rpx;
+}
+
+.goods_section {
+  margin: 10rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  width: 730rpx;
+  height: 300rpx;
+}
+
+.goods_pic {
+  width: 176rpx;
+  height: 176rpx;
+  margin-left: 20rpx;
+}
+
+.goods_txt {
+  margin-left: 20rpx;
+  width: 490rpx;
+  height: 176rpx;
+}
+
+.goods_name {
+  width: 490rpx;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #202020;
+}
+
+.goods_id {
+  width: 490rpx;
+  font-size: 28rpx;
+  color: #5F5F5F;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+}
+
+.goods_price {
+  width: 490rpx;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #BD1818;
+  margin-top: 46rpx;
+}
+
+.upGood {
+  background-color: #7fbf4f;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.downGood {
+  background-color: #ea4e48;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}

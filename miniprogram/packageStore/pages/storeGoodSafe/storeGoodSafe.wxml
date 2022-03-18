@@ -1,0 +1,3 @@
+<!--miniprogram/packageStore/pages/storeGoodSafe/storeGoodSafe.wxml-->
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_black_op' title='鉴真服务'></navbar>
+<image src="https://img.ssw88.com/store/storeGoodSafe.png" class="width100" mode="widthFix"></image>

@@ -1,0 +1,10 @@
+<!--groupMember.wxml-->
+<navbar title='群成员{{groupMemberNum}}' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="groupmember" style="margin-top:{{bar_Height+45}}px;">
+	<view class="member-layer">
+		<view class="member">
+			<image src="{{member.avatar==null?'/images/user-unlogin.png':member.avatar}}" class="group-member-avatar avatar"
+				wx:for="{{groupMembersMap}}" wx:key="key" wx:for-item="member" />
+		</view>
+	</view>
+</view>

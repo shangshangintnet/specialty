@@ -1,0 +1,21 @@
+<navbar url="/pages/index/index" id="navbar" show_bol='{{false}}' bg_type='bg_black_op'></navbar>
+<view class="bg_white" style="width:100vw;height:100vh;">
+	<view class="bg_back" style="width:750rpx;height:1334rpx;;background-size:100% 100%">
+		<view style="padding-top:150rpx;" class="text-center column">
+			<image src="{{photoUrl}}" style="border-radius:100rpx;width:150rpx;height:150rpx;margin-left:300rpx;background:white" mode="widthFix"></image>
+			<view style="margin-top:10rpx;">{{nickName}}用户</view>
+			<view>赠送给您
+				<text class="app_red" style="font-weight:italic">{{content}} x {{giftCardMessage.entityCardCount}}</text>
+			</view>
+		</view>
+		<image bindtap="getCard" style="position:absolute;bottom:0;width:450rpx;margin-left:150rpx;margin-bottom:30rpx;" src="{{btn_get}}" mode="widthFix"></image>
+		<van-overlay show="{{ show }}" bind:click="hideModal">
+			<view class="bg_success" catchtap='jumpToCard' wx:if="{{status == 0}}" style="width:485rpx;height:518rpx;position:fixed;top:25vh;left:0;right:0;margin:0 auto;background-size:100% 100%">
+				<image src="{{imageUrl}}" mode="widthFix" style="width:320rpx;margin-left:80rpx;margin-top:20rpx;"></image>
+			</view>
+			<view class="bg_fail" bindtap="hideModal" wx:if="{{status == 1}}" style="width:485rpx;height:518rpx;position:fixed;top:25vh;left:0;right:0;margin:0 auto;background-size:100% 100%">
+			</view>
+		</van-overlay>
+	</view>
+	<login id="login"></login>
+</view>

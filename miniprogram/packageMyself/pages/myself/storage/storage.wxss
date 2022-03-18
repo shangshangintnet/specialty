@@ -1,0 +1,94 @@
+/* packageMyself/pages/myself/storage/storage.wxss */
+page {
+	background-color: #F8F8F8;
+}
+
+.title {
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.ic_head {
+	width: 80rpx;
+	height: 80rpx;
+	margin-left: 40rpx;
+	border-radius: 40rpx;
+	overflow: hidden;
+}
+
+.nickName {
+	color: #100F10;
+	font-size: 28rpx;
+	margin-left: 20rpx;
+}
+
+.tip {
+	margin-left: auto;
+	margin-right: 40rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	height: 160rpx;
+}
+
+.tab_bg {
+	width: 750rpx;
+	height: 118rpx;
+	background-size: 100% 100%;
+}
+
+.center {
+	justify-content: center;
+	align-items: center;
+}
+
+.storage_img {
+	width: 650rpx;
+	height: 459rpx;
+}
+
+.storage_item {
+	width: 690rpx;
+	height: 120rpx;
+	background-image: url(https://img.ssw88.com/storageCard/storage/memberSelected.png);
+	background-size: 100% 100%;
+	font-size: 36rpx;
+	color: #202020;
+	font-weight: bold;
+	line-height: 120rpx;
+	text-align: center;
+	margin-top: 10rpx;
+}
+
+.storage_noritem {
+	width: 690rpx;
+	height: 120rpx;
+	border-radius: 12rpx;
+	border: 1rpx solid #EBA15A;
+	font-size: 36rpx;
+	color: #202020;
+	font-weight: bold;
+	line-height: 120rpx;
+	text-align: center;
+	margin-top: 10rpx;
+}
+
+.popup_bottom {
+	position: fixed;
+	bottom: 0;
+	width: 750rpx;
+	height: 90rpx;
+	border-top: 1rpx solid #DDDDDD;
+	justify-content: center;
+	align-items: center;
+}
+
+.talk {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 90rpx;
+}

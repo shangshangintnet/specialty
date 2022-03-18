@@ -1,0 +1,283 @@
+/* 顶部导航 */
+.storeinfo_bg {
+	width: 750rpx;
+	background-color: #FFFFFF;
+	border-radius: 0 0 16rpx 16rpx;
+}
+
+.storeinfo_icon {
+	width: 220rpx;
+	height: 256rpx;
+}
+
+.storeinfo_content {
+	width: 520rpx;
+	height: 188rpx;
+	padding: 30rpx 0rpx 20rpx 0rpx;
+}
+
+.act_bg {
+	width: 750rpx;
+	height: 370rpx;
+	margin-top: 5rpx;
+	background-color: #FFFFFF;
+}
+
+.icon_spike {
+	background-image: url(https://img.ssw88.com/static/home/spike.png);
+	background-size: 100% 100%;
+	width: 220rpx;
+	height: 268rpx;
+}
+
+.act_icon {
+	width: 220rpx;
+	height: 268rpx;
+}
+
+.live_bg {
+	width: 750rpx;
+	height: 300rpx;
+	background-size: 100% 100%;
+}
+
+.icon_live {
+	height: 42rpx;
+	width: 112rpx;
+	background: linear-gradient(180deg, #f67e4a, #e7463e);
+	line-height: 42rpx;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
+
+.live_num {
+	font-size: 24rpx;
+	color: #FFFFFF;
+	background-color: rgba(0, 0, 0, 0.3);
+	width: 314rpx;
+	height: 42rpx;
+	line-height: 42rpx;
+	text-align: left;
+}
+
+.live_play {
+	margin-top: 23rpx;
+	height: 100rpx;
+	width: 750rpx;
+	justify-content: center;
+	align-items: center;
+}
+
+.live_txt {
+	margin-top: 0rpx;
+	height: 100rpx;
+	width: 750rpx;
+	justify-content: flex-start;
+	line-height: 100rpx;
+}
+
+.active_slt {
+	font-size: 32rpx;
+	line-height: 90rpx;
+	height: 90rpx;
+	text-align: center;
+	color: #079547;
+	width: 375rpx;
+
+}
+
+.active_txt {
+	font-size: 32rpx;
+	line-height: 90rpx;
+	height: 90rpx;
+	text-align: center;
+	color: #606060;
+	width: 375rpx;
+}
+
+.share_btn {
+	position: fixed;
+	width: 193rpx;
+	height: 72rpx;
+	bottom: 120rpx;
+	right: 0;
+	z-index: 200;
+}
+
+.bottom_btn {
+	position: fixed;
+	bottom: 0;
+	height: 100rpx;
+	width: 750rpx;
+	background-color: #FFFFFF;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottom_home {
+	margin-left: 45rpx;
+	width: 460rpx;
+	height: 80rpx;
+	justify-content: center;
+	align-items: center;
+	color: #FFFFFF;
+	font-size: 32rpx;
+	background: linear-gradient(90deg, #ffbc00, #ff4b02);
+	border-radius: 40rpx;
+}
+
+.goods_emy {
+	margin-top: 100rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 28rpx;
+	color: #494949;
+}
+
+/* 商铺分享*/
+.swiper {
+	width: 100vw;
+	height: 1200rpx;
+}
+
+.shareImg {
+	width: 600rpx;
+	height: 1067rpx;
+	background-size: 100% 100%;
+}
+
+.sharebg {
+	z-index: 810;
+	position: fixed;
+	bottom: 0;
+	width: 750rpx;
+	height: 230rpx;
+}
+
+.content {
+	width: 750rpx;
+	height: 160rpx;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottom {
+	width: 750rpx;
+	height: 90rpx;
+	border-top: 1rpx solid #DDDDDD;
+	line-height: 90rpx;
+	text-align: center;
+}
+
+.shareitem {
+	height: 100rpx;
+	width: 250rpx;
+	align-items: center;
+	justify-content: center;
+}
+
+.shareicon {
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.share_txt {
+	height: 30rpx;
+	line-height: 30rpx;
+	margin-top: 10rpx;
+}
+
+.shareCodeImg {
+	margin-top: -80rpx;
+	width: 600rpx;
+	height: 827rpx;
+}
+
+.share_store_icon {
+	height: 128rpx;
+	width: 128rpx;
+	border-radius: 8rpx;
+	margin-top: -827rpx;
+}
+
+.share_store_title {
+	z-index: 820;
+	font-size: 28rpx;
+	height: 40rpx;
+}
+
+.share_store_content {
+	z-index: 820;
+	font-size: 20rpx;
+	height: 40rpx;
+	line-height: 30rpx;
+	margin-top: 40rpx;
+	width: 560rpx;
+}
+
+.canvasName {
+	width: 375px;
+	height: 667px;
+}
+
+.popup_share {
+	position: fixed;
+	top: 0;
+	z-index: 800;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.time_txt {
+	width: 200rpx;
+	height: 40rpx;
+	color: #FC2257;
+	font-size: 28rpx;
+	letter-spacing: 5rpx;
+	text-align: center;
+}
+
+.goods_section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 750rpx;
+  justify-content: flex-start;
+  align-items: center;
+	color: #202020;
+	left: 39rpx;
+}
+
+.goods_item {
+  text-align: center;
+  height: 300rpx;
+  width: 345rpx;
+	margin-top: 30rpx;
+	margin-left: 20rpx;
+  background-color: #FFFFFF;
+	border-radius: 6rpx;
+	box-shadow: 2rpx 2rpx 9rpx #c2bfbf;
+}
+
+.goods_img {
+  width: 345rpx;
+  height: 233rpx;
+  border-radius: 6rpx 6rpx 0 0;
+}
+
+.goods_title {
+  font-size: 32rpx;
+  color: #333333;
+	line-height: 46rpx;
+	overflow: hidden;
+	width: 320rpx;
+	margin-left: 6rpx;
+	height: 46rpx;
+}

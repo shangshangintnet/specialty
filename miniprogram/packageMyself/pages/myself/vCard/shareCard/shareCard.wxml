@@ -1,0 +1,95 @@
+<navbar title='名片信息' url="/packageMyself/pages/myself/vCard/vCard" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style="margin-top:{{bar_Height  + 55}}px;" class="pad-lr-20 pad-ud-10">
+	<view class="bg_card column lightShadow card_radius pad-10" style="overflow:hidden">
+		<view class="pad-30 column">
+			<view class="pad-lr-10 column">
+				<view class="width100" style="padding-top:20rpx">
+					<view class="left column">
+						<view class="h3">{{name}}</view>
+						<view class="h4">{{position}}</view>
+					</view>
+					<image class="right" src="{{photo}}" style="width:126rpx;height:126rpx;border-radius:126rpx;background-color:gray;"></image>
+				</view>
+				<view style="padding-top:70rpx;">
+					<view class="h4" style="padding-top:0rpx;">{{company}}</view>
+					<view class="h4" style="padding-top:0rpx;">{{address}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{introduce!=''&&introduce}}" class="compney_info column lightShadow pad-10">
+		<view class="compney_info_title column">
+			【公司简介】
+		</view>
+		<view class="compney_info_text column">
+			{{introduce}}
+		</view>
+	</view>
+</view>
+<scroll-view class="pad-20 scroll-view" style="width:710rpx;height:160rpx" scroll-x="true" enable-flex="true">
+	<view bindtap="makeCall" data-share-code="{{phone}}" class="item lightShadow pad-10 column bg_white radius5" style="width:180rpx;margin-right:10rpx;">
+		<view class="row">
+			<image src="../images/dianhua.png" style="width:40rpx;height:40rpx;"></image>
+			<view class="h4 pad-lr-5">拨打电话</view>
+		</view>
+		<view class="h5 pad-lr-10 text-center">{{phone}}</view>
+	</view>
+
+	<view wx:if="{{wechatCode != ''}}" bindtap="saveWechatCode" class="item lightShadow pad-10 column bg_white radius5" style="width:180rpx;margin-right:10rpx;">
+		<view class="row">
+			<image src="./images/code.png" style="width:40rpx;height:40rpx;"></image>
+			<view class="h4 pad-lr-5">微信二维码</view>
+		</view>
+		<view class="h5 pad-lr-10">点击查看</view>
+	</view>
+
+	<view wx:if="{{wechatId != ''}}" bindtap="copyText" data-share-code="{{wechatId}}" class="item lightShadow pad-10 column bg_white radius5" style="width:180rpx;margin-right:10rpx;">
+		<view class="row">
+			<image src="../images/weixin.png" style="width:40rpx;height:40rpx;"></image>
+			<view class="h4 pad-lr-5">复制微信</view>
+		</view>
+		<view class="h5 pad-lr-10">{{wechatId}}</view>
+	</view>
+
+	<view bindtap="copyText" data-share-code="{{email}}" wx:if="{{email != ''}}" class="item lightShadow pad-10 column bg_white radius5" style="width:250rpx;margin-right:10rpx;">
+		<view class="row">
+			<image src="../images/youxiang.png" style="width:40rpx;height:40rpx;"></image>
+			<view class="h4 pad-lr-5">复制邮箱</view>
+		</view>
+		<view class="h5 pad-lr-10">{{email}}</view>
+	</view>
+</scroll-view>
+
+<view class="pad-lr-20 pad-ud-10" style="position:absolute;bottom:0px;width:710rpx;height:100rpx">
+	<button style="width:45%;border-radius:40px;border:1px solid #079547" bindtap="openOverLay" class="left bg_white app_green">递名片</button>
+	<button style="width:45%;border-radius:40px;border:1px solid #079547" bindtap="saveContact" class="right btn_success">保存到通讯录</button>
+</view>
+<image wx:if="{{myCardType == 0}}" open-type="getUserInfo" src='./images/create.png' bindtap='createcreateCard' style='position:fixed;bottom:{{bar_Height+75}}px;right:12px;width:120rpx;' mode='widthFix'></image>
+
+<!--100-->
+<van-overlay show="{{ showOverlay }}" bind:click="closeOverLay">
+	<view style="width:710rpx;position:fixed;bottom:0;" class="pad-20 bg_white column">
+		<view class="pad-ud-10 row bg_white width100">
+			<view class="column text-center" style="width:50%">
+				<button open-type="share" class="btn">
+					<image style="width:25%" mode="widthFix" src="./images/wechatIcon.png"></image>
+				</button>
+				<view class="h4">微信好友</view>
+			</view>
+			<view style="width:50%" bindtap="jumpTo" data-card-user-id="{{userId}}" data-url="../showCard/showCard" class="column text-center">
+				<view>
+					<image style="width:25%" mode="widthFix" src="./images/saveImg.png"></image>
+					<view class="h4">名片码</view>
+				</view>
+			</view>
+		</view>
+		<view class="pad-ud-10 text-center gray" style="padding-top:10px;border-top:1px solid whitesmoke">
+			取消
+		</view>
+	</view>
+</van-overlay>
+
+
+<canvas wx:if="{{showCanvas}}" canvas-id="hoCanvas" style="margin-top:900rpx;;width:750px;height:600px;"></canvas>
+
+<login id="login"></login>

@@ -1,0 +1,347 @@
+<view class="title_bg column" style="height:{{bar_Height+150}}px">
+	<view wx:if="{{user != null}}" class="row" style="margin-top:120rpx;">
+		<block wx:if="{{tag == 0}}">
+			<image bindtap="updateHeadImage" class="user_icon"
+				src="{{user.photoUrl == null?'/images/user-unlogin.png':user.photoUrl}}"></image>
+			<view class="column" style="margin-left:30rpx;height:120rpx;">
+				<view bindtap="open_nickName" class="h3 white bold" style="width:320rpx;">{{user.nickName}}</view>
+				<view class="h6 white swapicon">我是买家</view>
+			</view>
+		</block>
+		<block wx:else>
+			<image class="user_icon" src="{{store.icon}}"></image>
+			<view class="column" style="margin-left:30rpx;height:120rpx;justify-content: center;">
+				<view class="h3 white bold" style="width:320rpx;">{{store.name}}</view>
+				<block wx:if="{{store.returnStatus == 1}}">
+					<view class="h6 white swapicon_1">保证金退回申请中</view>
+				</block>
+				<block wx:else>
+					<block wx:if="{{store.type == 3}}">
+						<block wx:if="{{store.servicePrice == 0}}">
+							<view bindtouchstart="touch_store" bindtap="activeStore" class="h6 white swapicon">立即激活</view>
+						</block>
+						<block wx:else>
+							<view bindtouchstart="touch_store" bindtap="activeStore" class="h6 white swapicon">
+								{{store.ensurePrice < store.ensureMargin?'立即续费':'我是卖家'}}</view>
+						</block>
+					</block>
+					<block wx:else>
+						<block wx:if="{{store.ensurePrice == 0}}">
+							<view bindtouchstart="touch_store" bindtap="activeStore" class="h6 white swapicon">立即激活</view>
+						</block>
+						<block wx:else>
+							<view bindtouchstart="touch_store" bindtap="activeStore" class="h6 white swapicon">
+								{{store.ensurePrice < store.ensureMargin?'立即续费':'我是卖家'}}</view>
+						</block>
+					</block>
+				</block>
+			</view>
+		</block>
+		<view wx:if="{{store.applyStatus == 1 && ssoToken}}" bindtap="switchTag" class="h6 bg_white app_green swapbtn">
+			{{tag == 0?'切换到卖家':'切换到买家'}}</view>
+	</view>
+	<view wx:else class="row" style="margin-top:120rpx;">
+		<image class="user_icon" src="/images/user-unlogin.png"></image>
+		<view class="row" style="margin-left:30rpx;height:120rpx;align-items:center;">
+			<view class="h3 white bold" bindtap="onLogin">点击登录</view>
+		</view>
+	</view>
+</view>
+<view hidden="{{tag == 1}}">
+	<view class="column bg_white width100" style="height:140rpx;border-radius:30rpx 30rpx 0 0;margin-top:-50rpx;">
+		<view class="row">
+			<view class="column item4" style="align-items:center;justify-content: center;height:140rpx;">
+				<view class="h2 app_green bold">{{userWallet.accumulatedPrice}}</view>
+				<view class="h4">我的收益</view>
+			</view>
+			<view class="column item4" style="align-items:center;justify-content: center;height:140rpx;">
+				<view class="h2 app_green bold">{{userWallet.withdrawable}}</view>
+				<view class="h4">可提现</view>
+			</view>
+			<view class="column item4" style="align-items:center;justify-content: center;height:140rpx;">
+				<view class="h2 app_green bold">{{user.emdEmeraldCount}}</view>
+				<view class="h4">翡翠币</view>
+			</view>
+			<view class="column item4" style="align-items:center;justify-content: center;height:140rpx;">
+				<view class="h2 app_green bold">{{userWallet.balance}}</view>
+				<view class="h4">余额</view>
+			</view>
+		</view>
+	</view>
+	<view class='order_section row bg_white'>
+		<view class="row width100" bindtap='jumpTo' data-url="/pages/order/orderlist" data-tag="4"
+			style="height:90rpx;align-items: center;">
+			<view class="h2 bold" style="margin-left:30rpx;">我的订单</view>
+			<view class="h6" style="margin-left:auto;margin-right:30rpx;">查看全部订单 ></view>
+		</view>
+		<view class="row" style="height:180rpx;align-items: center;">
+			<view bindtap='jumpTo' data-url="/pages/order/orderlist" data-tag="0" class='column item5 block_center'>
+				<image class='icon_50' src='/images/my_order_pay.png'></image>
+				<text class=' h4 gray'>待付款</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/pages/order/orderlist" data-tag="1" class='column item5 block_center'>
+				<image class='icon_50' style='margin-bottom:15rpx;' src='/images/my_order_send.png'></image>
+				<text class=' h4 gray'>待收货</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/pages/order/orderlist" data-tag="2" class='column item5 block_center'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_order_success.png'></image>
+				<text class='h4 gray'>已完成</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/pages/order/orderlist" data-tag="3" class='column item5 block_center'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_order_cancel.png'></image>
+				<text class='h4 gray'>已取消</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageMyself/pages/myself/saleAfter/saleAfter"
+				class='column item5 block_center'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_after_sale.png'></image>
+				<text class='h4 gray'>售后服务</text>
+			</view>
+		</view>
+	</view>
+
+	<view class='order_section row bg_white'>
+		<view wx:for="{{jumpList}}" bindtap='jumpTo' data-url="{{item.url}}" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='{{item.icon}}'></image>
+			<text class=' h4 gray'>{{item.title}}</text>
+		</view>
+		<view wx:if="{{isVersion == 0}}" bindtap='jumpTo' data-title="{{user.equityName}}"
+			data-url="/packageMyself/pages/myself/myshare/myshare" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_invite_friends.png'></image>
+			<text class=' h4 gray'>我的分享</text>
+		</view>
+		<view wx:if="{{(store.applyStatus == 3 || store.applyStatus == 0) && ssoToken}}" bindtap='jumpTo'
+			data-url="/packageStore/pages/storeApply/storeApply" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/apply_store.png'></image>
+			<text class=' h4 gray'>申请店铺</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageIm/pages/conversations/conversations" class='column item4 btn_item'>
+			<view class='icon_50 serviceMsg' style='margin-bottom:15rpx;'>
+				<view wx:if="{{unreadTotal > 0}}" class="unreadMsg">{{unreadTotal}}</view>
+			</view>
+			<text class='h4 gray'>客服信息</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageHighGood/pages/orderList/orderList" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_adviser_order.png'></image>
+			<text class=' h4 gray'>高货订单</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageArticle/pages/articleList/articleList" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_adviser_order.png'></image>
+			<text class=' h4 gray'>珠宝知识</text>
+		</view>
+	</view>
+	<view wx:if="{{user.highType == 2}}" class="column bg_white"
+		style="margin-top: 10rpx;  width: 750rpx;  padding: 20rpx 0rpx;">
+		<view class="row h2 bold" style="margin-left:30rpx;height:90rpx;align-items: center;">
+			高级管理
+		</view>
+		<view class='row' style="flex-wrap: wrap;">
+			<view bindtap='jumpTo' data-url="/packageHighGood/pages/goodsAllList/goodsAllList" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_adviser_good.png'></image>
+				<text class=' h4 gray'>高货管理</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageHighGood/pages/adviserList/adviserList" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_adviser_manager.png'></image>
+				<text class=' h4 gray'>顾问管理</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageStoreFamous/pages/storeFamousAdmin/storeList/storeList" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_famous.png'></image>
+				<text class=' h4 gray'>名家管理</text>
+			</view>
+		</view>
+	</view>
+	<view class="column bg_white" style="margin-top: 10rpx;  width: 750rpx;  padding: 20rpx 0rpx;">
+		<view class="row h2 bold" style="margin-left:30rpx;height:90rpx;align-items: center;">
+			工具与服务
+		</view>
+		<view class='row' style="flex-wrap: wrap;">
+			<view bindtap='jumpTo' data-url="/packageMyself/pages/myself/cloudStore/cloudStore" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/cloudStore.png'></image>
+				<text class=' h4 gray'>数字云店</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageMyself/pages/apply/applyPrize/applyPrize" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_prize.png'></image>
+				<text class=' h4 gray'>抽奖软件</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageMyself/pages/apply/applyWater/applyWater" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_water.png'></image>
+				<text class=' h4 gray'>订水软件</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageMyself/pages/apply/haoym/haoym" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_hym.png'></image>
+				<text class=' h4 gray'>薅羊毛</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageTailor/pages/Tailor/Tailor" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_tailor.png'></image>
+				<text class=' h4 gray'>{{user.storeId == null && user.carvingId == null?'私人订制':'订制管理'}}</text>
+			</view>
+			<view bindtap='jumpTo' data-url="/packageMyself/pages/myself/blindBag/blindBag" class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='https://img.ssw88.com/wechatImg/static/%E7%BF%A1%E7%BF%A0%E7%9B%B2%E8%A2%8B.png'></image>
+				<text class=' h4 gray'>翡翠盲袋</text>
+			</view>
+			<view wx:if="{{accountBook != null}}" bindtap='jumpTo' data-url="/packageInner/pages/view/view"
+				class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_innerAccount.png'></image>
+				<text class=' h4 gray'>一账通</text>
+			</view>
+			<view wx:if="{{shareId}}" bindtap='jumpToShare' class='column item4 btn_item'>
+				<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_adviser_share.png'></image>
+				<text class=' h4 gray'>共享充电</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view hidden="{{tag == 0}}">
+	<view class="row bg_white width100" style="height:200rpx;border-radius:30rpx 30rpx 0 0;margin-top:-50rpx;">
+		<view class="item4 column storeInfo">
+			<view class="app_green h2">{{store.followNum}}</view>
+			<view class="h4" style="margin-top:20rpx">关注</view>
+		</view>
+		<view bindtap="goEnsurePrice" class="item4 column storeInfo">
+			<view class="app_green h2">{{store.ensurePrice}}</view>
+			<view class="h4" style="margin-top:20rpx">保证金</view>
+		</view>
+		<view bindtap="goGetPrice" class="item4 column storeInfo">
+			<view class="app_green h2">{{store.price}}</view>
+			<view class="h4" style="margin-top:20rpx">已到账</view>
+		</view>
+		<view class="item4 column storeInfo">
+			<view class="app_green h2">{{store.totalTurnover}}</view>
+			<view class="h4" style="margin-top:20rpx">交易额</view>
+		</view>
+	</view>
+	<view class="row bg_white" bindtap='jumpTo' data-url="/packageStore/pages/storeOrderList/storeOrderList" data-tag="0"
+		style="margin-top:10rpx; height:90rpx;align-items: center;">
+		<view class="h2 bold" style="margin-left:30rpx;">我的订单</view>
+		<view class="h6" style="margin-left:auto;margin-right:30rpx;">查看全部订单 ></view>
+	</view>
+	<view class="row bg_white" style="height:180rpx;align-items: center;">
+		<view bindtap='jumpTo' data-url="/packageStore/pages/storeOrderList/storeOrderList" data-tag="1"
+			class='column item4 block_center'>
+			<view class="row">
+				<image class='icon_50' src='/images/my_order_waitsend.png'></image>
+				<view hidden="{{store.count == 0}}" class="store_order_count">{{store.count}}</view>
+			</view>
+			<text class=' h4 gray' style="margin-top:20rpx;">待发货</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageStore/pages/storeOrderList/storeOrderList" data-tag="2"
+			class='column item4 block_center'>
+			<image class='icon_50' style='margin-bottom:15rpx;' src='/images/my_order_send.png'></image>
+			<text class=' h4 gray' style="margin-top:20rpx;">待收货</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageStore/pages/storeOrderList/storeOrderList" data-tag="3"
+			class='column item4 block_center'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_order_success.png'></image>
+			<text class='h4 gray' style="margin-top:20rpx;">已完成</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageStore/pages/storeOrderList/storeOrderList" data-tag="4"
+			class='column item4 block_center'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_after_sale.png'></image>
+			<text class='h4 gray' style="margin-top:20rpx;">售后服务</text>
+		</view>
+	</view>
+	<view class='order_section row bg_white' style="margin-bottom:120rpx;">
+		<view bindtap='jumpToStore' class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_store_detail.png'></image>
+			<text class=' h4 gray'>我的店铺</text>
+		</view>
+		<view wx:for="{{storeJumpList}}" bindtap='jumpTo' data-url="{{item.url}}" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='{{item.icon}}'></image>
+			<text class=' h4 gray'>{{item.title}}</text>
+		</view>
+		<view bindtap='jumpToStoreGoodManager' class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/my_store_goods.png'></image>
+			<text class=' h4 gray'>商品管理</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageIm/pages/conversations/conversations" class='column item4 btn_item'>
+			<view class='icon_50 serviceMsg' style='margin-bottom:15rpx;'>
+				<view wx:if="{{unreadTotal > 0}}" class="unreadMsg">{{unreadTotal}}</view>
+			</view>
+			<text class='h4 gray'>客服信息</text>
+		</view>
+		<view bindtap='jumpTo' data-url="/packageTailor/pages/Tailor/Tailor" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_tailor.png'></image>
+			<text class=' h4 gray'>{{user.storeId == null && user.carvingId == null?'私人订制':'订制管理'}}</text>
+		</view>
+		<view bindtap='applyLive' class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_live.png'></image>
+			<text class=' h4 gray'>申请直播</text>
+		</view>
+		<view wx:if="{{store.storeFamousType==1}}" bindtap='jumpTo' data-url="/packageStoreFamous/pages/storeFamousAdmin/storeFamousAdmin" class='column item4 btn_item'>
+			<image class='icon_50' style='margin-bottom:15rpx' src='/images/ic_famous.png'></image>
+			<text class=' h4 gray'>名家管理</text>
+		</view>
+	</view>
+</view>
+<view bindtap="close_order" hidden="{{!orderVisible}}" class="row popup_share">
+	<view wx:if="{{order.servicePrice > 0}}" class="column store_order_bg">
+		<image style="width:228rpx;height:67rpx;margin-top:50rpx;" src="https://img.ssw88.com/wechatImg/static/button1.png">
+		</image>
+		<view class="row store_info_item" style="margin-top:80rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">服务费</view>
+				<view class="gray" style="font-size:20rpx;">技术服务费，活动期间98元原498元</view>
+			</view>
+			<view class="store_price row">
+				<text>¥ {{order.servicePrice}}</text>
+				<text class="gray h6 line-through" style="margin-left:5rpx;">498</text>
+			</view>
+		</view>
+		<view class="row store_info_item" style="margin-top:30rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">保证金</view>
+				<view class="gray" style="font-size:20rpx;">保证商家遵守规则，按时发货、鉴真</view>
+			</view>
+			<view class="store_price">¥ {{order.ensurePrice}}</view>
+		</view>
+		<view style="font-size:40rpx;color:#00133E;margin-top:20rpx;margin-left:auto;margin-right:50rpx;">合计：¥
+			{{order.price}}</view>
+		<view catchtap="order_pay" class="store_info_btn" style="margin-top:30rpx;">立即激活</view>
+	</view>
+	<view wx:else class="column store_order_bg_2">
+		<image style="width:228rpx;height:67rpx;margin-top:50rpx;" src="https://img.ssw88.com/wechatImg/static/button2.png">
+		</image>
+		<view class="row store_info_item" style="margin-top:50rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">保证金</view>
+				<view class="gray" style="font-size:20rpx;">保证商家遵守规则，按时发货、鉴真</view>
+			</view>
+			<view class="store_price">¥ {{order.ensurePrice}}</view>
+		</view>
+		<view catchtap="order_pay" class="store_info_btn" style="margin-top:80rpx;">立即激活</view>
+	</view>
+</view>
+<!--申请直播 -->
+<view bindtap="close_order" hidden="{{!liveVisible}}" class="row popup_share">
+	<view catchtap="mask" class="column store_order_bg_2">
+		<image style="width:228rpx;height:67rpx;margin-top:50rpx;"
+			src="https://img.ssw88.com/wechatImg/static/store_live.png">
+		</image>
+		<view class="row store_info_item" style="margin-top:30rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">服务费</view>
+			</view>
+			<view class="store_price">¥ {{store.livePrice}}</view>
+		</view>
+		<view class="row store_info_item" style="margin-top:20rpx;">
+			<view class="column" style="margin-left:15rpx;">
+				<view style="font-size:30rpx;">余额(可使用{{maxUseBalance}})</view>
+			</view>
+			<input class="live_balance" value="{{userBalance}}" placeholder='请输入余额' bindblur="toUseBalance"
+				bindinput="bindCoinBalance" bindconfirm="toUseBalance" type='digit'></input>
+		</view>
+		<view catchtap="createLiveOrder" class="store_info_btn" style="margin-top:30rpx;">立即开通</view>
+	</view>
+</view>
+<view hidden="{{!nickNameVisible}}" class="row popup_share">
+	<view class="column bg_white msgbox">
+		<view class="h2" style="margin-top:20rpx;">修改昵称</view>
+		<input value="{{user.nickName}}" bindblur="changeNickName" bindconfirm="changeNickName" placeholder="请输入昵称"
+			placeholder-style="color:#BBBBBB;font-size: 28rpx;" class="h2"
+			style="margin-top:60rpx;height:90rpx;width:400rpx;border:1rpx solid #079547;border-radius:10rpx;text-align: center;"></input>
+		<view class="row" style="margin-top:auto;height:90rpx; border-top: 1rpx solid #079547;">
+			<view catchtap="close_nickName" class="btn_default msgbox_btn">取消</view>
+			<view catchtap="updateNickName" class="btn_success msgbox_btn">确定</view>
+		</view>
+	</view>
+</view>
+<login id="login"></login>

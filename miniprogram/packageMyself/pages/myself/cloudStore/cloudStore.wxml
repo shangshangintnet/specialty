@@ -1,0 +1,202 @@
+<view>
+	<navbar id="navbar" show_bol='{{false}}' bg_type='bg_cloud'></navbar>
+	<video src="https://img.ssw88.com/information/pad/cloudVideo.mp4" style="margin-top: 120rpx;margin-bottom: -540rpx; margin-left: 6rpx; width: 740rpx;height: 420rpx; display: block" autoplay="true" controls='true' mode="widthFix" loop="true"></video>
+	<!-- <image src="https://img.ssw88.com/wechatImg/cloudImg/dev/1.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/2.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/3.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/4.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/5.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/6.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/7.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/dev/8.jpg" style="width: 750rpx; display: block" mode="widthFix" /> -->
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/1.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/2.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/3.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/4.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/5.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/6.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/7.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image src="https://img.ssw88.com/wechatImg/cloudImg/8.jpg" style="width: 750rpx; display: block" mode="widthFix" />
+	<image wx:if="{{state==0}}" class='btn_bottom' src="./images/consulation.jpg" bindtap='consulation'>
+	</image>
+	<image wx:if="{{state==1}}" class='btn_bottom' src="./images/createStore.jpg" bindtap='createStore'>
+	</image>
+	<view wx:if="{{state==2}}" class='btn_bottom' style="background-color: white;">
+		<image class="btn_icon" src="./images/cloud_deposit.png"></image>
+		<text class='btn_text'>{{price}}元</text>
+		<image class='addStore' src="./images/addStore.png" bindtap='createStore' />
+	</view>
+	<view wx:if="{{state==3}}" class='btn_bottom' style="background-color: white;">
+		<image class="btn_icon" src="./images/cloud_deposit.png"></image>
+		<text class='btn_text'>{{price}}元</text>
+		<image class='addStore2' src="./images/addStore2.png" bindtap='createStore' />
+		<image wx:if="{{returnStatus == 1}}" class='award' src="./images/award.png" bindtap='returnPrice' />
+		<image wx:if="{{returnStatus == 2}}" class='award' src="./images/review.png" bindtap='reviewPrice' />
+	</view>
+	<van-popup custom-style="width:100vw;height:650rpx;" position="bottom" show="{{ showPop }}" bind:close="closePopup">
+		<image style="width:30rpx;height:30rpx;position:relative;left:700rpx;top:20rpx;" src="../../../../images/close.png"
+			bindtap="closePopup"></image>
+		<!--收货地址-->
+		<view class="row">
+			<image style="width:40rpx;height:40rpx;position:relative;left:60rpx;" src="./images/cloud_adress.png"
+				bindtap="closePopup"></image>
+			<text style="position:relative;left:70rpx;top:-10rpx">收货地址</text>
+		</view>
+		<view class="row">
+			<button style="position:relative;top:10rpx;width:650rpx;height:150rpx;" plain="true" bindtap="selectAddress">
+				<!--有地址-->
+				<view wx-if="{{getAddress.length != 0}}" style="text-align:left;">
+					<text class='left gray_4 h2'>{{getAddress[addressIdx].realName}}{{getAddress[addressIdx].phoneNum}}</text>
+				</view>
+				<view wx-if="{{getAddress.length != 0}}" style="position:relative;top:-10rpx;text-align:left;">
+					<text class='left h4 gray_4'>{{getAddress[addressIdx].addressName}}</text>
+				</view>
+				<!--没有地址-->
+				<view wx-if="{{getAddress.length == 0}}" class='row'>
+					<image style='margin:40rpx 20rpx;width:60rpx;height:60rpx;float:left;' src='/images/ic_local.png'></image>
+					<view style='margin-top:35rpx;margin-right:40rpx;' class='column'>
+						<text class='h2 gray_4'>添加地址</text>
+					</view>
+				</view>
+			</button>
+			<image style="width:13rpx;height:22rpx;position:relative;left:-80rpx;top:70rpx"
+				src="../../../../images/arrow_right.png" />
+		</view>
+		<!--押金数量-->
+		<view style="position:relative;top:60rpx;" class="row">
+			<image style="width:40rpx;height:40rpx;position:relative;left:60rpx;" src="./images/cloud_deposit.png"></image>
+			<text style="position:relative;left:70rpx;">金额：</text>
+			<text style="position:relative;left:80rpx;color:#FF6901">{{onlyPrice}}</text>
+			<text style="position:relative;left:90rpx;">元/终端</text>
+		</view>
+		<view style="position:relative;top:60rpx;" class="row">
+			<button style="position:relative;top:10rpx;width:650rpx;height:90rpx;text-align:left;" plain="true">
+				<text style="position:relative;top:10rpx;" class='left gray h4'>云店数量</text>
+				<input style="position:relative;top:5rpx;left:-20rpx" class='order_num' value="{{orderCount}}" type="number"
+					bindblur="orderNum" bindconfirm="orderNum" />
+			</button>
+			<image style="width:13rpx;height:22rpx;position:relative;left:-80rpx;top:45rpx"
+				src="../../../../images/arrow_right.png" />
+		</view>
+		<view style='position:absolute;bottom:0;width:100vw;height:100rpx;text-align:center;' bindtap="createOrder">
+			<view style="border-bottom: 2px solid whitesmoke;">
+			</view>
+			<text style='position:relative;top:20rpx;'>确认选择</text>
+		</view>
+	</van-popup>
+	<!--红包雨-->
+	<block wx:if="{{state==2 || state==3}}">
+		<view style="position:fixed;bottom:80px;right:12px;width:141rpx;height:165rpx">
+			<image style="width:141rpx;height:165rpx" src="./images/uploadIcon.png" bindtap='showUpload'></image>
+		</view>
+		<view style="position:fixed;bottom:200px;right:12px;width:141rpx;height:165rpx">
+			<image style="width:141rpx;height:165rpx" src="./images/uploadVideo.png" bindtap='showUploadVideo'></image>
+		</view>
+	</block>
+</view>
+<van-popup custom-style="width:100vw;height:60vh;z-index:1000" position="bottom" show="{{showAddress}}"
+	bind:close="closeAddress">
+	<van-picker show-toolbar bind:cancel="closeAddress" bind:confirm="onConfirm" title="选择现有地址" columns="{{getAddress}}"
+		value-key="addressName" bind:change="onChange" />
+	<view style="position:absolute;bottom:8px;padding-top:10px;width:100%" class="van-hairline--top">
+		<button bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/createAddress/createAddress"
+			style="width:300rpx;margin-left:50rpx;" class="left" type="primary">新增地址</button>
+		<button bindtap='jumpTo' class="right" data-url="/packageMyself/pages/myself/myaddress/myaddress"
+			style="width:300rpx;margin-right:50rpx;" type="default">修改地址</button>
+	</view>
+</van-popup>
+<van-popup custom-style="width:100vw;{{imageUrls.length > 3?'height:940rpx;':'height:640rpx'}}" position="bottom"
+	show="{{showUpload}}" bind:close="cloaseUpload">
+	<image class="right" style="width:30rpx;height:30rpx;margin-top:30rpx;margin-right:40rpx;"
+		src="../../../../images/close.png" bindtap="cloaseUpload"></image>
+	<view class="h2" style="color:#606060;text-align:center;margin-top:20rpx;">海报图片</view>
+	<view class="row" style="margin-left:30rpx;margin-top:10rpx;align-items: center;">
+		<image style="width:28rpx;height:28rpx;vertical-align:middle;" src="./images/tip.png">
+		</image>
+		<text class="h4" style="margin-left:10rpx;color:#404040; line-height:28rpx;">温馨提示：广告机海报</text>
+	</view>
+	<view class="row" style="margin-left:60rpx;">
+		<text class="h4" style="color:#606060">上传图片尺寸为</text>
+		<text class="h4" style="color:#FC2257">640px*1080px,</text>
+	</view>
+	<view class="row" style="margin-left:60rpx;">
+		<text class="h4" style="color:#606060">图片大小</text>
+		<text class="h4" style="color:#FC2257">500kb</text>
+		<text class="h4" style="color:#606060">以内。</text>
+	</view>
+	<view class="uploadImg">
+		<view bindtap="deleteImage" data-url="{{item}}" data-index="{{index}}" style="margin:20rpx 10rpx;" wx:key="index"
+			wx:for="{{imageUrls}}">
+			<image style="width:160rpx;height:272rpx;" src="{{item}}">
+			</image>
+			<image style="width:32rpx;height:32rpx;position:relative;left:-30rpx;top:-250rpx;" src="/images/delete.png">
+			</image>
+		</view>
+		<view wx:if="{{!imageUrls || imageUrls.length < 6}}" style="margin:20rpx 10rpx;">
+			<image style="width:160rpx;height:272rpx;" src="./images/upload.png" bindtap="selectImage"></image>
+		</view>
+	</view>
+</van-popup>
+<van-popup custom-style="width:100vw;height:1200rpx;" position="bottom" show="{{showUploadVideo}}"
+	bind:close="cloaseUploadVideo">
+	<view class="row" style=" align-items: center;margin-top:20rpx;">
+		<view class="h2" style="color:#606060;text-align:center;width:550rpx;margin-left:100rpx;text-align:center;">
+			全屏图片or全屏视频</view>
+		<image style="width:30rpx;height:30rpx;margin-left:auto;margin-right:30rpx;" src="../../../../images/close.png"
+			bindtap="cloaseUploadVideo"></image>
+	</view>
+	<view class="row" style="margin-top:20rpx;">
+		<view class='item2 imgtitle {{upImgType == 0?"app_green":""}}' bindtap="changeUpImg" data-index="0">横屏</view>
+		<text>|</text>
+		<view class='item2 imgtitle {{upImgType == 1?"app_green":""}}' bindtap="changeUpImg" data-index="1">竖屏</view>
+	</view>
+	<block wx:if="{{upImgType == 0}}">
+		<view class="row" style="margin-left:30rpx;margin-top:20rpx;align-items: center;">
+			<image style="width:28rpx;height:28rpx;" src="./images/tip.png">
+			</image>
+			<text class="h4" style="margin-left:10rpx;color:#404040;line-height:28rpx;">温馨提示：广告机全屏展示(1920*1080)</text>
+		</view>
+		<text class="h2 gray_2" style="margin-left:30rpx;">上传视频</text>
+		<view class="row" style="align-items: center;">
+			<video wx:if="{{video != null}}" style="margin: 10rpx 30rpx;width: 200rpx;height: 200rpx;" :controls="false"
+				src="{{video}}"></video>
+			<image bindtap="uploadVideo" class="upload" src="/images/upload_video.png"></image>
+		</view>
+		<text class="h2 gray_2" style="margin-left:30rpx;margin-top:30rpx;">上传图片</text>
+		<view class="uploadImg2">
+			<view bindtap="deleteImage2" data-url="{{item}}" data-index="{{index}}" class="row img2"
+				style="margin:20rpx 5rpx;background-image: url({{item}});" wx:key="index" wx:for="{{images}}">
+				<image style="width:32rpx;height:32rpx;margin-left:200rpx;margin-top:10rpx;" src="/images/delete.png">
+				</image>
+			</view>
+			<view wx:if="{{!images || images.length < 6}}" style="margin:20rpx 5rpx;">
+				<image style="width:240rpx;height:135rpx;" src="./images/upload2.png" bindtap="selectImage2"></image>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view class="row" style="margin-left:30rpx;margin-top:20rpx;align-items: center;">
+			<image style="width:28rpx;height:28rpx;" src="./images/tip.png">
+			</image>
+			<text class="h4" style="margin-left:10rpx;color:#404040;line-height:28rpx;">温馨提示：广告机全屏展示(1080*1920)</text>
+		</view>
+		<text class="h2 gray_2" style="margin-left:30rpx;">上传视频</text>
+		<view class="row" style="align-items: center;">
+			<video wx:if="{{verticalVideo != null}}" style="margin: 10rpx 30rpx;width: 200rpx;height: 200rpx;"
+				:controls="false" src="{{verticalVideo}}"></video>
+			<image bindtap="uploadVideo" class="upload" src="/images/upload_video.png"></image>
+		</view>
+		<text class="h2 gray_2" style="margin-left:30rpx;margin-top:30rpx;">上传图片</text>
+		<view class="uploadImg3">
+			<view bindtap="deleteImage2" data-url="{{item}}" data-index="{{index}}" class="row img3"
+				style="margin:20rpx 5rpx;background-image: url({{item}});" wx:key="index" wx:for="{{verticalImages}}">
+				<image style="width:32rpx;height:32rpx;margin-left:100rpx;margin-top:10rpx;" src="/images/delete.png">
+				</image>
+			</view>
+			<view wx:if="{{!verticalImages || verticalImages.length < 6}}" style="margin:20rpx 5rpx;">
+				<image style="width:135rpx;height:240rpx;" src="./images/upload.png" bindtap="selectImage2"></image>
+			</view>
+		</view>
+	</block>
+</van-popup>
+<login id="login"></login>

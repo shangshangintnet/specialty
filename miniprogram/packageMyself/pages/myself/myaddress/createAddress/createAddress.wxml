@@ -1,0 +1,30 @@
+<navbar title='{{address.id == undefined?"新建收货地址":"修改收货地址"}}' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='column bg_white pad-20 address_view top_border' style='margin-top:{{bar_Height  + 45}}px;'>
+	<view class='border_line_whitesmoke pad-20'>
+		<text class='label left h2'>收货人:</text>
+		<input bindinput='bindrealName' style='margin-top:-1rpx;' placeholder='请输入收货人的姓名' value='{{address.realName}}'></input>
+	</view>
+	<view class='border_line_whitesmoke pad-20'>
+		<text class='label left h2'>手机号:</text>
+		<input bindinput="bindphoneNum" type='number' placeholder='请输入收货人的手机号' value='{{address.phoneNum}}'></input>
+	</view>
+	<view class='border_line_whitesmoke pad-20'>
+		<picker style='width:680rpx;' mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" class='left' value="{{multiIndex}}" range="{{multiArray}}" range-key="areaName">
+			<view wx:if="{{changeAddress}}" class="picker h2 left">
+				当前选择：{{multiArray[0][multiIndex[0]].areaName}} {{multiArray[1][multiIndex[1]].areaName}} {{multiArray[2][multiIndex[2]].areaName}}
+				{{multiArray[3][multiIndex[3]].areaName}}
+			</view>
+			<view style="min-width:550rpx;" wx:if="{{!changeAddress}}" class="picker h2 left">
+				当前选择：{{address.areaName}}
+			</view>
+			<image src='/images/arrow_right.png' class='icon right' style='width:20rpx;margin-top:10rpx;'></image>
+		</picker>
+
+	</view>
+	<view class='border_line_whitesmoke pad-20'>
+		<text class='label left h2'>详细地址:</text>
+		<input bindinput='bindaddressName' placeholder='请输入详细地址，如：街道，门牌号等。' value='{{address.addressName}}'></input>
+	</view>
+</view>
+
+<button bindtap='onUpdateOrCreate' class='block-center btn_success lighter h2' style='width:450rpx;height:80rpx;margin-top:50rpx;padding-bottom:4rpx;'>{{address.id == undefined?"创建收货地址":"修改收货地址"}}</button>

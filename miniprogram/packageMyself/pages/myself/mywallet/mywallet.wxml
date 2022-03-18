@@ -1,0 +1,132 @@
+<navbar url="{{backUrl}}" id="navbar" title='我的钱包' show_bol='{{false}}'
+	bg_type='{{isVersion == 0?"bg_black_op":"bg_white"}}' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view wx:if="{{isVersion == 0}}" class='linear_orange_wallet column'
+	style="width:750rpx;padding-top:{{bar_Height+50}}px;">
+	<view class='order_desc column radius5 bg_white'>
+		<view class=' block_center'>
+			<view class='column' style='width:750rpx;text-align:center;padding-top:40rpx;'>
+				<text class='text-center'>¥<text class='h0'>{{userWallet.accumulatedPrice}}</text></text>
+				<text class='gray' style='margin-top:-20rpx'>累计收入</text>
+				<view class='width100 pad-10'>
+					<image bindtap='jumpTo' data-url="mybudget/mybudget" src="/images/balance_detail.png"
+						style='width:160rpx;height:40rpx;margin-right:28rpx;' class='right'></image>
+				</view>
+				<view class='row' style='padding-bottom:20rpx;'>
+					<view class='column item4'>
+						<text class='text-center app_green'>¥ <text class='h2'>{{userWallet.withdrawable}}</text></text>
+						<text class='text-center h4 gray' style='margin-top:-10rpx'>可提现</text>
+					</view>
+					<view class='line_lg' style='margin-top:20rpx;'></view>
+					<view bindtap='jumpTo' data-url="myshare/myshare" class='column item4'>
+						<text class='text-center app_orange'>¥<text class='h2'>{{userWallet.sharingSubsidy}}</text></text>
+						<text class='text-center h4 gray' style='margin-top:-10rpx'>分享补贴</text>
+					</view>
+					<view class='line_lg' style='margin-top:20rpx;'></view>
+					<view bindtap='jumpTo' data-url="orderReward/orderReward" class='column item4'>
+						<text class='text-center app_orange'>¥<text class='h2'>{{userWallet.orderAward}}</text></text>
+						<text class='text-center h4 gray' style='margin-top:-10rpx'>订单奖励</text>
+					</view>
+					<view class='line_lg' style='margin-top:20rpx;'></view>
+					<view bindtap='jumpTo' data-url="myBalance/myBalance" class='column item4'>
+						<text class='text-center app_orange'>¥<text class='h2'>{{userWallet.balance}}</text></text>
+						<text class='text-center h4 gray' style='margin-top:-10rpx'>我的余额</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view wx:if="{{isVersion == 0}}" style='margin-top:-200rpx;padding-top:190rpx;background:#f0f0f0;'>
+	<view class="bg_white pad-20 radius5" style='margin:10rpx;padding-left:10rpx;'>
+		<view class='row'>
+			<view bindtap='jumpTo' data-url="/pages/html/html" data-html="coin" class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='/images/ic_walletfcb.png'></image>
+				<text class='h4 gray'>翡翠币</text>
+			</view>
+			<view bindtap='jumpTo' data-url="myincome/myincome" class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='/images/ic_walletsy.png'></image>
+				<text class=' h4 gray'>我的收益</text>
+			</view>
+			<view bindtap='jumpTo' data-url="mycontacts/mycontacts" class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx;' mode='aspectFit' src='/images/ic_walletrm.png'></image>
+				<text class=' h4 gray'>人脉排行</text>
+			</view>
+			<view bindtap='jumpTo' data-url="worldrank/worldrank" class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='/images/ic_walletworld.png'></image>
+				<text class='h4 gray'>总排行</text>
+			</view>
+		</view>
+		<view class='row'>
+			<view bindtap='jumpTo' bindtap='jumpTo' data-url="./card/myCard" class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='/images/card.png'></image>
+				<text class='h4 gray'>购物卡</text>
+			</view>
+			<view bindtap='jumpTo' bindtap='jumpTo' data-url="../redEnvelope/redEnvelope"
+				class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='./images/redIcon.png'></image>
+				<text class='h4 gray'>发红包</text>
+			</view>
+			<view bindtap='jumpTo' bindtap='jumpTo' data-url="./highProfit/highProfit" class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='./images/ic_wallet_high.png'></image>
+				<text class='h4 gray'>高货回款</text>
+			</view>
+			<view wx:if="{{!beUser}}" bindtap='jumpTo' bindtap='jumpTo' data-url="./carveProfit/carveProfit"
+				class='column wallet_bar block_center'>
+				<image class='icon_hg' style='margin-bottom:15rpx' mode='aspectFit' src='./images/carvePrice.png'></image>
+				<text class='h4 gray'>订制回款</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view wx:if="{{isVersion == 0}}" class='column bg_white radius5'
+	style='margin:10rpx;padding-left:10rpx;padding-bottom:30rpx;'>
+	<view class='pad-20 border_line_whitesmoke'>
+		<text class='h2 lighter'>我的福利券</text>
+	</view>
+	<view class='width100' wx:for="{{welfareCouponList}}" style='padding-top:30rpx;'>
+		<image wx:if="{{item.couponStatus != '1'}}" bindtap="jumpTo" data-url="/pages/category_search/category_search"
+			data-title="福利商品" data-type-kind-id="8001" style='width:670rpx;margin-left:30rpx;' mode="widthFix"
+			src="{{item.couponImage}}"></image>
+		<image wx:if="{{item.couponStatus == '1'}}" style='width:670rpx;margin-left:30rpx;' mode="widthFix"
+			src="{{item.couponImageNot}}"></image>
+		<!-- <text class='white' style='position:absolute;margin-top:140rpx;margin-right:136rpx;right:0;font-size:24rpx'>{{item.startTime}}至{{item.endTime}}</text> -->
+	</view>
+	<view wx:if="{{welfareCouponList.length == 0}}" class='column block_center' style='padding-top:20rpx'>
+		<image src='/images/my_coupon_empty.png' mode='widthFix' style='width:250rpx;'></image>
+		<text class='h3 gray pad-10'>您还没有可使用的福利券哦～</text>
+		<text class='h4 gray pad-20' style='padding-top:0;'>购买福利券 享受更多超值优惠</text>
+		<button style='width:300rpx;' class='btn_success h4' bindtap="jumpTo"
+			data-url="/packageMyself/pages/myself/mywallet/welfareTicket/welfareTicket">
+			立即购买
+		</button>
+	</view>
+</view>
+
+
+<view class='column bg_white radius5'
+	style='margin:10rpx;padding-left:10rpx;padding-bottom:30rpx;padding-top:{{isVersion != 0?bar_Height+50:0}}px'>
+	<view class='pad-20 border_line_whitesmoke'>
+		<text class='h2 lighter'>我的优惠券</text>
+	</view>
+	<view class='width100' wx:for="{{generalCouponList}}" style='padding-top:30rpx;'>
+		<image data-coupon-id="{{item.id}}" bindtap="jumpTo" data-content="{{item.couponContent}}"
+			data-url="/pages/category_search/category_search" data-title="挂件" data-type-kind-id="1001"
+			style='width:670rpx;margin-left:30rpx;' mode="widthFix" src="{{item.couponImage}}"></image>
+		<text wx:if='{{item.couponContent != "众投折扣卷"}}' class='gray'
+			style='position:absolute;margin-top:126rpx;margin-right:185rpx;right:0;font-size:24rpx'>{{item.startTime}}至{{item.endTime}}</text>
+
+		<view data-coupon-id="{{item.id}}" bindtap="jumpTo" data-content="{{item.couponContent}}"
+			data-url='{{item.couponContent == "众投折扣卷"?"./myFriends/myFriends":"/pages/category_search/category_search"}}'
+			wx:if='{{item.couponContent == "众投折扣卷"}}' class='gray'
+			style='position:absolute;left:290rpx;margin-top:-60rpx;font-size:23rpx;'>
+			<image style='padding-top:8rpx;' class='icon_sm' src='/images/coupon_share.png'></image>
+			转赠好友
+		</view>
+	</view>
+	<view wx:if="{{generalCouponList.length == 0}}" class='column block_center' style='padding-top:80rpx'>
+		<image src='/images/my_coupon_empty.png' mode='widthFix' style='width:250rpx;'></image>
+		<text class='h3 gray pad-20'>您还没有可使用的优惠券哦～</text>
+	</view>
+
+</view>

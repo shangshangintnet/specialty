@@ -1,0 +1,293 @@
+.goods_title_red {
+  color: #bd1818;
+  padding-left: 12rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 22rpx;
+}
+
+.tanbao {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: auto;
+  margin-right: 40rpx;
+}
+
+.swiper-item {
+  display: block;
+  height: 150px;
+}
+
+.index_title_1 {
+  color: #333333;
+  font-size: 40rpx;
+  line-height: 90rpx;
+  text-align: center;
+  font-weight: bold;
+  padding: 0 10rpx;
+}
+
+.index_title_2 {
+  color: #333333;
+  font-size: 36rpx;
+  line-height: 90rpx;
+  text-align: center;
+  padding: 0 10rpx;
+}
+
+.page_bg_limit {
+  background-color: #FF494A;
+}
+
+.page_bd_limit {
+  border: 2rpx solid #FF494A;
+}
+
+.page_red {
+  color: #FF494A !important;
+}
+
+.limit_text {
+  font-size: 24rpx;
+}
+
+.page_red {
+  color: #FF494A !important;
+}
+
+.icon_spike {
+  background-image: url(https://img.ssw88.com/static/home/spike.png);
+  background-size: 100% 100%;
+  width: 220rpx;
+  height: 268rpx;
+}
+
+.act_icon {
+  width: 220rpx;
+  height: 268rpx;
+}
+
+.time_txt {
+  width: 200rpx;
+  height: 40rpx;
+  color: #FC2257;
+  font-size: 24rpx;
+  letter-spacing: 5rpx;
+  text-align: center;
+}
+
+.store {
+  width: 730rpx;
+  height: 480rpx;
+  border-radius: 16rpx;
+  background-color: #ffffff;
+  margin: 15rpx 10rpx;
+}
+
+.storeForeign {
+  background-size: 100% 100%;
+  width: 730rpx;
+  height: 140rpx;
+}
+
+.storeForeign_image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  margin: 20rpx;
+}
+
+.store_good {
+  width: 230rpx;
+  height: 320rpx;
+  margin: 0 5rpx;
+}
+
+.store_good_img {
+  width: 230rpx;
+  height: 230rpx;
+}
+
+.store_good_txt {
+  height: 45rpx;
+  line-height: 45rpx;
+  font-size: 28rpx;
+  color: #202020;
+}
+
+.store_good_price {
+  height: 45rpx;
+  line-height: 45rpx;
+  color: #bd1818;
+  font-size: 32rpx;
+}
+
+.title {
+  justify-content: center;
+  align-items: center;
+  height: 70rpx;
+  width: 750rpx;
+  z-index: 200;
+}
+
+.condition {
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 32rpx;
+}
+
+.right_line {
+  height: 35rpx;
+  width: 1px;
+  background-color: #f0f0f0;
+}
+
+.condition_txt {
+  color: #454444;
+}
+
+.selected {
+  color: #079547;
+}
+
+.store_item {
+  width: 750rpx;
+  height: 285rpx;
+  background-color: #FFFFFF;
+  margin: 10rpx 0rpx;
+}
+
+.store_img {
+  width: 160rpx;
+  height: 285rpx;
+}
+
+.store_info {
+  width: 360rpx;
+  height: 285rpx;
+}
+
+.store_info_item {
+  display: flex;
+  margin: 10rpx 0rpx;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.good_img {
+  width: 230rpx;
+  height: 245rpx;
+  padding-top: 40rpx;
+}
+
+.arrow_price {
+  width: 22rpx;
+  height: 13rpx;
+  margin-left: 10rpx;
+}
+
+.second_menu {
+  width: 750rpx;
+  z-index: 200;
+  background-color: #F8F8F8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.second_menu_item {
+  width: 150rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  margin: 20rpx 15rpx;
+}
+
+.slide-image {
+  width: 726rpx;
+}
+
+.song {
+  font-family: "SYST";
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.guwenbg {
+  width: 680rpx;
+  height: 220rpx;
+  align-items: center;
+  background: #F8F8F8;
+  border-radius: 10rpx;
+  margin-top: 10rpx;
+}
+
+.arts{
+  background: #FFFFFF;
+  border-radius:60rpx 60rpx 0rpx 0rpx;
+}
+
+.art {
+  width: 680rpx;
+  height: 470rpx;
+  background: #FFFFFF;
+  margin-left: 35rpx;
+  border-radius: 10rpx;
+  box-shadow: 2rpx 2rpx 9rpx #c2bfbf;
+}
+
+.art-line{
+  background-color: #EFEFEF;
+  width: 722rpx;
+  height: 14rpx;
+  margin-top: 30rpx;
+  margin-left: 14rpx;
+}
+
+.art-line1{
+  background-color: #C39E29;
+  width: 169rpx;
+  height: 3rpx;
+  margin-top: 58rpx;
+}
+
+.art1 {
+  width: 750rpx;
+  height: 470rpx;
+  background: #FFFFFF;
+  margin-top: 30rpx;
+}
+
+.zishen {
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: linear-gradient(66deg, #079547, #43BD82);
+  color: #ffffff;
+  padding:0 5rpx;
+}
+
+.chat {
+  background: linear-gradient(66deg, #079547, #43BD82);
+  width: 116rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #ffffff;
+  border-radius: 20rpx;
+}
+
+.font {
+  font-size: 36rpx;
+  font-weight: bold;
+  font-family: "SYST1";
+}

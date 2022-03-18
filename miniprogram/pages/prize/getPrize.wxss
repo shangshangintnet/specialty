@@ -1,0 +1,26 @@
+
+@import "../../style/shake.wxss";
+/* miniprogram/pages/prize/getPrize.wxss */
+page{
+  background-color: #e74435
+}
+
+.weui-footer_fixed-bottom view {
+  margin-top: 10rpx;
+  background-color: white;
+  border: none;
+  border-color: white;
+  border-radius: 0;
+  width: 250rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

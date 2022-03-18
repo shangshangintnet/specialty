@@ -1,0 +1,119 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar url="../orderList/orderList" id="navbar" show_bol='{{false}}' bg_type='bg_black_op'
+  style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='linear_order_green column' style="width:750rpx;padding-top:{{bar_Height+10}}px;padding-bottom:100rpx;">
+  <view class='row block_center'>
+    <image class='icon_big' style='margin-right:10rpx;' src='{{orderIcon[order.status]}}'></image>
+    <text class='white h2'>{{orderTitle[order.status]}}</text>
+  </view>
+  <view wx:if="{{order.status == 0}}" style='margin-top:20rpx' class='block_center white column'>
+    <view class='h4' style="text-align: end;">
+      <text>需付款：</text>
+      <text class='h3'>¥ {{order.price}}</text>
+    </view>
+    <view class='h4' style="text-align: end;">
+      <text style="margin-right:5rpx;">剩余</text>
+      <text class='h3'>{{min}}分{{second}}秒 </text>
+      <text style="margin-left:5rpx;">自动关闭</text>
+    </view>
+  </view>
+</view>
+<view class='order_desc column radius5 bg_white' style='margin-top:-80rpx;'>
+  <view wx:if="{{order.logisticsNum}}" catchtap="viewLogistics" class='row border_line_whitesmoke'
+    style="align-items:center;padding:50rpx 30rpx;">
+    <image class='icon_order' src='/images/ic_orderlog.png'> </image>
+    <block wx:if="{{sfData.logisticsList.length >0}}">
+      <view bindtap='viewLogistics' class='column order_waiting_txt'>
+        <view class='h4 wrap_txt'>{{sfData.logisticsList[0].context}}</view>
+        <text class='gray h4 wrap_txt'>{{sfData.logisticsList[0].time}}</text>
+      </view>
+    </block>
+    <image style="margin-left:auto;width:13rpx;height:22rpx;" src='/images/arrow_right.png'> </image>
+  </view>
+  <view class="row" style="align-items:center;padding:50rpx 30rpx;">
+    <image src='/images/ic_local.png' class='icon_order_address'> </image>
+    <view class='column' style="margin-left:20rpx;width:600rpx;">
+      <view class="row wrap_txt" style="align-items:center;">
+        <text class='gray h4'>收货人：{{order.address[0]}}</text>
+        <text class='gray h4' style="margin-left:10rpx;">{{order.address[1]}}</text>
+      </view>
+      <text class='h4 gray wrap_txt'>{{order.address[2] + order.address[3]}}</text>
+    </view>
+  </view>
+</view>
+<view class='column shop_section bg_white'>
+  <view class="row border_line_whitesmoke">
+    <image style="width:250rpx;height:250rpx;" src="{{order.imageUrl[0]}}"></image>
+    <view class="column" style="height:250rpx;margin-left:10rpx;margin-right:10rpx;width:450rpx;">
+      <view class="bold h3">{{order.goodsName}}</view>
+      <view class="h5">{{order.goodsNo}}</view>
+      <view class="row" style="margin-top:auto">
+        <view class='app_red h4'>¥ {{phone.toPrice(order.price + order.useBalance)}}</view>
+        <view class='h4' style='margin-left:auto'> x 1 </view>
+      </view>
+    </view>
+  </view>
+  <view class='row'>
+    <view class='column order_bar'>
+      <text class='h4'>商品金额</text>
+      <text class='h4'>运费</text>
+      <text class='h4'>余额支付</text>
+      <text class='h4'>实际支付</text>
+    </view>
+    <view class='column order_price'>
+      <text class='h4'>¥ {{phone.toPrice(order.price + order.useBalance)}}</text>
+      <text class='h4'>¥ 0</text>
+      <text class='h4'>- ¥ {{order.useBalance}}</text>
+      <text class='h4 app_red'> ¥ {{order.price}}</text>
+    </view>
+  </view>
+</view>
+<view class='express_info column radius5 bg_white' style='padding-bottom:40rpx;'>
+  <view class='border_line_whitesmoke' style='padding:20rpx 0;'>订单信息</view>
+  <view class='span'>
+    <text>订单编号: {{order.orderNo}}</text>
+    <text class="right app_green" bindtap='copyText' data-share-code="{{order.orderNo}}">复制</text>
+  </view>
+  <text class='span'>下单时间:{{order.createTime}}</text>
+  <text class='span'>配送方式:顺丰保价包邮 签收前请验货</text>
+  <text class='span border_line_whitesmoke'>买家留言:{{order.content?order.content:''}}</text>
+  <view class='row' style="align-items:center;margin-top:20rpx;">
+    <view bindtap="gokefu" class="row" style="width: 750rpx; align-items: center;justify-content: center;">
+      <image style="width: 50rpx;height: 50rpx;" src="/images/ic_kefu.png"></image>
+      <text class="h2 gray_4" style="margin-left: 20rpx;">咨询客服</text>
+    </view>
+  </view>
+</view>
+<view class="width100" style="height:120rpx;"></view>
+<view class='row cart_result'>
+  <view class=" row" style="margin-left:auto;align-items:center;margin-right:20rpx;">
+    <block wx:if="{{user.highType == 2 && order.status == 1}}">
+      <view catchtap="bindLogistics" class="button">{{order.logisticsNum?'修改物流':'绑定物流'}}</view>
+    </block>
+    <block wx:else>
+      <view wx:if="{{order.logisticsNum}}" catchtap="viewLogistics" class="button">查看物流</view>
+      <view wx:if="{{order.status == 0}}" catchtap="cancelOrder" class="button">取消订单</view>
+      <view wx:if="{{order.status == 0}}" catchtap="pay" class="button">立即支付</view>
+    </block>
+  </view>
+</view>
+<van-popup show="{{logvisible}}" z-index="800" bind:close="closeLog">
+  <view class="bg_white column" style="height: 400rpx;width: 650rpx;align-items:center;">
+    <view class="gray_2 h2" style="height:100rpx;line-height:100rpx;">绑定物流</view>
+    <view class="row" style="height:100rpx;align-items:center;">
+      <text class="gray_4 h2">公司名称</text>
+      <picker class="picker" mode="selector" range-key="name" range="{{logdata}}" bindchange="changeLogistics">
+        <block wx:if="{{curLogistics.name == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">请选择物流公司</text>
+        </block>
+        <block wx:else="{{curLogistics.name != null}}">{{curLogistics.name}}</block>
+      </picker>
+    </view>
+    <view class="row" style="height:100rpx;align-items:center;">
+      <text class="gray_4 h2">快递单号</text>
+      <input bindconfirm="changeNum" bindblur="changeNum" class="input_txt" placeholder="请输入快递单号"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view bindtap="bindLogdata" class="confirmLogdata">确定</view>
+  </view>
+</van-popup>

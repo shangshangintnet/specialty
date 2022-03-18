@@ -1,0 +1,149 @@
+/* miniprogram/pages/order/order_detail/order_detail.wxss */
+
+.order_desc
+{
+  margin: 10rpx;
+}
+
+.icon_order
+{
+  width:60rpx;
+  height:60rpx;
+}
+
+.icon_order_address
+{
+  width:60rpx;
+  height:60rpx;
+}
+
+.order_waiting_txt
+{
+  width:500rpx;
+  margin-top:40rpx;
+  margin-left:10rpx;
+}
+
+.shop_section
+{
+  margin: 10rpx;
+  padding:16rpx;
+  padding-top:20rpx;
+  border-radius: 15rpx;
+  box-shadow: 0rpx 10rpx 5rpx #dddddd;
+}
+
+.checkbox
+{
+  margin-left: 10rpx;
+  margin-top:8rpx;
+  margin-right: 20rpx;
+}
+
+.shop_icon
+{
+  margin-top:8rpx;
+  margin-right: 20rpx;
+}
+
+.goods_pic
+{
+  width: 156rpx;
+  height: 156rpx;
+  margin-right: 20rpx;
+  margin-left:20rpx;
+}
+
+.goods_txt
+{
+  width: 500rpx;
+}
+
+.goods_section
+{
+  padding-top:30rpx;
+  padding-bottom:30rpx;
+  border-top:1px solid whitesmoke;
+}
+
+.calc
+{
+  padding:8rpx 20rpx;
+  text-align: center;
+}
+
+.cart_result
+{
+  position: fixed;
+  bottom: 0rpx;
+  height: 102rpx;
+  width: 750rpx;
+  background: white;
+  vertical-align: center;
+  overflow: hidden;
+}
+
+.confirm_section
+{
+  width: 168rpx;
+  height: 148rpx;
+  padding:0;
+  margin-top:-8rpx;
+  margin-right:-8rpx;
+
+}
+
+.order_bar
+{
+  padding:16rpx 0;
+}
+
+
+.order_bar text
+{
+  width: 350rpx;
+  padding:16rpx 12rpx;
+  float:left;
+}
+
+.order_price
+{
+  padding-top:16rpx;
+  text-align: right;
+  justify-content: right;
+  
+}
+
+.order_price text
+{
+  width: 470rpx;
+  padding:16rpx 12rpx;
+  float:right;
+  text-align: right;
+}
+
+.express_info
+{
+  margin: 10rpx;
+  padding: 20rpx;
+}
+
+.span
+{
+  font-size: 28rpx;
+  padding:14rpx 0;
+  color:gray;
+}
+
+.express_button
+{
+  width: 750rpx;
+  text-align: center;
+  padding: 16rpx 0rpx;
+}
+
+.cancel
+{
+  border-radius: 20rpx;
+  border:1px solid gainsboro;
+}

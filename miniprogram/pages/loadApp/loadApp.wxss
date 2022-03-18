@@ -1,0 +1,19 @@
+/* miniprogram/pages/loadApp/loadApp.wxss */
+
+page {
+  background: #fff;
+}
+
+.android_img {
+  width: 125rpx;
+  height: 125rpx;
+  margin-top: 1070rpx;
+  margin-left: 200rpx;
+}
+
+.ios_img {
+  width: 125rpx;
+  height: 125rpx;
+  margin-top: 1070rpx;
+  margin-left: 440rpx;
+}

@@ -1,0 +1,39 @@
+.app_green {
+  color: #079547;
+}
+
+.center {
+  text-align: center;
+}
+
+.app_title {
+  color: #404040;
+}
+
+.app_desc {
+  color: #808080;
+}
+
+.pad-10 {
+  padding: 10px;
+}
+
+.bg_white {
+  background: white;
+}
+
+.round{
+  border-radius: 100rpx;
+}
+
+.app_white {
+  background: #f8f8f8;
+}
+
+.f14 {
+  font-size: 28rpx;
+}
+
+.f12 {
+  font-size: 24rpx;
+}

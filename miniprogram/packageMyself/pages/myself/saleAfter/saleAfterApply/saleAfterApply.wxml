@@ -1,0 +1,75 @@
+<!--miniprogram/pages/myself/saleAfter/saleAfterApply/saleAfterApply.wxml-->
+<navbar title='申请售后' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view wx:if="{{(images.length+ videos.length) != readyImage}}" style='padding-top:{{bar_Height  + 45}}px;position:fixed;top:0;background:moccasin' class='width100 block_center row'>
+	<text class='pad-10'>上传资料中{{images.length + videos.length}}/{{readyImage}}</text>
+</view>
+<view style='padding-top:{{bar_Height  + 45}}px; margin-bottom:100rpx'>
+	<view class='column width100 block_center pad-20-ud'>
+		<text>本次售后服务由<text class='app_green'>上商</text>为您提供</text>
+	</view>
+	<view class='shop_section column bg_white'>
+		<view style='margin-bottom:20rpx'>
+			<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+			<text class='left'>{{userWithdrawal.goodsShoreName}}</text>
+		</view>
+		<view class='goods_section'>
+			<view class='row'>
+				<image src="{{userWithdrawal.listImageUrl}}" class='goods_pic'></image>
+				<view class='column goods_txt'>
+					<text class='goods_name'>{{userWithdrawal.goodsName}}</text>
+					<text class='goods_id'>{{userWithdrawal.goodsNo}}</text>
+					<view class='price_section'>
+						<view class='left' style='margin-top:30rpx'>￥{{userWithdrawal.currentPrice}}</view>
+						<view class='right' style='margin-top:30rpx'>
+							<text class='calc_num calc'>x{{userWithdrawal.cartCount}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='row border_line_whitesmoke bg_white pad-10 mar-10 radius5 shadow'>
+		<view class='column order_bar' style='width:200rpx'>
+			<text class='h4'>售后服务</text>
+			<text class='h4'>申请原因</text>
+		</view>
+		<view class='column order_price' style='width:550rpx'>
+			<picker disabled='{{userWithdrawal.orderStatus == 1}}' bindchange="bindServeChange" value="{{returnType}}" range="{{serveRange}}" class='h4'>
+				<text>{{serveRange[returnType]}} ></text>
+			</picker>
+			<picker wx:if="{{returnType == 1}}" bindchange="bindReasonChange" value="{{reasonType}}" range="{{refundAll}}" range-key="reasonName" class='h4'>
+				<text>{{refundAll[reasonType].reasonName}} ></text>
+			</picker>
+			<picker wx:if="{{returnType == 0}}" bindchange="bindReasonChange" value="{{reasonType}}" range="{{returnRefundAll}}" range-key="reasonName" class='h4'>
+				<text>{{returnRefundAll[reasonType].reasonName}} ></text>
+			</picker>
+		</view>
+	</view>
+	<view class='column bg_white mar-10 radius5 shadow'>
+		<view class='pad-20 border_line_whitesmoke'>
+			<text class='h4 left'>意见反馈</text>
+			<text class='right gray'>{{inputCount}}/200</text>
+		</view>
+		<view class='pad-20'>
+			<textarea bindinput="bindTextArea" maxlength="200" placeholder='请描述您的问题' class='width100 h4' style='height:200rpx;' auto-focus="true" />
+			</view>
+    <view class='pad-20'>
+      <image mode='scaleToFill' class='float pad-10' style='width:100rpx;height:100rpx;' wx:for="{{images}}" src='{{item}}'>    </image>
+      <video id="myVideo" bindplay="playFullVideo" mode='scaleToFill' class='float pad-10' style='width:100rpx;height:100rpx;' wx:for="{{videos}}" src='{{item}}'>    </video>
+      <image wx-if="{{images.length < 3}}" bindtap='commitPics' src='/images/ic_add_img.png' class='pad-10 float' style='width:100rpx;' mode='widthFix'></image>
+      <image wx-if="{{videos.length < 1}}" bindtap='commitVideos' src='/images/ic_play.png' class='pad-10 float' style='width:100rpx;' mode='widthFix'></image>
+    </view>
+  </view>
+  <view>
+  <view class='column bg_white mar-10 radius5 shadow pad-20'>
+    <text class='gray pad-10 h4'>退款方式:原支付返回</text>
+    <text class='gray pad-10 h4'>快递至商家</text>
+    <text class='gray pad-10 h4'>商家地址: {{store.address}} {{store.storePhone}}</text>
+  </view>
+  <view class='column bg_white mar-10 radius5 shadow pad-20'>
+    <text class='gray pad-10 h4'>联系人: {{realName}}</text>
+    <text class='gray pad-10 h4'>联系电话: {{phoneNum}}</text>
+  </view>
+  <view><button bindtap='onSubmitService' class='btn_success mar-20'>确认并提交</button></view>
+  </view>
+</view>

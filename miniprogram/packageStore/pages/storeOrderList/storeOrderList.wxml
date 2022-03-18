@@ -1,0 +1,59 @@
+<navbar title="订单信息" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+90}}rpx;">
+	<view class="'condition item4 '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">全部</view>
+	<view class="'condition item4 '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">待发货</view>
+	<view class="'condition item4 '{{active==2?'app_green':'gray'}}" bindtap="tagTo" data-index="2">待收货</view>
+	<view class="'condition item4 '{{active==3?'app_green':'gray'}}" bindtap="tagTo" data-index="3">已完成</view>
+	<view class="'condition item4 '{{active==4?'app_green':'gray'}}" bindtap="tagTo" data-index="4">售后</view>
+</view>
+<view style="margin-top:{{bar_Height+190}}rpx">
+	<view bindtap="viewOrder" data-index="{{index}}" class="orderSection bg_white column" wx:for="{{orders}}">
+		<view class="row order_price">
+			<view class="h4 gray_4">订单编号：{{item.orderNo}}</view>
+			<view class="h4 app_red" style="margin-left:auto;">¥ {{item.totalDiscountPrice}}</view>
+		</view>
+		<view hidden="{{active == 4}}" class="column" style="height:270rpx;padding:10rpx;">
+			<view class="row">
+				<image class="order_img" wx:for="{{item.goodsImages}}" wx:for-item="img" src="{{img}}"></image>
+			</view>
+			<view class="order_bottom" wx:if="{{item.afterSalesStatus == 0 || item.afterSalesStatus == 2}}">
+				<view catchtap="viewLogistics" data-index="{{index}}" hidden="{{item.logisticsNum == null}}" class="order_btn h4 gray_4">查看物流</view>
+				<view catchtap="bindLogistics" data-index="{{index}}" hidden="{{item.status != 1}}" class="order_btn h4 gray_4">{{item.logisticsNum == null?'绑定物流':'修改物流'}}</view>
+			</view>
+			<view class="order_bottom" wx:else>
+				已申请售后
+			</view>
+		</view>
+		<view hidden="{{active != 4}}" class="column" style="height:270rpx;padding:10rpx;">
+			<view class="row">
+				<image class="order_img" src="{{item.listimageurl}}"></image>
+			</view>
+			<view class="order_bottom">
+				<view catchtap="refuse" data-index="{{index}}" hidden="{{item.customerStatus != 0}}" class="order_btn h4 gray_4">拒绝</view>
+				<view catchtap="agree" data-index="{{index}}" hidden="{{item.customerStatus != 0}}" class="order_btn h4 gray_4">同意</view>
+				<view catchtap="receive" data-index="{{index}}" hidden="{{item.customerStatus != 2}}" class="order_btn h4 gray_4">确认收货</view>
+				<view hidden="{{item.customerStatus != 1}}" class="h4 gray">已完成售后</view>
+				<view hidden="{{item.customerStatus != 4}}" class="h4 gray">已拒绝售后</view>
+			</view>
+		</view>
+	</view>
+</view>
+<van-popup show="{{logvisible}}" z-index="800" bind:close="closeLog">
+	<view class="bg_white column" style="height: 400rpx;width: 650rpx;align-items:center;">
+		<view class="gray_2 h2" style="height:100rpx;line-height:100rpx;">绑定物流</view>
+		<view class="row" style="height:100rpx;align-items:center;">
+			<text class="gray_4 h2" >公司名称</text>
+			<picker class="picker" mode="selector" range-key="name" range="{{logdata}}" bindchange="changeLogistics">
+				<block wx:if="{{curLogistics.name == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择物流公司</text>
+				</block>
+				<block wx:else="{{curLogistics.name != null}}">{{curLogistics.name}}</block>
+			</picker>
+		</view>
+		<view class="row" style="height:100rpx;align-items:center;">
+			<text class="gray_4 h2">快递单号</text>
+			<input bindconfirm="changeNum" bindblur="changeNum" class="input_txt" placeholder="请输入快递单号" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view bindtap="bindLogdata" class="confirmLogdata">确定</view>
+	</view>
+</van-popup>

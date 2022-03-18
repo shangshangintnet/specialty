@@ -1,0 +1,44 @@
+<navbar id="navbar" title='精品翡翠' show_bol='{{false}}' bg_type='bg_black_op'></navbar>
+<view class='column' style="">
+  <image src="{{classification.classBigimageUrl}}" class='width100' mode='widthFix'></image>
+  <view class='condition_item row bg_white'>
+    <view bindtap='tagTo' data-tag-Index="0"
+      class='condition_sort {{(goodsDate == "goodsDate")&&tag_index != 3?"selected":""}}'>
+      最新
+    </view>
+    <view bindtap='tagTo' data-tag-Index="1"
+      class='row condition_sort {{goodsDate == "" && tag_index != 3?"selected":""}}'>
+      <text>价格</text>
+      <image src='{{asc?arrow_up:arrow_down}}' class='arrow_icon' style='margin-left:10rpx'>
+      </image>
+    </view>
+  </view>
+</view>
+<view class="column width100" style="margin-bottom:10rpx;align-items: center;">
+  <view class="row goodsec" wx:for="{{goodList}}" wx:key="index" bindtap="jumpToGoods" data-id="{{item.id}}">
+    <image style="width:230rpx;height: 230rpx; margin:0rpx 10rpx;" src="{{item.listImageUrl}}" />
+    <view class="column" style="height: 230rpx;">
+      <view class="row" style="align-items: center;">
+        <text class="ellipsis_txt h2" style="width: 400rpx;">{{item.name}}</text>
+        <view class="exchange autoleft">兑换</view>
+      </view>
+      <view class="gray_4 h4" style="margin-top:5rpx;">
+        出厂价: <text class="app_red">¥{{item.price}}</text>
+      </view>
+      <view class="row gray_4 h4" style="margin-top:5rpx;">
+        <text>翡翠币</text>
+        <view class="autoleft row gray h4">可抵<text class="app_red">{{emd}}</text>元</view>
+      </view>
+      <view class="row gray_4 h4" style="margin-top:5rpx;">
+        <text>余额</text>
+        <view class="autoleft row gray h4">可抵<text class="app_red">{{balance}}</text>元</view>
+      </view>
+      <view class="row" style="margin-top: auto;align-items: center;justify-content: flex-end;">
+        <view class="program">
+          <view class="program_rate" style="width:{{item.rate}}rpx"></view>
+        </view>
+        <view class="autoleft row gray h4">还需<text class="app_red">{{item.price_2}}</text>元</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,90 @@
+<!--白底黑字标题-->
+<view class="status-bar" style="height:{{bar_Height+50}}px;">
+	<view class="bg_white" style="padding-top:{{bar_Height +50}}px;">
+	</view>
+	<view class="tabar" style="position:absolute;top:{{bar_Height}}px;">
+		<view class="left goBack" bindtap="goBack">
+			<image src="/images/back.png"> </image>
+		</view>
+		<view class="left tabar_text black" style="font-size:36rpx;">我的卡包</view>
+	</view>
+</view>
+<view class="bg_white" style="position:fixed;z-index:200; width:750rpx;height:90rpx;top:{{bar_Height+50}}px;">
+	<view class="row block_center" style="width: 750rpx;height: 90rpx;">
+		<text bindtap="toggle" data-index="0" style="width:375rpx;" class="'h2 ' + {{tagSelect == 0?'app_green':'title_text'}}">电子卡{{ecardCount>0?ecardCount:''}}</text>
+		<view class="line"></view>
+		<text bindtap="toggle" data-index="1" style="width:375rpx;" class="'h2 ' + {{tagSelect == 1?'app_green':'title_text'}}">实体卡</text>
+	</view>
+</view>
+<block wx:if="{{tagSelect ==0}}">
+	<view style="width:750rpx;margin-top:{{bar_Height+100}}px;">
+		<view wx:if="{{ecardCount > 0}}" class="bg_white column" style="padding: 40rpx 69rpx 200rpx 69rpx;">
+			<view wx:for="{{list}}">
+				<view class="ecard_item column" style="background-image:url({{item.imageUrl}});">
+					<view style="height: 305rpx;width: 612rpx;">
+						<view class="ecard_num">
+							共{{item.count}}张
+						</view>
+					</view>
+					<view class="ecard_btn row">
+						<view bindtap="toChange" data-item="{{item}}" class="ecard_btn_banlance">兑换余额</view>
+						<view class="line_lg"></view>
+						<view bindtap="toFriends" data-item="{{item}}" class="ecard_btn_banlance">转赠好友</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view wx:else style="margin-top:200px;display: flex;justify-content: center;align-items: center;flex-direction: column;">
+			<image src="/images/empty_card.png" style="width: 295rpx;height: 244rpx;" />
+			<view style="margin-top: 30rpx; color: #494949;font-size: 28rpx;">您还没有任何电子卡～</view>
+		</view>
+		<view bindtap="toBuyCards" class="card_button">立即购买</view>
+	</view>
+</block>
+<block wx:else>
+	<view class="column" style="width:750rpx;margin-top:{{bar_Height+100}}px;">
+		<view class="bg_white row" style="width: 730rpx;height: 90rpx;margin-left: 10rpx;">
+			<view class="gray_4 h4 bold" style="margin-left: 30rpx;line-height: 90rpx;text-align: center;">卡号</view>
+			<input type="number" focus="true" placeholder="请输入您的卡号" placeholder-style="color:#BBBBBB;font-size: 28rpx;" class="input_txt"></input>
+		</view>
+		<view class="bg_white row" style="width: 730rpx;height: 90rpx;margin-left: 10rpx;margin-top: 14rpx;line-height: 90rpx;text-align: center;">
+			<view class="gray_4 h4 bold" style="margin-left: 30rpx;">密码</view>
+			<input value="{{number}}" bindblur="changeNumber" placeholder="请输入您的密码" placeholder-style="color:#BBBBBB;font-size: 28rpx;" class="input_txt"></input>
+		</view>
+	</view>
+	<view bindtap="exchangeCard" class="card_button">充值到余额</view>
+</block>
+<!-- 电子卡明细 -->
+<image catchtap="click_detail" src="../images/carddetail.png" style="z-index:210;position:fixed;top:240rpx;right:0rpx;width:120rpx;height:43rpx;"></image>
+<!-- 转增好友 -->
+<van-popup position="bottom" closeable show="{{show}}" z-index="{{zIndex}}" bind:close="close_give">
+	<view hidden="{{shareWx}}" class="bg_white column" style="width: 650rpx;height: 500rpx;padding: 0 50rpx;">
+		<view class="row" style="justify-content:flex-start;height: 100rpx;align-items: center;">
+			<view class="h2 gray_4" style="line-height: 100rpx;">共有<text class="app_green">{{giveItem.count}}</text>张可兑换</view>
+		</view>
+		<view class="row give_card_bg">
+			<view class="h4 gray_4" style="line-height: 90rpx;margin-left: 30rpx;">选择数量</view>
+			<view class="row" style="margin-left: auto;height:90rpx;width: 200rpx;align-items:center">
+				<text bindtap='bindChange_sub' class='calc_minus gray'>-</text>
+				<text class='calc_num gray_2'>{{giveCount}}</text>
+				<text bindtap='bindChange_add' class='calc_add gray'>+</text>
+			</view>
+		</view>
+		<view class="h2 gray_4" style="line-height: 100rpx;height: 100rpx;margin-top: 20rpx;">选择转赠好友</view>
+		<view class="row">
+			<button bindtap="goWxShare" type="primary" plain="true" class="give_card_btn" style="margin-left: 20rpx;">
+				<image src="/images/wx_icon.png" style="width: 53rpx;height: 44rpx;"></image>
+				<view class="h4 gray_4" style="margin-left: 20rpx;">微信好友</view>
+			</button>
+			<button bindtap="goFriend" type="primary" plain="true" class="give_card_btn" style="margin-left: 20rpx;">
+				<image src="/images/logo@2x.png" style="width: 53rpx;height: 52rpx;"></image>
+				<view class="h4 gray_4" style="margin-left: 20rpx;">上商好友</view>
+			</button>
+		</view>
+	</view>
+	<view hidden="{{!shareWx}}" class="bg_white column block_center" style="width: 650rpx;height: 500rpx;padding: 0 50rpx;">
+		<image style="width:459rpx;" mode="widthFix" src="{{giveItem.imageUrl}}"></image>
+		<button open-type="share" style="width:500rpx;height:100rpx;line-height: 100rpx;text-align: center;margin-top:20px;" class="bg_red white width100">立即分享</button>
+	</view>
+</van-popup>
+<login id="login"></login>

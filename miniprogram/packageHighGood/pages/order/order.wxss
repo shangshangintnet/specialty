@@ -1,0 +1,63 @@
+/* miniprogram/pages/order/order_detail/order_detail.wxss */
+page {
+  background: #f8f8f8;
+}
+
+.order_desc {
+  margin: 10rpx;
+}
+
+.icon_order_address {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.express_info {
+  margin: 10rpx;
+  padding: 20rpx;
+}
+
+.goods_section {
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.goods_pic {
+  width: 156rpx;
+  height: 156rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+
+.goods_txt {
+  width: 500rpx;
+  height: 156rpx;
+}
+
+.order_bar {
+  height: 70rpx;
+  text-align: center;
+  margin: 0 12rpx;
+  align-items: center;
+}
+
+.order_price {
+  margin-left: auto;
+  text-align: right;
+}
+
+.cart_result {
+  position: fixed;
+  bottom: 0rpx;
+  height: 112rpx;
+  width: 750rpx;
+  background: white;
+}
+
+.submmit {
+  line-height: 112rpx;
+  width: 240rpx;
+  text-align: center;
+  line-height: 112rpx;
+  margin-left: auto;
+}

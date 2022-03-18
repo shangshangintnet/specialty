@@ -1,0 +1,34 @@
+<navbar title="高货甄选" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <view bindtap="tagTo" data-index="1" class="'condition item3 '{{active==1?'app_green':'gray'}}">天然玉石</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="0" class="'condition item3 '{{active==0?'app_green':'gray'}}">天然宝石</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="2" class="'condition item3 '{{active==2?'app_green':'gray'}}">生物宝石</view>
+</view>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+ 95}}px;">
+  <view bindtap="changeDisplay" data-index="3" class="'condition item4 '{{display==3?'app_green':'gray'}}">全部</view>
+  <view class="right_line"></view>
+  <view bindtap="changeDisplay" data-index="0" class="'condition item4 '{{display==0?'app_green':'gray'}}">上架</view>
+  <view class="right_line"></view>
+  <view bindtap="changeDisplay" data-index="1" class="'condition item4 '{{display==1?'app_green':'gray'}}">已售</view>
+  <view class="right_line"></view>
+  <view bindtap="changeDisplay" data-index="2" class="'condition item4 '{{display==2?'app_green':'gray'}}">下架</view>
+</view>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+145}}px;">
+  <view wx:if="{{display == 3 || display == item.status}}" bindtap="openGood" data-index="{{index}}" class="row section"
+    wx:for="{{goods}}">
+    <image style="width:250rpx;height:250rpx;" src="{{item.imageUrl[0]}}"></image>
+    <view class="column" style="height:250rpx;margin-left:10rpx;width:350rpx;">
+      <view class="bold h3">{{item.goodsName}}</view>
+      <view class="h5">{{item.goodsNo}}</view>
+      <view class="gray h5 ellipsis_txt" style="margin-top:auto">{{item.content}}</view>
+    </view>
+    <view class="column" style="margin-left:auto;height:250rpx;align-items:center;">
+      <image catchtap="editGood" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+        src="../../images/ic_edit.png"></image>
+      <view class="status">{{status[item.status]}}</view>
+    </view>
+  </view>
+</view>
+<image catchtap="addGood" class="addAdviser" src="../../images/ic_add.png"></image>

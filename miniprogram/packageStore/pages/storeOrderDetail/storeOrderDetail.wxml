@@ -1,0 +1,102 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar title="订单详情" show_bol="{{false}}" bg_type="bg_white"></navbar>
+<view class='linear_order_green' style="width:750rpx;height:120rpx;padding-top:{{bar_Height+10}}px;padding-bottom:30rpx;">
+	<view class='row block_center' style="height:100rpx;">
+		<block wx:if="{{order.status == 1}}">
+			<image class='icon_big' style='margin-right:20rpx;' src='/images/order_wait.png'></image>
+			<text class='white h2'>{{order.logisticsNum == null?"待发货":"待收货"}}</text>
+		</block>
+		<block wx:elif="{{order.status == 7}}">
+			<text class='white h2'>已申请售后</text>
+		</block>
+		<block wx:else>
+			<image class='icon_big' style='margin-right:20rpx;' src='/images/order_finish.png'></image>
+			<text class='white h2'>已完成</text>
+		</block>
+	</view>
+</view>
+<view class='order_desc column radius5 bg_white' style='margin-top:-50rpx;'>
+	<view wx:if="{{order.orderDetails.orderStatus != 0 && order.orderDetails.orderStatus != 3}}" class='border_line_whitesmoke'>
+		<image class='icon_order left' style='margin:60rpx 20rpx;height:50rpx;' src='/images/ic_orderlog.png'>
+		</image>
+		<view bindtap='jumpTo' data-url="/pages/order/order_detail/express_detail/express_detail" data-order-id="{{orderId}}" class='column left order_waiting_txt' style='margin-top:20rpx;'>
+			<text class='h4'>{{phone.limit(order.logisticsContent,30)}}</text>
+			<text class='gray h4'>{{order.logisticsTime}}</text>
+		</view>
+		<image style='width:20rpx;margin-top:70rpx;margin-right:30rpx;' src='/images/arrow_right.png' class='icon right'></image>
+	</view>
+	<view>
+		<image style='margin:60rpx 20rpx;' src='/images/ic_local.png' class='icon_order_address left'>
+		</image>
+		<view style='margin-top:20rpx;margin-right:40rpx;' class='column'>
+			<view class="row gray h4">
+				<text class="app_red">{{order.identify == 1?'鉴真地址：':''}}</text>
+				<text>{{order.identify == 0?'收货人：':''}}{{order.realName}}</text>
+				<text style="margin-left:auto;">{{order.phoneNum}}</text>
+			</view>
+			<text class='h4 gray'>{{order.addressDetails}}</text>
+		</view>
+	</view>
+</view>
+<view class='column shop_section bg_white'>
+	<view wx:for="{{order.goodsList}}" wx:for-index="idx" wx:for-item="goods" class='row goods_section border_line_whitesmoke'>
+		<image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+		<view class='column goods_txt '>
+			<view class="row">
+				<text class='goods_name'>{{goods.name}}</text>
+				<view style="margin-left:auto;">
+					<text wx:if="{{goods.afterSalesStatus == 0 }}" bindtap='jumpTo' data-url="/packageMyself/pages/myself/saleAfter/saleAfterApply/saleAfterApply" data-order-id="{{orderId}}"
+            data-goods-id="{{goods.goodsId}}" class='right label_default gray' style='margin-right:20rpx;width:100rpx;'>申请售后</text>
+					<text wx:if="{{goods.afterSalesStatus == 1 || goods.afterSalesStatus == 3}}" bindtap='jumpTo' data-url="/packageMyself/pages/myself/saleAfter/saleAfterDetail/saleAfterDetail" data-customer-id="{{goods.customerId}}" class='right label_default gray' style='margin-right:20rpx;width:150rpx;'>查看售后状态</text>
+				</view>
+			</view>
+			<view style="margin-top:auto">
+				<view class='left app_red' style='margin-top:30rpx'>￥{{goods.currentPrice}}</view>
+				<view class='right' style='margin-top:30rpx'>
+					<text class='calc_num calc'>x{{goods.cartCount}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='row'>
+		<view class='column order_bar'>
+			<text class='h4'>订单编号</text>
+			<text class='h4'>物流单号</text>
+			<text class='h4'>订单金额</text>
+			<text class='h4'>订单佣金</text>
+			<text class='h4'>鉴真服务</text>
+			<text class='h4'>订单回款</text>
+		</view>
+		<view class='column order_price'>
+			<text class='h4'>{{order.orderNo}}</text>
+			<text class='h4'>{{order.logisticsNum}}</text>
+			<text class='app_red h4'>¥ {{order.totalDiscountPrice}}</text>
+			<text class='app_red h4'>¥ {{order.commission}}</text>
+			<text class='app_red h4'>¥ {{order.identifyPrice}}</text>
+			<text class='app_red h4'>¥ {{order.storeProfit}}</text>
+		</view>
+	</view>
+</view>
+<view class='cart_result'>
+	<view catchtap="viewLogistics" hidden="{{order.logisticsNum == null}}" class="order_btn h4 gray_4">查看物流</view>
+	<view catchtap="bindLogistics" hidden="{{order.status != 1}}" class="order_btn h4 gray_4">{{order.logisticsNum == null?'绑定物流':'修改物流'}}</view>
+</view>
+<van-popup show="{{logvisible}}" z-index="800" bind:close="closeLog">
+	<view class="bg_white column" style="height: 400rpx;width: 650rpx;align-items:center">
+		<view class="gray_2 h2" style="height:100rpx;line-height:100rpx;">绑定物流</view>
+		<view class="row" style="height:100rpx;align-items:center;">
+			<text class="gray_4 h2" >公司名称</text>
+			<picker class="picker" mode="selector" range-key="name" range="{{logdata}}" bindchange="changeLogistics">
+				<block wx:if="{{curLogistics.name == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择物流公司</text>
+				</block>
+				<block wx:else="{{curLogistics.name != null}}">{{curLogistics.name}}</block>
+			</picker>
+		</view>
+		<view class="row" style="height:100rpx;align-items:center;">
+			<text class="gray_4 h2">快递单号</text>
+			<input bindconfirm="changeNum" bindblur="changeNum" class="input_txt" placeholder="请输入快递单号" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view bindtap="bindLogdata" class="confirmLogdata">确定</view>
+	</view>
+</van-popup>

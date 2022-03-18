@@ -1,0 +1,29 @@
+<navbar title='{{title}}' show_bol='{{false}}' bg_type='bg_black_op' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<image src='{{theme_image_url}}' style='width:750rpx;' mode='widthFix'></image>
+<view class='row block_center' style='padding:20rpx 0 0 0'>
+  <view bindtap='tagTo' data-tag="0" class='{{tag == 0?"selected":""}} h3' style='width:100rpx;margin:0 137.5rpx 30rpx 137.5rpx;'>文章</view>
+  <view class='gray' style='margin-bottom:30rpx;'>|</view>
+  <view bindtap='tagTo' data-tag="1" class='{{tag == 1?"selected":""}} h3' style='width:100rpx;margin:0 137.5rpx 30rpx 137.5rpx;'>详情</view>
+</view>
+
+<view wx:if="{{tag == 0}}" class='column'>
+  <view wx:for="{{informations}}" bindtap="jumpTo" data-title="{{item.categoryTitle}}" data-url="/pages/info/info" data-html-url="{{item.informationUrl}}" class="page_section column">
+    <image src='{{item.imageUrl}}' class='width100' style='height:320rpx;'></image>
+    <view class='width100 pad-20 column'>
+      <view class='h2'>{{item.title}}</view>
+      <view class='h4 gray'>
+        {{item.content}}
+        <image class='icon'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{tag == 1}}" class='column pad-lr-20'>
+  <text class='pad-lr-20 h4'>
+  {{describe}}
+  </text>
+  <text class='pad-lr-20 h4'>
+  {{curriculumVitae}}
+  </text>
+</view>

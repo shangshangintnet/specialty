@@ -1,0 +1,62 @@
+/* miniprogram/pages/limitBuy/limitBuy.wxss */
+
+.ready text {
+  background-color: #f03234;
+  border-radius: 10rpx;
+  padding: 2rpx 6rpx;
+  margin: 0 4rpx;
+  color: white;
+}
+
+.wait text {
+  background-color: #5cbe51;
+  border-radius: 10rpx;
+  padding: 2rpx 6rpx;
+  margin: 0 4rpx;
+  color: white;
+}
+
+.page_green {
+  color: #5cbe51;
+}
+
+.page_red {
+  color: #f03234;
+}
+
+.page_bg_red {
+  background-color: #f03234;
+}
+
+.btn_buy {
+  background: #f03234;
+  width: 160rpx;
+  height: 60rpx;
+  padding: 12rpx 2rpx 8rpx 2rpx;
+  line-height: 1.2;
+  margin-right: 24rpx;
+  margin-top: -70rpx;
+  color: white;
+}
+
+.btn_saled {
+  background: #bbb;
+  width: 160rpx;
+  height: 60rpx;
+  padding: 12rpx 2rpx 8rpx 2rpx;
+  line-height: 1.2;
+  margin-right: 24rpx;
+  margin-top: -70rpx;
+  color: white;
+}
+
+.btn_wait {
+  background: #5cbe51;
+  width: 160rpx;
+  height: 60rpx;
+  padding: 12rpx 2rpx 8rpx 2rpx;
+  line-height: 1.2;
+  margin-right: 24rpx;
+  margin-top: -70rpx;
+  color: white;
+}

@@ -1,0 +1,54 @@
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_loadApp'></navbar>
+<view class="column">
+  <image style="width:750rpx;height:450rpx;" src="{{adviser.image}}"></image>
+  <view class="column section">
+    <view class="row">
+      <image style="width:180rpx;height:240rpx;margin-left:10rpx;border-radius:10rpx;" src="{{adviser.photoUrl}}">
+      </image>
+      <view class="column" style="height:240rpx;margin-left:30rpx;">
+        <view class="bold h3">{{adviser.name}}</view>
+        <view wx:if="{{adviser.storeName}}" class="h5">{{adviser.storeName}}</view>
+        <view class="h5">从业{{adviser.years}}年/{{adviser.educational}}毕业</view>
+        <view class="h5">{{adviser.serviceArea}}</view>
+      </view>
+      <view class="column" style="margin-left:auto;height:240rpx;align-advisers:center;">
+        <block wx:if="{{user.highType == 2}}">
+          <image catchtap="editAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+            src="../../images/ic_edit.png"></image>
+        </block>
+        <block wx:else>
+          <block wx:if="{{exclusive && adviser.type == 2}}">
+            <image catchtap="removeExAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+              src="/images/ic_adviser_y.png"></image>
+          </block>
+          <block wx:elif="{{!exclusive}}">
+            <image catchtap="addExAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+              src="/images/ic_adviser.png"></image>
+          </block>
+        </block>
+      </view>
+    </view>
+    <view class="row" style="margin-top:20rpx;align-items:center;">
+      <view class="zishen h9">高货资深顾问</view>
+      <view style="margin-left:20rpx;" class="zishen h9">{{tagLevel[adviser.tagLevel-1]}}</view>
+      <view wx:for="{{adviser.tags}}" class="zishen h9" style="margin-left:20rpx;">
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <view class="column" style="margin-top:30rpx;padding:0rpx 50rpx;">
+    <view class="song">工作职责</view>
+    <block wx:if="{{adviser.level == 1}}">
+      <view class="h4" style="margin-top:15rpx;">负责高端客户服务</view>
+    </block>
+    <block wx:else>
+      <view class="h4" style="margin-top:15rpx;">负责高货货源对接</view>
+    </block>
+    <view class="song" style="margin-top:30rpx;">服务宣言</view>
+    <view class="h4" style="margin-top:15rpx;">{{adviser.declaration}}</view>
+    <view class="song" style="margin-top:30rpx;">自我评价</view>
+    <view class="h4" style="margin-top:15rpx;">{{adviser.selfEvaluation}}</view>
+  </view>
+</view>
+<image style="width:122rpx;height:133rpx;position:fixed;right:20rpx;bottom:120rpx;border-radius:50rpx;overflow: hidden;"
+	bindtap='chat' src="/images/ic_service.png"></image>

@@ -1,0 +1,57 @@
+<navbar title="{{beUser?'我的抛光':'抛光管理'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white row pickerList" style="position:fixed;top:{{bar_Height+50}}px;">
+  <view class="right_line"></view>
+  <view bindtap="orderByTime" class="row picker app_green {{beUser?'item2':'item3'}}">
+    <view>时间</view>
+    <image style="width:22rpx;height:13rpx;margin-left:10rpx;"
+      src="{{condition.order == 'asc'?'/images/arrow_up.png':'/images/arrow_down.png'}}"></image>
+  </view>
+  <view class="right_line"></view>
+  <picker class="picker {{beUser?'item2':'item3'}}" mode="selector" range-key="name" range="{{status}}"
+    bindchange="changeStatus">
+    <view class="row" style="justify-content: center; align-items: center;">
+      <view>{{condition.status != null?status[condition.status + 1].name:'状态'}}</view>
+      <image style="width:22rpx;height:13rpx;margin-left:10rpx;" src="/images/arrow_down.png"></image>
+    </view>
+  </picker>
+  <view wx:if="{{!beUser}}" class="right_line"></view>
+  <picker wx:if="{{!beUser}}" class="picker item3" mode="selector" range="{{nickName}}" bindchange="changeNickName">
+    <view class="row" style="margin-left:10rpx;justify-content: center; align-items: center;width:230rpx;">
+      <view class="ellipsis_txt">{{condition.nickName?condition.nickName:'用户昵称'}}</view>
+      <image style="width:22rpx;height:13rpx;margin-left:10rpx;" src="/images/arrow_down.png"></image>
+    </view>
+  </picker>
+</view>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+95}}px;">
+  <view bindtap="viewPolish" data-index="{{index}}" wx:for="{{polishdata}}" class="column goods_section">
+    <view class="row border_line_whitesmoke h2 gray_4" style="margin-left:20rpx;height:80rpx; align-items: center;">
+      <image src='/images/icon_storeads.png' class='shop_icon'></image>
+      <text style="margin-left:10rpx">{{item.storeName?item.storeName:''}}</text>
+      <text style="margin-left:auto;margin-right:20rpx;text-align: right;">{{item.createTime}}</text>
+    </view>
+    <view class="row" style="height:200rpx;align-items:center;">
+      <image src="{{item.imageUrl[0]}}" class="goods_pic"></image>
+      <view class="column goods_txt" style="margin-left:20rpx;">
+        <view class="row h2 gray_4">
+          <view>{{item.name}}</view>
+          <view class="status_bg">{{status[item.status + 1].name}}</view>
+        </view>
+        <view class="row" style="margin-top:auto;">
+          <view class="goods_price">￥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="row" style="align-items:center; height: 80rpx;margin-left: auto;margin-right: 20rpx;">
+      <view catchtap="revoke" wx:if="{{item.status < 3 && item.storeId }}" data-index="{{index}}" class="downGood">
+        撤销受理
+      </view>
+      <view catchtap="deleteItem" wx:if="{{item.status == 0 }}" data-index="{{index}}" class="downGood">
+        删除需求
+      </view>
+      <view catchtap="pay"
+        wx:if="{{!(user.storeId == item.storeId && item.storeId) && (item.status == 2 || item.status == 4)}}"
+        data-index="{{index}}" class="upGood" style="margin-left:20rpx;">立即支付</view>
+    </view>
+  </view>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

@@ -1,0 +1,160 @@
+<navbar hidden="{{cropShow}}" title="{{edit?'编辑商品':'添加商品'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view hidden="{{cropShow}}" class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <view bindtap="tagTo" data-index="0" class="'condition '{{active==0?'app_green':'gray'}}">基本信息</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="1" class="'condition '{{active==1?'app_green':'gray'}}">图集信息</view>
+</view>
+<view hidden="{{cropShow}}" class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+  <block wx:if="{{active == 0}}">
+    <view class="width100" style="text-align:center;margin-top:20rpx;">--货主（收取货款，必填）--</view>
+    <view class="row info_item">
+      <text class="gray_4 h2">手机号码</text>
+      <input value="{{owner.mobile}}" bindblur="changeOwnerMobile" type="number" class="input_txt"
+        placeholder="请输入货主手机号码" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view wx:if="{{owner.nickName}}" class="row info_item">
+      <text class="gray_4 h2">用户昵称</text>
+      <text class="smoke h4">{{owner.nickName}}</text>
+    </view>
+    <view wx:if="{{owner.name}}" class="row info_item">
+      <text class="gray_4 h2">真实姓名</text>
+      <text class="smoke h4">{{owner.name}}</text>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">货主地址</text>
+      <input value="{{good.address}}" bindblur="changeAddress" class="input_txt" placeholder="请输入货主地址"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="width100" style="text-align:center;margin-top:20rpx;">--商品信息(除成交价必填)--</view>
+    <view class="row info_item">
+      <text class="gray_4 h2">商品类型</text>
+      <picker class="picker" mode="selector" range-key="name" range="{{goodType}}" bindchange="changeGoodType">
+        <block wx:if="{{good.type == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">请选择商品类型</text>
+        </block>
+        <block wx:else>{{goodType[good.type].name}}</block>
+      </picker>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">商品状态</text>
+      <picker class="picker" mode="selector" range-key="name" range="{{status}}" bindchange="changeStatus">
+        <block wx:if="{{good.status == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">请选择商品状态</text>
+        </block>
+        <block wx:else>{{status[good.status].name}}</block>
+      </picker>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">商品名称</text>
+      <input value="{{good.goodsName}}" bindblur="changeGoodsName" class="input_txt" placeholder="请输入商品名称"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_problem">
+      <text class="gray_4 h4">商品描述</text>
+      <text class="gray h4 autoleft"></text>
+    </view>
+    <textarea bindinput="changeContent" value="{{good.content}}" placeholder="请输入商品描述"
+      placeholder-style="color:#BBBBBB;font-size: 28rpx;" maxlength="200" class="proble_txt"></textarea>
+    <view class="row info_item">
+      <text class="gray_4 h2">商品报价</text>
+      <input value="{{good.quotePrice}}" bindblur="changequotePrice" class="input_txt" placeholder="请输入商品报价"
+        type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">期望价</text>
+      <input value="{{good.expectedPrice}}" bindblur="changeexpectedPrice" class="input_txt" placeholder="请输入商品期望价"
+        type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">货主成交价</text>
+      <input value="{{good.finalPrice}}" bindblur="changefinalPrice" class="input_txt" placeholder="请输入货主成交价"
+        type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">成本价</text>
+      <text class="smoke h4">{{good.costPrice?good.costPrice:0}}</text>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">成交价</text>
+      <input value="{{good.price}}" bindblur="changeprice" class="input_txt" placeholder="请输入商品成交价" type="digit"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="width100" style="text-align:center;margin-top:20rpx;">--销售顾问（分润顾问，下单前填好）--</view>
+    <view class="row info_item">
+      <text class="gray_4 h2">手机号码</text>
+      <input value="{{adviser.mobile}}" bindblur="changeAdMobile" type="number" class="input_txt"
+        placeholder="请输入销售顾问手机号码" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view wx:if="{{good.saleId}}" class="row info_item">
+      <text class="gray_4 h2">用户id</text>
+      <text class="smoke h4">{{good.saleId}}</text>
+    </view>
+    <view wx:if="{{adviser.nickName}}" class="row info_item">
+      <text class="gray_4 h2">昵称</text>
+      <text class="smoke h4">{{adviser.nickName}}</text>
+    </view>
+    <view wx:if="{{adviser.name}}" class="row info_item">
+      <text class="gray_4 h2">真实姓名</text>
+      <text class="smoke h4">{{adviser.name}}</text>
+    </view>
+    <view class="width100" style="text-align:center;margin-top:20rpx;">--买家（确定买家后填入）--</view>
+    <view class="row info_item">
+      <text class="gray_4 h2">手机号码</text>
+      <input disabled="{{good.userId}}" value="{{user.mobile}}" bindblur="changeUserMobile" type="number"
+        class="input_txt" placeholder="{{good.userId?'已存在买家':'请输入买家手机号码'}}"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view wx:if="{{good.userId}}" class="row info_item">
+      <text class="gray_4 h2">用户id</text>
+      <text class="smoke h4">{{good.userId}}</text>
+    </view>
+    <view wx:if="{{user.nickName}}" class="row info_item">
+      <text class="gray_4 h2">用户昵称</text>
+      <text class="smoke h4">{{user.nickName}}</text>
+    </view>
+    <view wx:if="{{user.name}}" class="row info_item">
+      <text class="gray_4 h2">真实姓名</text>
+      <text class="smoke h4">{{user.name}}</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view style="height: 10rpx;background-color: #F8F8F8;"></view>
+    <view class="row info_item">
+      <text>截取图片</text>
+      <switch checked="{{imgType}}" bindchange="switchChange" />
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h4">商品图片</text>
+      <text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+    </view>
+    <view class="row imgList">
+      <view bindtap="previewImage" data-item="{{item}}" wx:for="{{imageUrls}}" class="imgList_view"
+        style="background-image: url({{item}});">
+        <image catchtap="deleteImage" data-index="{{index}}" style="width:32rpx;height:32rpx;margin-left:110rpx;"
+          src="/images/delete.png"></image>
+      </view>
+      <view wx:if="{{imageUrls.length < 9}}" style="margin:30rpx 40rpx;">
+        <image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+      </view>
+    </view>
+    <view style="height: 10rpx;background-color: #F8F8F8;"></view>
+    <view class="row info_item">
+      <text class="gray_4 h4">商品视频</text>
+      <text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">视频不超过10m</text>
+    </view>
+    <view class="row" style="height: 240rpx;margin: 0 30rpx 120rpx 30rpx;align-items: flex-end;">
+      <video wx:if="{{good.video != null}}" style="margin-top: 30rpx;margin-left: 30rpx;width: 200rpx;height: 200rpx;"
+        :controls="false" src="{{good.video}}"></video>
+      <image bindtap="uploadVideo" class="upload" src="/images/upload_video.png"></image>
+    </view>
+  </block>
+</view>
+<view hidden="{{cropShow}}" class="bottom row">
+  <view bindtap="confirm" class="btn_success width100" wx:if="{{active == 0}}">提交基本信息</view>
+  <view bindtap="confirm" class="btn_success width100" wx:else>提交图集信息</view>
+</view>
+<view hidden="{{!cropShow}}">
+  <image-cropper id="image-cropper" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}"
+    imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" bindgetImg="getImg">
+  </image-cropper>
+</view>

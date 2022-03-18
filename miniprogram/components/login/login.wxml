@@ -1,0 +1,9 @@
+<!-- 手机登录-->
+<view class="modal-mask" bindtap="hideLoginModal" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">以下功能需要登录或注册上商</view>
+  <view class="modal-content">
+    <button class="weui-btn" open-type="getPhoneNumber" bindgetphonenumber="onWechatNum" type="primary">微信账号快速登录</button>
+    <button class="weui-btn" bindtap="hideLoginModal" type="default" style='margin-top:20rpx'>取消返回</button>
+  </view>
+</view>

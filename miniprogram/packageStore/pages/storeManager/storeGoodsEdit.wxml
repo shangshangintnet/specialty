@@ -1,0 +1,83 @@
+<!-- title -->
+<navbar wx:if="{{!cropShow}}" title="{{edit?'编辑商品':'新增商品'}}" :show_bol="false" bg_type="bg_black"></navbar>
+<view hidden="{{cropShow}}" class="bg_white title" style="position:fixed;top:{{bar_Height+100}}rpx;">
+	<view class="'condition '+{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+	<view class="right_line"></view>
+	<view class="'condition '+{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">图集信息</view>
+</view>
+<view hidden="{{cropShow}}" class="bg_white column" style="margin-bottom:120rpx;margin-top:{{bar_Height+200}}rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="row info_item">
+			<text class="gray_4 h2">商品名称</text>
+			<input value="{{goods.name}}" bindblur="changeName" class="input_txt" placeholder="请输入商品名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view wx:if="{{edit}}" class="row info_item">
+			<text class="gray_4 h2">编号</text>
+			<input disabled="{{true}}" value="{{goods.goodsNo}}" bindblur="changeGoodno" class="input_txt" placeholder="请输入商品编号" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">售价</text>
+			<input value="{{goods.price}}" bindblur="changePrice" type="digit" class="input_txt" placeholder="售价为0时,前端显示咨询商家" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view wx:if="{{change}}" class="row info_item">
+			<text class="gray_4 h2">成本价</text>
+			<input value="{{goods.costPrice}}" bindblur="changeCostPrice" type="digit" class="input_txt" placeholder="售价为0时,前端显示咨询商家" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">库存</text>
+			<input value="{{goods.stock}}" bindblur="changeStock" type="number" class="input_txt" placeholder="请填写库存" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">鉴真服务</text>
+			<checkbox disabled="{{edit}}" bindtap="changeIdentify" checked="{{goods.identify == 1}}"></checkbox>
+		</view>
+		<view class="gray h4" style="margin:20rpx 30rpx;">本鉴真服务仅对【国家珠宝玉石质量监督检验中心】
+			检测范围内的各类珠宝玉石、金银、钻石等提供鉴真服务，其他类别商品请勿勾选。
+			禁止上传国家法律法规禁止的商品和没有批准资质的商品。</view>
+		<view class="row info_item">
+			<text class="gray_4 h4">商品视频</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">视频不超过10m</text>
+		</view>
+		<view class="row" style="height: 240rpx;margin: 0 30rpx 120rpx 30rpx;align-items: flex-end;">
+			<video wx:if="{{videoFilePath != null}}" style="margin-top: 30rpx;margin-left: 30rpx;width: 200rpx;height: 200rpx;" :controls="false" src="{{videoFilePath}}"></video>
+			<image bindtap="uploadVideo" class="upload" src="/images/upload_video.png"></image>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h4">商品图片</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+		</view>
+		<view class="row" style="height: 240rpx;margin: 0 30rpx;">
+			<image bindtap="uploadImg" wx:if="{{goods.listImageUrl != null}}" style="margin-top: 30rpx;margin-left: 30rpx;width: 200rpx;height: 200rpx;" src="{{goods.listImageUrl}}"></image>
+			<image bindtap="uploadImg" wx:else class="upload" src="/images/upload_img.png"></image>
+		</view>
+		<view class="row info_problem">
+			<text class="gray_4 h4">商品介绍</text>
+			<text class="gray h4 autoleft">{{infoLen}}/200</text>
+		</view>
+		<textarea bindinput="problemInfo" value="{{goods.introduce}}" placeholder="请输入简介" placeholder-style="color:#BBBBBB;font-size: 28rpx;" maxlength="200" class="proble_txt"></textarea>
+	</block>
+	<block wx:else>
+		<view class="row info_item">
+			<text class="gray_4 h4">商品图集</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+		</view>
+		<view class="row imgList">
+			<view bindtap="deleteImage" data-index="{{index}}" wx:for="{{imageUrls}}" class="imgList_view" style="background-image: url({{item}});">
+				<image style="width:32rpx;height:32rpx;margin-left:110rpx;" src="/images/delete.png"></image>
+			</view>
+			<view wx:if="{{imageUrls.length < 8}}" style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+	</block>
+</view>
+<view hidden="{{cropShow}}" bindtap="confirm" class="bottom_btn">
+	<block wx:if="{{edit}}"> 确认修改 </block>
+	<block wx:else>
+		<block wx:if="{{active == 0}}">提交基本信息</block>
+		<block wx:else>提交图集信息</block>
+	</block>
+</view>
+<view hidden="{{!cropShow}}">
+	<image-cropper id="image-cropper" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" bindgetImg="getImg"></image-cropper>
+</view>

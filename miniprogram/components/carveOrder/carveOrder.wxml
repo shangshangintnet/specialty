@@ -1,0 +1,36 @@
+<view hidden="{{!show}}" bindtap="close_order" class="row popup_share">
+  <view class="column order_bg">
+    <view class="row order_section">
+      <view class="info_item">原料名称</view>
+      <view class="info_item">明细</view>
+      <view class="info_item">金额</view>
+    </view>
+    <view class="row order_section" wx:for="{{order.details}}">
+      <view class="info_item">{{item.name}}</view>
+      <block wx:if="{{item.type == 0}}">
+        <view class="info_item">解石费</view>
+      </block>
+      <block wx:elif="{{item.type == 1}}">
+        <view class="info_item">雕刻工费</view>
+      </block>
+      <block wx:elif="{{item.type == 2}}">
+        <view class="info_item">镶嵌工费</view>
+      </block>
+      <block wx:elif="{{item.type == 3}}">
+        <view class="info_item">抛光工费</view>
+      </block>
+      <block wx:else>
+        <view class="info_item">雕刻工费</view>
+      </block>
+      <view class="info_item green">¥ {{item.price}}</view>
+    </view>
+    <view class="row order_section">
+      <view class="info_item green" style="margin-left:auto">合计：¥{{order.price}}</view>
+    </view>
+    <view class="row order_section">
+      <view bindtap="close_order" class="btn_item green_1">取消</view>
+      <view bindtap="pay" class="btn_item green_2">立即支付</view>
+    </view>
+
+  </view>
+</view>

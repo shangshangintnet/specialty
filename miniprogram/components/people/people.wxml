@@ -1,0 +1,16 @@
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<view class="goods_section">
+  <view bindtap='jumpTo' data-url="/pages/peoples/people_detail/people_detail" data-id="{{item.id}}" wx:key="shopid" class="goods_item {{index%2 == 0?'goods_item_single_margin':''}}" wx:for="{{goodsList}}">
+    <image src="{{item.bigImageUrl}}" class='goods_img'></image>
+    <view class='goods_title'>
+      <text style='width:300rpx;margin-top:-8rpx;font-size:30rpx;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; word-break: break-all;' class='left'>{{item.title}}</text>
+    </view>
+    <view style='margin-top:10rpx;margin-left:20rpx;'>
+      <image mode="widthFixed" class='icon left' src='{{item.photoImageUrl}}'></image>
+      <view class='left' style='margin-top:8rpx;'>{{item.name}}</view>
+    </view>
+  </view>
+</view>
+<view class='row block_center' style='padding:30rpx;margin-bottom:30rpx;'>
+  <text>{{waitText}}</text>
+</view>

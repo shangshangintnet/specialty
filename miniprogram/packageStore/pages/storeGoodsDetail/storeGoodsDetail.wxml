@@ -1,0 +1,89 @@
+<!-- miniprogram/pages/goods/goods_detail.wxml -->
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_black_op' title='{{phone.limit_ten(goods.name)}}'></navbar>
+<swiper current="{{swipeCurrent}}" class="swiper" indicator-dots="true" autoplay="{{flag}}" interval="5000" duration="1000">
+	<swiper-item>
+		<video wx:if="{{goods.videoUrl != ''}}" ref="main_video" controls loop="loop" style="width:100vw;height:100vw;background:black;" bindtap='bofang' controls='true' src="{{goods.videoUrl}}" poster="{{goods.listImageUrl}}">
+			你的浏览器不支持h5标签
+		</video>
+		<image wx:else class="slide-image" mode="aspectFill" src="{{goods.listImageUrl}}"></image>
+	</swiper-item>
+	<swiper-item wx:for="{{imagesUrls}}" wx:for-index="index">
+		<image src="{{item}}" class="slide-image" mode="aspectFill" />
+	</swiper-item>
+</swiper>
+<view class='column bg_white lightShadow'>
+	<view class='row goods_section'>
+		<view class='column bg_white goods_info'>
+			<view class="row" style="align-items:center">
+				<view class="store_name_tab">{{store.type == 2?'联盟好店':'玩家回血'}}</view>
+				<text>{{goods.name}}</text>
+			</view>
+			<text>商品编号: {{goods.goodsNo}}</text>
+		</view>
+		<view class='column bg_white goods_info_right'>
+			<view class='row goods_icons'>
+				<image bindtap='toggleFavour' class='icon_heart' src="{{collection == 1?'/images/icon_likesel.png':'/images/icon_likenor.png'}}"></image>
+				<image bindtap='navigateTo' data-url="/pages/cart/cart" class='icon_cart' src="/images/icon_goods_cart.png"></image>
+			</view>
+		</view>
+	</view>
+	<view class='width100' style='padding-bottom:{{activityInfo != null?"0":"20"}}rpx'>
+		<text wx:if="{{goods.price == 0}}" style='padding-left:20rpx;' class='app_red left'>联系商家咨询购买</text>
+		<text wx:if="{{goods.price != 0}}" style='padding-left:20rpx;' class='app_red left'>￥{{goods.price}}</text>
+	</view>
+</view>
+<image wx:if="{{goods.identify == 1}}" style="margin-top:10rpx;" class="width100 lightShadow" bindtap="jumpTo" data-url="../storeGoodSafe/storeGoodSafe" src="../../images/safeGoodBelt.png" mode="widthFix"></image>
+<button open-type="share">
+	<image style="width:70px;height:26px;bottom:70px;position:fixed;right:0;z-index:999" src="../../images/ic_storeShare.png" />
+</button>
+<view class="pad-20 bg_white row lightShadow">
+	<view>
+		<image src="{{store.icon}}" style="border-radius:10rpx;;width:120rpx;height:120rpx;"></image>
+	</view>
+	<view class="column pad-lr-20">
+		<view class="row">{{store.name}}</view>
+		<view class="h4 gray">{{store.content}}</view>
+		<view class="h4 gray">质保金: {{store.price}} | {{store.followNum}}人关注</view>
+	</view>
+</view>
+<view class='block_center pad-20'>— 商品详情 —</view>
+<van-row custom-class="bg_white" span="24">
+	<van-col span="24">
+		<van-cell-group>
+			<van-cell border="false" wx:for="{{introduce}}" wx:key="index" title="{{item}}" />
+		</van-cell-group>
+	</van-col>
+	<van-col span="24">
+		<van-col wx:for="{{imagesUrls}}" wx:key="index" span="24">
+			<image mode="widthFix" class="width100" src="{{item}}" />
+		</van-col>
+	</van-col>
+</van-row>
+<image class='guess_banner' mode='widthFix' src='../../../images/suiyuan.png'></image>
+<guess_what id="guess_what" />
+<view style="width:750rpx;height:100rpx;"></view>
+<view class="row bottom_btn">
+	<view bindtap="goStore" class="column" style="justify-content: center;align-items: center;width:100rpx;">
+		<image style="width: 40rpx;height: 40rpx;" src="../../images/ic_store_dianpu.png"></image>
+		<view style="color:#66686b;font-size:20rpx;margin-top:5rpx;">进店</view>
+	</view>
+	<view bindtap="goKefu" class="column" style="justify-content: center;align-items: center;width:100rpx;">
+		<image style="width: 40rpx;height: 40rpx;" src="../../images/ic_store_service.png"></image>
+		<view style="color:#66686b;font-size:20rpx;margin-top:5rpx;">联系客服</view>
+	</view>
+	<view bindtap="addCart" class="row bottom_home">
+		<view>加入购物车</view>
+	</view>
+	<view bindtap="goBuy" class="row bottom_buy">
+		<view>立即购买</view>
+	</view>
+</view>
+<!-- <van-goods-action>
+	<van-goods-action-icon icon="chat-o" text="进店" bind:click="goStore" />
+	<van-goods-action-icon icon="cart-o" text="加入购物车" bind:click="addCart" />
+	<van-goods-action-button text="立即购买" bind:click="goBuy" />
+</van-goods-action> -->
+<canvas wx:if="{{needDisplay}}" canvas-id="hoCanvas" style='width:750px;height:600px;'></canvas>
+<login id="login"></login>
+<toLogin style="z-index:9999" id="toLogin"></toLogin>

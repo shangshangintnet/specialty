@@ -1,0 +1,115 @@
+.page {
+  background-color: #f8f8f8;
+}
+
+/* 顶部导航 */
+.title_bar {
+  width: 100%;
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  background: linear-gradient(180deg, #ffffff, #f8f8f8);
+}
+
+.user_icon {
+  margin-left: 0rpx;
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.title_bg {
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+}
+
+.account_bg {
+  width: 670rpx;
+  height: 360rpx;
+  background-size: 100% 100%;
+  color: #ffffff;
+}
+
+.autoLeft {
+  margin-left: auto;
+}
+
+.date_picker {
+  height: 90rpx;
+  margin-left: 20rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit {
+  width: 124rpx;
+  height: 124rpx;
+  position: fixed;
+  bottom: 60rpx;
+  right: 20rpx;
+  z-index: 9;
+}
+
+.bookItem {
+  background-color: #ffffff;
+  padding: 20rpx 40rpx;
+  margin: 10rpx 0rpx;
+}
+
+.book_detail {
+  margin: 10rpx 0rpx;
+  height: 108rpx;
+}
+
+.type_slt_1 {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #9AE0B7;
+  color: #347A4C;
+  border: solid 1rpx #6CD096;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.type_slt_0 {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #FFEBE2;
+  color: #FF600F;
+  border: solid 1rpx #FF600F;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.type_slt_2 {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #E4EDFD;
+  color: #3D76E1;
+  border: solid 1rpx #3E75DC;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.type_nor {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #EEEEEE;
+  color: #A4A4A4;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}

@@ -1,0 +1,144 @@
+/* miniprogram/pages/category/category.wxss */
+page {
+	background-color: #F8F8F8;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	line-height: 90rpx;
+	height: 90rpx;
+	width: 750rpx;
+	z-index: 200;
+}
+
+.condition_sort {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	line-height: 50rpx;
+	height: 50rpx;
+	font-size: 32rpx;
+	width: 200rpx;
+	border-right: 1rpx solid #F0F0F0;
+}
+
+.condition {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	line-height: 50rpx;
+	height: 50rpx;
+	font-size: 32rpx;
+	width: 187.5rpx;
+}
+
+.arrow_icon {
+	width: 22rpx;
+	height: 13rpx;
+	padding-bottom: 12rpx;
+	padding-left: 15rpx;
+}
+
+.condition_txt {
+	color: #606060;
+}
+
+.selected {
+	color: #079547;
+}
+
+.second_menu {
+	width: 750rpx;
+	z-index: 200;
+	background-color: #F8F8F8;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.second_menu_item {
+	width: 150rpx;
+	height: 40rpx;
+	border-radius: 20rpx;
+	line-height: 40rpx;
+	text-align: center;
+	font-size: 26rpx;
+	margin: 20rpx 15rpx;
+}
+
+.hight_title {
+	height: 100rpx;
+	line-height: 100rpx;
+	text-align: center;
+	color: #404040;
+	font-size: 36rpx;
+	border-bottom: #DDDDDD solid 1rpx;
+}
+
+.hight_scroll {
+	margin: 20rpx 30rpx 20rpx 30rpx;
+	padding-bottom: 120rpx;
+	width: 690rpx;
+}
+
+.hight_content {
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.hight_item {
+	margin: 20rpx 20rpx;
+	font-size: 26rpx;
+	color: #606060;
+	border: #DDDDDD solid 1rpx;
+	width: 160rpx;
+	height: 53rpx;
+	line-height: 52rpx;
+	text-align: center;
+}
+
+.hight_item_slt {
+	margin: 20rpx 20rpx;
+	font-size: 26rpx;
+	color: #079547;
+	border: #079547 solid 1rpx;
+	width: 160rpx;
+	height: 53rpx;
+	line-height: 52rpx;
+	text-align: center;
+}
+
+.hight_choose {
+	position: fixed;
+	bottom: 0;
+	border-top: 1px solid #079547;
+	background: white;
+	width: 750rpx;
+	height: 90rpx;
+}
+
+.cancel_hight {
+	width: 375rpx;
+	height: 90rpx;
+	line-height: 90rpx;
+	text-align: center;
+	font-size: 32rpx;
+	color: #079547;
+}
+
+.confirm_hight {
+	width: 375rpx;
+	height: 90rpx;
+	line-height: 90rpx;
+	text-align: center;
+	font-size: 32rpx;
+	background: #079547;
+	color: #FFFFFF;
+}

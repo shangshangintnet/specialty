@@ -1,0 +1,26 @@
+<!-- title -->
+<view class="title_bg" style="width:750rpx;height:{{bar_Height+360}}rpx;">
+	<view class="row" style="height: 100rpx;margin-top:{{bar_Height}}rpx ;">
+		<view class="goBack" bindtap="goBack">
+			<image src="/images/back_white.png"> </image>
+		</view>
+		<view class="tabar_text white h3">我的店铺</view>
+	</view>
+	<view class="row" style="height: 280rpx;width: 750rpx;align-items: center;margin-top: auto;">
+		<image style="width: 140rpx;height: 140rpx;margin-left: 40rpx;margin-right: 20rpx; border-radius: 70rpx;" src="{{store.icon}}"></image>
+		<view class="column">
+			<view class="h2 white">{{store.name}}</view>
+			<view class="h4 white" style="margin-top: 20rpx;">关注数：{{store.followNum}}</view>
+		</view>
+	</view>
+</view>
+<view class="bg_white row" style="border-radius: 10rpx 10rpx 0 0;width: 750rpx;height: 200rpx;margin-top: -20rpx;padding: 50rpx 40rpx;">
+	<view bindtap="goStore" class="column" style="align-items: center;">
+		<image style="width: 94rpx;height: 94rpx;margin-bottom: 20rpx;" src="/images/store_icon.png"></image>
+		<text class="gray h4">店铺信息</text>
+	</view>
+	<view bindtap="goGoods" class="column" style="margin-left: 70rpx;align-items: center;">
+		<image style="width: 94rpx;height: 94rpx;margin-bottom: 20rpx;" src="/images/store_good_icon.png"></image>
+		<text class="gray h4">商品管理</text>
+	</view>
+</view>

@@ -1,0 +1,3 @@
+<!--packageMyself/pages/apply/haoym/haoym.wxml-->
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_loadApp'></navbar>
+<image src="https://img.ssw88.com/static/landing/collecting_wool.jpg" style="width: 750rpx; display: block" mode="widthFix" />

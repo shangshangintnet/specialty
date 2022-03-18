@@ -1,0 +1,59 @@
+<view class='status-bar bg_white column' style="height:{{2*(bar_Height+70)}}rpx;padding-top:{{2*(bar_Height)}}rpx;">
+	<view>
+		<image bindtap='navigateTo' data-url="/pages/myself/myself" src='/images/back.png' class='icon_back left'></image>
+		<view class='left order_title'>我的订单</view>
+	</view>
+	<view class='row h4'>
+		<view bindtap='tagTo' data-tag-Index="4" class='condition_sort {{tag_index == 4?"selected":""}}'>
+			全部
+		</view>
+		<view bindtap='tagTo' data-tag-Index="0" class=' condition_sort {{tag_index == 0?"selected":""}}'>
+			待付款
+		</view>
+		<view bindtap='tagTo' data-tag-Index="1" class='condition_sort {{tag_index == 1?"selected":""}}'>
+			待收货
+		</view>
+		<view bindtap='tagTo' data-tag-Index="2" class='condition_sort {{tag_index == 2?"selected":""}}'>
+			已完成
+		</view>
+		<view bindtap='tagTo' data-tag-Index="3" class='condition_sort {{tag_index == 3?"selected":""}}'>
+			已取消
+		</view>
+	</view>
+</view>
+<view style='padding-top:{{bar_Height+95}}px;'>
+	<view wx:for="{{orders}}" wx:for-index="orderIdx" wx:for-item="order" class='shop_section column bg_white'>
+		<view style='margin-bottom:20rpx'>
+			<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+			<text class='left'>{{order.store.name}}</text>
+			<image bindtap='onDeleteOrder' data-id="{{order.orderDetails.id}}" wx:if="{{order.orderDetails.orderStatus == 3 || order.orderDetails.orderStatus == 2}}" data-order-Id="{{order.orderDetails.id}}" src='/images/icon_rubbish.png' class='icon right' style='margin-top:10rpx;margin-left:10rpx;'></image>
+			<image wx:if="{{order.orderDetails.orderStatus == 2||order.orderDetails.orderStatus == 6}}" src='/images/ic_orderfinish.png' class='icon_big right' style='margin-left:10rpx;margin-right:10rpx;margin-top:-19rpx;margin-bottom:-25rpx;height:100rpx;width:100rpx;'></image>
+			<text wx:if="{{order.orderDetails.orderStatus == 5}}" class='right h4'>正在退款</text>
+			<text wx:if="{{order.orderDetails.orderStatus == 7}}" class='right h4'>售后完成</text>
+			<text wx:if="{{order.orderDetails.orderStatus == 4}}" class='right h4'>卖家已发货</text>
+			<text wx:if="{{order.orderDetails.orderStatus == 3}}" class='right h4'>已取消</text>
+			<text wx:if="{{order.orderDetails.orderStatus == 1}}" class='right h4'>已支付</text>
+			<text wx:if="{{order.orderDetails.orderStatus == 0}}" class='right h4'>等待支付</text>
+		</view>
+		<view bindtap='jumpTo' data-url="order_detail/order_detail" data-id="{{order.orderDetails.id}}" wx:for="{{order.store.goodsList}}" wx:for-index="idx" wx:for-item="goods" class='row goods_section'>
+			<image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+			<view class='column goods_txt'>
+				<text class='goods_name'>{{goods.name}}</text>
+				<text class='goods_id h4 gray'>{{goods.goodsNo}}</text>
+				<view class='price_section'>
+					<view class='left' style='margin-top:30rpx'>￥{{goods.price}}</view>
+					<view class='right' style='margin-top:30rpx'>
+						<text class='calc_num calc'>x{{goods.inventory}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view style='text-align:right;margin-right:20rpx;' class='right h4 gray'> 共{{order.orderDetails.totalQuantity}}件商品 合计:¥{{order.orderDetails.totalDiscountPrice}}</view>
+		<view class='right status app_green' style='margin-bottom:20rpx;'>
+			<text bindtap='jumpTo' data-url="order_detail/order_detail" data-id="{{order.orderDetails.id}}" wx:if="{{order.orderDetails.orderStatus != 0 && order.orderDetails.orderStatus != 3}}">查看物流</text>
+			<text bindtap='onFinishOrder' data-id="{{order.orderDetails.id}}"  wx:if="{{order.orderDetails.orderStatus == 1 || order.orderDetails.orderStatus == 4}}">验货签收</text>
+			<text bindtap='onConfirmOrder'  data-id="{{order.orderDetails.id}}" wx:if="{{order.orderDetails.orderStatus == 0 }}">立即支付</text>
+			<text bindtap='onBuyAgain' data-idx="{{orderIdx}}" data-url="/pages/order/order_confirm/order_confirm" wx:if="{{order.orderDetails.orderStatus == 2 || order.orderDetails.orderStatus == 6 || order.orderDetails.orderStatus == 7}}">再次购买</text>
+		</view>
+	</view>
+</view>

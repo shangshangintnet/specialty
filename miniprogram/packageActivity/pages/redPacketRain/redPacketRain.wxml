@@ -1,0 +1,51 @@
+<navbar id="navbar" title="" show_bol='{{false}}' bg_type='bg_black_op'></navbar>
+<view class="bg-pos" style="width:100vw;height:100vh;background-size:100% 100%">
+	<view wx:if="{{isLogin}}">
+		<van-notice-bar speed="50" style="position:absolute;top:100rpx;width:80vw;left:10vw" left-icon="volume-o" text="{{msg}}" />
+		<image style="position:absolute;top:50rpx;width:80vw;left:10vw;" mode="widthFix" src="{{imgTitle}}" />
+		<view class="content_bg" style="position:absolute;top:48vh;left:0;right:0;margin:0 auto;width:600rpx;height:600rpx;border-radius:10rpx;">
+
+			<!--Content-->
+			<view style="width:600rpx;height:310rpx;">
+				<!--Reward-->
+				<view wx:if="{{redDownTime == undefined||redDownTime == -1}}" style="margin-top:50rpx;" class="white pad-10 text-center column">
+					<view>恭喜您获得</view>
+					<view>
+						<text style="font-size:48rpx;color:#FEFB9D">{{redEnvelopes}}</text>元红包</view>
+					<view>
+						<text style="font-size:48rpx;color:#FEFB9D">{{emdEmeraldCount}}</text>个翡翠币</view>
+					<image bindtap="jumpTo" data-url="/packageMyself/pages/myself/mywallet/myBalance/myBalance" style="width:400rpx;margin-left:100rpx;margin-top:20rpx;" mode="widthFix" src="{{imgUseButton}}" />
+				</view>
+
+				<!--CoundDown-->
+				<view wx:if="{{redDownTime > 0}}" style="margin-top:80rpx;" class="column text-center white count-down">
+					<view style="margin:20rpx 0;;font-size:40rpx;">
+						红包雨倒计时
+					</view>
+					<van-count-down class="count_down" wx:if="{{redDownTime != -1}}" time="{{redDownTime*1000}}" bindfinish="reLoadData" />
+				</view>
+
+				<!--CoundDown-->
+				<view wx:if="{{redDownTime == -2}}" style="margin-top:80rpx;" class="column text-center white count-down">
+					<view style="margin-top:60rpx;font-size:48rpx;">
+						今日红包雨已结束~
+					</view>
+				</view>
+			</view>
+
+			<!--Rules-->
+			<view class="column white" style="font-size:24rpx;;margin-left:25rpx;width:550rpx;height:250rpx;">
+				<view>活动规则</view>
+				<view>1.每位用户每天只有一次参与机会</view>
+				<view>2.参与活动最多可获得2000翡翠币及不限量红包 </view>
+				<view>3.参与活动所得奖励均可在购买翡翠时抵扣现金</view>
+				<view>4.活动时间: {{redPacketStartTime}} ~ {{redPacketEndTime}}</view>
+			</view>
+		</view>
+		<view class="text-center white bg-title" style="position:absolute;top:45vh;left:0;right:0;margin:0 auto;width:500rpx;height:100rpx;background-size:100% 100%">
+			<text style="position:relative;top:6px;">每天 <text style="color:#FEFB9D;font-size:44rpx;">{{redPacketStartTime}}</text> 准时开抢</text>
+		</view>
+	</view>
+</view>
+<login id="login"></login>
+<red-packet bindrefreshData="getPreData" bindrequestResult="sendResult" id="redPacket"></red-packet>

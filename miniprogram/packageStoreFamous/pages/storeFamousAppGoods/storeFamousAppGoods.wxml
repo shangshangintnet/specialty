@@ -1,0 +1,19 @@
+<navbar title="动态详情" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-top:{{bar_Height+50}}px;margin-bottom: 100rpx;">
+  <view class="column" style="background-color: #FFFFFF;margin-top: 20rpx;text-align: center;">
+    <text class="name">{{goods.name}}</text>
+    <text class="title" style="width: 687rpx;margin-left: 31rpx;">{{goods.title}}</text>
+    <view class="row" style="margin:0 auto;align-items: center;margin-top: 27rpx;height: 28rpx;background-image: url(https://img.ssw88.com/static/wechatImg/user_bg.png);background-size: 100% 100%;padding: 32rpx 20rpx 20rpx 20rpx;">
+      <text style="color: #666666;font-size: 32rpx;margin-left: 6rpx;">作者 / {{goods.userName}}</text>
+    </view>
+    <view style="margin:0 auto;" wx:for="{{goods.content}}">
+      <view wx:if="{{item.type==0}}">
+        <view style="text-align: left;width: 687rpx;font-size: 34rpx;margin-top: 15rpx;word-wrap:break-word;word-break:break-all;white-space:pre-wrap;">\t{{item.detail}}</view>
+      </view>
+      <view wx:else>
+        <image src="{{item.detail}}" style="margin-top: 15rpx;width: 687rpx;" mode="widthFix"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<login id="login"></login>

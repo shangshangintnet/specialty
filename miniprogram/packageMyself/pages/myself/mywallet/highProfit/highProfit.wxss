@@ -1,0 +1,36 @@
+page {
+	background-color: #ffffff;
+}
+
+.title_text {
+	color: #454444;
+}
+
+.line {
+	width: 2rpx;
+	height: 30rpx;
+	background-color: #808080;
+}
+
+.table_lable text {
+	width: 250rpx;
+	text-align: center;
+	height: 80rpx;
+	line-height: 80rpx;
+}
+
+.table_txt_row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 750rpx;
+	height: 180rpx;
+}
+
+.table_txt {
+	width: 250rpx;
+	height: 90rpx;
+	font-size: 32rpx;
+	line-height: 90rpx;
+	text-align: center;
+}

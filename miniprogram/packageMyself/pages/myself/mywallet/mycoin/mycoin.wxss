@@ -1,0 +1,4 @@
+/* miniprogram/pages/myself/mywallet/mycoin/mycoin.wxss */
+page {
+  background-color: white;
+}

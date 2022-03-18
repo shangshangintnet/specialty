@@ -1,0 +1,221 @@
+<navbar title="{{edit?'编辑解料':'增加解料'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <block wx:if="{{!edit || beUser || user.carvingLevel == 1}}">
+    <view class="'condition item2 '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+    <view class="right_line"></view>
+    <view class="'condition item2 '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">图集信息</view>
+  </block>
+  <block wx:else>
+    <view class="'condition item2 '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+    <view class="right_line"></view>
+    <view class="'condition item2 '{{active==2?'app_green':'gray'}}" bindtap="tagTo" data-index="2">分配任务</view>
+    <view class="right_line"></view>
+    <view class="'condition item2 '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">图集信息</view>
+  </block>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;">
+  <block wx:if="{{active == 0}}">
+    <view class="row info_item">
+      <text class="gray_4 h2">解料名称</text>
+      <input disabled="{{edit && beUser}}" value="{{stone.name}}" bindblur="changename" class="input_txt"
+        placeholder="请填写名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">重量(g)</text>
+      <input disabled="{{edit && user.storeId == null}}" value="{{stone.weight}}" bindblur="changeweight"
+        class="input_txt" placeholder="请填写重量" type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <block wx:if="{{beUser}}">
+      <!--普通用户 编辑时可见 -->
+      <view class="row info_item">
+        <text class="gray_4 h2">预付金额</text>
+        <view class="smoke h4">{{stone.advancePrice}}</view>
+      </view>
+      <view class="row info_item">
+        <text class="gray_4 h2">雕刻工费</text>
+        <view class="smoke h4">{{stone.totalPrice}}</view>
+      </view>
+      <view class="row info_item">
+        <text class="gray_4 h2">解料类型</text>
+        <view class="smoke h4">{{typeItems[stone.type].name}}</view>
+      </view>
+    </block>
+    <block wx:else>
+      <!--店主 雕刻师 可见 -->
+      <view class="row info_item">
+        <text class="gray_4 h2">用户手机</text>
+        <input disabled="{{edit}}" value="{{stone.mobile}}" bindblur="changemobile" class="input_txt"
+          placeholder="请填写用户手机号" type="number" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+      </view>
+      <view class="row info_item">
+        <text class="gray_4 h2">用户姓名</text>
+        <input value="{{stone.userName}}" bindblur="changeUserName" class="input_txt" placeholder="请填写用户姓名"
+          placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+      </view>
+      <view class="row info_item">
+        <text class="gray_4 h2">预付金额</text>
+        <input disabled="{{stone.status >= 2}}" value="{{stone.advancePrice}}" bindblur="changeprice" class="input_txt"
+          placeholder="请输入预付金额" type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+      </view>
+      <view class="row info_item">
+        <text class="gray_4 h2">雕刻工费</text>
+        <input disabled="{{stone.status >= 2}}" value="{{stone.totalPrice}}" bindblur="changeTotalprice"
+          class="input_txt" placeholder="请输入雕刻总工费(含预付)" type="digit"
+          placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+      </view>
+      <view class="row info_item">
+        <text class="gray_4 h2">解料类型</text>
+        <picker disabled="user.storeId == null" class="picker" mode="selector" range-key="name" range="{{typeItems}}"
+          bindchange="changeType">
+          <block wx:if="{{stone.type == null}}">
+            <text style="color:#BBBBBB;font-size: 28rpx;">修改解料类型</text>
+          </block>
+          <block wx:else>{{typeItems[stone.type].name}}</block>
+        </picker>
+      </view>
+      <view class="row info_problem">
+        <text class="gray_4 h4">解料简介</text>
+      </view>
+      <textarea value="{{stone.desc}}" bindinput="changeinfo" bindblur="changeinfo" placeholder="请输入简介"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;" maxlength="36" class="proble_txt"></textarea>
+      <!--雕刻师可以看到精抛类型 -->
+      <view hidden="{{user.storeId != null || stone.polishType == 0}}" class="row info_item">
+        <text class="gray_4 h2">抛光类型</text>
+        <view class="smoke h4">精细抛光</view>
+      </view>
+      <block wx:if="{{user.storeId != null}}">
+        <!--店主可见 -->
+        <view class="row info_item">
+          <text class="gray_4 h2">抛光类型</text>
+          <picker class="picker" mode="selector" range-key="name" range="{{polishType}}" bindchange="changePolishType">
+            <block wx:if="{{stone.polishType == null}}">
+              <text style="color:#BBBBBB;font-size: 28rpx;">修改抛光类型</text>
+            </block>
+            <block wx:else>{{polishType[stone.polishType].name}}</block>
+          </picker>
+        </view>
+        <view class="row info_item">
+          <text class="gray_4 h2">抛光金额</text>
+          <input value="{{stone.polishPrice}}" bindblur="changepolishPrice" class="input_txt" placeholder="请输入抛光金额"
+            type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+        </view>
+        <view class="row info_item">
+          <text class="gray_4 h2">成本价</text>
+          <input value="{{stone.costPrice}}" bindblur="changenCostprice" class="input_txt" placeholder="请输入商品成本价"
+            type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+        </view>
+        <view class="row info_item">
+          <text class="gray_4 h2">出售价</text>
+          <input value="{{stone.price}}" bindblur="changeSaleprice" class="input_txt" placeholder="请输入商品出售价"
+            type="digit" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+        </view>
+        <view class="row info_item">
+          <text class="gray_4 h2">展示状态</text>
+          <picker disabled="{{displayDisable}}" class="picker" mode="selector" range-key="name" range="{{display}}"
+            bindchange="changedisplay">
+            <block wx:if="{{stone.display == null}}">
+              <text style="color:#BBBBBB;font-size: 28rpx;">修改展示状态</text>
+            </block>
+            <block wx:else>{{display[stone.display].name}}</block>
+          </picker>
+        </view>
+      </block>
+    </block>
+    <!-- 店主 雕刻师可编辑 -->
+    <view class="row info_item">
+      <text class="gray_4 h2">解料状态</text>
+      <picker disabled="{{beUser || user.carvingLevel == 1}}" class="picker" mode="selector" range-key="name"
+        range="{{status}}" bindchange="changeStatus">
+        <block wx:if="{{stone.status == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">修改解料状态</text>
+        </block>
+        <block wx:else>{{status[stone.status].name}}
+        <text wx:if="{{stone.status == 3}}" class="app_green"> {{payTime}}</text>
+        </block>
+      </picker>
+    </view>
+    <block wx:if="{{!beUser && stone.status == 3}}">
+      <block wx:if="{{user.carvingLevel == 1}}">
+        <view class="row info_item">
+          <text class="gray_4 h2">分成</text>
+          <view class="app_green h4">{{staffPrice}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view style="height: 20rpx;background-color: #F8F8F8;"></view>
+        <view class="row bg_white" style="height: 80rpx; border-bottom: 1rpx solid #DDDDDD;">
+          <view class="row item2 block_center">雕刻师</view>
+          <view class="row item2 block_center app_green">分成</view>
+        </view>
+        <view class="row bg_white" style="height: 80rpx;" wx:for="{{staffPrices}}">
+          <view class="row item2 block_center">{{item.name}}</view>
+          <view class="row item2 block_center app_green">{{item.value}}</view>
+        </view>
+      </block>
+    </block>
+  </block>
+  <block wx:elif="{{active == 1}}">
+    <view style="height: 10rpx;background-color: #F8F8F8;"></view>
+    <view class="row info_item">
+      <text class="gray_4 h4">商品图集</text>
+      <text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+    </view>
+    <view class="row imgList">
+      <view bindtap="previewImage" data-item="{{item}}" wx:for="{{imageUrls}}" class="imgList_view"
+        style="background-image: url({{item}});">
+        <image catchtap="deleteImage" data-index="{{index}}" style="width:32rpx;height:32rpx;margin-left:110rpx;"
+          src="/images/delete.png"></image>
+      </view>
+      <view wx:if="{{imageUrls.length < 7}}" style="margin:30rpx 40rpx;">
+        <image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+      </view>
+    </view>
+    <block wx:if="{{edit}}">
+      <view style="height: 10rpx;background-color: #F8F8F8;"></view>
+      <view class="row info_item">
+        <text class="gray_4 h4">商品视频</text>
+        <text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">视频不超过10m</text>
+      </view>
+      <view class="row" style="height: 240rpx;margin: 0 30rpx 120rpx 30rpx;align-items: flex-end;">
+        <video wx:if="{{stone.video != null}}"
+          style="margin-top: 30rpx;margin-left: 30rpx;width: 200rpx;height: 200rpx;" :controls="false"
+          src="{{stone.video}}"></video>
+        <image bindtap="uploadVideo" class="upload" src="/images/upload_video.png"></image>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class="row info_item">
+      <text class="gray_4 h2">雕刻师</text>
+      <view class="app_green h4">{{stone.staffName}}</view>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">雕工分配</text>
+    </view>
+    <view class="bg_white column width100 h2" style="margin:10rpx 30rpx;">
+      <view class="column" wx:for="{{staff}}">
+        <view class="row" style="align-items: center;margin-top:10rpx;">
+          <checkbox disabled="{{!dispatchStaff}}" bindtap="checkboxChange" data-index="{{index}}" value="{{item.name}}"
+            checked="{{item.checked}}" />
+          <view class="gray h4">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view style="width:750rpx;height:120rpx"></view>
+</view>
+<view class="row bottom">
+  <block wx:if="{{edit}}">
+    <view bindtap="confirm" class="btn_success width100" wx:if="{{beUser}}">
+      {{stone.status == 2?'立即支付':status[stone.status].name}}</view>
+    <block wx:elif="{{user.carvingLevel != 1}}">
+      <view catchtap="solutionToMaterial" class="btn_default item2">边角料再加工</view>
+      <view bindtap="confirm" class="btn_success item2">确认修改</view>
+    </block>
+  </block>
+  <block wx:else>
+    <view bindtap="confirm" class="btn_success width100" wx:if="{{active == 0}}">提交基本信息</view>
+    <view bindtap="confirm" class="btn_success width100" wx:else>提交图集信息</view>
+  </block>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

@@ -1,0 +1,21 @@
+<navbar title="收益" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-top:{{bar_Height+50}}px;">
+  <view class="column" style="background-color: #FFFFFF;margin-top: 20rpx;text-align: left;">
+    <view class="column" wx:if="{{profits.length==0}}" style="text-align: center;">
+      <image src="../images/not.png" style="height: 293rpx;width: 300rpx;margin-top: 82rpx;margin-left: 225rpx;"></image>
+      <text class="bold" style="font-size: 30rpx;margin-top: 28rpx;">暂无收益</text>
+      <view bindtap='onMoveToGoods' data-goods-Id="23773" class="row" style="color: #079547;border-radius: 21rpx;border: 1rpx solid #079547;height: 44rpx;width: 242rpx;margin-left: 254rpx;">
+        <text style="font-size: 30rpx;height: 28rpx;margin-left: 25rpx;">请前往购买</text>
+        <image src="../images/buy.png" style="height: 30rpx;width: 30rpx;margin-top: 8rpx;margin-left: 13rpx;"></image>
+      </view>
+    </view>
+    <view class="row" wx:for="{{profits}}" style="height: 104rpx;width: 750rpx;border-bottom: 2rpx solid #EEEEEE;">
+      <view class="column">
+        <text class="bold" style="height: 26rpx;font-size: 28rpx;margin-left: 30rpx;margin-top: 22rpx;">{{item.title}}</text>
+        <text style="height: 19rpx;font-size: 24rpx;margin-left: 30rpx;margin-top: 19rpx;color: #666666;">{{item.createTime}}</text>
+      </view>
+      <text style="position: absolute;right: 44rpx;margin-top: 42rpx;color: #079547;">+{{item.price}}</text>
+    </view>
+  </view>
+</view>
+<ad unit-id="adunit-449d07458e9bab48" ad-intervals="30" style="margin-top:50rpx;margin-bottom: 50rpx;"></ad>

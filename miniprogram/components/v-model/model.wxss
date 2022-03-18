@@ -1,0 +1,166 @@
+/* component/v-model/model.wxss */
+
+.v-model {
+  height: 100vh;
+  width: 750rpx;
+  background-color: black;
+  opacity: 0.5;
+  position: fixed;
+  z-index: 0;
+  left: 0;
+  top: 0;
+}
+
+.v-block-middle {
+  width: 750rpx;
+  height: 50vh;
+  position: fixed;
+  left: 0;
+  top: 25vh;
+  background-color: whitesmoke;
+  opacity: 1 !important;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.close{
+  width:40rpx;
+  height:40rpx;
+}
+
+.v-block-alert {
+  width: 650rpx;
+  background:white;
+  border-radius: 30rpx;
+  margin: 0 50rpx;
+  position: fixed;
+  left: 0;
+  top: 15vh;
+  opacity: 1 !important;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.v-block-alert .v-title {
+  margin: 10rpx 0;
+  width: 100%;
+  height: 50rpx;
+  font-size: 38rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.v-confirm-btn {
+  margin: 50rpx auto;
+  width: 300rpx;
+  border: 100rpx;
+  background-color: #079547;
+  height: 80rpx;
+  text-align: center;
+  font-size: 36rpx;
+  line-height: 80rpx;
+  letter-spacing: 6rpx;
+  color: white;
+}
+
+.v-block-alert .v-close-btn {
+  background-color: yellow;
+  width: 50rpx;
+  height: 50rpx;
+  padding: 0px 10px;
+  margin-top: 20rpx;
+  margin-right: 30rpx;
+  float: right;
+}
+
+.v-block-alert .v-content {
+  text-align: left;
+  text-indent: 20rpx;
+  margin: 0 30rpx;
+  margin-top: 20rpx;
+  height: 200rpx;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.v-default-btn {
+  width: 325rpx;
+  border-radius: 0;
+  letter-spacing: 1rpx;
+  position: inherit;
+  border-top: 1px solid gainsboro;
+  text-align: center;
+  padding:20rpx;
+}
+
+.v-default-txt {
+  padding: 60rpx;
+  text-align: center;
+  background-color: whitesmoke;
+  font-size: 34rpx;
+  color: #202020;
+}
+
+.v-confirmed {
+  background: #079547;
+  color: white;
+  font-weight: lighter;
+  border-bottom-right-radius: 20rpx;
+}
+
+.v-cancel {
+  color: #202020;
+  background-color: whitesmoke;
+  border-bottom-left-radius: 20rpx;
+}
+
+.v-center {
+  text-align: center;
+}
+
+.v-title {
+  margin: 30rpx 0;
+  width: 750rpx;
+  height: 50rpx;
+  font-size: 38rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.v-content {
+  text-align: left;
+  text-indent: 20rpx;
+  margin: 0 30rpx;
+}
+
+.v-text {
+  width: 700rpx;
+  padding-left: 50rpx;
+}
+
+.v-close-btn {
+  background-color: yellow;
+  margin-right: 20rpx;
+}
+
+.v-bottom {
+  width: 750rpx;
+  height: 50vh;
+  position: fixed;
+  left: 0;
+  top: 50vh;
+  background-color: whitesmoke;
+  opacity: 1 !important;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999
+}
+

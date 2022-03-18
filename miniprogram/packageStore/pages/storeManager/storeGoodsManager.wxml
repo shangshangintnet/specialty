@@ -1,0 +1,92 @@
+<wxs module="phone" src="../../../utils/phone.wxs"></wxs>
+<navbar title="商品列表" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class="column title" style="top:{{bar_Height+50}}px;">
+	<input value="{{goodsNo}}" bindblur="changeGoodNo" class="input_txt" placeholder="检索商品编号"
+		placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+	<view class="row tab">
+		<view class="item2" style="text-align: center;" bindtap="changeType">{{itemTypes[goodsType]}}</view>
+		<view class="right_line"></view>
+		<view class="item2" style="text-align: center;" bindtap="changeState">{{itemStates[status]}}</view>
+	</view>
+</view>
+<view hidden="{{menu != 1}}" class="second_menu" style="top:{{bar_Height+95}}px;">
+	<view bindtap="swapTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{itemTypes}}"
+		style="{{index == goodsType?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+		{{item}}
+	</view>
+</view>
+<view hidden="{{menu != 2}}" class="second_menu" style="top:{{bar_Height+95}}px;">
+	<view bindtap="swapState" data-index="{{index}}" class="second_menu_item" wx:for="{{itemStates}}"
+		style="{{index == status?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+		{{item}}
+	</view>
+</view>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+95}}px;">
+	<block wx:if="{{goodsType == 0}}">
+		<view wx:for="{{goodsList}}" wx:for-item="goods" class="column goods_section">
+			<view bindtap="goGoods" data-index="{{index}}" class="row" style="align-items: center;height: 230rpx;">
+				<image src="{{goods.listImageUrl}}" class="goods_pic"></image>
+				<view class="column goods_txt">
+					<view class="row goods_name">
+						<view>{{phone.limit_ten(goods.name)}}</view>
+					</view>
+					<view class="goods_id">{{goods.goodsNo}}</view>
+					<view class="row goods_price">
+						<block wx:if="{{goods.price == 0}}">
+							<view>咨询商家</view>
+						</block>
+						<block wx:else>
+							<view>￥{{goods.price}}</view>
+						</block>
+						<view class="gray" style="margin-left: auto;">x{{goods.stock}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="row" style="height: 70rpx;margin-left: auto;margin-right: 20rpx;">
+				<view catchtap="upGoods" data-index="{{index}}" wx:if="{{goods.controlStatus ==0}}" class="upGood">显示</view>
+				<view catchtap="downGoods" data-index="{{index}}" wx:else class="downGood">隐藏</view>
+				<view catchtap="editGoods" data-index="{{index}}" class="editGood" style="margin-left:20rpx;">编辑</view>
+				<view catchtap="deleteGoods" data-index="{{index}}" class="editGood" style="margin-left:20rpx;">删除</view>
+			</view>
+		</view>
+	</block>
+	<block wx:else>
+		<view wx:for="{{appGoodsList}}" wx:for-item="goods" class="column goods_section">
+			<view bindtap="goGoods" data-index="{{index}}" class="row" style="align-items: center;height: 230rpx;">
+				<image src="{{goods.listImageUrl}}" class="goods_pic"></image>
+				<view class="column goods_txt">
+					<view class="row goods_name">
+						<image wx:if="goods.extravagant == 2" src="/images/ic_fu.png" class="icon_fuli"></image>
+						<view>{{phone.limit_ten(goods.name)}}</view>
+					</view>
+					<view class="goods_id">{{goods.goodsNo}}</view>
+					<view class="row goods_price">
+						<block wx:if="{{goods.extravagant == 1}}">
+							<view>咨询商家</view>
+						</block>
+						<block wx:else>
+							<view>￥{{goods.price}}</view>
+						</block>
+						<view class="gray" style="margin-left: auto;">x{{goods.stock}}</view>
+					</view>
+				</view>
+			</view>
+			<view wx:if="{{goods.controlStatus == 0}}" class="offSale">
+				<image src="/static/images/good_offsale.png" style="width: 730rpx;height: 245rpx;"></image>
+			</view>
+			<view class="row" style="height: 70rpx;margin-left: auto;margin-right: 20rpx;">
+				<block wx:if="{{goods.controlStatus != 0}}">
+					<view catchtap="upGoods" data-index="{{index}}" wx:if="{{goods.display == 0}}" class="upGood">显示</view>
+					<view catchtap="downGoods" data-index="{{index}}" wx:else class="downGood">隐藏</view>
+				</block>
+				<view catchtap="deleteGoods" data-index="{{index}}" class="editGood" style="margin-left:20rpx;">删除</view>
+			</view>
+		</view>
+	</block>
+</view>
+<view class="row bottom white h2">
+	<view bindtap="addStoreGood" style="width: 375rpx;background-color: #5dcaa9;text-align: center;line-height: 90rpx;">
+		新增商铺商品</view>
+	<view bindtap="addPlatformGood"
+		style="width: 375rpx;background-color: #5b9ef8;text-align: center;line-height: 90rpx;">添加平台商品</view>
+</view>

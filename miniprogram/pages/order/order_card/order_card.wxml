@@ -1,0 +1,68 @@
+<navbar title='确认订单' show_bol='{{false}}' bg_type='bg_black'></navbar>
+
+
+<view style="margin-top:{{bar_Height+50}}px" class='express_info column radius5 bg_white'>
+
+  <view class='column'>
+    <view style='margin-bottom:20rpx'>
+      <image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+      <text class='left'>上商珠宝</text>
+    </view>
+
+    <view class='row goods_section border_line_whitesmoke'>
+      <image src="{{res.storageCard.imageUrl}}" mode='scaleToFill' class='goods_pic'></image>
+      <view class='column goods_txt '>
+        <text class='goods_name'>{{res.storageCard.content}}</text>
+        <!-- <text class='goods_id'>{{res.storageCard}}</text> -->
+        <view class='price_section '>
+          <view class='left app_red' style='margin-top:30rpx'>￥{{res.storageCard.price}}</view>
+          <view class='right' style='margin-top:30rpx'>
+            <text class='calc_num calc'>x{{count}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view wx:if="{{type == 1}}" class='row'>
+    <view class='column order_bar' style='width:200rpx'>
+      <text class='h4'>余额</text>
+    </view>
+    <view class='column order_price' style='width:550rpx'>
+      <view class='h4' style='margin-right:8rpx;padding-top:14rpx;'>
+        <input disabled='{{emdEmeraldCount == 0}}' placeholder='{{"该订单可使用:"+maxUseBalance+"余额"}}' bindblur="getDiscountPrice" bindinput="bindCoinCheck" bindconfirm="getDiscountPrice" value='{{inputNumber}}' type='number'></input>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class='column order_desc  bg_white radius5 pad-20' style='padding-bottom:40rpx;'>
+  <view class='row'>
+    <view class='column order_bar border_line_whitesmoke'>
+      <text class='h4'>商品金额</text>
+      <text wx:if="{{type == 1}}" class='h4'>余额</text>
+    </view>
+    <view class='column order_price border_line_whitesmoke' style='margin-left:-180rpx;'>
+      <text class='h4'>¥ {{res.couponPrice}}</text>
+      <text wx:if="{{type == 1}}" class='h4'>- ¥ {{useBalance}}</text>
+    </view>
+  </view>
+  <view class='right pad-20' style='width:660rpx;text-align:right'>
+    <view class='h4'>共{{res.totalQuantity}}件商品 小计:
+      <text class='app_green'>¥ {{updatePrice}}</text>
+    </view>
+  </view>
+
+</view>
+
+
+
+<view class='row cart_result'>
+  <view style='width:750rpx;'>
+    <view bindtap='onConfirmOrder' style='line-height:112rpx;;width:240rpx;text-align:center;margin-top:-6rpx;margin-right:-6rpx;' class='right white bg_orange'>提交订单</view>
+
+    <text style='margin-top:24rpx;margin-left:40rpx;' class='left'>合计: <text class='app_green'>¥ {{updatePrice}}</text></text>
+  </view>
+</view>

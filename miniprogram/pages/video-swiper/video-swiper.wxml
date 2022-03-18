@@ -1,0 +1,37 @@
+<block wx:if="{{active == 1}}">
+	<mp-video-swiper id="video" class="video-swiper" video-list="{{videoList}}" bindstoreattention="onStoreAttention" bindaddcart="onAddCart" bindbuy="onBuy" bindlike="onLike" bindchange="onChange" bindplay="onPlay" bindpause="onPause" bindtimeupdate="onTimeUpdate" bindended="onEnded" binderror="onError" bindwaiting="onWaiting" bindprogress="onProgress" bindloadedmetadata="onLoadedMetaData">
+	</mp-video-swiper>
+</block>
+<block wx:if="{{active == 0}}">
+	<att-video-swiper id="attention_video" class="video-swiper" video-list="{{collectionGoods}}" bindstoreattention="onStoreAttention" bindaddcart="onAddCart" bindbuy="onBuy" bindlike="onLike" bindchange="onChange" bindplay="onPlay" bindpause="onPause" bindtimeupdate="onTimeUpdate" bindended="onEnded" binderror="onError" bindwaiting="onWaiting" bindprogress="onProgress" bindloadedmetadata="onLoadedMetaData">
+	</att-video-swiper>
+	<view style="position:fixed;left:150rpx;top:200rpx;width:450rpx;height:60rpx;" hidden="{{collectionGoods.length > 0}}">
+		<image style="width:450rpx;height:430rpx;" src="https://img.ssw88.com/static/wechatImg/vieo_empty.png"></image>
+		<view class="white h3" style="width:450rpx;margin-top:30rpx; text-align: center;">暂无关注信息</view>
+	</view>
+</block>
+<view class="row title" style="top:{{bar_Height}}px;z-index:1200;">
+	<view catchtap="goIndex" class="bold grey_tilte" style="font-size:42rpx;margin-left:60rpx;">首页</view>
+	<view catchtap="tagTo" data-index="0" class="bold {{active == 0?'white':'grey_tilte'}}" style="font-size:42rpx;margin-left:40rpx;">关注</view>
+	<view catchtap="tagTo" data-index="1" class="bold {{active == 1?'white':'grey_tilte'}}" style="font-size:42rpx;margin-left:40rpx;">推荐</view>
+</view>
+<view hidden="{{active == 0}}">
+	<image class="redpacket" style="top:{{bar_Height + 60}}px" src="https://img.ssw88.com/static/red/ic_redpacket.png"></image>
+	<view hidden="{{newpacket == 0 || newpacket == null}}" class="redpacket_txt" style="top:{{bar_Height + 70}}px">{{newpacket}}</view>
+	<canvas class="circle" style="top:{{bar_Height + 55}}px;" canvas-id="canvasArcCir">
+	</canvas>
+	<view hidden="{{newpacket == 0|| newpacket == null}}" class="redpacket bg_white" style="top:{{bar_Height + 60}}px; opacity: 0;" catchtap="reaceiveRedpacket"></view>
+	<image hidden="{{!redpaetGif}}" catchtap="reaceiveRedpacket" class="redpacket_gif" style="top:{{bar_Height + 130}}px" src="https://img.ssw88.com/static/collection/video_redpacket.gif"></image>
+	<view catchtap="getAward" hidden="{{!packetVisible}}" class="column popup_share">
+		<view style="color:#FDDDA3;font-size:36rpx;margin-bottom:0rpx;">恭喜获得{{balances.length}}个红包</view>
+		<view style="color:#FDDDA3;font-size:28rpx;margin-bottom:50rpx;">可在钱包余额中查看</view>
+		<scroll-view scroll-y="{{true}}" style="width:750rpx;height:{{balances.length>3?600:300}}rpx;">
+			<view class="row" style="{{balances.length>3?'height:600rpx; ':'height:300rpx;justify-content: center; '}} width:750rpx;flex-wrap: wrap;align-items: center;">
+				<view wx:for="{{balances}}" class="redbag column" style="width: 250rpx;height:300rpx;">
+					<view style="color:#FEFFB3;margin-top:30rpx;font-size:80rpx;"><text style="font-size:40rpx;">¥</text> {{item}}</view>
+				</view>
+			</view>
+		</scroll-view>
+		<view class="get_award">我知道了</view>
+	</view>
+</view>

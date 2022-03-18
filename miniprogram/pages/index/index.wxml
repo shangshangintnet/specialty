@@ -1,0 +1,475 @@
+<!-- index.wxml -->
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<view wx:if="{{tabActive == 0}}">
+	<!-- Swiper -->
+	<swiper style="margin-top:{{bar_Height+100}}px;height:270rpx;margin-left:12rpx;" indicator-dots="{{slider.indicatorDots}}" indicator-color="rgba(255,255,255,0.3)" indicator-active-color="rgba(255,255,255,0.8)" autoplay="{{slider.autoplay}}" interval="{{slider.interval}}" duration="{{slider.duration}}">
+		<block wx:key="index" wx:for="{{rotationChart}}">
+			<swiper-item>
+				<image wx:if="{{item.clickType == '3'}}" data-url="/pages/activity/activity" data-guessing-id="{{item.addParam}}" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+				<image wx:elif="{{item.clickType == '2'}}" data-url="/pages/category_search/category_search" data-title="{{item.name}}" data-type-kind-id="{{item.addParam}}" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+				<image wx:elif="{{item.clickType == '1'}}" data-url="/pages/goods/goods_detail" data-goods-id="{{item.addParam}}" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+				<image wx:elif="{{item.clickType == '7'}}" data-url="/packageMyself/pages/myself/cloudStore/cloudStore" bindtap='jumpTo' src="{{item.imageUrl}}" class="slide-image" mode="widthFix" />
+			</swiper-item>
+		</block>
+	</swiper>
+	<!-- activity -->
+	<view wx:if="{{activity != null}}" class='width100 bg_white'>
+		<image wx:if="{{activity.homeActivityType == 4}}" bindtap='jumpTo' data-html="sale618" data-url="/pages/html/html" class='width100' src='{{activity.homeActivityImageUrl}}' mode='widthFix'></image>
+		<image wx:if="{{activity.homeActivityType == 3}}" data-url="/pages/activity/activity" data-guessing-id="{{activity.homeActivityParam}}" bindtap='jumpTo' class='width100' src='{{activity.homeActivityImageUrl}}' mode='widthFix'></image>
+		<image wx:if="{{activity.homeActivityType == 2}}" bindtap='jumpTo' data-url="/pages/category_search/category_search" data-title="" data-type-kind-id="{{activity.homeActivityParam}}" class='width100' src='{{activity.homeActivityImageUrl}}' mode='widthFix'></image>
+		<image wx:if="{{activity.homeActivityType == 1}}" bindtap='jumpTo' data-url="/pages/goods/goods_detail" data-goods-id="{{activity.homeActivityParam}}" class='width100' src='{{activity.homeActivityImageUrl}}' mode='widthFix'></image>
+	</view>
+	<!-- 活动专区 -->
+	<view class="column pad-lr-10 mar-ud-10 bg_white">
+		<view class="row h2 pad-lr-10 pad-ud-20" style="color:#EC393C; align-items: center;">
+			<image class="icon_big" mode="widthFix" src="/images/ic_diamond.png" />
+			<span style="margin-left:5px">活动专区</span>
+		</view>
+		<view class="row" style="margin-left: 30rpx;">
+			<view class="row">
+				<view bindtap="jumpToSpike" class="icon_spike">
+					<view class="row" style="margin-top: 60rpx;justify-content: center;">
+						<view wx:if="{{spike.state == 1}}" style="width: 220rpx;text-align: center;font-size: 24rpx;color: #EC393C;">进行中</view>
+						<view wx:if="{{spike.state == 0}}" class="time_txt">
+							{{hour}}:{{min}}:{{seconds}}
+						</view>
+					</view>
+				</view>
+				<view style="margin: 0rpx 15rpx;">
+					<image bindtap="jumpToActivity" class="act_icon" src="https://img.ssw88.com/static/home/guessing.png" />
+				</view>
+				<view bindtap="jumpToRedPackage" class="act_icon" style="background-image: url(https://img.ssw88.com/static/home/red.png); background-size: 100% 100%;">
+					<view class="column" style="margin-top: 60rpx; align-items: center;">
+						<view wx:if="{{redDownTime <=0 }}" style="width: 220rpx;text-align: center;font-size: 24rpx;color: #EC393C;">进行中</view>
+						<view wx:if="{{redDownTime > 0}}" class="time_txt">
+							{{redhour}}:{{redmin}}:{{redseconds}}
+						</view>
+						<image style="width:100rpx;height:120rpx;" src="https://img.ssw88.com/static/home/red_1.png" />
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 分享兑换 -->
+	<view class="column pad-lr-10 mar-10-tp bg_white">
+		<view class="row h2 pad-lr-10 pad-ud-20" style="align-items: center;">
+			<image class="icon_big" mode="widthFix" src="/images/ic_diamond.png" />
+			<text bindtap="changeType" data-type="1" style="height:40rpx; line-height: 40rpx;color:{{selectType == 1?'#EC393C':'#404040'}};border-bottom:{{selectType == 1?'4rpx solid #EC393C':''}};margin-left:5px">分享福利</text>
+			<text style="height:40rpx; line-height: 40rpx;margin-left:10px;margin-right:5px">|</text>
+			<text bindtap="changeType" data-type="0" style="height:40rpx; line-height: 40rpx;color:{{selectType == 0?'#EC393C':'#404040'}};border-bottom:{{selectType == 0?'4rpx solid #EC393C':''}};margin-left:5px">兑换专区</text>
+			<text class="gray" data-url="{{selectType == 0?'/pages/trade/trade':'/pages/category_search/category_search'}}" data-title="福利商品" data-type-kind-id="8001" bindtap='jumpTo' style="margin-left:auto;height:40rpx; line-height: 40rpx;">更多</text>
+			<image class="icon_sm" mode="widthFix" style="margin:0 5rpx" src="/images/arrow_right.png" />
+		</view>
+		<view style="width:100%;overflow:scroll;padding-left:5rpx;">
+			<view style="width:267vw">
+				<view class="left" wx:for="{{selectType == 0?commodityExchange:goodsSelected}}" wx:key="index" style="width:11.8%;margin-right:8rpx">
+					<view class="column" bindtap="onMoveToGoods" data-goods-Id="{{item.id}}" style="width:100%;border-radius:8rpx;overflow:hidden;margin-bottom:10rpx;border:1px solid whitesmoke;">
+						<image mode="widthFix" style="width:100%;" src="{{item.listImageUrl}}" />
+						<text style='width:100%;font-size:24rpx;overflow: hidden;padding:6px 0 0 4px;white-space: nowrap;text-overflow: ellipsis; word-break: break-all;' class='left'>{{phone.limit_ten(item.name)}}</text>
+						<view wx:if="{{item.price != null && (item.extravagant != 1)}}" class='goods_title_red' style='font-size:28rpx;width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipse;'>
+							<span>¥{{item.price}}</span>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 个人商铺 -->
+	<view bindtap="moveToPersonal" data-index="0" class="column store">
+		<view catchtap="moveToPersonal" data-index="1" class="storeForeign row" style="background-image: url({{storePersonal.headImage}});">
+			<image class="storeForeign_image" src="{{storePersonal.icon}}"></image>
+			<view class="column" style="width:500rpx; justify-content: center;">
+				<text class="h2 white">{{storePersonal.name}}</text>
+				<text class="h5 white">{{storePersonal.content}}</text>
+			</view>
+			<image style="width:164rpx;height:47rpx;" src="/images/store_personal.png"></image>
+		</view>
+		<view class="row" style="margin:10rpx 5rpx;">
+			<view class="column store_good" wx:for="{{persoalStoreInfo}}">
+				<image class="store_good_img" src="{{item.goodsImage}}" />
+				<text class='store_good_txt ellipsis_txt'>{{item.name}}</text>
+				<view wx:if="{{item.price != 0}}" class='store_good_price'>
+					<text><text style="font-size:24rpx;">结缘价:</text>¥{{item.price}}</text>
+				</view>
+				<view wx:if="{{item.price == 0}}" class='store_good_price'>
+					<text>咨询购买</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 外来商铺 -->
+	<view bindtap="moveToForeign" data-index="0" class="column store">
+		<view catchtap="moveToForeign" data-index="1" class="storeForeign row" style="background-image: url({{storeForeign.headImage}});">
+			<image class="storeForeign_image" src="{{storeForeign.icon}}"></image>
+			<view class="column" style="width:500rpx; justify-content: center;">
+				<text class="h2 white">{{storeForeign.name}}</text>
+				<text class="h5 white">{{storeForeign.content}}</text>
+			</view>
+			<image style="width:164rpx;height:47rpx;" src="/images/store_foreign.png"></image>
+		</view>
+		<view class="row" style="margin:10rpx 5rpx;">
+			<view class="column store_good" wx:for="{{storeInfo}}">
+				<image class="store_good_img" src="{{item.goodsImage}}" />
+				<text class='store_good_txt ellipsis_txt'>{{item.name}}</text>
+				<view wx:if="{{item.price != 0}}" class='store_good_price'>
+					<text><text style="font-size:24rpx;">结缘价:</text>¥{{item.price}}</text>
+				</view>
+				<view wx:if="{{item.price == 0}}" class='store_good_price'>
+					<text>咨询购买</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 精选福利 -->
+	<image style='width:100%;height:28rpx;margin-top:50rpx;margin-bottom:20px;' src='/images/welfare_choice.png'></image>
+	<view class='goods_choice column'>
+		<image bindtap='onMoveToGoods' data-goods-Id="{{item.goodsId}}" style='margin:5rpx 0;' class='width100' mode="widthFix" wx:for="{{goodsSelectedList}}" wx:key="index" src="{{item.imageUrl}}"></image>
+	</view>
+	<image class='guess_banner' mode='widthFix' src='/images/suiyuan.png'></image>
+	<guess_what id="guess_what"></guess_what>
+	<!--Tip提示-->
+	<image wx:if="{{tipShow}}" bindtap='tipClose' src='/images/tip.png' style='position:absolute;top:{{bar_Height+45}}px;right:12px;width:750rpx;height:421rpx;z-index:1500' mode='widthFix'>
+	</image>
+	<!--抽奖-->
+	<image wx:if="{{luckDrawId != 0 && luckDrawId != undefined}}" src='https://img.ssw88.com/static/red/prize.png' bindtap='jumpTo' data-url="/pages/prize/getPrize" data-id="{{luckDrawId}}" style='position:fixed;bottom:0px;right:12px;width:110rpx;' mode='widthFix'></image>
+	<!--100-->
+	<van-overlay show="{{ giftShow }}" bind:click="closeGiftShow">
+		<image src="https://img.ssw88.com/gift/getCard.png" bindtap="checkLoginCard" data-url="/packageMyself/pages/myself/mywallet/mywallet" data-index="1" style="width:549rpx;height:558rpx;position:fixed;top:25vh;left:0;right:0;margin:0 auto;">
+		</image>
+		<image bindtap="closeGiftShow" src="/images/live_close.png" style="width:90rpx;height:90rpx;position:fixed;top:73vh;left:0;right:0;margin:0 auto;">
+		</image>
+	</van-overlay>
+</view>
+<view wx:elif="{{tabActive == 3}}" style="margin-bottom:10rpx;">
+	<view class="column">
+		<image style="height:135px;width:726rpx;margin-top:{{bar_Height+95}}px;margin-left:12rpx;" src="https://img.ssw88.com/static/home/high_banner.jpg"></image>
+		<view class="bg_white column" style="padding:30rpx;border-radius:60rpx 60rpx 0 0;margin-top:30rpx;">
+			<view class="row" style="align-items:center;margin-bottom:10rpx;">
+				<view class="column" style="width:560rpx;">
+					<view class="song">{{exclusive?'专属顾问':'高货顾问'}}</view>
+					<view class="h4 gray">平台保驾护航，高货顾问贴心服务</view>
+				</view>
+				<view catchtap="goAdviser" class="h4 app_green" style="margin-left:auto;">更多顾问</view>
+			</view>
+			<block wx:for="{{highData.brokers}}">
+				<view bindtap="goBroker" data-index="{{index}}" class="row guwenbg">
+					<image style="width:120rpx;height:160rpx;margin-left:10rpx;border-radius:5rpx;" src="{{item.photoUrl}}">
+					</image>
+					<view class="column" style="height:160rpx;margin-left:30rpx;">
+						<view class="bold">{{item.name}}</view>
+						<view class="gray h9" wx:if="{{item.storeName}}">{{item.storeName}} 掌柜</view>
+						<view class="gray h9" style="margin-top:auto;">从业{{item.years}}年/{{item.educational}}毕业</view>
+						<view class="row">
+							<view class="zishen h9">高货资深顾问</view>
+							<view style="margin-left:10rpx;" class="zishen h9">{{tagLevel[item.tagLevel-1]}}</view>
+						</view>
+					</view>
+					<view class="column" style="margin-left:auto;height:160rpx;margin-right:10rpx;align-items:center;">
+						<block wx:if="{{exclusive && item.type == 2}}">
+							<image catchtap="removeExAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;" src="/images/ic_adviser_y.png"></image>
+						</block>
+						<block wx:elif="{{!exclusive}}">
+							<image catchtap="addExAdviser" data-index="{{index}}" style="width:50rpx;height:50rpx;" src="/images/ic_adviser.png"></image>
+						</block>
+						<view catchtap="chat" data-index="{{index}}" class="chat" style="margin-top:auto;">在线咨询</view>
+					</view>
+				</view>
+			</block>
+		</view>
+		<view class="column">
+			<block wx:if="{{highData.goods_1}}">
+				<view class="bg_white column" style="padding:30rpx;border-radius:60rpx 60rpx 0 0;margin-top:30rpx">
+					<view class="row" style="align-items:center;margin-bottom:10rpx;">
+						<view class="song">为您甄选·天然玉石</view>
+						<view bindtap="goHighGood" data-type="1" class="h4 app_green" style="margin-left:auto;">查看更多</view>
+					</view>
+				</view>
+				<view class="column" bindtap="viewHighGood" data-item="{{item}}" wx:for="{{highData.goods_1}}">
+					<view class="column bg_white" style="padding:0rpx 30rpx 20rpx 30rpx;">
+						<image style="width:690rpx;height:690rpx;" src="{{item.imageUrl[0]}}"></image>
+						<view class="bold h3" style="margin-top:10rpx;">{{item.goodsName}}</view>
+						<view class="gray_2 h4 ellipsis_txt" style="margin-top:auto;">{{item.content}}</view>
+					</view>
+					<view style="margin-top:20rpx;"></view>
+				</view>
+			</block>
+			<block wx:if="{{highData.goods_0}}">
+				<view class="bg_white column" style="padding:30rpx;border-radius:60rpx 60rpx 0 0;margin-top:10rpx">
+					<view class="row" style="align-items:center;margin-bottom:10rpx;">
+						<view class="song">为您甄选·天然宝石</view>
+						<view bindtap="goHighGood" data-type="0" class="h4 app_green" style="margin-left:auto;">查看更多</view>
+					</view>
+				</view>
+				<view class="column" bindtap="viewHighGood" data-item="{{item}}" wx:for="{{highData.goods_0}}">
+					<view class="column bg_white" style="padding:0rpx 30rpx 20rpx 30rpx;">
+						<image style="width:690rpx;height:690rpx;" src="{{item.imageUrl[0]}}"></image>
+						<view class="bold h3" style="margin-top:10rpx;">{{item.goodsName}}</view>
+						<view class="gray_2 h4 ellipsis_txt" style="margin-top:auto;">{{item.content}}</view>
+					</view>
+					<view style="margin-top:20rpx;"></view>
+				</view>
+			</block>
+			<block wx:if="{{highData.goods_2}}">
+				<view class="bg_white column" style="padding:30rpx;border-radius:60rpx 60rpx 0 0;margin-top:10rpx">
+					<view class="row" style="align-items:center;margin-bottom:10rpx;">
+						<view class="song">为您甄选·生物宝石</view>
+						<view bindtap="goHighGood" data-type="2" class="h4 app_green" style="margin-left:auto;">查看更多</view>
+					</view>
+				</view>
+				<view class="column" bindtap="viewHighGood" data-item="{{item}}" wx:for="{{highData.goods_2}}">
+					<view class="column bg_white" style="padding:0rpx 30rpx 20rpx 30rpx;">
+						<image style="width:690rpx;height:690rpx;" src="{{item.imageUrl[0]}}"></image>
+						<view class="bold h3" style="margin-top:10rpx;">{{item.goodsName}}</view>
+						<view class="gray_2 h4 ellipsis_txt" style="margin-top:auto;">{{item.content}}</view>
+					</view>
+					<view style="margin-top:20rpx;"></view>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>
+<view wx:elif="{{tabActive == 4}}" style="margin-bottom:10rpx;">
+	<view class="column">
+		<image style="height:135px;width:726rpx;margin-top:{{bar_Height+95}}px;margin-left:12rpx;" src="https://img.ssw88.com/static/home/famous_banner.jpg"></image>
+		<view class="column arts" style="margin-top:20rpx;width:750rpx;">
+			<block wx:for="{{famousData}}">
+				<view class="row">
+					<view class="art-line1" style="margin-left:110rpx;margin-right:13rpx;"></view>
+					<view class="font" style="color:#C39E29;font-size:40rpx;font-weight:bold;margin-top:25rpx;">{{item.name}}名家</view>
+					<view class="art-line1" style="margin-left:13rpx;"></view>
+				</view>
+				<view style="margin-top:30rpx;">
+					<view class="bg_white column" style="padding:0 30rpx;">
+						<view class="row" style="align-items:center;margin-bottom:10rpx;">
+							<view class="font">艺术馆·{{item.name}}</view>
+							<view bindtap="goStoreFamousUser" data-type="{{item.type}}" class="h4 app_green" style="margin-left:auto;">更多名家</view>
+						</view>
+					</view>
+					<view bindtap="jumpToStoreFamous" data-id="{{item.id}}" wx:for="{{item.famousUser}}" wx:for-index="uindex" class="row art1">
+						<view class="art">
+							<view class="row">
+								<image style="width:140rpx;height:140rpx;margin-left:8rpx;margin-top:25rpx;border-radius:50%;" src="{{item.photoUrl}}"></image>
+								<view class="column" style="height:192rpx;width:494rpx;margin-left:10rpx;margin-top:-20rpx;">
+									<view class="row">
+										<view class="bold" style="margin-top:52rpx;font-size:36rpx;">{{item.name}}</view>
+										<view style="margin-top:50rpx;margin-right:15rpx;position: absolute;right: 50rpx;">
+											<image wx:if="{{item.followStatus == 1}}" catchtap="removeFamousAttention" data-index="{{index}}" data-uindex="{{uindex}}" src="../../images/storeFocus.png" style="height:46rpx;width:125rpx;" />
+											<image wx:else="{{item.followStatus != 1}}" catchtap="addFamousAttention" data-index="{{index}}" data-uindex="{{uindex}}" src="../../images/storeUnfocus.png" style="height:46rpx;width:125rpx;" />
+										</view>
+									</view>
+									<view style="margin-top:5rpx;font-size:28rpx;overflow: hidden;word-break:break-all;word-wrap:break-word;color: #333333;">{{item.describe}}</view>
+								</view>
+							</view>
+							<view style="height:210rpx;margin-top:45rpx;">
+								<image style="width:310rpx;height:209rpx;margin-left:20rpx;" src="{{item.imageUrl[0]}}">
+								</image>
+								<image style="width:310rpx;height:209rpx;margin-left:20rpx;" src="{{item.imageUrl[1]}}">
+								</image>
+							</view>
+						</view>
+					</view>
+				</view>
+				<block wx:if="{{item.famousGoods}}">
+					<view class="art-line"></view>
+					<view class="bg_white column" style="padding:30rpx;border-radius:60rpx 60rpx 0 0;margin-top:10rpx">
+						<view class="row" style="align-items:center;margin-bottom:10rpx;">
+							<view class="font">为您甄选·{{item.name}}</view>
+							<view bindtap="goStoreFamousGoodsList" data-type="{{item.type}}" class="h4 app_green" style="margin-left:auto;">查看更多</view>
+						</view>
+					</view>
+					<view class="column" bindtap="jumpToStoreFamousGoods" data-id="{{famousGoods.id}}" wx:for="{{item.famousGoods}}" wx:for-item="famousGoods">
+						<view class="column bg_white" style="padding:0rpx 30rpx 20rpx 30rpx;">
+							<view style="height:644rpx;width:690rpx;box-shadow: 2rpx 2rpx 9rpx #c2bfbf;border-radius: 10rpx;">
+								<image style="width:688rpx;height:464rpx;margin-top: 3rpx;margin-left: 1rpx;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;" src="{{famousGoods.image}}"></image>
+								<view class="bold" style="margin-top:10rpx;font-size:34rpx;margin-left:28rpx;">{{famousGoods.name}}</view>
+								<view style="width:624rpx;margin-top:10rpx;font-size:28rpx;margin-left:28rpx;height: 80rpx;overflow: hidden;line-height: 40rpx;">{{famousGoods.title}}</view>
+							</view>
+						</view>
+					</view>
+				</block>
+				<block wx:if="{{item.famousAppGoods}}}">
+					<view class="art-line"></view>
+					<view class="bg_white column" style="padding:0 30rpx;margin-top:31rpx">
+						<view class="row" style="align-items:center;margin-bottom:10rpx;">
+							<view class="font">动态·{{item.name}}</view>
+							<view bindtap="goStoreFamousAppGoodsList" data-type="{{item.type}}" class="h4 app_green" style="margin-left:auto;">查看更多</view>
+						</view>
+					</view>
+					<view class="column" bindtap="jumpToStoreFamousAppGoods" data-id="{{famousAppGoods.id}}" wx:for="{{item.famousAppGoods}}" wx:for-item="famousAppGoods">
+						<view class="row">
+							<image style="width:250rpx;height:168rpx;margin-top:32rpx;margin-left:32rpx;" src="{{famousAppGoods.image}}">
+							</image>
+							<view style="height:168rpx;margin-top:44rpx;">
+								<view class="bold" style="height:61rpx;width:423rpx;font-size:32rpx;margin-left:16rpx;">
+									{{famousAppGoods.name}}</view>
+								<view class="row" style="height:50rpx;margin-top:35rpx;margin-left:17rpx;">
+									<image style="width:50rpx;height:50rpx;border-radius:50%;margin-top: 10rpx;" src="{{famousAppGoods.photo}}">
+									</image>
+									<view style="font-size:28rpx;margin-left:12rpx;margin-top:13rpx;color:#666666;">{{famousAppGoods.userName}}</view>
+									<view style="font-size:28rpx;margin-top:13rpx;color:#666666;position: absolute; right: 34rpx;">{{famousAppGoods.createTime}}</view>
+								</view>
+							</view>
+						</view>
+						<view wx:if="{{index==0}}" style="background-color: #F4F4F4;height: 6rpx;width: 680rpx;margin-left: 35rpx;"></view>
+					</view>
+				</block>
+			</block>
+		</view>
+	</view>
+</view>
+<view wx:else>
+	<view class="column">
+		<image style="height:135px;width:726rpx;margin-top:{{bar_Height+95}}px;margin-left:12rpx;" src="{{type==2?'https://img.ssw88.com/store/title-2.jpg':'https://img.ssw88.com/store/title-1.jpg'}}"></image>
+		<view class="bg_white column">
+			<view class="row title">
+				<view class="condition item2 {{active==0?'selected':'condition_txt'}}" bindtap="changeActive" data-index="0">商品
+				</view>
+				<view class="right_line"></view>
+				<view class="condition item2 {{active==1?'selected':'condition_txt'}}" bindtap="changeActive" data-index="1">商铺
+				</view>
+			</view>
+			<view hidden="{{active == 0}}">
+				<view class="row title">
+					<view class="condition item4 selected row" style="justify-content: center;align-items: center;">
+						<text>{{storeTypes[curTypeIndex].name}}</text>
+						<image src="{{arrow_down}}" class='arrow_price'></image>
+					</view>
+					<view class="right_line"></view>
+					<view class="condition item4 {{order=='total'?'selected':'condition_txt'}}" bindtap="changeOrder" data-order="total">综合排序</view>
+					<view class="right_line"></view>
+					<view class="condition item4 {{order=='followNum'?'selected':'condition_txt'}}" bindtap="changeOrder" data-order="followNum">关注度</view>
+					<view class="right_line"></view>
+					<view class="condition item4 {{order=='count'?'selected':'condition_txt'}}" bindtap="changeOrder" data-order="count">最新</view>
+				</view>
+				<view class="second_menu">
+					<view bindtap="swapTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{storeTypes}}" style="{{index == curTypeIndex?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+						{{item.name}}
+					</view>
+				</view>
+			</view>
+			<view hidden="{{active == 1}}">
+				<view class="row title">
+					<view class="condition item3 selected row" style="justify-content: center;align-items: center;">
+						<text>{{storeTypes[goodTypeIndex].name}}</text>
+						<image src="{{arrow_down}}" class='arrow_price'></image>
+					</view>
+					<view style="color:#f0f0f0;height: 70rpx;line-height: 70rpx;">|</view>
+					<view class="condition item3 {{goodOrder=='create_time'?'selected':'condition_txt'}}" bindtap="changeOrder" data-order="create_time">最新</view>
+					<view style="color:#f0f0f0;height: 70rpx;line-height: 70rpx;">|</view>
+					<view class="condition item3 row {{goodOrder=='goods_price'?'selected':'condition_txt'}}" style="justify-content: center;align-items: center;" bindtap="changeOrder" data-order="goods_price">
+						<text>价格</text>
+						<image src='{{sort==0?arrow_up:arrow_down}}' class='arrow_price'></image>
+					</view>
+				</view>
+				<view class="second_menu">
+					<view bindtap="swapTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{storeTypes}}" style="{{index == goodTypeIndex?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+						{{item.name}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<view hidden="{{scrollToTop <= topLimit}}" class="bg_white column" style="z-index:200;position:fixed;top:{{bar_Height+95}}px;">
+			<view class="row title">
+				<view class="condition item2 {{active==0?'selected':'condition_txt'}}" bindtap="changeActive" data-index="0">商品
+				</view>
+				<view class="right_line"></view>
+				<view class="condition item2 {{active==1?'selected':'condition_txt'}}" bindtap="changeActive" data-index="1">商铺
+				</view>
+			</view>
+			<view hidden="{{active == 0}}">
+				<view class="row title">
+					<view class="condition item4 selected row" style="justify-content: center;align-items: center;">
+						<text>{{storeTypes[curTypeIndex].name}}</text>
+						<image src="{{arrow_down}}" class='arrow_price'></image>
+					</view>
+					<view class="right_line"></view>
+					<view class="condition item4 {{order=='total'?'selected':'gray'}}" bindtap="changeOrder" data-order="total">
+						综合排序</view>
+					<view class="right_line"></view>
+					<view class="condition item4 {{order=='followNum'?'selected':'gray'}}" bindtap="changeOrder" data-order="followNum">关注度</view>
+					<view class="right_line"></view>
+					<view class="condition item4 {{order=='count'?'selected':'gray'}}" bindtap="changeOrder" data-order="count">最新
+					</view>
+				</view>
+				<view class="second_menu">
+					<view bindtap="swapTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{storeTypes}}" style="{{index == curTypeIndex?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+						{{item.name}}
+					</view>
+				</view>
+			</view>
+			<view hidden="{{active == 1}}">
+				<view class="row title">
+					<view class="condition item3 selected row" style="justify-content: center;align-items: center;">
+						<text>{{storeTypes[goodTypeIndex].name}}</text>
+						<image src="{{arrow_down}}" class='arrow_price'></image>
+					</view>
+					<view style="color:#f0f0f0;height: 70rpx;line-height: 70rpx;">|</view>
+					<view class="condition item3 {{goodOrder=='create_time'?'selected':'condition_txt'}}" bindtap="changeOrder" data-order="create_time">最新</view>
+					<view style="color:#f0f0f0;height: 70rpx;line-height: 70rpx;">|</view>
+					<view class="condition item3 row {{goodOrder=='goods_price'?'selected':'condition_txt'}}" style="justify-content: center;align-items: center;" bindtap="changeOrder" data-order="goods_price">
+						<text>价格</text>
+						<image src='{{sort==0?arrow_up:arrow_down}}' class='arrow_price'></image>
+					</view>
+				</view>
+				<view class="second_menu">
+					<view bindtap="swapTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{storeTypes}}" style="{{index == goodTypeIndex?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+						{{item.name}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 商铺列表 -->
+		<view hidden="{{active == 0}}" class="column">
+			<view bindtap="jumpToStore" data-id="{{store.id}}" wx:for="{{storeList}}" wx:for-item="store" class="store_item">
+				<view class="row">
+					<view class="store_img">
+						<image style="width:100rpx;height:100rpx;border-radius:100rpx;margin: 40rpx 30rpx;" mode="scaleToFill" src="{{store.icon}}" />
+					</view>
+					<view class="store_info column">
+						<view class="h2 gray_4" style="margin-top: 40rpx;">{{store.name}}</view>
+						<view class="store_info_item">
+							<image src="../../images/ic_save.png" style="height:42rpx;width:34rpx;" />
+							<text style="margin-left:14rpx;font-size: 26rpx;color: #808080;">质保金: {{store.price}}</text>
+						</view>
+						<view class="store_info_item">
+							<image wx:if="{{store.followStatus == 1}}" catchtap="removeAttention" data-index="{{index}}" src="../../images/storeFocus.png" style="height:46rpx;width:125rpx;" />
+							<image wx:else="{{store.followStatus != 1}}" catchtap="addAttention" data-index="{{index}}" src="../../images/storeUnfocus.png" style="height:46rpx;width:125rpx;" />
+							<text style="margin-left:14rpx;font-size: 26rpx;color: #808080;">{{store.followNum}}人关注</text>
+						</view>
+						<view wx:if="{{store.count != 0}}" style="margin-top: auto;margin-bottom: 10rpx; font-size: 26rpx;color: #808080;">上传{{store.count}}件新品
+						</view>
+					</view>
+					<view class="good_img column">
+						<view style="padding: 0rpx 30rpx 0rpx 40rpx">
+							<image style="width:160rpx;height:160rpx;border-radius: 8rpx;" mode="scaleToFill" src="{{store.goodsImage}}" />
+						</view>
+						<view style="width: 190rpx;text-align: right; margin-right: 30rpx;margin-top: auto;margin-bottom: 10rpx;">
+							<text style="margin-left:14rpx;font-size: 26rpx;color: #808080;">查看全部 ></text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view hidden="{{active == 1}}">
+			<guess_what id="store_goods"></guess_what>
+		</view>
+	</view>
+	<!--开店 -->
+	<image hidden="{{tabActive != 1}}" src='https://img.ssw88.com/store/ic_huixue.gif' bindtap='jumpTo' data-url="/packageStore/pages/storeIntroduce/storeIntroduce" data-tag="0" style='position:fixed;bottom:0px;right:15px;width:120rpx;' mode='widthFix'></image>
+	<image hidden="{{tabActive != 2}}" src='https://img.ssw88.com/store/ic_store.gif' bindtap='jumpTo' data-url="/packageStore/pages/storeIntroduce/storeIntroduce" data-tag="1" style='position:fixed;bottom:0px;right:15px;width:120rpx;' mode='widthFix'></image>
+</view>
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_index'></navbar>
+<view class="row bg_white width100" style="position:fixed;z-index:200;top:{{bar_Height+50}}px;height:45px;align-items: center;">
+	<view bindtap="changeIndex" style="margin-right:25rpx;" data-index="0" class="{{tabActive == 0?'index_title_1':'index_title_2'}}">发现</view>
+	<view bindtap="changeIndex" style="margin-right:25rpx;" data-index="1" class="{{tabActive == 1?'index_title_1':'index_title_2'}}">回血</view>
+	<view bindtap="changeIndex" style="margin-right:25rpx;" data-index="2" class="{{tabActive == 2?'index_title_1':'index_title_2'}}">好店</view>
+	<view bindtap="changeIndex" style="margin-right:25rpx;" data-index="3" class="{{tabActive == 3?'index_title_1':'index_title_2'}}">高货</view>
+	<view bindtap="changeIndex" style="margin-right:25rpx;" data-index="4" class="{{tabActive == 4?'index_title_1':'index_title_2'}}">名家</view>
+	<image bindtap="goVideoList" class="tanbao" src="https://img.ssw88.com/static/home/treasure.gif"></image>
+</view>
+<login id="login"></login>
+<model bindsuccessEvent="mySuccess" bindfailEvent="myFail" goTxt="立刻前往" cancelTxt="取消" id="model">
+	<view class='column'>
+		<image class='width100' mode='widthFix' src='https://img.ssw88.com/wechatImg/tmpGoods.jpg'></image>
+	</view>
+</model>

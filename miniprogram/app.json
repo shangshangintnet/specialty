@@ -1,0 +1,281 @@
+{
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.3.2",
+      "provider": "wx2b03c6e691cd7370"
+    }
+  },
+  "pages": [
+    "pages/index/index",
+    "pages/myself/myself",
+    "pages/search/search",
+    "pages/login/login",
+    "pages/common/successCall",
+    "pages/order/order_confirm/order_confirm",
+    "pages/order/order_detail/order_detail",
+    "pages/order/orderlist",
+    "pages/cart/cart",
+    "pages/category/category",
+    "pages/category_search/category_search",
+    "pages/goods/goods_detail",
+    "pages/activity/activity",
+    "pages/loadApp/loadApp",
+    "pages/order/order_detail/express_detail/express_detail",
+    "pages/info/info",
+    "pages/peoples/people_detail/people_detail",
+    "pages/peoples/peoples",
+    "pages/poster/poster",
+    "pages/limitBuy/limitBuy",
+    "pages/prize/getPrize",
+    "pages/anniversary/anniversary",
+    "pages/trade/trade",
+    "pages/html/html",
+    "pages/order/order_card/order_card",
+    "pages/receivePacket/receivePacket",
+    "pages/liveRoom/liveRoom",
+    "pages/live/live",
+    "pages/video-swiper/video-swiper"
+  ],
+  "subpackages": [{
+      "root": "packageStore",
+      "name": "packStore",
+      "pages": [
+        "pages/storeDetail/storeDetail",
+        "pages/storeGoodsDetail/storeGoodsDetail",
+        "pages/storeGoodSafe/storeGoodSafe",
+        "pages/storeManager/storeManager",
+        "pages/storeApply/storeApply",
+        "pages/storeManager/storeInfo",
+        "pages/storeManager/storeGoodsEdit",
+        "pages/storeManager/storeGoodsManager",
+        "pages/storeManager/storeAddPlatForm",
+        "pages/storeOrderList/storeOrderList",
+        "pages/storeOrderDetail/storeOrderDetail",
+        "pages/storeProfit/storeProfit",
+        "pages/storeIntroduce/storeIntroduce",
+        "pages/storeEnsureprice/storeEnsureprice"
+      ]
+    },
+    {
+      "root": "packageStoreFamous",
+      "name": "packStoreFamous",
+      "pages": [
+        "pages/storeFamous/storeFamous",
+        "pages/storeFamousUser/storeFamousUser",
+        "pages/storeFamousGoods/storeFamousGoods",
+        "pages/storeFamousAppGoods/storeFamousAppGoods",
+        "pages/storeFamousGoodsList/storeFamousGoodsList",
+        "pages/storeFamousAppGoodsList/storeFamousAppGoodsList",
+        "pages/storeFamousAdmin/storeFamousAdmin",
+        "pages/storeFamousAdmin/user/user",
+        "pages/storeFamousAdmin/goods/goods",
+        "pages/storeFamousAdmin/goodsDetail/goodsDetail",
+        "pages/storeFamousAdmin/storeList/storeList"
+      ]
+    },
+    {
+      "root": "packageIm",
+      "name": "packIm",
+      "pages": [
+        "pages/conversations/conversations",
+        "pages/groupChat/groupChat",
+        "pages/privateChat/privateChat",
+        "pages/groupMember/groupMember"
+      ]
+    },
+    {
+      "root": "packageHighGood",
+      "name": "packHighGood",
+      "pages": [
+        "pages/adviserList/adviserList",
+        "pages/adviserDetail/adviserDetail",
+        "pages/goodsList/goodsList",
+        "pages/goodsAllList/goodsAllList",
+        "pages/goodsDetail/goodsDetail",
+        "pages/order/order",
+        "pages/orderList/orderList",
+        "pages/orderDetail/orderDetail",
+        "pages/uploadGood/uploadGood",
+        "pages/uploadAdviser/uploadAdviser"
+      ]
+    },
+    {
+      "root": "packageInner",
+      "name": "packInner",
+      "pages": [
+        "pages/view/view",
+        "pages/recordDetail/recordDetail",
+        "pages/analysis/analysis"
+      ]
+    },
+    {
+      "root": "packageArticle",
+      "name": "packArticle",
+      "pages": [
+        "pages/articleList/articleList",
+        "pages/article/article"
+      ]
+    },
+    {
+      "root": "packageTailor",
+      "name": "packTailor",
+      "pages": [
+        "pages/Tailor/Tailor",
+        "pages/myTailor/myTailor",
+        "pages/uploadTailor/uploadTailor",
+        "pages/uploadSolution/uploadSolution",
+        "pages/releaseRequire/releaseRequire",
+        "pages/receiveRequire/receiveRequire",
+        "pages/myPolish/myPolish",
+        "pages/myInlay/myInlay",
+        "pages/myCarve/myCarve",
+        "pages/polishDetail/polishDetail",
+        "pages/inlayDetail/inlayDetail",
+        "pages/carveDetail/carveDetail",
+        "pages/appreciate/appreciate",
+        "pages/carverPrice/carverPrice",
+        "pages/materialSolution/materialSolution",
+        "pages/share/share",
+        "pages/share/order/order",
+        "pages/share/profit/profit",
+        "pages/share/equipment/equipment"
+      ]
+    },
+    {
+      "root": "packageActivity",
+      "name": "packActivity",
+      "pages": [
+        "pages/redPacketRain/redPacketRain"
+      ]
+    },
+    {
+      "root": "packageMyself",
+      "name": "packMyself",
+      "pages": [
+        "pages/myself/myfoots/myfoots",
+        "pages/myself/myfavour/myfavour",
+        "pages/myself/mywallet/myFriends/myFriends",
+        "pages/myself/myshare/myposter/myposter",
+        "pages/myself/mywallet/welfareTicket/welfareTicket",
+        "pages/myself/saleAfter/saleAfterDetail/saleAfterDetail",
+        "pages/myself/saleAfter/saleAfterApply/saleAfterApply",
+        "pages/myself/aboutUs/feedback/feedback",
+        "pages/myself/aboutUs/aboutUs",
+        "pages/myself/shopAddress/shopAddress",
+        "pages/myself/mywallet/mycoin/mycoin",
+        "pages/myself/mywallet/worldrank/worldrank",
+        "pages/myself/mywallet/mycontacts/mycontacts",
+        "pages/myself/mywallet/myincome/myincome",
+        "pages/myself/mywallet/highProfit/highProfit",
+        "pages/myself/mywallet/mywallet",
+        "pages/myself/saleAfter/saleAfter",
+        "pages/myself/mywallet/mybudget/mybudget",
+        "pages/myself/myaddress/createAddress/createAddress",
+        "pages/myself/myaddress/myaddress",
+        "pages/myself/mywallet/myshare/myshare",
+        "pages/myself/myshare/myshare",
+        "pages/myself/mywallet/orderReward/orderReward",
+        "pages/myself/mywallet/withdrawRecord/withdrawRecord",
+        "pages/myself/mywallet/card/buyCards",
+        "pages/myself/mywallet/card/cardDetail",
+        "pages/myself/mywallet/card/exchangeCard",
+        "pages/myself/mywallet/card/myCard",
+        "pages/myself/mywallet/carveProfit/carveProfit",
+        "pages/myself/myrights/myrights",
+        "pages/myself/aboutUs/aboutCompany/aboutCompany",
+        "pages/myself/aboutUs/privateTerms/privateTerms",
+        "pages/myself/shareCards/shareCards",
+        "pages/myself/vCard/vCard",
+        "pages/myself/vCard/createCard/createCard",
+        "pages/myself/vCard/showCard/showCard",
+        "pages/myself/vCard/shareCard/shareCard",
+        "pages/myself/vCard/saveWechatCode/saveWechatCode",
+        "pages/myself/redEnvelope/redEnvelope",
+        "pages/myself/getEnvelope/getEnvelope",
+        "pages/myself/mywallet/myBalance/myBalance",
+        "pages/myself/cloudStore/cloudStore",
+        "pages/myself/blindBag/blindBag",
+        "pages/myself/blindBag/order/orderlist",
+        "pages/myself/blindBag/order/order_detail/express_detail/express_detail",
+        "pages/myself/storage/storage",
+        "pages/apply/applyWater/applyWater",
+        "pages/apply/applyPrize/applyPrize",
+        "pages/apply/haoym/haoym",
+        "pages/ads/ads"
+      ]
+    }
+  ],
+  "tabBar": {
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home2.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "images/act.png",
+        "selectedIconPath": "images/act2.png"
+      },
+      {
+        "pagePath": "pages/live/live",
+        "text": "直播",
+        "iconPath": "images/live.png",
+        "selectedIconPath": "images/live2.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/car.png",
+        "selectedIconPath": "images/car2.png"
+      },
+      {
+        "pagePath": "pages/myself/myself",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my2.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "上商珠宝",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用户小程序定位使用"
+    }
+  },
+  "usingComponents": {
+    "van-toast": "/miniprogram_npm/@vant/weapp/toast/index",
+    "van-image": "/miniprogram_npm/@vant/weapp/image/index",
+    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+    "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
+    "van-nav-bar": "/miniprogram_npm/@vant/weapp/nav-bar/index",
+    "van-row": "/miniprogram_npm/@vant/weapp/row/index",
+    "van-col": "/miniprogram_npm/@vant/weapp/col/index",
+    "van-count-down": "/miniprogram_npm/@vant/weapp/count-down/index",
+    "van-overlay": "/miniprogram_npm/@vant/weapp/overlay/index",
+    "van-button": "/miniprogram_npm/@vant/weapp/button/index",
+    "van-cell": "/miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-field": "/miniprogram_npm/@vant/weapp/field/index",
+    "van-picker": "/miniprogram_npm/@vant/weapp/picker/index",
+    "van-grid": "/miniprogram_npm/@vant/weapp/grid/index",
+    "van-grid-item": "/miniprogram_npm/@vant/weapp/grid-item/index",
+    "van-goods-action": "/miniprogram_npm/@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "/miniprogram_npm/@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "/miniprogram_npm/@vant/weapp/goods-action-button/index",
+    "stepper": "/components/stepper/stepper",
+    "model": "/components/v-model/model",
+    "navbar": "/components/navbar/navbar",
+    "login": "/components/login/login",
+    "toLogin": "/components/toLogin/toLogin"
+  },
+  "sitemapLocation": "sitemap.json"
+}

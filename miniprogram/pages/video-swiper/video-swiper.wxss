@@ -1,0 +1,83 @@
+page {
+    background-color: #000000;
+    height: 100%;
+}
+
+mp-video-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    position: fixed;
+    height: 100rpx;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.redpacket {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 15px;
+}
+
+.redpacket_txt {
+    position: fixed;
+    width: 50px;
+    height: 40px;
+    right: 15px;
+    text-align: center;
+    line-height: 40px;
+    color: #FDDDA3;
+    font-size: 36rpx;
+}
+
+.redpacket_gif {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    right: 10px;
+}
+
+.grey_tilte {
+    color: #d1d0d0;
+}
+
+/**** 红包 ***/
+.circle {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    right: 10px;
+}
+
+.popup_share {
+    position: fixed;
+    top: 0;
+    z-index: 800;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+}
+
+.redbag {
+    background-image: url(https://img.ssw88.com/static/red/red_video.png);
+    background-size: 100% 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.get_award {
+    background-color: #FDDDA3;
+    color: #973C05;
+    font-size: 26rpx;
+    text-align: center;
+    height: 60rpx;
+    width: 180rpx;
+    line-height: 60rpx;
+    border-radius: 30rpx;
+    margin-top: 60rpx;
+}

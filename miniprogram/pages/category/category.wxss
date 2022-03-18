@@ -1,0 +1,165 @@
+/* 顶部导航 */
+
+.status-bar {
+  width: 100%;
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  background: white;
+}
+
+.app_icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-left: 20rpx;
+}
+
+.icon_search {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 14rpx;
+  margin-left: 20rpx;
+}
+
+.icon_back {
+  width: 16rpx;
+  height: 32rpx;
+  margin: 24rpx;
+  margin-top: 28rpx;
+}
+
+.icon_rubbish {
+  width: 28rpx;
+  height: 32rpx;
+  margin: 14rpx;
+  margin-right: 60rpx;
+}
+
+.search {
+  color: #494949;
+}
+
+.search_fake_bar {
+  width: 480rpx;
+  margin-top: 20rpx;
+  height: 52rpx;
+  background-color: #f0f0f0;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+
+.tag_title {
+  line-height: 60rpx;
+  width: 750rpx;
+  padding: 20rpx;
+  padding-left: 30rpx;
+  font-size: 28rpx;
+}
+
+.tag_justify {
+  margin-left: 10rpx;
+}
+
+.tag_square {
+  line-height: 32rpx;
+  font-size: 32rpx;
+  padding: 16rpx 20rpx;
+  margin: 0 16rpx;
+  border-radius: 40rpx;
+  background-color: white;
+  margin-bottom: 20rpx;
+}
+
+.search_finish {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.info_block {
+  padding: 0rpx 24rpx 24rpx 30rpx;
+  font-size: 32rpx;
+}
+
+.search_category {
+  width: 120rpx;
+  float: left;
+  padding: 20rpx 10rpx 0 10rpx;
+}
+
+.selected {
+  font-weight: normal;
+}
+
+.condition_sort {
+  padding: 20rpx 60rpx;
+}
+
+.second_bar text {
+  padding: 20rpx 0;
+  text-align: center;
+  width: 200rpx;
+  border-bottom: 1px solid whitesmoke;
+  background: white;
+}
+
+.second_section {
+  margin-left: 200rpx;
+}
+
+.third_title {
+  width: 100%;
+  padding: 20rpx 0;
+}
+
+.third_icon {
+  margin-top: 8rpx;
+  margin-left: 20rpx;
+  margin-right: 12rpx;
+  height: 28rpx;
+  width: 36rpx;
+}
+
+.third_section {
+  background: white;
+  width: 550rpx;
+  padding-top: 20rpx;
+  margin-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.third_bar {
+  width: 180rpx;
+  padding: 25rpx 0;
+  padding-bottom: 10rpx;
+}
+
+.fourth_icon_section {
+  background-color: #f0f0f0;
+  border-radius: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
+  overflow: hidden;
+}
+
+.fourth_icon {
+  height: 60rpx;
+  width: 60rpx;
+  margin-top: 10rpx;
+}
+
+.third_bar text {
+  font-size: 28rpx;
+}
+
+.display2 {
+  margin:10rpx;
+  border-radius: 10rpx;
+  border: 1px solid #079547;
+  width: 140rpx;
+}
+
+.selected
+{
+  border-bottom: 8rpx solid #0ACC61;
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "red-packet": "/components/redPacket/redPacket"
+  },
+  "enablePullDownRefresh": true
+}

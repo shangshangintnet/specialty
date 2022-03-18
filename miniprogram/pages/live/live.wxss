@@ -1,0 +1,68 @@
+/* pages/live/live.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.live {
+  align-items: center;
+}
+
+.live_item {
+  width: 700rpx;
+  height: 560rpx;
+  background-size: 100% 100%;
+  margin: 10rpx 0rpx;
+  padding: 20rpx;
+}
+
+.user_icon {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+}
+
+.user_nickname {
+  margin-left: 10rpx;
+  color: white;
+  font-size: 32rpx;
+}
+
+.live_state {
+  margin-left: auto;
+  height: 42rpx;
+  width: 140rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.live_state_101 {
+  background: linear-gradient(180deg, #f67e4a, #e7463e);
+}
+
+.live_state_102 {
+  background: #f8f8f8;
+  border-radius: 21rpx;
+}
+
+.live_state_103 {
+  background: #f8f8f8;
+  border-radius: 21rpx;
+}
+
+.live_bottom {
+  margin-top: 400rpx;
+  color: #ffffff;
+  align-items: flex-end;
+}
+
+.live_share {
+  width: 150rpx;
+  height: 40rpx;
+  border-radius: 16rpx;
+  background-color: #ff0000;
+  align-items: center;
+  margin-left: auto;
+  justify-content: center;
+}

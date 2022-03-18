@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mp-video-swiper": "../../components/video-swiper/index",
+    "att-video-swiper": "../../components/attention-video-swiper/index"
+  }
+}

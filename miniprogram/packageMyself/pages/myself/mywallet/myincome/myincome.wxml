@@ -1,0 +1,41 @@
+<!--miniprogram/pages/myself/mywallet/myincome/myincome.wxml-->
+<navbar title='我的收益' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='column bg_white pad-lr-20' style="border-top:2px solid #f8f8f8;margin-top:{{bar_Height+45}}px;width:710rpx;min-height:100vh;">
+	<view class='row'>
+		<text style='width:190rpx;margin:10rpx 5rpx;margin:0 5rpx;' bindtap='toggle_change' data-select-Tog='{{idx}}'  class='pad-20 block_center {{idx == select_items?"app_green":""}}' wx:for-index="idx" wx:for="{{income}}">{{select_title[idx]}}</text>
+	</view>
+	<view class='row table_lable width100 border_line_whitesmoke'>
+		<text class='gray h4'>分享圈子</text>
+		<text class='gray h4'>好友人数</text>
+		<text class='gray h4'>翡翠币</text>
+		<text class='gray h4'>分享补贴</text>
+		<text class='gray h4'>订单奖励</text>
+	</view>
+	<view wx:for-index="idx" wx:if="{{idx == select_items}}" wx:for="{{income}}">
+		<view class='row table_lable width100 border_line_whitesmoke'>
+			<text class='gray'>直接分享</text>
+			<text class='gray h4'>{{item.shareCount}}</text>
+			<text class='h4 app_green'>{{item.emdEmeraldCount == null?0:item.emdEmeraldCount}}</text>
+			<text class='app_orange h4'>{{item.subsidySharePrice}}</text>
+			<text class='app_orange h4'>{{item.profitSharePrice}}</text>
+		</view>
+
+		<view class='row table_lable width100 border_line_whitesmoke'>
+			<text class='gray'>间接分享</text>
+
+			<text class='gray h4'>{{item.indirectCount}}</text>
+			<text class='h4 app_green'>{{item.indirectEmeraldCount == null?0:item.indirectEmeraldCount}}</text>
+			<text class='app_orange h4'>{{item.subsidyIndirectPrice}}</text>
+			<text class='app_orange h4'>{{item.profitIndirectPrice}}</text>
+		</view>
+
+		<view class='row table_lable width100 border_line_whitesmoke'>
+			<text class='gray'>人脉分享</text>
+			<text class='gray h4'>{{item.connectionCount}}</text>
+			<text class='h4 app_green'>{{item.connectionEmeraldCount == null?0:item.connectionEmeraldCount}}</text>
+			<text class='app_orange h4'>{{item.subsidyConnectionPrice}}</text>
+			<text class='app_orange h4'>{{item.profitConnectionPrice}}</text>
+		</view>
+	</view>
+
+</view>

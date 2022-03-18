@@ -1,0 +1,10 @@
+<navbar title='名片码' show_bol='{{false}}' bg_type='bg_black'></navbar>
+
+<image src="{{postUrl}}" mode="widthFix" style="margin-top:130rpx;;width:750rpx;"></image>
+<canvas wx:if="{{showCanvas}}" canvas-id="hoCanvas" style="margin:0 auto;width:750px;height:806px;margin-top:1000px;"></canvas>
+
+<view class="pad-20" style="position:absolute;bottom:10px;width:710rpx;">
+	<button style="width:100%" bindtap="saveImg" class="btn_success">保存到手机</button>
+</view>
+
+<login id="login"></login>

@@ -1,0 +1,6 @@
+/* miniprogram/pages/myself/myaddress/myaddress.wxss */
+
+.address_section
+{
+  padding:20rpx;
+}

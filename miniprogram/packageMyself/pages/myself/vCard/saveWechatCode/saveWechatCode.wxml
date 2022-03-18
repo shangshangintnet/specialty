@@ -1,0 +1,5 @@
+<web-view src="{{url}}"></web-view>
+<!--
+<image style="top:{{bar_Height  + 50}}px;" mode="widthFix" class="wechatCodeImg" src="../images/add.jpg"></image>
+https://home.ssw88.com/webAppIndex/index.html#/wxScanQrcode
+<button bindtap="scanCode" class="btn_scan">微信扫一扫</button>-->

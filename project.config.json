@@ -1,0 +1,101 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "minifyWXML": true
+  },
+  "appid": "wx08d3c73ac0c0cdb6",
+  "projectname": "sszbTest",
+  "libVersion": "2.19.3",
+  "compileType": "miniprogram",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": " 探宝",
+          "pathName": "pages/video-swiper/video-swiper",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myself/myself",
+          "pathName": "pages/myself/myself",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/live/live",
+          "pathName": "pages/live/live",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTailor/pages/Tailor/Tailor",
+          "pathName": "packageTailor/pages/Tailor/Tailor",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageMyself/pages/myself/cloudStore/cloudStore",
+          "pathName": "packageMyself/pages/myself/cloudStore/cloudStore",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageTailor/pages/myProfit/myProfit",
+          "pathName": "packageTailor/pages/myProfit/myProfit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageMyself/pages/myself/mywallet/mywallet",
+          "pathName": "packageMyself/pages/myself/mywallet/mywallet",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

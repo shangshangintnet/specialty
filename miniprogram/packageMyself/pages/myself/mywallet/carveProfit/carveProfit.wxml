@@ -1,0 +1,44 @@
+<navbar title='我的收益' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='row bg_white width100 border_line_whitesmoke' style="height:45px;position:fixed;top:{{bar_Height+50}}px;">
+  <block wx:if="{{ability == 3}}">
+    <view class='item3 gray h4' style="line-height:45px;text-align: center;">工费</view>
+    <view class='item3 gray h4' style="line-height:45px;text-align: center;">状态</view>
+    <view class='item3 gray h4' style="line-height:45px;text-align: center;">交易时间</view>
+  </block>
+  <block wx:else>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">工费</view>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">{{ability == 1?'解石费':'其他费用'}}</view>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">状态</view>
+    <view class='item4 gray h4' style="line-height:45px;text-align: center;">交易时间</view>
+  </block>
+</view>
+<view class="column width100" style="margin-top:{{bar_Height+95}}px;padding:10rpx 0rpx 200rpx 0rpx;">
+  <view class="column bg_white order_section" wx:for="{{orders}}">
+    <view class="row h2" style="margin-left:20rpx;">
+      主题:{{item.name}}
+    </view>
+    <block wx:if="{{ability == 3}}">
+      <view class="row">
+        <view class='item3 app_red h4 profititem'>
+          ¥ {{item.price}} </view>
+        <view class="item3 h4 profititem {{item.status==7?'app_green':'app_red'}}">
+          {{item.status == 7?'已到账':'未到账'}} </view>
+        <view class='item3 gray h4 profititem' style="line-height:45rpx">
+          {{item.times}} </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="row">
+        <view class='item4 app_red h4 profititem'>
+          ¥ {{item.price}} </view>
+        <view class='item4 app_red h4 profititem'>
+          ¥ {{item.addedPrice}} </view>
+        <view class="item3 h4 profititem {{item.status==7?'app_green':'app_red'}}">
+          {{item.status == 7?'已到账':'未到账'}} </view>
+        <view class='item4 gray h4 profititem' style="line-height:45rpx">
+          {{item.times}} </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="bottom h2 gray">交易完成15天后，货款自动到账</view>

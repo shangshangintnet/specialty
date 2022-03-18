@@ -1,0 +1,54 @@
+
+
+.width100
+{
+  width: 100%;
+}
+
+.block_center
+{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.column
+{ 
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.h4 {
+  font-size: 28rpx;
+}
+
+.pad-10 {
+  padding: 10rpx;
+}
+
+.row
+{ 
+  display: flex;
+  flex-direction: row;
+  background: white;
+}
+
+.left{
+  float:left;
+}
+
+.column text
+{
+  line-height: 32rpx;
+  font-size: 28rpx;
+  color:#202020;
+    margin-left: 10rpx;
+
+}
+
+
+.ar_block p
+{
+  margin-left: 20rpx;
+}

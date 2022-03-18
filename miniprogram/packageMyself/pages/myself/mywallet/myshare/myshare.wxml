@@ -1,0 +1,33 @@
+<navbar title='分享补贴' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='bg_white column pad-lr-20 top_border' style="width:710rpx;min-height:100vh;margin-top:{{bar_Height+45}}px;">
+  <view class='row coin_bar'>
+    <view class='row block_center'>
+      <text bindtap='toggle' data-toggle-Index="0" style='width:190rpx;margin:10rpx 5rpx' class='h2 pad-20 radius5 {{tagSelect == 0?"app_green":""}}'>直接好友</text>
+      <text>|</text>
+      <text bindtap='toggle' data-toggle-Index="1" style='width:190rpx;margin:10rpx 5rpx' class='h2 pad-20 radius5 {{tagSelect == 1?"app_green":""}}'>间接好友</text>
+      <text>|</text>
+      <text bindtap='toggle' data-toggle-Index="2" style='width:190rpx;margin:10rpx 5rpx' class='h2 pad-20 radius5 {{tagSelect == 2?"app_green":""}}'>人脉好友</text>
+    </view>
+  </view>
+  <view wx:if="{{chooseRank.length != 0}}">
+    <view class='row table_lable width100 border_line_whitesmoke'>
+      <text class='gray h4'>好友昵称</text>
+      <text class='gray h4'>当前补贴</text>
+      <text class='gray h4'>预计补贴</text>
+    </view>
+
+    <view wx:for="{{chooseRank}}" wx:for-index="idx" class='row table_lable width100 border_line_whitesmoke'>
+      <text class='h4 gray'>{{item.orderId}}</text>
+      <text class='app_orange h4'>{{item.currentAwards}}</text>
+      <text class='app_orange h4'>{{item.expectedReward}}</text>
+    </view>
+  </view>
+  <view wx:else class='pad-20 block_center row'>
+    <text class='h4 gray'>暂无任何记录</text>
+  </view>
+
+
+  <view style='position:fixed;bottom:0;left:0;' class='pad-ud-20 bg_white row table_lable width100 border_line_whitesmoke'>
+    <view style='width:750rpx;text-align:center' class='gray h4'>只显示最近一个月的记录</view>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<navbar title="动态列表" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+50}}px;">
+  <view>
+    <view class="column">
+				<view style="margin-top: 30rpx;margin-left: 31rpx;height: 230rpx;width: 688rpx;background-color: #FFFFFF;border-radius:10rpx;box-shadow: 1rpx 1rpx 9rpx #c2bfbf;" wx:for="{{goods}}" bindtap="jumpToStoreFamousAppGoods" data-id="{{item.id}}">
+					<view class="row">
+						<image src="{{item.image}}" style="width: 250rpx;height: 168rpx;margin-left: 20rpx;margin-top: 31rpx;"></image>
+						<view class="column" style="margin-left: 16rpx;">
+							<text style="font-size: 32rpx;margin-top: 36rpx;width: 364rpx;height: 71rpx;color: #333333;">{{item.name}}</text>
+							<view class="row" style="margin-top: 35rpx;align-items: center;">
+								<image src="{{item.photo}}" style="width: 50rpx;height: 50rpx;border-radius: 50%;"></image>
+								<text style="color: #666666;font-size: 28rpx;margin-left: 12rpx;">{{item.userName}}</text>
+								<text style="color: #666666;font-size: 28rpx;position: absolute; right: 50rpx;">{{item.createTime}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+  </view>
+</view>

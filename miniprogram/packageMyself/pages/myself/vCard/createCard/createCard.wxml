@@ -1,0 +1,30 @@
+<navbar wx:if="{{!cropShow}}" title='创建名片' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view wx:if="{{!cropShow}}" style="margin-top:{{bar_Height + 50}}px;margin-bottom:100rpx">
+	<van-cell-group>
+		<van-cell bind:click="cPhotos" title="头像">
+			<view class="width100">
+				<image style="width:100rpx;height:100rpx" src="{{photo == ''?'/images/user-unlogin.png':photo}}"></image>
+				<view class="h5 gray" style="padding-right:8rpx;margin-top:-10rpx;">换个头像</view>
+			</view>
+		</van-cell>
+		<van-field label="姓名" value="{{name}}" placeholder="请输入用户名" bind:change="cName" />
+		<van-field label="职位" value="{{position}}" placeholder="请输入职位" bind:change="cPos" />
+		<van-field label="手机" value="{{phone}}" placeholder="请输入手机" bind:change="cPhone">
+		</van-field>
+		<van-field label="邮箱" value="{{email}}" placeholder="请输入邮箱" bind:change="cEmail" />
+		<van-field label="公司" value="{{company}}" placeholder="请输入公司" bind:change="cCompany" />
+		<van-field label="地址" value="{{address}}" placeholder="请输入地址" bind:change="cAddress" />
+		<van-field label="微信号" value="{{wechatId}}" placeholder="请输入微信号" bind:change="cWechat" />
+		<van-cell bind:click="cWechatCode" title="微信二维码">
+			<view class="width100">
+				<image style="width:100rpx;height:100rpx" src="{{wechatCode}}"></image>
+				<view class="h5 gray" style="padding-right:8rpx;margin-top:-10rpx;">点击修改</view>
+			</view>
+		</van-cell>
+		<van-field label="公司简介" maxlength="200" autosize type="textarea" value="{{introduce}}" placeholder="请输入公司简介" bind:change="cIntroduce" />
+	</van-cell-group>
+</view>
+<button wx:if="{{!cropShow}}" bindtap="confirm" class="btn_update">确认修改</button>
+<view wx:if="{{cropShow}}">
+	<image-cropper id="image-cropper" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" bindgetImg="getImg"></image-cropper>
+</view>

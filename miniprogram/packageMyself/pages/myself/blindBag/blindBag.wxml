@@ -1,0 +1,97 @@
+<view class="tag column">
+	<navbar id="navbar" show_bol='{{false}}' bg_type='bg_share'></navbar>
+	<view class="column"
+		style="border-radius: 56.5rpx;border-top-right-radius: 0rpx;width: 600rpx;height: 113rpx; background-color: #FFFFFF;margin-top: 309rpx;margin-left: 75rpx;">
+		<image style="width: 600rpx;height: 113rpx;"
+			src="https://img.ssw88.com/wechatImg/blindBagImg/9.9%E5%85%83%E5%8C%85%E9%82%AE.png" bindtap='buyGoods'/>
+	</view>
+	<image style="width: 240rpx;height: 50rpx;margin-left: 258rpx;margin-top: 65rpx;"
+		src="https://img.ssw88.com/wechatImg/blindBagImg/%E7%9B%B2%E8%A2%8B%E8%A7%84%E5%88%99.png" />
+	<image style="width: 668rpx;height: 299rpx;margin-left: 42rpx;margin-top: 16rpx;"
+		src="https://img.ssw88.com/wechatImg/blindBagImg/%E7%9B%B2%E8%A2%8B%E8%A7%84%E5%88%99%E5%86%85%E5%AE%B9.png" />
+	<image style="width: 240rpx;height: 50rpx;margin-left: 258rpx;margin-top: 780rpx;"
+		src="https://img.ssw88.com/wechatImg/blindBagImg/%E4%BA%A7%E5%93%81%E5%B1%95%E7%A4%BA.png" />
+	<view wx:for="{{images}}">
+		<image wx:if="{{bImages[index/2+index%2]!=null&&index%2==0}}" style="width: 700rpx;height: 350rpx; margin-left: 25rpx;margin-top: 50rpx;" src="{{bImages[index/2+index%2]}}"/>
+		<image style="width: 700rpx;height: 700rpx; margin-left: 25rpx;margin-top: 50rpx;" src="{{item}}"/>
+	</view>
+	<image style="width: 240rpx;height: 50rpx;margin-left: 258rpx;margin-top: 86rpx;margin-bottom: 51rpx;"
+		src="https://img.ssw88.com/wechatImg/blindBagImg/%E7%B2%BE%E9%80%89%E7%A6%8F%E5%88%A9.png" />
+	<guess_what id="guess_what">
+	</guess_what>
+	<view class="column"
+		style="position:fixed;border-radius: 40rpx;margin-left: 656rpx;bottom: 190rpx;height: 199rpx;width: 80rpx;background-color: #FFFFFF;">
+		<image class='btn_icon' style="height: 30rpx;width: 26rpx;left: 27rpx;top: 20rpx;"
+			src="https://img.ssw88.com/wechatImg/blindBagImg/%E8%AE%A2%E5%8D%95.png" bindtap='jumpTo' data-url="order/orderlist"/>
+		<text class='btn_text' style="font-size: 22rpx;font-weight: bold;left: 17rpx;margin-top: 26rpx;" bindtap='jumpTo' data-url="order/orderlist">订单</text>
+		<view style="background-color: #CCCCCC;height: 4rpx;width: 40rpx;margin-left: 20rpx;margin-top: 15rpx;"></view>
+		<image class="btn_icon" style="height: 30rpx;width: 29rpx;left: 26rpx;margin-top: 14rpx;"
+			src="https://img.ssw88.com/wechatImg/blindBagImg/%E8%B4%AD%E4%B9%B0.png" bindtap='buyGoods'></image>
+		<text class='btn_text' style="font-size: 22rpx;font-weight: bold;left: 20rpx;margin-top: 8rpx;" bindtap='buyGoods'>购买</text>
+	</view>
+		<image class='btn_icon' style="position:fixed;height: 160rpx;width: 400rpx;bottom:0;left: 170rpx;"
+			src="https://img.ssw88.com/wechatImg/blindBagImg/%E6%8A%A2%E6%8C%89%E9%92%AE.png" bindtap='buyGoods'/>
+	<van-popup custom-style="width:100vw;height:650rpx;" position="bottom" show="{{ showPop }}" bind:close="closePopup">
+		<image style="width:30rpx;height:30rpx;position:relative;left:700rpx;top:20rpx;" src="../../../../images/close.png"
+			bindtap="closePopup"></image>
+		<!--收货地址-->
+		<view class="row">
+			<image style="width:40rpx;height:40rpx;position:relative;left:60rpx;" src="./images/cloud_adress.png"
+				bindtap="closePopup"></image>
+			<text style="position:relative;left:70rpx;top:-10rpx">收货地址</text>
+		</view>
+		<view class="row">
+			<button style="position:relative;top:10rpx;width:650rpx;height:150rpx;" plain="true" bindtap="selectAddress">
+				<!--有地址-->
+				<view wx-if="{{getAddress.length != 0}}" style="text-align:left;">
+					<text class='left gray_4 h2'>{{getAddress[addressIdx].realName}}{{getAddress[addressIdx].phoneNum}}</text>
+				</view>
+				<view wx-if="{{getAddress.length != 0}}" style="position:relative;top:-10rpx;text-align:left;">
+					<text class='left h4 gray_4'>{{getAddress[addressIdx].addressName}}</text>
+				</view>
+				<!--没有地址-->
+				<view wx-if="{{getAddress.length == 0}}" class='row'>
+					<image style='margin:40rpx 20rpx;width:60rpx;height:60rpx;float:left;' src='/images/ic_local.png'></image>
+					<view style='margin-top:35rpx;margin-right:40rpx;' class='column'>
+						<text class='h2 gray_4'>添加地址</text>
+					</view>
+				</view>
+			</button>
+			<image style="width:13rpx;height:22rpx;position:relative;left:-80rpx;top:70rpx"
+				src="../../../../images/arrow_right.png" />
+		</view>
+		<!--押金数量-->
+		<view style="position:relative;top:60rpx;" class="row">
+			<image style="width:40rpx;height:40rpx;position:relative;left:60rpx;" src="./images/cloud_deposit.png"></image>
+			<text style="position:relative;left:70rpx;">金额：</text>
+			<text style="position:relative;left:80rpx;color:#FF6901">{{onlyPrice}}</text>
+			<text style="position:relative;left:90rpx;">元/个</text>
+		</view>
+		<view style="position:relative;top:60rpx;" class="row">
+			<button style="position:relative;top:10rpx;width:650rpx;height:90rpx;text-align:left;" plain="true">
+				<text style="position:relative;top:10rpx;" class='left gray h4'>福袋数量</text>
+				<input style="position:relative;top:5rpx;left:-20rpx" class='order_num' value="{{orderCount}}" type="number"
+					bindblur="orderNum" bindconfirm="orderNum" />
+			</button>
+			<image style="width:13rpx;height:22rpx;position:relative;left:-80rpx;top:45rpx"
+				src="../../../../images/arrow_right.png" />
+		</view>
+		<view style='position:absolute;bottom:0;width:100vw;height:100rpx;text-align:center;' bindtap="createOrder">
+			<view style="border-bottom: 2px solid whitesmoke;">
+			</view>
+			<text style='position:relative;top:20rpx;'>确认选择</text>
+		</view>
+	</van-popup>
+</view>
+<van-popup custom-style="width:100vw;height:60vh;z-index:1000" position="bottom" show="{{showAddress}}"
+	bind:close="closeAddress">
+	<van-picker show-toolbar bind:cancel="closeAddress" bind:confirm="onConfirm" title="选择现有地址" columns="{{getAddress}}"
+		value-key="addressName" bind:change="onChange" />
+	<view style="position:absolute;bottom:8px;padding-top:10px;width:100%" class="van-hairline--top">
+		<button bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/createAddress/createAddress"
+			style="width:300rpx;margin-left:50rpx;" class="left" type="primary">新增地址</button>
+		<button bindtap='jumpTo' class="right" data-url="/packageMyself/pages/myself/myaddress/myaddress"
+			style="width:300rpx;margin-right:50rpx;" type="default">修改地址</button>
+	</view>
+</van-popup>
+<login id="login"></login>

@@ -1,0 +1,40 @@
+<navbar title='分享购物卡' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white" style="padding-top:{{bar_Height  + 55}}px;padding-left:30px;padding-right:30px;height:88vh">
+  <image class="width100" mode="widthFix" src="{{imageUrl}}"></image>
+  <view class="h4">共有
+    <text class="app_green h3"> {{count}} </text> 张可转赠</view>
+  <view class="h4" style="height:80rpx;">
+    <view class="left pad-ud-10">选择数量</view>
+    <view class="right">
+      <stepper binddata="changeValue" max="{{count}}" />
+    </view>
+  </view>
+  <view class="h4 pad-ud-20">选择转赠好友</view>
+  <view class="width100 row">
+    <view style="width:45%;margin-right:10%">
+      <button bindtap="getShare" style="padding:0 20px;font-size:32rpx;background-color:white">
+        <image class="icon_xl" mode="widthFix" src="/images/wx_icon.png"></image> 分享赠送 </button>
+    </view>
+    <view bindtap="showPopup" style="width:45%">
+      <button style="padding:0 20px;font-size:32rpx;background-color:white">
+        <image class="icon_xl" mode="widthFix" src="/images/logo@2x.png"></image> 赠送好友 </button>
+    </view>
+  </view>
+</view>
+
+<van-popup position="bottom" custom-style="height:550rpx;width:75vw;top:30vh;margin-left:15vw;border-radius:30rpx;padding:20rpx;" show="{{ showShare }}" bind:close="cancelShare">
+  <view class="width100 column text-center">
+    <image class="width100" mode="widthFix" src="{{imageUrl}}"></image>
+    <view class="h4 pad-ud-10">礼品卡已生成,点击下方按钮进行分享</view>
+    <button open-type="share" style="margin-top:10px;" type="primary" class="width100" >分享</button>
+  </view>
+</van-popup>
+
+<van-popup custom-style="width:100vw;height:80vh;top:20vh;" position="bottom" show="{{ showPop }}" bind:close="closePopup">
+  <van-search placeholder="搜索用户" value="{{friendsName}}" bind:search="getSearch" />
+  <van-cell-group>
+    <van-cell wx:for="{{list}}" bindtap="giveFriends" data-userId="{{item.userId}}" title="{{item.nickName}}" value="{{item.mobile}}">
+      <van-icon style="margin-right:10px;" slot="icon" name="/images/user-unlogin.png" size="28" />
+    </van-cell>
+  </van-cell-group>
+</van-popup>

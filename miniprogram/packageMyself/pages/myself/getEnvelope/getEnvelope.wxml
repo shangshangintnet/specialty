@@ -1,0 +1,67 @@
+<wxs module="phone" src="../../../../utils/phone.wxs"></wxs>
+<navbar show_bol='{{false}}' bg_type='bg_black_op'></navbar>
+<view wx:if="{{ready}}" class="bg_white column" style="padding-bottom:20rpx;">
+	<image src="{{bg}}" mode="widthFix" class="width100"></image>
+	<view wx:if="{{ready}}" class="width100 text-center">
+		<view class="width100 text-center">
+			<view class="text-center">
+				<image src="{{photo == undefined?'/images/user-unlogin.png':photo}}" style="border-radius:5px;margin-top:20rpx;" class="icon_xl"></image>
+				<text style="position:relative;top:8px;margin-left:8px;letter-spacing:1px;font-size:42rpx;" class="h1 bold">{{name}}的红包</text>
+			</view>
+		</view>
+		<view wx:if="{{message != undefined}}" style="color:#CFAB72;margin-top:-10rpx;" class="h1">¥ <text style="font-size:56px">{{phone.toMoney(message.price)}}</text> 元</view>
+		<view wx:if="{{message != undefined}}" bindtap="jumpTo" data-url="/packageMyself/pages/myself/mywallet/myBalance/myBalance" style="color:#CFAB72;margin-top:-10rpx;" class="h4">已存入余额,可直接使用 ></view>
+		<view wx:if="{{status == 3}}" class="text-center">
+			<image class="pad-20" mode="widthFix" style="width:300rpx;" src="./images/redOver.png"></image>
+		</view>
+		<view wx:if="{{status == 3}}" class="pad-10 h4 gray">该红包已过期~</view>
+	</view>
+</view>
+<view wx:if="{{ready}}" class="bg_white" style="border-top:5px solid #f0f0f0;padding-bottom:60px;">
+	<view wx:if="{{status == 2 && messages.length > 0}}" class="pad-20 h4 gray border_line_whitesmoke">
+		{{messages.length}}个红包,
+		<text wx:if="{{times < 60}}">{{phone.toInt(times)}}秒</text>
+		<text wx:elif="{{ times < (3600)}}" >{{phone.toInt((times)/60)}}分钟</text>
+		<text wx:else >{{phone.toInt((times)/3600)}}小时</text>
+		被抢光
+	</view>
+	<view wx:if="{{status <= 1}}" class="pad-20 h4 gray border_line_whitesmoke">
+		{{messages.length}}/{{count}} 个红包已领取
+	</view>
+	<view class="column">
+		<view wx:for="{{messages}}" class="border_line_whitesmoke" wx:key="index">
+			<view class="width100 pad-10">
+				<image src="{{item.photo == undefined?'/images/user-unlogin.png':item.photo}}" class="icon_hg left mar-10" style="border-radius:5px;"></image>
+				<view class="column left pad-lr-10">
+					<view style="margin-top:12rpx">{{phone.limit(item.name,10)}}</view>
+					<view class="h4 smoke" style="position:relative;top:-4px;">{{item.times}}</view>
+				</view>
+				<view style="margin-top:4rpx" class="column right pad-lr-20">
+					<view style="text-align:right" class="right pad-lr-10">{{phone.toMoney(item.price)}} 元</view>
+					<view wx:if="{{userId == item.userId}}" style="color:#FF8A00" class="h4 pad-lr-10">
+						<image class="icon" mode="widthFix" src="./images/best.png"> </image> 幸运用户
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<button wx:if="{{ready}}" bindtap="jumpTo" data-url="/packageMyself/pages/myself/mywallet/myBalance/myBalance" style="position:fixed;bottom:0;width:750rpx;border-radius:0 !important" class="bg_red white">
+	查看余额
+</button>
+
+<image wx:if="{{type == 1}}" bindtap='toggleInfo' src="./images/info.png" style='position:fixed;right:0;top:400rpx;width:100rpx;' mode="widthFix"></image>
+
+<van-popup custom-style="width:100vw;height:50vh;padding-top:50px;" position="bottom" show="{{ showInfo }}" bind:close="toggleInfo">
+	<van-nav-bar safe-area-inset-top="{{false}}" style="position:fixed;width:750rpx;top:50vh;" title="红包说明" bind:click-right="toggleInfo">
+		<van-icon name="cross" slot="right" />
+	</van-nav-bar>
+	<van-row>
+		<van-col>
+			<image style="margin-left:55rpx;width:640rpx;;margin-top:20rpx;" mode="widthFix" src="https://img.ssw88.com/wechatImg/redBalanceDraw.png"></image>
+		</van-col>
+	</van-row>
+</van-popup>
+
+<login id="login"></login>

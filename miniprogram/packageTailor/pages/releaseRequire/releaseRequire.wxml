@@ -1,0 +1,82 @@
+<navbar title="订制发布" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+	<view class="'condition '{{active==0?'app_green':'gray'}}">基本信息</view>
+	<view class="right_line"></view>
+	<view class="'condition '{{active==1?'app_green':'gray'}}">图集信息</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="row info_item">
+			<text class="gray_4 h2">类型<text class="app_red" style="margin-left:10rpx">*</text></text>
+			<picker class="picker" mode="selector" range-key="name" range="{{uploadType}}" bindchange="changeRequireType">
+				<block wx:if="{{requireType == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择订制类型</text>
+				</block>
+				<block wx:else>{{uploadType[requireType -1 ].name}}</block>
+			</picker>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">主题<text class="app_red" style="margin-left:10rpx">*</text></text>
+			<input value="{{stone.name}}" bindblur="changename" class="input_txt" placeholder="请输入订制主题"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_problem">
+			<text class="gray_4 h4">需求描述</text>
+		</view>
+		<textarea value="{{stone.demand}}" bindblur="changeDemand" placeholder="如：挂件 大肚佛"
+			placeholder-style="color:#BBBBBB;font-size: 28rpx;" maxlength="36" class="proble_txt"></textarea>
+		<view class="row info_item">
+			<text class="gray_4 h2">预算金额</text>
+			<input value="{{stone.budgetPrice}}" bindblur="changePrice" type="number" class="input_txt" placeholder="请输入初步预算"
+				placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">选择店铺</text>
+			<picker class="picker" mode="selector" range-key="name" range="{{storeList}}" bindchange="changeStore">
+				<block wx:if="{{stone.storeId == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择有意向的店铺</text>
+				</block>
+				<block wx:else>{{storeName}}</block>
+			</picker>
+		</view>
+	</block>
+	<block wx:else>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">商品原图</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+		</view>
+		<view class="row imgList">
+			<view bindtap="previewImage" data-item="{{item}}" wx:for="{{imageUrls}}" class="imgList_view"
+				style="background-image: url({{item}});">
+				<image catchtap="deleteImage" data-index="{{index}}" style="width:32rpx;height:32rpx;margin-left:110rpx;"
+					src="/images/delete.png"></image>
+			</view>
+			<view wx:if="{{imageUrls.length < 4}}" style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+		<block wx:if="{{requireType != 2}}">
+			<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+			<view class="row info_item">
+				<text class="gray_4 h4">参考图</text>
+				<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+			</view>
+			<view class="row imgList">
+				<view bindtap="previewImage2" data-item="{{item}}" wx:for="{{imageUrls2}}" class="imgList_view"
+					style="background-image: url({{item}});">
+					<image catchtap="deleteImage2" style="width:32rpx;height:32rpx;margin-left:110rpx;" src="/images/delete.png">
+					</image>
+				</view>
+				<view wx:if="{{imageUrls2.length < 1}}" style="margin:30rpx 40rpx;">
+					<image bindtap="selectImage2" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+				</view>
+			</view>
+		</block>
+	</block>
+</view>
+<view class="bottom row">
+	<view bindtap="confirm" class="btn_success width100" wx:if="{{active == 0}}">提交基本信息</view>
+	<view bindtap="confirm" class="btn_success width100" wx:else>提交图集信息</view>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

@@ -1,0 +1,5 @@
+/* miniprogram/packageMyself/pages/myself/vCard/vCard.wxss */
+.bg_card {
+  background-image: url('https://img.ssw88.com/wechatImg/bg.jpg');
+  background-size: 100% 100%;
+}

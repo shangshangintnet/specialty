@@ -1,0 +1,85 @@
+<navbar wx:if="{{!cropShow}}" id="navbar" title="店铺信息" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view hidden="{{cropShow}}" class="bg_white title" style="position:fixed;top:{{bar_Height+100}}rpx;">
+	<view class="'condition '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+	<view class="right_line"></view>
+	<view class="'condition '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">商铺图片</view>
+</view>
+<view hidden="{{cropShow}}" class="bg_white column" style="margin-top:{{bar_Height+200}}rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="row info_item">
+			<text class="gray_4 h2">店铺名称</text>
+			<input value="{{store.name}}" bindblur="changename" class="input_txt" placeholder="请填写店铺名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">店铺类别</text>
+			<view class="smoke h4">{{store.type == 2?'联盟好店':'玩家回血'}}</view>
+		</view>
+		<view class="row info_item" wx:if="{{store.areaName}}">
+			<text class="gray_4 h2">所属城市</text>
+			<view class="smoke h4">{{store.areaName}}</view>
+		</view>
+		<view class="row info_item" wx:else>
+			<text class="gray_4 h2">所属城市</text>
+			<input value="{{store.areaName}}" bindblur="changeareaName" class="input_txt" placeholder="请填写所属城市" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item" wx:if="{{store.address}}">
+			<text class="gray_4 h2">店铺地址</text>
+			<view class="smoke h4">{{store.address}}</view>
+		</view>
+		<view class="row info_item" wx:else>
+			<text class="gray_4 h2">店铺地址</text>
+			<input value="{{store.address}}" bindblur="changeaddress" class="input_txt" placeholder="请填写店铺地址" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">联系人</text>
+			<input value="{{store.contacts}}" bindblur="changecontacts" class="input_txt" placeholder="请填写联系人" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">职位</text>
+			<input value="{{store.position}}" bindblur="changeposition" class="input_txt" placeholder="请填写职位" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">微信号</text>
+			<input value="{{store.wechatId}}" bindblur="changewechat" class="input_txt" placeholder="请填写微信号" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">邮箱</text>
+			<input value="{{store.email}}" bindblur="changeemail" class="input_txt" placeholder="请填写邮箱号" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">店铺类型</text>
+			<picker class="picker" mode="selector" range-key="name" range="{{typeList}}" bindchange="changeStoreType">
+				<block wx:if="{{storeType == null}}">
+					<text style="color:#BBBBBB;font-size: 28rpx;">请选择店铺类型</text>
+				</block>
+				<block wx:else="{{storeType != null}}">{{storeType}}</block>
+			</picker>
+		</view>
+		<view class="row info_problem">
+			<text class="gray_4 h4">店铺简介</text>
+			<text class="gray h4 autoleft">{{infoLen}}/36</text>
+		</view>
+		<textarea bindinput="problemInfo" value="{{store.content}}" placeholder="请输入简介" placeholder-style="color:#BBBBBB;font-size: 28rpx;" maxlength="36" class="proble_txt"></textarea>
+	</block>
+	<block wx:if="{{active == 1}}">
+		<view class="row info_item">
+			<text class="gray_4 h4">商铺Logo</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 120 * 120,大小200kb</text>
+		</view>
+		<view class="row" style="height: 180rpx;margin: 0 30rpx;">
+			<image bindtap="uploadIcon" style="margin-top: 30rpx;margin-left: 30rpx;width: 120rpx;height: 120rpx;" src="{{storeIcon}}"></image>
+		</view>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">商铺背景</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 750 * 400,大小500kb</text>
+		</view>
+		<view class="row" style="height: 460rpx;margin: 0 30rpx;">
+			<image bindtap="uploadLogo" style="margin-top: 30rpx;margin-left: 30rpx;width: 750rpx;height: 400rpx;" src="{{storeLogo}}"></image>
+		</view>
+	</block>
+</view>
+<view hidden="{{cropShow}}" bindtap="confirm" class="bottom btn_success">确认修改</view>
+<view hidden="{{!cropShow}}">
+	<image-cropper id="image-cropper" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" bindgetImg="getImg"></image-cropper>
+</view>

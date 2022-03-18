@@ -1,0 +1,30 @@
+/* components/stepper/stepper.wxss */
+
+.calc_minus {
+  padding: 4rpx 15rpx !important;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  border: 1px solid gainsboro;
+}
+
+.calc_num {
+  padding: 6rpx 15rpx !important;
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
+}
+
+.calc_add {
+  padding: 4rpx 15rpx !important;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  border: 1px solid gainsboro;
+}
+
+.calc {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

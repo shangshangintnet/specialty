@@ -1,0 +1,82 @@
+var local_data = {
+  "code": 200,
+  "msg": "成功获取我的收益页面信息",
+  "data": {
+    "dailyIncome": {
+      "id": null,
+      "userId": null,
+      "shareCount": 0,
+      "indirectCount": 0,
+      "connectionCount": 0,
+      "profitSharePrice": 0,
+      "profitIndirectPrice": 0,
+      "profitConnectionPrice": 0,
+      "subsidySharePrice": 0,
+      "subsidyIndirectPrice": 0,
+      "subsidyConnectionPrice": 0,
+      "jadeiteBeanCount": null,
+      "emdEmeraldCount": 0,
+      "indirectEmeraldCount": 0,
+      "connectionEmeraldCount": 0,
+      "withdrawals": null,
+      "privacySettings": null,
+      "totalCashWithdrawal": null,
+      "weeklyProfit": null,
+      "monthlyProfit": null,
+      "weeklyNumber": null,
+      "monthlyNumber": null
+    },
+    "weeklyIncome": {
+      "id": null,
+      "userId": null,
+      "shareCount": 2,
+      "indirectCount": 1,
+      "connectionCount": 1,
+      "profitSharePrice": 37331.72,
+      "profitIndirectPrice": 0,
+      "profitConnectionPrice": 1368.00,
+      "subsidySharePrice": 0,
+      "subsidyIndirectPrice": 0,
+      "subsidyConnectionPrice": 0,
+      "jadeiteBeanCount": null,
+      "emdEmeraldCount": 0,
+      "indirectEmeraldCount": 0,
+      "connectionEmeraldCount": 0,
+      "withdrawals": null,
+      "privacySettings": null,
+      "totalCashWithdrawal": null,
+      "weeklyProfit": null,
+      "monthlyProfit": null,
+      "weeklyNumber": null,
+      "monthlyNumber": null
+    },
+    "monthlyIncome": {
+      "id": null,
+      "userId": null,
+      "shareCount": 2,
+      "indirectCount": 1,
+      "connectionCount": 1,
+      "profitSharePrice": 37331.72,
+      "profitIndirectPrice": 0,
+      "profitConnectionPrice": 1368.00,
+      "subsidySharePrice": 0,
+      "subsidyIndirectPrice": 0,
+      "subsidyConnectionPrice": 0,
+      "jadeiteBeanCount": null,
+      "emdEmeraldCount": 0,
+      "indirectEmeraldCount": 0,
+      "connectionEmeraldCount": 0,
+      "withdrawals": null,
+      "privacySettings": null,
+      "totalCashWithdrawal": null,
+      "weeklyProfit": null,
+      "monthlyProfit": null,
+      "weeklyNumber": null,
+      "monthlyNumber": null
+    }
+  }
+}
+
+module.exports = {    //数据暴露出去
+  local_data: local_data
+}

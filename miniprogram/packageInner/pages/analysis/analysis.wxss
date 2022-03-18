@@ -1,0 +1,139 @@
+.page {
+  background-color: #ffffff;
+}
+
+/* 顶部导航 */
+.title_bar {
+  width: 100%;
+  z-index: 200;
+  position: fixed;
+  top: 0;
+  background: linear-gradient(180deg, #ffffff, #f8f8f8);
+}
+
+.title_bg {
+  width: 600rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  background-color: #EEEEEE;
+  font-size: 32rpx;
+  margin-left: 75rpx;
+  margin-top: 10rpx;
+}
+
+.act_0 {
+  text-align: center;
+  line-height: 60rpx;
+  height: 60rpx;
+  width: 300rpx;
+  border-radius: 30rpx;
+  background-color: #6CD096;
+  color: white;
+}
+
+.act_1 {
+  text-align: center;
+  color: #A1A1A1;
+  height: 60rpx;
+  width: 300rpx;
+  line-height: 60rpx;
+}
+
+.type_slt_1 {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #9AE0B7;
+  color: #347A4C;
+  border: solid 1rpx #6CD096;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.type_slt_0 {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #FFEBE2;
+  color: #FF600F;
+  border: solid 1rpx #FF600F;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.type_slt_2 {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #E4EDFD;
+  color: #3D76E1;
+  border: solid 1rpx #3E75DC;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.type_nor {
+  width: 120rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #EEEEEE;
+  color: #A4A4A4;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.border_blue {
+  border-bottom: solid 2rpx #3E75DC;
+}
+
+.entry_picker {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #9AE0B7;
+  color: #347A4C;
+  border: solid 1rpx #6CD096;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.entry_picker_nor {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 150rpx;
+  height: 56rpx;
+  margin-right: 20rpx;
+  background-color: #EEEEEE;
+  color: #A4A4A4;
+  border-radius: 8rpx;
+  text-align: center;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+.date_picker {
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20rpx;
+  min-width: 100rpx;
+  justify-content: center;
+  text-align: center;
+}

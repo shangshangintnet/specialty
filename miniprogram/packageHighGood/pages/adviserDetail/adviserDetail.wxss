@@ -1,0 +1,42 @@
+/* packageHighGood/pages/adviserDetail/adviserDetail.wxss */
+page {
+  background: #ffffff;
+}
+
+.section {
+  width: 650rpx;
+  height: 300rpx;
+  padding: 30rpx 20rpx;
+  margin-left: 30rpx;
+  margin-top: -80rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  box-shadow: 10rpx 10rpx 10rpx #dddddd;
+}
+
+.zishen {
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: linear-gradient(66deg, #079547, #43BD82);
+  color: #ffffff;
+  padding:0 5rpx;
+}
+
+.chat {
+  background: linear-gradient(66deg, #079547, #43BD82);
+  width: 116rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #ffffff;
+  border-radius: 20rpx;
+}
+
+.song {
+  font-family: "SYST";
+  font-size: 40rpx;
+  font-weight: bold;
+}

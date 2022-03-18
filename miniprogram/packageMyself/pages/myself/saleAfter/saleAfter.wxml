@@ -1,0 +1,121 @@
+<view class='status-bar {{bg_index}} column' style="height:{{2*(bar_Height+70)}}rpx;padding-top:{{2*(bar_Height)}}rpx;">
+	<view>
+		<image bindtap='goBack' src='/images/back.png' class='icon_back left'></image>
+		<view class='left order_title'>售后服务</view>
+	</view>
+	<view class='condition_item row'>
+		<view bindtap='tagTo' data-tag-Index="0" class='condition_sort {{tag_index == 0?"selected":""}}'>
+			售后申请
+		</view>
+		<view bindtap='tagTo' data-tag-Index="1" class=' condition_sort {{tag_index == 1?"selected":""}}'>
+			处理中
+		</view>
+		<view bindtap='tagTo' data-tag-Index="2" class='condition_sort {{tag_index == 2?"selected":""}}'>
+			已完成
+		</view>
+	</view>
+</view>
+<view wx:if="{{tag_index == 0}}" class='order_list' style='padding-top:{{bar_Height+105}}px;'>
+	<view wx:key="orderIdx" wx:for="{{orders}}" wx:for-index="orderIdx" wx:for-item="store">
+		<view wx:key="storeIdx" wx:for="{{store.storeList}}" wx:for-index="storeIdx" wx:for-item="lists">
+			<view wx:key="goodsIdx" wx:for="{{lists.goodsOrderList}}" wx:for-index="goodsIdx" wx:for-item="goods" class='shop_section column bg_white'>
+				<view style='margin-bottom:20rpx'>
+					<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+					<text class='left'>{{lists.name}}</text>
+				</view>
+
+				<view class='goods_section'>
+					<view wx:if="{{goods.customerId == null}}">
+						<view class='row'>
+							<image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+							<view class='column goods_txt'>
+								<text class='goods_name'>{{goods.goodsName}}</text>
+								<text class='goods_id'>{{goods.goodsNo}}</text>
+								<view class='price_section'>
+									<view class='left' style='margin-top:30rpx'>￥{{goods.currentPrice}}</view>
+									<view class='right' style='margin-top:30rpx'>
+										<text class='calc_num calc'>x{{goods.cartCount}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view wx:if="{{goods.customerId != null}}">
+						<view bindtap='jumpTo' data-url="saleAfterDetail/saleAfterDetail" data-customer-id="{{goods.customerId}}" class='row'>
+							<image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+							<view class='column goods_txt'>
+								<text class='goods_name'>{{goods.goodsName}}</text>
+								<text class='goods_id'>{{goods.goodsNo}}</text>
+								<view class='price_section'>
+									<view class='left' style='margin-top:30rpx'>￥{{goods.currentPrice}}</view>
+									<view class='right' style='margin-top:30rpx'>
+										<text class='calc_num calc'>x{{goods.cartCount}}</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+
+
+					<view class='width100'>
+						<view class='left gray h4' style='margin-top:16rpx;'>
+							<!-- <text wx:if="{{goods.afterSalesStatus == 0}}">该商品已超过售后期</text> -->
+							<text wx:if="{{goods.afterSalesStatus == 1}}">该商品已超过售后期</text>
+							<text wx:if="{{goods.afterSalesStatus == 2}}">已申请,等待客服处理</text>
+							<text wx:if="{{goods.afterSalesStatus == 3}}">正在处理中</text>
+							<text wx:if="{{goods.afterSalesStatus == 5}}">已拒绝</text>
+						</view>
+						<view class='right status app_green'>
+							<text bindtap='jumpTo' data-url="saleAfterApply/saleAfterApply" data-order-id="{{goods.orderId}}" data-goods-id="{{goods.goodsId}}" wx:if="{{goods.afterSalesStatus == 0}}">申请售后</text>
+						</view>
+					</view>
+				</view>
+
+
+			</view>
+
+		</view>
+	</view>
+
+
+</view>
+
+<view wx:if="{{tag_index != 0}}" class='order_list' style='padding-top:{{bar_Height+105}}px;'>
+	<view wx:key="goodsIdx" wx:for="{{orders}}" wx:for-index="goodsIdx" wx:for-item="goods" class='shop_section column bg_white'>
+		<view style='margin-bottom:20rpx'>
+			<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+			<text class='left'>{{goods.goodsShoreName}}</text>
+
+			<view class='right app_green h4'>
+				<!-- <text wx:if="{{goods.afterSalesStatus == 0}}">该商品已超过售后期</text> -->
+				<text wx:if="{{goods.customerStatus == '0'}}">提交申请</text>
+				<text wx:if="{{goods.customerStatus == '1'}}">已完成</text>
+				<text wx:if="{{goods.customerStatus == '2'}}">申请通过</text>
+				<text wx:if="{{goods.customerStatus == '3'}}">商家已收货</text>
+				<text class='app_red' wx:if="{{goods.customerStatus == '4'}}">拒绝申请</text>
+			</view>
+		</view>
+
+		<view class='goods_section'>
+
+			<view bindtap='jumpTo' data-url="saleAfterDetail/saleAfterDetail" data-customer-id="{{goods.customerId}}" class='row'>
+				<image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+				<view class='column goods_txt'>
+					<text class='goods_name'>{{goods.goodsName}}</text>
+					<text class='goods_id'>{{goods.goodsNo}}</text>
+					<view class='price_section'>
+						<view class='left' style='margin-top:30rpx'>￥{{goods.currentPrice}}</view>
+						<view class='right' style='margin-top:30rpx'>
+							<text class='calc_num calc'>x{{goods.cartCount}}</text>
+						</view>
+					</view>
+				</view>
+
+			</view>
+
+
+		</view>
+
+
+	</view>
+</view>

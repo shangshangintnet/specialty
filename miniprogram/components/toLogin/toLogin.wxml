@@ -1,0 +1,10 @@
+<!-- 手机登录-->
+<view class="modal-mask" bindtap="hideLoginModal" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <image src="https://img.ssw88.com/wechatImg/toLogin.png" style="width:100%" mode="widthFix"></image>
+  <view class="modal-title"><text>请至<text style="color:#079547">我的</text>页面进行登录</text></view>
+  <view class="modal-content">
+    <button bindtap="navigateTo" data-url="/pages/myself/myself" class="weui-btn" style="color:white;background-color:#079547;">点击跳转</button>
+    <button class="weui-btn" type="default" bindtap="hideLoginModal" style='margin-top:20rpx'>暂不登录</button>
+  </view>
+</view>

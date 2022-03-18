@@ -1,0 +1,11 @@
+<!-- 组件模板 -->
+<view wx:if="{{isOpen}}" class="v-model"></view>
+<view wx:if="{{isOpen}}" class="v-block-alert">
+  <view>
+    <slot></slot>
+  </view>
+  <view class='row'>
+    <view bindtap='cancel' class='v-default-btn  v-cancel'>{{cancelTxt}}</view>
+    <view bindtap="success" class='v-default-btn v-confirmed'>{{goTxt}}</view>
+  </view>
+</view>

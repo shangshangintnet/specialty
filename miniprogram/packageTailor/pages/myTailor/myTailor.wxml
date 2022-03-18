@@ -1,0 +1,126 @@
+<navbar title="{{beUser?'我的雕刻':'雕刻管理'}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <block wx:if="{{user.carvingLevel != 1}}">
+    <view class="'condition item3 '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">
+      {{beUser?'我的原料':'原料管理'}}</view>
+    <view class="right_line"></view>
+    <view class="'condition item3 '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">
+      {{beUser?'我的加工料':'加工料管理'}}</view>
+    <view class="right_line"></view>
+    <view class="'condition item3 '{{active==2?'app_green':'gray'}}" bindtap="tagTo" data-index="2">雕刻鉴赏</view>
+  </block>
+  <block wx:else>
+    <!-- 学员 -->
+    <view class="'condition item2 '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">解料管理</view>
+    <view class="right_line"></view>
+    <view class="'condition item2 '{{active==2?'app_green':'gray'}}" bindtap="tagTo" data-index="2">雕刻鉴赏</view>
+  </block>
+</view>
+<view wx:if="{{!beUser && active == 1}}" class="bg_white row pickerList"
+  style="position:fixed;top:{{bar_Height+95}}px;">
+  <view bindtap="orderByName" class="'row picker' {{condition.orderType==1?'app_green':'gray'}}">
+    名称
+  </view>
+  <view class="right_line"></view>
+  <view bindtap="orderByTime" class="'row picker '{{condition.orderType==0?'app_green':'gray'}}">
+    <view>时间</view>
+    <image style="width:22rpx;height:13rpx;margin-left:10rpx;"
+      src="{{condition.order == 'asc'?'/images/arrow_up.png':'/images/arrow_down.png'}}"></image>
+  </view>
+  <view class="right_line"></view>
+  <picker class="picker" mode="selector" range="{{userNames}}" bindchange="changeUser">
+    <view class="row" style="justify-content: center; align-items: center;">
+      <view>{{condition.userName != null?condition.userName:'用户'}}</view>
+      <image style="width:22rpx;height:13rpx;margin-left:10rpx;" src="/images/arrow_down.png"></image>
+    </view>
+  </picker>
+  <view class="right_line"></view>
+  <picker class="picker" mode="selector" range-key="name" range="{{staffs}}" bindchange="changeStaff">
+    <view class="row" style="justify-content: center; align-items: center;">
+      <view>{{condition.staffId != null?staffs[staffIndex].name:'雕刻师'}}</view>
+      <image style="width:22rpx;height:13rpx;margin-left:10rpx;" src="/images/arrow_down.png"></image>
+    </view>
+  </picker>
+  <view class="right_line"></view>
+  <picker class="picker" mode="selector" range-key="name" range="{{status}}" bindchange="changeStatus">
+    <view class="row" style="justify-content: center; align-items: center;">
+      <view>{{condition.status != null?status[condition.status + 1].name:'状态'}}</view>
+      <image style="width:22rpx;height:13rpx;margin-left:10rpx;" src="/images/arrow_down.png"></image>
+    </view>
+  </picker>
+</view>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+95}}px;">
+  <!-- A -->
+  <view wx:if="{{active == 0}}">
+    <view bindtap="viewMaterial" data-index="{{index}}" wx:for="{{material}}" class="column goods_section">
+      <view class="row border_line_whitesmoke h2 gray_4" style="margin-left:20rpx;height:80rpx; align-items: center;">
+        <image src='/images/icon_storeads.png' class='shop_icon'></image>
+        <text style="margin-left:10rpx">{{item.storeName}}</text>
+      </view>
+      <view class="row" style="height:200rpx;align-items:center;">
+        <image src="{{item.imageUrl[0]}}" class="goods_pic"></image>
+        <view class="column goods_txt" style="margin-left:20rpx;">
+          <view class="h2 gray_4">{{item.name}}</view>
+          <view class="h2 gray_4">{{item.weight}}g</view>
+          <view class="row" style="margin-top:auto;">
+            <view class="goods_price">￥{{item.price}}</view>
+            <view wx:if="{{item.count!=null}}" class="h4 gray" style="margin-left:auto">x {{item.count}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="row" style="align-items:center; height: 80rpx;margin-left: auto;margin-right: 20rpx;">
+        <view catchtap="viewM2Solution" data-index="{{index}}" class="upGood">关联解料</view>
+        <view catchtap="addSolution" wx:if="{{user.storeId != null}}" data-index="{{index}}" class="editGood"
+          style="margin-left:20rpx;">增加解料</view>
+        <view catchtap="pay" wx:if="{{beUser && item.payStatus == 0}}" data-index="{{index}}" class="downGood"
+          style="margin-left:20rpx;">立即支付</view>
+      </view>
+    </view>
+  </view>
+  <!-- B -->
+  <view wx:elif="{{active == 1}}" style="{{beUser?'':'margin-top:45px;'}}">
+    <view bindtap="viewSolution" data-index="{{index}}" wx:for="{{solution}}" class="column goods_section">
+      <view class="row border_line_whitesmoke h2 gray_4" style="margin-left:20rpx;height:80rpx; align-items: center;">
+        <image src='/images/icon_storeads.png' class='shop_icon'></image>
+        <text style="margin-left:10rpx">{{item.storeName}}</text>
+        <text style="margin-left:auto;color:#079547;margin-right:20rpx;">{{status[item.status + 1].name}}</text>
+      </view>
+      <view class="row" style="height:200rpx;align-items:center;">
+        <image src="{{item.imageUrl[0]}}" class="goods_pic"></image>
+        <view class="column goods_txt" style="margin-left:20rpx;">
+          <view class="h2 gray_4">{{item.name}}</view>
+          <view class="h2 gray_4">{{item.weight}}g</view>
+          <view class="row" style="margin-top:auto;">
+            <view class="goods_price">￥{{item.dispayPrice}}</view>
+            <text class="h4" style="margin-left:auto;color:#BD1818;">{{item.staffName}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="row" style="align-items:center; height: 80rpx;margin-left: auto;margin-right: 20rpx;">
+        <view catchtap="dispatchSolution" wx:if="{{user.carvingLevel == 2}}" data-index="{{index}}" class="editGood"
+          style="margin-left:20rpx;">分配任务</view>
+        <view catchtap="pay" wx:if="{{beUser && item.status == 2}}" data-index="{{index}}" class="downGood"
+          style="margin-left:20rpx;">立即支付</view>
+      </view>
+    </view>
+  </view>
+  <!-- 鉴赏 -->
+  <view wx:else>
+    <view bindtap="viewSolutions" data-index="{{index}}" wx:for="{{solutions}}" class="column goods_section">
+      <view class="row border_line_whitesmoke h2 gray_4" style="margin-left:20rpx;height:80rpx; align-items: center;">
+        <image src='/images/icon_storeads.png' class='shop_icon'></image>
+        <text style="margin-left:10rpx">{{item.storeName}}</text>
+      </view>
+      <view class="row" style="height:260rpx;align-items:center;">
+        <image src="{{item.imageUrl[0]}}" class="goods_pic"></image>
+        <view class="column goods_txt" style="margin-left:20rpx;">
+          <view class="h2 gray_4">{{item.name}}</view>
+          <view class="row" style="margin-top:auto;">
+            <view class="goods_price">￥{{item.dispayPrice}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<carve id="carve" bindpay="payOrder"></carve>

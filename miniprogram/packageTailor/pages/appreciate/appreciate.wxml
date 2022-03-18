@@ -1,0 +1,20 @@
+<navbar title="{{stone.name}}" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+50}}px;">
+  <video class="video" poster="{{imageUrls[0]}}" src="{{stone.video}}" autoplay="true" controls='true'></video>
+  <view class="column imgs_section">
+    <image wx:for="{{imageUrls}}" style="margin:5rpx 0rpx;width:750rpx" src="{{item}}" mode="widthFix" />
+  </view>
+  <view class='column width100' style="margin:20rpx;">
+    <view class="row" style=" align-items: center;">
+      <image class="photo" src="photo"></image>
+      <view class="column" style="margin-left:15rpx;">
+        <view class="row namebg bold">
+          {{stone.staffName}}
+        </view>
+        <text class="h4 gray_4" style="width:605rpx;">{{content}}</text>
+      </view>
+    </view>
+    <view class="row info_title bold">作品简介</view>
+    <view class="info h4 gray_4">{{stone.desc}}</view>
+  </view>
+</view>

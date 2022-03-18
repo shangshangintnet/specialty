@@ -1,0 +1,53 @@
+<navbar title="购物卡明细" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view class="bg_white" style="width:750rpx;margin-top:{{bar_Height+55}}px;">
+	<view wx:for="{{getList}}" class="card_detail_item border_line_whitesmoke">
+		<view wx:if="{{item.mold == 1}}">
+			<view class="card_detail_item_txt">
+				<view wx:if="{{item.receiverId == null || item.receiverId == 0}}">
+					<text>{{item.status == 1?'兑换':'分享'}} {{gifts[item.entityCardId-1].content}}</text>
+					<text class="font_red" style="margin: 0 10rpx;">{{item.entityCardCount}}</text>
+					<text>张</text>
+				</view>
+				<view wx:else>
+					<text>转赠</text>
+					<text class="app_green" style="margin: 0 10rpx;">{{item.content}}</text>
+					<text>{{gifts[item.entityCardId-1].content}} </text>
+					<text class="font_red" style="margin: 0 10rpx;">{{item.entityCardCount}}</text>
+					<text>张</text>
+				</view>
+			</view>
+			<view class="card_detail_item_time">
+				{{item.createTime}}
+			</view>
+		</view>
+		<view wx:if="{{item.mold == 2}}">
+			<view class="card_detail_item_txt">
+				<view wx:if="{{item.content == null || item.content == ''}}">
+					<text>购买 {{gifts[item.entityCardId-1].content}}</text>
+					<text class="font_red" style="margin: 0 10rpx;">{{item.entityCardCount}}</text>
+					<text>张</text>
+				</view>
+				<view wx:else>
+					<text>领取</text>
+					<text class="app_green" style="margin: 0 10rpx;">{{item.content}}</text>
+					<text>赠送的 {{gifts[item.entityCardId-1].content}} </text>
+					<text class="font_red" style="margin: 0 10rpx;">{{item.entityCardCount}}</text>
+					<text>张</text>
+				</view>
+			</view>
+			<view class="card_detail_item_time">
+				{{item.createTime}}
+			</view>
+		</view>
+		<view wx:if="{{item.mold == 3}}">
+			<view class="card_detail_item_txt">
+				<text>分享 {{gifts[item.entityCardId-1].content}}</text>
+				<text class="font_red" style="margin: 0 10rpx;">{{item.entityCardCount}}</text>
+				<text>张,未被领取,已返还卡包</text>
+			</view>
+			<view class="card_detail_item_time">
+				{{item.outTime}}
+			</view>
+		</view>
+	</view>
+</view>

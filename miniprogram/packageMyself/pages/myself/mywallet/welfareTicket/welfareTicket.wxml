@@ -1,0 +1,33 @@
+<!--miniprogram/pages/myself/mywallet/welfareTicket/welfareTicket.wxml-->
+<navbar title='福利券购买' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view wx:if="{{isVersion == 0}}" class='bg_white column pad-20' style="width:710rpx;padding-top:{{bar_Height+50}}px;">
+  <image style='width:710rpx;' src='https://img.ssw88.com/wechatImg/welfare_front.png' mode='widthFix'></image>
+  <image class="pad-ud-10" style='width:710rpx;' src='https://img.ssw88.com/wechatImg/welfare_equity.png' mode='widthFix'></image>
+  <text class='width100 h3 pad-20'>使用说明</text>
+  <text class='h4 pad-20-no-top gray' style='padding-bottom:100rpx;'>1.福利券仅限在购买“分享福利”专区商品时使用，每人限购一张，售出后不支持退换。
+2.凡购买福利券的用户，即可升级为上商的“分享会员·升级”，此后可享受“分享会员.升级”的所有权益。
+3.分享福利专区商品是上商精选的特惠商品（可以从分类->分享福利进入），由于分享福利专区商品实在超值，但每人限购一件，若您尚未挑选到满意的商品，又希望立即享受“分享会员.升级”的权益，可先购买“福利券”，之后再使用福利券在分享福利专区兑换商品（需补差价）。                       
+  </text>
+</view>
+<view wx:if="{{isVersion == 0}}">
+  <view wx:if="{{status == 0}}" bindtap='generateWelfare' class='width100 linear_orange text-center pad-20-ud white' style='height:60rpx;position:fixed;left:0;bottom:0'>立刻购买</view>
+  <view wx:if="{{status == 1}}" class='width100 linear_orange text-center pad-20-ud white' style='height:60rpx;position:fixed;left:0;bottom:0'>您已购买过福利商品</view>
+  <view wx:if="{{status == 2}}" class='width100 linear_orange text-center pad-20-ud white' style='height:60rpx;position:fixed;left:0;bottom:0'>您已购买过福利券</view>
+</view>
+<van-popup custom-style="width:100vw;height:30vh;" position="bottom" show="{{ showPop }}" bind:close="closePopup">
+  <view class="row">
+    <view class='column order_bar' style='width:180rpx;margin-left:20rpx;'>
+      <text class='h4 pad-lr-20'>使用余额 <text class="gray">剩余:{{balance}}元</text></text>
+      <text class='h4 pad-lr-20'>还需支付</text>
+    </view>
+    <view class='column order_price' style='width:550rpx'>
+      <view class='h4' style='margin-right:28rpx;padding-top:76rpx;'>
+        <input disabled='{{emdEmeraldCount == 0}}' placeholder='{{"订单可用余额:"+useBalance+"元"}}' bindconfirm="getDiscountPrice" value='{{curBalance}}' type='number'></input>
+      </view>
+      <view class="h4" style='margin-right:28rpx;padding-top:58rpx;'>{{couponPrice - curBalance}}元</view>
+    </view>
+  </view>
+  <view class="pad-20">
+    <button bindtap="realGen" type="primary">确认支付</button>
+  </view>
+</van-popup>

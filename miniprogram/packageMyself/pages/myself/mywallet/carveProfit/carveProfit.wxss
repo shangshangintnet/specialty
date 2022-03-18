@@ -1,0 +1,22 @@
+.order_section {
+  margin: 5rpx 0rpx;
+  border-radius: 16rpx;
+  min-height: 90rpx;
+  width: 750rpx;
+}
+
+.profititem {
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  width: 750rpx;
+  background-color: #ffffff;
+}

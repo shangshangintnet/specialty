@@ -1,0 +1,49 @@
+<view class='status-bar bg_white' style="height:80px;padding-top:{{bar_Height}}px;">
+  <view>
+    <!-- <image src='/images/back_white.png' class='icon_back left'></image> -->
+    <view style='margin-left:40rpx;' class="search_fake_bar left">
+      <image src='/images/icon_search.png' class='icon_search left'></image>
+      <input bindtap='jumpTo' data-url="/pages/search/search" placeholder='请输入您想查找的商品' class='left hot_hint h4' style='margin-top:2px;' />
+    </view>
+    <movable-area class='row block_center width100' style='padding:5px 0px;margin-left:10rpx;'>
+      <movable-view class='bg_green' animation scroll-x style='height:40px;width:575px' direction='horizontal' inertia='true' out-of-bounds>
+        <view bindtap='jumpTwo' style='height:30px' data-tag-Index="{{index}}" wx:for="{{data}}" wx:for-item="cat_one" class='block_center search_category h4 {{index_one == index?"selected app_green":""}}'>{{cat_one.name}}</view>
+      </movable-view>
+    </movable-area>
+  </view>
+</view>
+<view class='row' style='margin-top:{{bar_Height+81}}px;'>
+  <view style='position:fixed;width:200rpx;'>
+    <view class='second_bar column bg_white' style='height:1000rpx;'>
+      <text class='h4 {{index_two == index?"app_green":""}}' bindtap='jumpThree' data-tag-Index="{{index}}" wx:for-item="cat_two" wx:for="{{second_data}}">{{cat_two.name}}</text>
+    </view>
+  </view>
+  <view class='second_section column'>
+  <view wx:for-item="cat_three" wx:for="{{third_data}}" wx:if="{{cat_three.display != 0}}" class=''>
+    <view class='third_title'>
+      <image wx:if="{{cat_three.classImageUrl != null}}" src='{{cat_three.classImageUrl}}' mode='aspectFill' class='third_icon'></image>
+      <image wx:if="{{cat_three.classImageUrl == null}}" src='{{cat_three.classImageUrl}}' mode='aspectFill' class='third_icon'></image>
+      <text>{{cat_three.name}}</text>
+    </view>
+
+    <view class="third_section row row_wrap">
+      <view bindtap='onMoveToCommodityInformationFirstTypeId' data-title="{{cat_four.name}}" data-id="{{cat_four.id}}" wx:for-item="cat_four" wx:for="{{cat_three.children}}" data-compare-id="{{cat_three.children[0].id}}" data-check-id="{{third_data[0].children[0].id}}"
+        class='third_bar column block_center'>
+        <block wx:if="{{cat_four.display == 1}}">
+          <view class='fourth_icon_section'>
+            <image src='{{cat_four.classImageUrl}}' mode='aspectFit' class='fourth_icon' lazy-load='true'></image>
+          </view>
+          <text style='margin-top:10rpx;'>{{cat_four.name}}</text>
+
+        </block>
+
+        <block wx:if="{{cat_four.display == 2}}">
+          <text class='display2'>{{cat_four.name}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+</view>

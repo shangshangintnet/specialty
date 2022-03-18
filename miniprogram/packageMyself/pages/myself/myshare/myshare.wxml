@@ -1,0 +1,84 @@
+<wxs module="phone" src="../../../../utils/phone.wxs"></wxs>
+<navbar id="navbar" show_bol='{{false}}' bg_type='bg_share' style="padding-top:0px;"></navbar>
+<view class='width100'>
+  <image class='width100' src='./images/share_bcg.jpg' mode='widthFix'></image>
+
+  <view class='row' style='margin-top:-520rpx;margin-left:0rpx;'>
+
+    <open-data type="userAvatarUrl" class='user_icon'></open-data>
+    <view class='left column' style='margin-top:20rpx;'>
+      <open-data class="brown h2" type="userNickName"></open-data>
+      <view>
+        <text class='border_brown h4 radius10 pad-lr-10 left'>{{no_title}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='width100' style=''>
+  <image class='pad-20' style='width:710rpx;' src='./images/share_head.png' mode='widthFix'></image>
+  <image class='column animate' bindtap='jumpTo' data-url='myposter/myposter' style='position:absolute;margin-top:-240rpx;padding-left:500rpx;height:130rpx;width:130rpx;' src='./images/my_share_go.png'></image>
+</view>
+
+
+<view style='margin-top:20rpx;' class='width100 column block_center'>
+  <view class="notice_bar column" style="width:700rpx">
+    <view class='linear_pink notice_content width100 column' style='margin-top:-2rpx;padding-bottom:40rpx;'>
+      <image src="./images/my_share_2.png" class='block_center' style='margin-top:10rpx;width:650rpx;padding-left:20rpx;' mode='widthFix'></image>
+      <view class='column width100' style='position:absolute;text-align:left;left:80rpx;top:1050rpx;'>
+        <text class='h4 gray '>我的现金收益: <text class="app_red h2"> {{withdrawable}}</text> 元</text>
+        <text class='h4 gray '>我的翡翠币收益: <text class="app_red h2"> {{emdEmeraldCount}}</text> 个</text>
+        <view class='h4 dark_brown pad-5' style='margin-top:15rpx;margin-left:-10rpx;'>
+          <image style='padding-top:8rpx;width:24rpx;height:24rpx;margin-right:10rpx;' src="/images/alert_notice.png"></image>翡翠币可以用于购买抵现或参与竞猜活动</view>
+      </view>
+      <text bindtap='getCash' class='right h4 dark_brown radius10 pad-5' style='position:absolute;width:120rpx;top:1070rpx;left:550rpx;'> 去提现 > </text>
+      <view style='margin-top:50rpx;'></view>
+      <swiper style='height:480rpx;' class='width100' vertical='{{true}}' autoplay='{{true}}' interval='2500' circular='{{true}}'>
+        <block wx:for="{{_obtainMessageList}}" wx:for-item="groupList">
+          <swiper-item catchtouchmove="stopTouchMove" style='height:480rpx;' class='width100'>
+            <view wx:for="{{groupList}}" style='height:120rpx;' class='width100'>
+              <image class='user_icon_sm' style='float:left;' src="{{item.photoUrl == null?'/images/user-unlogin.png':item.photoUrl}}"></image>
+              <view style='float:left;margin-top:16rpx;text-align:left;' class='column'>
+                <view class='h4 dark_brown'>{{phone.limit_six(item.nickName)}}</view>
+                <view wx:if="{{(now - item.time) < 60}}" class='h4 black_brown'>{{phone.toInt(item.times)}} 秒前</view>
+                <view wx:elif="{{ (now - item.time) < (3600)}}" class='h4 black_brown'>{{phone.toInt((item.times)/60)}} 分钟前</view>
+                <view wx:elif="{{ (now - item.time) < (3600*24)}}" class='h4 black_brown'>{{phone.toInt((item.times)/3600)}} 小时前</view>
+                <view wx:else class='h4 black_brown'>{{phone.toInt((item.times)/(3600*24))}} 天前</view>
+              </view>
+              <view style='float:right;margin-top:18rpx;margin-right:30rpx;'>
+                <text class='h2 black_brown'>赚取了 </text>
+                <text class='h3 app_red'>{{item.message}}元</text>
+              </view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+
+  <view class="notice_bar column" style="width:700rpx;margin-top:40rpx;; margin-bottom:50rpx">
+    <view class='linear_pink notice_content width100 column' style='margin-top:-2rpx;padding-bottom:50rpx;'>
+      <image src="./images/my_share_3.png" class='block_center' style='margin-top:20rpx;width:650rpx;padding-left:20rpx;' mode='widthFix'></image>
+      <view style='margin-top:20rpx;' class='row'>
+        <view style='width:150rpx;margin-left:20rpx;' class='h4 black_brown'>好友昵称</view>
+        <view style='width:250rpx;' class='h4 black_brown'>当前翡翠币收益</view>
+        <view style='width:250rpx;' class='h4 black_brown'>预计翡翠币收益</view>
+      </view>
+
+
+      <swiper current="{{swipeCurrent}}" bindchange="getChange" style='height:280rpx;margin-top:10rpx;' class='width100' vertical='{{true}}' interval='2500' autoplay='{{true}}' circular='{{true}}'>
+        <block wx:for="{{_friendsList}}" wx:key="index" wx:for-item="groupfList">
+          <swiper-item wx:if="{{index<(curSect+1)*50 && index >= curSect * 50}}" catchtouchmove="stopTouchMove" style='height:280rpx;' class='width100'>
+            <view wx:for="{{groupfList}}" style='margin:10rpx 0;height:60rpx;' class='row'>
+              <view style='width:150rpx;margin-left:20rpx;' class='h4 black_brown'>{{phone.limit_six(item.nickName)}}</view>
+              <view style='width:250rpx;margin-top:-20rpx;' class='h1 app_red'>{{item.alreadyObtained}}</view>
+              <view style='width:250rpx;margin-top:-20rpx;' class='h1 app_red'>{{item.waitFor}}</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view wx:if="{{friendsList.length == 0}}" style='margin:10rpx 0;height:60rpx;' class='row block_center gray'>
+        您当前没有好友~
+      </view>
+    </view>
+  </view>
+</view>

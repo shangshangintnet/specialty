@@ -1,0 +1,44 @@
+<wxs module="phone" src="../../../../../utils/phone.wxs"></wxs>
+<navbar title='世界排行' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class='bg_white column pad-lr-20' style="border-top:2px solid #f8f8f8;margin-top:{{bar_Height+45}}px;width:710rpx;min-height:100vh;">
+  <view class='row coin_bar'>
+    <view class='row block_center'>
+      <text bindtap='toggle' data-toggle-Index="0" style='width:190rpx;margin:10rpx 5rpx' class='h2 pad-20 radius5 {{tagSelect == 0?"app_green":""}}'>周排行</text>
+      <text>|</text>
+      <text bindtap='toggle' data-toggle-Index="1" style='width:190rpx;margin:10rpx 5rpx' class='h2 pad-20 radius5 {{tagSelect == 1?"app_green":""}}'>月排行</text>
+      <text>|</text>
+      <text bindtap='toggle' data-toggle-Index="2" style='width:190rpx;margin:10rpx 5rpx' class='h2 pad-20 radius5 {{tagSelect == 2?"app_green":""}}'>世界排行</text>
+    </view>
+  </view>
+  <view class='row table_lable width100 border_line_whitesmoke'>
+    <text class='gray h4'>排名</text>
+    <text class='gray h4'>手机号</text>
+    <text class='gray h4'>好友人数</text>
+    <text class='gray h4'>总收益</text>
+  </view>
+
+  <view wx:for="{{chooseRank}}" wx:for-index="idx" class='row table_lable width100 border_line_whitesmoke'>
+    <view wx:if="{{item.rowNum <= 3}}" class='gray h4'>
+      <image class='icon_big' mode="widthFix" style='margin:15rpx 60rpx 0 70rpx;' src='{{"/images/ic_count_"+item.rowNum+".png"}}'></image>
+    </view>
+    <text wx:else>{{item.rowNum}}</text>
+    <text class='h4 gray'>{{phone.format(item.mobile)}}</text>
+    <text class='app_green h4'>{{item.countNum}}</text>
+    <text class='app_orange h4'>{{item.priceNum}}</text>
+  </view>
+
+  <view wx:if="{{json_data.myWorldRanking != null}}" style='position:fixed;bottom:0;left:0;border-top:1rpx solid whitesmoke' class='pad-ud-20 bg_white row table_lable width100 border_line_whitesmoke'>
+    <view wx:if="{{json_data.myWorldRanking.rowNum <= 3}}" class='gray h4'>
+      <image class='icon_big' mode="widthFix" style='margin:15rpx 60rpx 0 90rpx;' src='{{"/images/ic_count_"+json_data.myWorldRanking.rowNum+".png"}}'></image>
+    </view>
+    <text wx:else>{{json_data.myWorldRanking.rowNum}}</text>
+    <text class='h4 gray'>{{json_data.myWorldRanking.mobile == null ? "": phone.format(json_data.myWorldRanking.mobile)}}</text>
+    <text class='app_green h4'>{{json_data.myWorldRanking.countNum}}</text>
+    <text class='app_orange h4'>{{json_data.myWorldRanking.priceNum}}</text>
+  </view>
+  <view wx:else style='position:fixed;bottom:0;left:0;' class='pad-ud-20 bg_white row table_lable width100 border_line_whitesmoke'>
+    <view style='width:750rpx;text-align:center' class='app_green h4'>您未上榜</view>
+  </view>
+
+
+</view>

@@ -1,0 +1,104 @@
+<view>
+	<navbar id="navbar" title="{{set_title}}" show_bol="{{false}}" bg_type="bg_black_op"></navbar>
+	<view class="column">
+		<image bindtap="jumpToWelafre" src="{{page_infos.classBigimageUrl}}" class="width100" mode="widthFix"></image>
+		<view class="bg_white title">
+			<view bindtap="openMenu" class="condition_sort condition_txt">
+				<view>{{page_infos.name}}</view>
+			</view>
+			<view bindtap="tagTo" data-tag="0"
+				class="'condition_sort ' + {{goodsDate == 'goodsDate'?'selected':'condition_txt'}}">
+				最新
+			</view>
+			<block wx:if="{{goodsDate == ''}}">
+				<view bindtap="tagTo" data-tag="1" class="condition_sort selected">
+					<view style="margin-left: 40rpx;">价格</view>
+					<image wx:if="{{asc}}" class="arrow_icon" src="/images/arrow_up.png"></image>
+					<image wx:else class="arrow_icon" src="/images/arrow_down.png"></image>
+				</view>
+			</block>
+			<block wx:else>
+				<view bindtap="tagTo" data-tag="1" class="condition_sort condition_txt">
+					<view style="margin-left: 40rpx;">价格</view>
+					<image wx:if="{{asc}}" class="arrow_icon" src="/images/arrow_up.png"></image>
+					<image wx:else class="arrow_icon" src="/images/arrow_down.png"></image>
+				</view>
+			</block>
+			<view bindtap="tagTo" data-tag="2" class="condition condition_txt">
+				高级筛选
+			</view>
+		</view>
+		<view wx:if="{{menuVisible}}" class="second_menu" style="position:absolute;top:545rpx;">
+			<view bindtap="swapSecondTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{classifications}}"
+				wx:for-item="cat_one"
+				style="{{index == index_one?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+				{{cat_one.name}}
+			</view>
+		</view>
+		<block wx:if="{{scrollToTop > topLimit}}">
+			<view class="bg_white title" style="position:fixed;top:{{bar_Height+45}}px;">
+				<view bindtap="openMenu" class="condition_sort condition_txt">
+					<view>{{page_infos.name}}</view>
+				</view>
+				<view bindtap="tagTo" data-tag="0"
+					class="'condition_sort ' + {{goodsDate == 'goodsDate'?'selected':'condition_txt'}}">
+					最新
+				</view>
+				<block wx:if="{{goodsDate == ''}}">
+					<view bindtap="tagTo" data-tag="1" class="condition_sort selected">
+						<view style="margin-left: 40rpx;">价格</view>
+						<image wx:if="{{asc}}" class="arrow_icon" src="/images/arrow_up.png"></image>
+						<image wx:else class="arrow_icon" src="/images/arrow_down.png"></image>
+					</view>
+				</block>
+				<block wx:else>
+					<view bindtap="tagTo" data-tag="1" class="condition_sort condition_txt">
+						<view style="margin-left: 40rpx;">价格</view>
+						<image wx:if="{{asc}}" class="arrow_icon" src="/images/arrow_up.png"></image>
+						<image wx:else class="arrow_icon" src="/images/arrow_down.png"></image>
+					</view>
+				</block>
+				<view bindtap="tagTo" data-tag="2" class="condition condition_txt">
+					高级筛选
+				</view>
+			</view>
+			<view wx:if="{{menuVisible}}" class="second_menu" style="position:fixed;top:{{bar_Height+80}}px;">
+				<view bindtap="swapSecondTitle" data-index="{{index}}" class="second_menu_item" wx:for="{{classifications}}"
+					wx:for-item="cat_one"
+					style="{{index == index_one?'color:#079547;border:1px solid #079547;':'color:#606060;border:1px solid #BBBBBB;'}}">
+					{{cat_one.name}}
+				</view>
+			</view>
+		</block>
+		<view class="width100">
+			<guess_what id="guess_what"></guess_what>
+			<view wx:if="{{goodsEmpty}}" class="block_center column">
+				<image style="width:350rpx;" class="padding_bottom_40" src="/images/empty_favour.png" mode="widthFix"></image>
+				<text class="h4 gray" style="margin-top: 20rpx;">暂无此分类信息</text>
+			</view>
+		</view>
+	</view>
+	<!--高级筛选 -->
+	<van-popup show="{{show}}" z-index="800">
+		<view class="bg_white column" style="height: 100vh;width: 750rpx;">
+			<view class="hight_title" style="padding-top: {{bar_Height}}px;">高级筛选</view>
+			<scroll-view class="hight_scroll" scroll-y="true" style="height:{{windowHeight-100}}px;">
+				<view wx:for="{{curHightData}}" wx:for-index="idx" class="column">
+					<view class="width100" style="height: 90rpx;line-height: 90rpx;">
+						<text style="margin-left: 15rpx;" class="h2 gray_2">{{item.name}}</text>
+					</view>
+					<view class="row hight_content">
+						<view bindtap="selectForth" data-data="{{forthdata}}" data-index="{{idx}}" wx:for="{{item.children}}"
+							wx:for-item="forthdata" class="{{forthdata.id == curTypeId[idx]?'hight_item_slt':'hight_item'}}">
+							{{forthdata.name}}</view>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="hight_choose row">
+				<view bindtap="close_hight" class="cancel_hight">取消</view>
+				<view bindtap="confirm_hight" class="confirm_hight">确认</view>
+			</view>
+		</view>
+	</van-popup>
+</view>
+<login id="login"></login>

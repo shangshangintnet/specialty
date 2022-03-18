@@ -1,0 +1,24 @@
+<navbar title="兑换余额" show_bol="{{false}}" bg_type="bg_black"></navbar>
+<view style="width:750rpx;margin-top:{{bar_Height+120}}rpx;">
+	<image style="margin-left: 69rpx; width: 612rpx;height: 389rpx;" src="{{imageUrl}}"></image>
+	<view class="column" style="margin-left: 45rpx;margin-top: 70rpx;">
+		<view class="h2 gray_4">共有<text class="app_green">{{maxCount}}</text>张可兑换</view>
+		<view class="row ex_card_bg">
+			<view class="h4 gray_4" style="line-height: 90rpx;margin-left: 30rpx;">选择数量</view>
+			<view class="row" style="margin-left: auto;height:90rpx;width: 200rpx;align-items:center">
+				<view bindtap='bindChange_sub' class='calc_minus gray'>-</view>
+				<text class='calc_num gray_2'>{{count}}</text>
+				<view bindtap='bindChange_add' class='calc_add gray'>+</view>
+			</view>
+		</view>
+		<view class="row ex_card_bg">
+			<view class="h4 gray_4" style="line-height: 90rpx;margin-left: 30rpx;">兑换金额</view>
+			<view style="margin-left: auto;margin-right: 30rpx;line-height: 90rpx;">{{cardPrice * count}}</view>
+		</view>
+		<view class="row" style="justify-content: flex-start;align-items: center;height: 50rpx;margin-top: 10rpx;">
+			<image style="width: 30rpx;height: 30rpx;" src="/images/my_about_us.png"></image>
+			<view class="gray" style="margin-left:10rpx;font-size: 26rpx;line-height: 50rpx;">金额不可修改，仅限全部兑换为账户余额</view>
+		</view>
+	</view>
+	<view bindtap="exchange" class="card_button">立即兑换</view>
+</view>

@@ -1,0 +1,43 @@
+.video {
+  height: 750rpx;
+  width: 750rpx;
+}
+
+.imgs_section {
+  padding: 10rpx 0rpx;
+  background: white;
+  align-items: center;
+}
+
+.namebg {
+  font-size: 32rpx;
+}
+
+.info_title {
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  width: 160rpx;
+  height: 40rpx;
+  margin-left: 275rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  line-height: 40rpx;
+  background-color: #53CA72;
+  border-radius: 20rpx 20rpx 0rpx 20rpx;
+}
+
+.info {
+  width: 670rpx;
+  padding: 20rpx;
+  border: 1rpx dashed #53CA72;
+  border-radius: 20rpx;
+  margin-top: 13rpx;
+}
+
+.photo {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  border: 2rpx solid #53CA72;
+}

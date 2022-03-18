@@ -1,0 +1,142 @@
+.bottom {
+  position: fixed;
+  bottom: 0;
+  height: 90rpx;
+  width: 750rpx;
+}
+
+.goods_section {
+  margin: 10rpx;
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  width: 730rpx;
+  height: 300rpx;
+}
+
+.goods_pic {
+  width: 176rpx;
+  height: 176rpx;
+  margin-left: 20rpx;
+}
+
+.goods_txt {
+  margin-left: 20rpx;
+  width: 490rpx;
+  height: 176rpx;
+}
+
+.goods_name {
+  width: 490rpx;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #202020;
+}
+
+.goods_id {
+  width: 490rpx;
+  font-size: 28rpx;
+  color: #5F5F5F;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+}
+
+.goods_price {
+  width: 490rpx;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  color: #BD1818;
+  margin-top: 46rpx;
+}
+
+.upGood {
+  background-color: #7fbf4f;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.downGood {
+  background-color: #ea4e48;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.editGood {
+  background-color: #f3a628;
+  width: 140rpx;
+  height: 50rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.offSale {
+  width: 730rpx;
+  height: 245rpx;
+  margin-top: -255rpx;
+  margin-left: 10rpx;
+}
+
+.second_menu {
+  width: 750rpx;
+  z-index: 200;
+  background-color: #F8F8F8;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  position: fixed;
+}
+
+.second_menu_item {
+  width: 150rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  margin: 20rpx 15rpx;
+}
+
+.right_line {
+  height: 45rpx;
+  width: 1rpx;
+  background-color: #F0F0F0;
+}
+
+.title {
+  justify-content: center;
+  align-items: center;
+  height: 180rpx;
+  line-height: 180rpx;
+  width: 750rpx;
+  z-index: 200;
+  position: fixed;
+  background-color: #FFFFFF;
+}
+
+.tab {
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.input_txt {
+  width: 650rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}

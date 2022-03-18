@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "people": "/components/people/people"
+  },
+  "navigationBarTextStyle": "black"
+}

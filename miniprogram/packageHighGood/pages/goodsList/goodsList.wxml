@@ -1,0 +1,26 @@
+<navbar title="高货甄选" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <view bindtap="tagTo" data-index="1" class="'condition '{{active==1?'app_green':'gray'}}">天然玉石</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="0" class="'condition '{{active==0?'app_green':'gray'}}">天然宝石</view>
+  <view class="right_line"></view>
+  <view bindtap="tagTo" data-index="2" class="'condition '{{active==2?'app_green':'gray'}}">生物宝石</view>
+</view>
+<view class="column" style="width:750rpx;margin-bottom:120rpx; margin-top:{{bar_Height+100}}px;">
+  <view bindtap="openGood" data-index="{{index}}" class="row section" wx:for="{{goods}}">
+    <image style="width:250rpx;height:250rpx;" src="{{item.imageUrl[0]}}"></image>
+    <view class="column name_2" style="height:250rpx;margin-left:20rpx;">
+      <view class="bold h3">{{item.goodsName}}</view>
+      <view class="h9">{{item.goodsNo}}</view>
+      <view class="gray h4 ellipsis_mulitxt" style="margin-top:auto;height:60rpx;line-height:30rpx;">{{item.content}}
+      </view>
+    </view>
+    <!-- <view class="column" style="margin-left:auto;height:250rpx;align-items:center;">
+      <block wx:if="{{user.highType == 2}}">
+        <image catchtap="editGood" data-index="{{index}}" style="width:50rpx;height:50rpx;"
+          src="../../images/ic_edit.png"></image>
+      </block>
+    </view> -->
+  </view>
+</view>
+<!-- <image wx:if="{{user.highType == 2}}" catchtap="addGood" class="addAdviser" src="../../images/ic_add.png"></image> -->

@@ -1,0 +1,192 @@
+<navbar title="镶嵌详情" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+  <view class="'condition '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+  <view class="right_line"></view>
+  <view class="'condition '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">图集信息</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+  <block wx:if="{{active == 0}}">
+    <view class="row info_item">
+      <text class="gray_4 h2">主题</text>
+      <view class="smoke h4">{{stone.name}}</view>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">用户手机</text>
+      <view class="smoke h4">{{stone.mobile}}</view>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">用户预算</text>
+      <input disabled="{{view || !beUser || stone.status != 0}}" value="{{stone.budgetPrice}}"
+        bindblur="changeBudgetPrice" class="input_txt" placeholder="请输入用户预算"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">镶嵌工费</text>
+      <input disabled="{{beUser || view || stone.status > 3}}" value="{{stone.price}}" bindblur="changePrice"
+        class="input_txt" placeholder="请输入预付款" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">预付款</text>
+      <input disabled="{{beUser || view  || stone.status > 1}}" value="{{stone.advancePrice}}"
+        bindblur="changeAdvancePrice" class="input_txt" placeholder="请输入预付款"
+        placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">创建时间</text>
+      <view class="smoke h4">{{stone.createTime}}</view>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">镶嵌状态</text>
+      <view class="picker">{{status[stone.status].name}}</view>
+      <view wx:if="{{!beUser && (stone.status == 1 || stone.status == 3)}}" bindtap="changeStatus" class="next">
+        {{stone.status == 1?'提交预付款':'镶嵌完成'}}</view>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">选择店铺</text>
+      <picker disabled="{{stone.status != 0 || view}}" class="picker_2" mode="selector" range-key="name"
+        range="{{storeList}}" bindchange="changeStore">
+        <block wx:if="{{stone.storeId == null}}">
+          <text style="color:#BBBBBB;font-size: 28rpx;">请选择有意向的店铺</text>
+        </block>
+        <block wx:else>{{storeName}}</block>
+      </picker>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">用户物流</text>
+      <view class="smoke h4">{{stone.logisticsNum?stone.logisticsNum:''}}</view>
+      <view bindtap="viewUserLogistics" class="next">物流详情</view>
+    </view>
+    <view class="row info_item">
+      <text class="gray_4 h2">商户物流</text>
+      <view class="smoke h4">{{stone.storeLogisticsNum?stone.storeLogisticsNum:''}}</view>
+      <view bindtap="viewStoreLogistics" class="next">物流详情</view>
+    </view>
+    <view class="column info_item_large">
+      <text class="gray_4 h2">店铺地址</text>
+      <view class="column info_item_desc smoke h4">
+        <view>收件人：{{stone.storeConcat}}</view>
+        <view>地址：{{stone.storeAdd}}</view>
+      </view>
+    </view>
+    <view class="column info_item_large">
+      <text class="gray_4 h2">用户地址</text>
+      <view bindtap="selectAddress" class="column info_item_desc gray h4">
+        <block wx:if="{{stone.userAdd == null}}">
+          <view>{{beUser?'请选择收货地址':'未选择收货地址'}}</view>
+        </block>
+        <block wx:else>
+          <view>收件人：{{stone.userConcat}}</view>
+          <view>地址：{{stone.userAdd}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="column info_item_large">
+      <text class="gray_4 h2">用户需求</text>
+      <textarea disabled="{{!beUser || view || stone.status > 3}}" value="{{stone.demand}}" bindblur="changeDemand"
+        placeholder="请描镶嵌需求" placeholder-style="color:#BBBBBB;font-size: 28rpx;"
+        class="info_item_desc gray h4"></textarea>
+    </view>
+    <view class="column info_item_large">
+      <text class="gray_4 h2">商家描述</text>
+      <textarea disabled="{{beUser || view || stone.status > 3}}" value="{{stone.content}}" bindblur="changeContent"
+        placeholder="请描述镶嵌作品" placeholder-style="color:#BBBBBB;font-size: 28rpx;"
+        class="info_item_desc gray h4"></textarea>
+    </view>
+    <view class="row concat">
+      <view bindtap="gokefu" class="row" style="width: 345rpx; align-items: center;justify-content: center;">
+        <image style="width: 50rpx;height: 50rpx;" src="/images/ic_kefu.png"></image>
+        <text class="h2 gray_4" style="margin-left: 20rpx;">{{beUser?'联系商户':'联系用户'}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view style="height: 10rpx;background-color: #F8F8F8;"></view>
+    <view class="row info_item">
+      <text class="gray_4 h4">商品图集</text>
+      <text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+    </view>
+    <view class="row imgList">
+      <view bindtap="previewImage" data-item="{{item}}" wx:for="{{imageUrls}}" class="imgList_view"
+        style="background-image: url({{item}});">
+        <image catchtap="deleteImage" data-index="{{index}}" style="width:32rpx;height:32rpx;margin-left:110rpx;"
+          src="/images/delete.png"></image>
+      </view>
+      <view wx:if="{{imageUrls.length < 4}}" style="margin:30rpx 40rpx;">
+        <image bindtap="selectImage" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+      </view>
+    </view>
+    <view style="height: 10rpx;background-color: #F8F8F8;"></view>
+    <view class="row info_item">
+      <text class="gray_4 h4">参考图</text>
+      <text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 500 * 500,大小500kb</text>
+    </view>
+    <view class="row imgList">
+      <view bindtap="previewImage2" data-item="{{item}}" wx:for="{{consultUrl}}" class="imgList_view"
+        style="background-image: url({{item}});">
+        <image catchtap="deleteImage2" style="width:32rpx;height:32rpx;margin-left:110rpx;" src="/images/delete.png">
+        </image>
+      </view>
+      <view wx:if="{{consultUrl.length < 1}}" style="margin:30rpx 40rpx;">
+        <image bindtap="selectImage2" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+      </view>
+    </view>
+  </block>
+</view>
+<view wx:if="{{active == 0 && !view && stone.status >= 0}}" class="bottom row">
+  <block wx:if="{{stone.status > 2}}">
+    <block wx:if="{{beUser}}">
+      <block wx:if="{{stone.status == 5}}">
+        <view bindtap="complete" class="btn_success width100"> 确认完成 </view>
+      </block>
+      <block wx:elif="{{stone.status >= 6}}">
+        <view class="btn_success width100"> 已完成 </view>
+      </block>
+      <block wx:else>
+        <view catchtap="openLogistics" class="btn_default item2">{{stone.logisticsNum?'修改物流':'绑定物流'}}</view>
+        <view bindtap="{{stone.status == 4?'pay':'confirm'}}" class="btn_success item2">
+          {{stone.status == 4?'支付尾款':'确认修改'}}
+        </view>
+      </block>
+    </block>
+    <block wx:else>
+      <block wx:if="{{stone.status < 4}}">
+        <view catchtap="openLogistics" class="btn_default item2">{{stone.storeLogisticsNum?'修改物流':'绑定物流'}}</view>
+        <view catchtap="confirm" class="btn_success item2">确认修改</view>
+      </block>
+      <block wx:elif="{{stone.status >= 6}}">
+        <view class="btn_success width100"> 已完成 </view>
+      </block>
+      <block wx:else>
+        <view catchtap="openLogistics" class="btn_success width100">{{stone.storeLogisticsNum?'修改物流':'绑定物流'}}</view>
+      </block>
+    </block>
+  </block>
+  <block wx:else>
+    <block wx:if="{{beUser}}">
+      <view catchtap="revoke" class="btn_default item2">{{stone.status != 0?'撤销受理':'未受理'}}</view>
+      <view bindtap="{{stone.status == 2?'pay':'confirm'}}" class="btn_success item2">
+        {{stone.status == 2?'支付预付款':'确认修改'}}
+      </view>
+    </block>
+    <block wx:else>
+      <view catchtap="revoke" class="btn_default item2">撤销受理</view>
+      <view bindtap="confirm" class="btn_success item2">确认修改</view>
+    </block>
+  </block>
+</view>
+<view wx:if="{{!beUser && stone.status == 0}}" bindtap="receive" class="bottom btn_success">
+  接收需求
+</view>
+<van-popup custom-style="width:100vw;height:60vh;z-index:1000" position="bottom" show="{{showAddress}}"
+  bind:close="closeAddress">
+  <van-picker show-toolbar bind:cancel="closeAddress" bind:confirm="onConfirm" title="选择现有地址" columns="{{addressData}}"
+    value-key="addressName" bind:change="onChange" />
+  <view style="position:absolute;bottom:8px;padding-top:10px;width:100%" class="van-hairline--top">
+    <button bindtap='jumpTo' data-url="/packageMyself/pages/myself/myaddress/createAddress/createAddress"
+      style="width:300rpx;margin-left:50rpx;" class="left" type="primary">新增地址</button>
+    <button bindtap='jumpTo' class="right" data-url="/packageMyself/pages/myself/myaddress/myaddress"
+      style="width:300rpx;margin-right:50rpx;" type="default">修改地址</button>
+  </view>
+</van-popup>
+<carve id="carve" bindpay="payOrder"></carve>
+<logistics id="logistics" bindlogdata="bindLogdata"></logistics>

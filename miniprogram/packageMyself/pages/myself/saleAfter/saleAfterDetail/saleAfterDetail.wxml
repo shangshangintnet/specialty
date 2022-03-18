@@ -1,0 +1,61 @@
+<!--miniprogram/pages/myself/saleAfter/saleAfterApply/saleAfterApply.wxml-->
+<navbar title='服务单详情' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style='padding-top:{{bar_Height  + 50}}px; margin-bottom:100rpx'>
+	<view class='row h4 gray' style="height:90rpx;align-items: center;margin-left:30rpx;">
+		<text class='{{afterSaleDetails.customerStatus >= 0?"selected":""}}'>提交申请</text>
+		<text> -> </text>
+		<text class='{{afterSaleDetails.customerStatus >= 0?"selected":""}}'>上商审核中</text>
+		<text> -> </text>
+		<text wx:if="{{afterSaleDetails.customerType == 0 && afterSaleDetails.customerStatus != 4}}" class='{{afterSaleDetails.customerStatus >= 2?"selected":""}}'>上商收货</text>
+		<text wx:if="{{afterSaleDetails.customerType == 0 && afterSaleDetails.customerStatus != 4}}"> -> </text>
+		<text wx:if="{{afterSaleDetails.customerStatus != 4}}" class='{{afterSaleDetails.customerStatus == 3||afterSaleDetails.customerStatus == 1?"selected":""}}'>退款中</text>
+		<text wx:if="{{afterSaleDetails.customerStatus != 4}}" > -> </text>
+		<text wx:if="{{afterSaleDetails.customerStatus != 4}}"  class='{{afterSaleDetails.customerStatus == 1?"selected":""}}'>完成</text>
+		<text wx:if="{{afterSaleDetails.customerStatus == 4}}" class='selected'>拒绝申请</text>
+	</view>
+	<view class='shop_section column bg_white'>
+		<view style='margin-bottom:20rpx'>
+			<image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+			<text class='left'>{{after.goodsShoreName}}</text>
+		</view>
+		<view class='goods_section'>
+			<view class='row'>
+				<image src="{{after.listImageUrl}}" class='goods_pic'></image>
+				<view class='column goods_txt'>
+					<text class='goods_name'>{{after.goodsName}}</text>
+					<text class='goods_id'>{{after.goodsNo}}</text>
+					<view class='price_section'>
+						<view class='left' style='margin-top:30rpx'>￥{{after.currentPrice}}</view>
+						<view class='right' style='margin-top:30rpx'>
+							<text class='calc_num calc'>x{{after.cartCount}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='column bg_white mar-10 radius5 shadow pad-20'>
+		<text class='gray pad-10 h4'>服务单号：{{afterSaleDetails.returnNo}}</text>
+		<text class='gray pad-10 h4'>快递至上商</text>
+		<text class='gray pad-10 h4'>服务类型: {{serveRange[afterSaleDetails.customerType]}}</text>
+	</view>
+	<view class='column bg_white mar-10 radius5 shadow pad-20'>
+		<text class='gray pad-10 h4'>退款方式:原支付返回</text>
+		<text class='gray pad-10 h4'>快递至商家</text>
+		<text class='gray pad-10 h4'>商家地址: {{afterSaleDetails.storeAddress}}</text>
+	</view>
+	<view class='column bg_white mar-10 radius5 shadow pad-20'>
+		<text class='gray pad-10 h4'>联系人: {{afterSaleDetails.realName}}</text>
+		<text class='gray pad-10 h4'>联系电话: {{afterSaleDetails.phoneNum}}</text>
+	</view>
+	<view class="row bg_white info_section">
+		<view bindtap="gokefu" class="row item2" style="align-items: center;justify-content: center;">
+			<image style="width: 50rpx;height: 50rpx;" src="/images/ic_kefu.png"></image>
+			<text class="h2 gray_4" style="margin-left: 20rpx;">咨询客服</text>
+		</view>
+		<view bindtap="makePhone" class="row item2" style="align-items: center;justify-content: center;">
+			<image style="width: 50rpx;height: 50rpx;" src="/images/ic_callphone.png"></image>
+			<text class="h2 gray_4" style="margin-left: 20rpx;">拨打电话</text>
+		</view>
+	</view>
+</view>

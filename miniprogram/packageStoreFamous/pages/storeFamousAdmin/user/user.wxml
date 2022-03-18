@@ -1,0 +1,62 @@
+<navbar title="编辑" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="bg_white title" style="position:fixed;top:{{bar_Height+50}}px;">
+	<view class="'condition '{{active==0?'app_green':'gray'}}" bindtap="tagTo" data-index="0">基本信息</view>
+	<view class="right_line"></view>
+	<view class="'condition '{{active==1?'app_green':'gray'}}" bindtap="tagTo" data-index="1">图集信息</view>
+</view>
+<view class="bg_white column" style="margin-top:{{bar_Height+100}}px;margin-bottom:120rpx;">
+	<block wx:if="{{active == 0}}">
+		<view class="row info_item">
+			<text class="gray_4 h2">艺术馆名称</text>
+			<input value="{{user.name}}" bindblur="changename" class="input_txt" placeholder="请填写名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="row info_item">
+			<text class="gray_4 h2">名家名称</text>
+			<input value="{{user.author}}" bindblur="changeauthor" class="input_txt" placeholder="请填写名称" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></input>
+		</view>
+		<view class="info_item" style="height: 200rpx;">
+			<text class="gray_4 h2">描述:</text>
+			<textarea style="width: 630rpx;margin-left: 30rpx;height: 140rpx;" maxlength="80" value="{{user.describe}}" bindinput="changedescribe" class="input_txt" placeholder="请填写描述" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></textarea>
+		</view>
+		<view class="info_item" style="height: 200rpx;">
+			<text class="gray_4 h2">简介:</text>
+			<textarea style="width: 630rpx;margin-left: 30rpx;height: 140rpx;" maxlength="2500" value="{{user.introduce}}" bindinput="changeintroduce" class="input_txt" placeholder="请填写简介" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></textarea>
+		</view>
+		<view class="info_item" style="height: 200rpx;">
+			<text class="gray_4 h2">成就/头衔:</text>
+			<textarea style="width: 630rpx;margin-left: 30rpx;height: 140rpx;" maxlength="200" value="{{user.title}}" bindinput="changetitle" class="input_txt" placeholder="请填写成就/头衔(多个之间英文“;”隔开)" placeholder-style="color:#BBBBBB;font-size: 28rpx;"></textarea>
+		</view>
+	</block>
+	<block wx:else>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">头像</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 135 * 135,大小500kb</text>
+		</view>
+		<view class="row imgList">
+			<view wx:if="{{user.photoUrl}}" bindtap="selectImage" data-type="0" class="photo_view" style="background-image: url({{user.photoUrl}});">
+			</view>
+			<view wx:else style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" data-type="0" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+		<view style="height: 10rpx;background-color: #F8F8F8;"></view>
+		<view class="row info_item">
+			<text class="gray_4 h4">背景</text>
+			<text class="h4 autoleft" style="color:#FF6901;width: 500rpx;text-align: right;">建议图片尺寸 750 * 400,大小500kb</text>
+		</view>
+		<view class="row imgList" style="height: 430rpx;">
+			<view wx:if="{{user.image}}" bindtap="selectImage" data-type="1" class="img_view" style="background-image: url({{user.image}});">
+			</view>
+			<view wx:else style="margin:30rpx 40rpx;">
+				<image bindtap="selectImage" data-type="1" style="width:150rpx;height:150rpx;" src="/images/upload_img.png"></image>
+			</view>
+		</view>
+	</block>
+</view>
+<view class="bottom row" wx:if="{{active==0}}">
+	<view bindtap="confirm" class="btn_success width100">确认修改</view>
+</view>
+<view wx:if="{{cropShow}}">
+	<image-cropper id="image-cropper" limit_move="true" disable_rotate="true" width="{{width}}" height="{{height}}" imgSrc="{{src}}" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" bindgetImg="getImg"></image-cropper>
+</view>

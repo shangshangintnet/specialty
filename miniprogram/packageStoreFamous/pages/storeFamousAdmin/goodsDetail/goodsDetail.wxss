@@ -1,0 +1,65 @@
+/* packagestoreFamous/pages/storeFamousGoods/storeFamousGoods.wxss */
+page {
+  background-color: #f8f8f8;
+}
+
+.name {
+  color: #000000;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 28rpx;
+}
+
+.title {
+  background: linear-gradient(#BD9140, #B79F60);
+  color: #ffffff;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+  height: 46rpx;
+  width: max-content;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.name_1 {
+  color: #333333;
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-top: 28rpx;
+}
+
+.title_1 {
+  color: #C39E29;
+  font-size: 34rpx;
+  margin-top: 57rpx;
+  font-weight: bold;
+}
+
+.uploadImg {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 20rpx 20rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  border-top: 1rpx solid whitesmoke;
+  z-index: 1200;
+}
+
+.imgtitle {
+  text-align: center;
+}
+
+.img_view {
+  width: 687rpx;
+}

@@ -1,0 +1,253 @@
+<navbar title='我的权益' show_bol='{{false}}' bg_type='bg_green' style="padding-top:{{bar_Height  + 45}}px;"></navbar>
+<view class='column bg_white' style='margin-top:{{bar_Height  + 45}}px;'>
+  <view class='image_section'>
+    <image class="img_rights" mode='widthFix' src='/images/myrights.jpg'>
+    </image>
+
+    <view class='column block_center img_text white '>
+
+      <view>昵称:{{nickName}}</view>
+      <view>分享等级:
+        <image class='level_icon' src='{{"/images/ic_member"+(equityId+1)+".png"}}'></image>{{equityName}}</view>
+      <view style='font-size:26rpx;' class='row'>
+        <text decode='true'>直接好友:{{indirectCount}}&nbsp;</text>
+        <text decode='true'>&nbsp;|&nbsp; </text>
+        <text decode='true'>&nbsp;间接好友:{{connectionCount}}&nbsp; </text>
+        <text decode='true'>&nbsp;|&nbsp;</text>
+        <text decode='true'>&nbsp;人脉好友:{{shareCount}}</text>
+      </view>
+      <view data-share-Code="{{userCode}}" bindtap='copyText' class='invite_code'>邀请码: {{userCode}}</view>
+    </view>
+
+  </view>
+  <image class='share_title' src='/images/share_title.jpg' mode='widthFix'></image>
+</view>
+<view class='column member_rights_sec'>
+  <view class='member_title row'>
+    <image src='/images/ic_member_rights.png' class='icon_big' style='margin-right:10rpx;'></image>
+    <view>会员权益</view>
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view bindtap='toggle' data-idx="0"  class='rights_title'>
+        <view class='circle1 left'></view>
+        注册会员
+        <image src='/images/ic_member1.png' class='icon_big'></image>
+        <view style='color:orange' class='right'>权益
+          <image src='{{toggle[0]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[0]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+            权益：        
+        </text>
+        <text class='rights_content'>
+            下载应用，注册成功即成为会员
+            1、分享好友加入上商可以获得100个翡翠币
+            2、获得1000元新人专享代金券，可以与其他优惠活动同时使用
+            3、获得10000个翡翠豆
+            4、分享好友购买商品，获得毛利润10%的奖励
+            5、以出厂价购买商品
+            6、定期获得优惠券	
+            7、享受其他活动优惠
+
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view  bindtap='toggle' data-idx="1" class='rights_title'>
+        <view class='circle1 left'></view>
+        分享会员
+        <image src='/images/ic_member2.png' class='icon_big'></image>
+        <view style='color:orange' class='right'>权益
+          <image src='{{toggle[1]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[1]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+            权益：        
+        </text>
+        <text class='rights_content'>
+            绑定任意第三方账号或实名认证即为分享会员
+            1、享受注册会员的所有权益
+            2、以出厂价的98折购买商品
+            3、拥有一次购买分享福利商品的权利
+
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view  bindtap='toggle' data-idx="2" class='rights_title'>
+        <view class='circle1 left'></view>
+        升级分享会员
+        <image src='/images/ic_member3.png' class='icon_big'></image>
+        <view style='color:orange' class='right'>权益
+          <image src='{{toggle[2]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[2]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+            权益：        
+        </text>
+        <text class='rights_content'>
+            享受分享会员权益-3之后自动成为升级分享会员
+            1、享受注册会员的所有权益
+            2、以出厂价的98折购买商品
+            3、每分享一个会员成为升级分享会员，获得分享补贴80~100元，并且享受该分享会员消费产生的毛利润的30%的奖励
+            4、每间接分享一个会员成为升级分享会员，获得分享补贴40元，并且享受该分享会员消费产生的毛利润的5%的奖励
+            5、每通过人脉分享一个会员成为升级分享会员，获得分享补贴10元，并且享受该分享会员消费产生的毛利润的的3%的奖励
+
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view bindtap='toggle' data-idx="3" class='rights_title'>
+        <view class='circle1 left'></view>
+        集团用户
+        <image src='/images/ic_member4.png' class='icon_big'></image>
+        <view  style='color:orange' class='right'>权益
+          <image src='{{toggle[3]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[3]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+            权益：        
+        </text>
+        <text class='rights_content'>
+            接受公司邀请的用户，有资格成为集团用户
+            1、享受注册会员的所有权益
+            2、以出厂价的98折购买商品
+            3、每分享一个会员成为升级分享会员，获得分享补贴80~100元，并且享受该分享会员消费产生的毛利润的30%的奖励
+            4、每间接分享一个会员成为升级分享会员，获得分享补贴40元，并且享受该分享会员消费产生的毛利润的5%的奖励
+            5、每通过人脉分享一个会员成为升级分享会员，获得分享补贴10元，并且享受该分享会员消费产生的毛利润的的3%的奖励
+            
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view  bindtap='toggle' data-idx="4" class='rights_title'>
+        <view class='circle1 left'></view>
+        分享达人
+        <image src='/images/ic_member5.png' class='icon_big'></image>
+        <view style='color:orange' class='right'>权益
+          <image src='{{toggle[4]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[4]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+            
+            权益：        
+        </text>
+        <text class='rights_content'>
+            升级分享会员分享人数达到20位用户，即成为分享达人
+            1、享受注册会员的所有权益
+            2、以出厂价的97折购买商品
+            3、每分享一个会员成为升级分享会员，获得分享补贴100~150元，并且享受该分享会员消费产生的毛利润的30%的奖励
+            4、每间接分享一个会员成为升级分享会员，获得分享补贴40元，并且享受该分享会员消费产生的毛利润的5%的奖励
+            5、每通过人脉分享一个会员成为升级分享会员，获得分享补贴10元，并且享受该分享会员消费产生的毛利润的的3%的奖励
+
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view  bindtap='toggle' data-idx="5" class='rights_title'>
+        <view class='circle1 left'></view>
+        分享大使
+        <image src='/images/ic_member6.png' class='icon_big'></image>
+        <view style='color:orange' class='right'>权益
+          <image src='{{toggle[5]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[5]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+
+            权益：        
+        </text>
+        <text class='rights_content'>
+          分享达人分享人数达到100位用户，即成为分享大使
+          1、享受注册会员的所有权益
+          2、以出厂价的96折购买商品
+          3、每分享一个会员成为升级分享会员，获得分享补贴120~200元，并且享受该分享会员消费产生的毛利润的30%的奖励
+          4、每间接分享一个会员成为升级分享会员，获得分享补贴40元，并且享受该分享会员消费产生的毛利润的5%的奖励
+          5、每通过人脉分享一个会员成为升级分享会员，获得分享补贴10元，并且享受该分享会员消费产生的毛利润的的3%的奖励
+
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='column'>
+
+    <view>
+      <view  bindtap='toggle' data-idx="6" class='rights_title'>
+        <view class='circle1 left'></view>
+        众投商
+        <image src='/images/ic_member7.png' class='icon_big'></image>
+        <view style='color:orange' class='right'>权益
+          <image src='{{toggle[6]?arrow_up:arrow_down}}' class='arrow_icon'></image>
+        </view>
+      </view>
+      <view wx-if="{{toggle[6]}}" decode='true' class='rights_desc row' style='font-size:26rpx;'>
+        <text class='rights_content_title'>
+            条件：
+
+
+
+            权益：        
+        </text>
+        <text class='rights_content'>
+            接受公司邀请的合伙人，可以投资5万成为众投商；5万元资金以一年为周期，周期结束可自由退出；不退出资金的成为有限合伙人，享受合同内更高级的权益
+            1、享受注册会员的所有权益
+            2、以出厂价的95折购买商品
+            3、每分享一个会员成为升级分享会员，获得分享补贴160~200元，并且享受该分享会员消费产生的毛利润的30%的奖励
+            4、每间接分享一个会员成为升级分享会员，获得分享补贴40元，并且享受该分享会员消费产生的毛利润的5%的奖励
+            5、每通过人脉分享一个会员成为升级分享会员，获得分享补贴10元，并且享受该分享会员消费产生的毛利润的的3%的奖励
+            6、享受实体店的收益分润
+            7、享受平台的资金收益分润
+            8、享受销售团队整体销售毛利润的2%分润
+            9、定期获取大折扣抵用券
+
+        </text>
+      </view>
+    </view>
+
+  </view>
+
+
+
+
+</view>

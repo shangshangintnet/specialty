@@ -1,0 +1,52 @@
+/* miniprogram/pages/myself/myshare/myshare.wxss */
+page{
+  background: white;
+}
+
+.icon_back
+{
+  width:24rpx;
+  height: 48rpx;
+  padding: 24rpx;
+  padding-right:50rpx;
+  padding-top: 54rpx;
+  position: fixed;
+}
+
+.user_icon
+{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+  overflow: hidden;
+  margin:0 20rpx 0 80rpx;
+  margin-top: 10rpx;
+}
+
+.user_icon_sm
+{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  overflow: hidden;
+  margin:0 20rpx;
+  margin-top: 10rpx;
+}
+
+.notice_content{
+  border-radius:20rpx;
+  box-shadow: 0 6rpx 6rpx #E79C7B;
+}
+
+.animate{
+  animation:myfirst 1.5s infinite alternate;
+}
+
+@keyframes myfirst
+{
+
+0%  {height:130rpx;width:130rpx;padding-left:500rpx;margin-top:-240rpx;}
+
+100%  {height:90rpx;width:90rpx;padding-left:520rpx;margin-top:-230rpx;}
+
+}

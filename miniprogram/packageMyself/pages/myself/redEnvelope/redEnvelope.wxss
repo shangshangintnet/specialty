@@ -1,0 +1,5 @@
+/* miniprogram/packageMyself/pages/myself/redEnvelope/redEnvelope.wxss */
+
+button ::after {
+  border:none !important;
+}

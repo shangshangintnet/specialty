@@ -1,0 +1,63 @@
+<wxs module="phone" src="../../utils/phone.wxs"></wxs>
+<navbar title='购物车' show_bol='{{true}}' bg_type='bg_black'></navbar>
+<view wx:if="{{isEmpty}}" class='block_center column' style="padding-top:{{bar_Height+140}}px;">
+  <image style='width:350rpx;' class="padding_bottom_40" src='/images/empty_cart.png' mode='widthFix'></image>
+  <text>您的购物车是空的～</text>
+</view>
+<view class='column' style='margin-top:{{bar_Height  + 45}}px;padding-bottom:150rpx;'>
+  <view wx:for="{{storeList}}" wx:for-index="shopidx" wx:for-item="shop" class='shop_section column bg_white'>
+    <view style='margin-bottom:20rpx'>
+      <image bindtap='toggleShop' data-shop-Idx="{{shopidx}}" src='{{shop.picked?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' class='icon checkbox left'></image>
+      <image src='/images/icon_storeads.png' class='icon shop_icon left'></image>
+      <text class='left'>{{shop.name}}</text>
+    </view>
+    <view wx:for="{{shop.goodsList}}" wx:if="{{goods.inventory >= 1}}" wx:for-index="idx" wx:for-item="goods" style="overflow:hidden; height:240rpx;">
+      <view class='row goods_section'>
+        <image bindtap='toogleGoods' data-goods-Idx="{{idx}}" data-shop-Idx="{{shopidx}}" src='{{goods.picked?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' style='padding-top:60rpx;' class='icon checkbox selected'></image>
+        <image src="{{goods.listImageUrl}}" class='goods_pic'></image>
+        <view class='column goods_txt' style='margin-left:0rpx;'>
+          <view class='goods_name' style='vertical-align:middle'>
+            <image wx:if="{{goods.extravagant == 2}}" class='icon_big' style='margin-top:-4rpx;margin-right:4rpx;' src='/images/ic_fu.png'></image>{{phone.limit_ten(goods.name)}}</view>
+          <text class='goods_id'>{{goods.goodsNo}}</text>
+          <view class='price_section'>
+            <view class='left app_red' style='margin-top:30rpx'>￥{{goods.price}}</view>
+            <view class='right' style='margin-top:30rpx'>
+              <text bindtap='goods_minus' data-goods-Idx="{{idx}}" data-shop-Idx="{{shopidx}}" class='calc_minus calc'>-</text>
+              <text class='calc_num calc'>{{goods.inventory}}</text>
+              <text bindtap='goods_add' data-goods-Idx="{{idx}}" data-shop-Idx="{{shopidx}}" class='calc_add calc'>+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <image wx:if="{{goods.controlStatus == 0}}" src='/images/offsale.png' class='offSale'></image>
+    </view>
+  </view>
+
+  <image class='guess_banner' mode='widthFix' src='/images/suiyuan.png'></image>
+  <guess_what id="guess_what"></guess_what>
+</view>
+
+
+<view wx:if='{{!isEmpty}}' class='row cart_result'>
+  <view wx:if='{{!edit_mode}}' style='width:750rpx;'>
+    <image bindtap='toggleAll' style='margin-top:30rpx;margin-left:40rpx;' src='{{isPicked?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' class='icon checkbox left'></image>
+    <view class="left" style='margin-top:30rpx;'>全选</view>
+
+    <view bindtap='appjumpTo' data-url="/pages/order/order_confirm/order_confirm" style='line-height:112rpx;;width:240rpx;text-align:center;margin-top:-6rpx;margin-right:-6rpx;' class='right white bg_orange'>
+      结算({{select_items}})
+    </view>
+
+    <text style='margin-top:30rpx;margin-right:40rpx;' class='right'>合计:<text class='app_red'>¥:{{total}}</text></text>
+    <text bindtap='toggleMode' class='left pad-20' style='padding-top:30rpx;padding-left:70rpx'>编辑</text>
+  </view>
+
+  <view wx:if='{{edit_mode}}' style='width:750rpx;'>
+    <image bindtap='toggleAll' style='margin-top:36rpx;margin-left:40rpx;' src='{{isPicked?"/images/ic_checksel.png":"/images/ic_checknor.png"}}' class='icon checkbox left'></image>
+    <view class="left" style='margin-top:30rpx;'>全选</view>
+    <view bindtap='deleteCart' style='line-height:112rpx;;width:240rpx;text-align:center;margin-top:-6rpx;margin-right:-6rpx;' class='right white bg_orange'>删除</view>
+    <text bindtap='moveCollection' class='right pad-20' style='padding-top:30rpx;padding-left:0'>移入收藏夹</text>
+    <image src='/images/icon_likesel.png' mode='widthFix' class='icon shop_icon right' style='padding-top:32rpx'></image>
+    <text bindtap='toggleMode' class='left pad-20' style='padding-top:30rpx;padding-left:70rpx'>完成</text>
+  </view>
+</view>
+<login id="login"></login>

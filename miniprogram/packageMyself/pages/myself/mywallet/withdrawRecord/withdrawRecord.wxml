@@ -1,0 +1,26 @@
+<navbar title='收支详情' show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view style='margin-top:{{bar_Height  + 45}}px;width:710rpx' class='column bg_white pad-lr-20 top_border'>
+  <view class='pad-20 border_line_whitesmoke'>
+    <view class='left gray h3'>{{mold==2?"入帐":"出账"}}金额</view>
+    <view wx:if="{{mold == 2}}" class='right app_green h1' style='margin-top:-10rpx;'>+{{price}}</view>
+    <view wx:else class='right app_red h1' style='margin-top:-10rpx;'>-{{price}}</view>
+  </view>
+  <view class='pad-20 column'>
+    <view>
+      <view class='left gray h4'>类型</view>
+      <view class='right h4'>{{title}}</view>
+    </view>
+    <view>
+      <view class='left gray h4'>时间</view>
+      <view class='right h4'>{{createTime}}</view>
+    </view>
+    <view wx:if="{{title == '订单奖励'}}">
+      <view class='left gray h4'>订单号</view>
+      <view class='right h4'>{{content}}</view>
+    </view>
+    <view>
+      <view class='left gray h4'>{{type == 5?'余额':'收益'}}</view>
+      <view class='right h4'>{{withdrawable}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<navbar title="作品列表" show_bol='{{false}}' bg_type='bg_black'></navbar>
+<view class="column" style="width:750rpx;margin-top:{{bar_Height+50}}px;">
+  <view class="column" style="background-color: #FFFFFF;margin-top: 20rpx;text-align: left;">
+    <view class="column" bindtap="jumpToStoreFamousGoods" data-id="{{item.id}}" wx:for="{{goods}}" style="margin-top: 5rpx;">
+      <view class="column bg_white" style="padding:0rpx 30rpx 20rpx 30rpx;">
+        <view style="height:580rpx;width:690rpx;box-shadow: 2rpx 2rpx 9rpx #c2bfbf;border-radius: 10rpx;">
+          <image style="width:688rpx;height:464rpx;margin-top: 3rpx;margin-left: 1rpx;border-top-left-radius: 10rpx;border-top-right-radius: 10rpx;" src="{{item.image}}"></image>
+          <view class="bold" style="font-size:34rpx;margin-left:27rpx;height: 32rpx;">{{item.name}}</view>
+          <view style="width:609rpx;margin-top:16rpx;font-size:28rpx;margin-left:27rpx;height: 32rpx;">作者: {{item.userName}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
